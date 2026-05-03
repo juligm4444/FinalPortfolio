@@ -1,0 +1,76 @@
+import { motion } from 'framer-motion'
+import { useLocale } from '../i18n/LocaleProvider.jsx'
+import MediaSlot from '../components/MediaSlot.jsx'
+
+export default function Focus() {
+  const { t } = useLocale()
+  return (
+    <section className="mx-auto w-full max-w-[1200px] px-4 py-20 md:px-8 md:py-28">
+      <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
+        {/* media on the left this time, asymmetric rhythm */}
+        <div className="order-2 md:order-1 md:col-span-5">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="md:sticky md:top-[120px]"
+          >
+            {/* drop a Spline URL via `spline=...` whenever ready */}
+            <MediaSlot
+              alt="Spline 3D scene"
+              caption={t('about.focusMediaCaption')}
+              ratio="4 / 5"
+            />
+          </motion.div>
+        </div>
+
+        <div className="order-1 md:order-2 md:col-span-7">
+          <p
+            className="font-nav uppercase"
+            style={{ color: 'var(--fg-muted)', fontSize: 12, letterSpacing: '0.22em' }}
+          >
+            {t('about.focusKicker')}
+          </p>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-3 font-display"
+            style={{
+              color: 'var(--fg)',
+              fontSize: 'clamp(30px, 3.8vw, 48px)',
+              lineHeight: 1.1,
+              fontWeight: 700,
+              maxWidth: '18ch',
+            }}
+          >
+            {t('about.focusTitle')}
+          </motion.h2>
+
+          <div className="mt-8 space-y-5">
+            {[t('about.focusPara1'), t('about.focusPara2')].map((p, i) => (
+              <motion.p
+                key={i}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-80px' }}
+                transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: i * 0.05 }}
+                className="font-body"
+                style={{
+                  color: 'var(--fg-soft)',
+                  fontSize: 17,
+                  lineHeight: 1.7,
+                  maxWidth: '60ch',
+                }}
+              >
+                {p}
+              </motion.p>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}

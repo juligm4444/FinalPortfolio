@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create *)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git -c user.name=\"juligm4\" -c user.email=\"julian_gm4@hotmail.com\" commit -q -m \"checkpoint: pre-hexagon background — cube speed/glass, 2x card logo, About perf, Education layout + honest credentials\")",
+      "Bash(git tag *)"
+    ]
+  }
+}

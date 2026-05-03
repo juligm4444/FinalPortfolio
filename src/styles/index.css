@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Libre Baskerville';
+  src: url('../assets/fonts/LibreBaskerville-VariableFont_wght.ttf') format('truetype-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roboto Mono';
+  src: url('../assets/fonts/RobotoMono-VariableFont_wght.ttf') format('truetype-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ================= THEME ================= */
+:root,
+html[data-theme='light'] {
+  /* Palette (constant brand) */
+  --black-light: #1F2624;
+  --black: #141A18;
+  --black-dark: #0B0E0D;
+  --pink-light: #FF85B6;
+  --pink: #FF3D90;
+  --pink-dark: #FF0066;
+  --gray-light: #535C61;
+  --gray: #3F4548;
+  --gray-dark: #2F3335;
+  --white-light: #EDEDE8;
+  --white: #E1E0DC;
+  --white-dark: #D3D2CF;
+  --pink-brand: #FF0871;
+
+  /* Themed */
+  --bg: var(--white-light);
+  --fg: var(--black-dark);
+  --fg-soft: rgba(11, 14, 13, 0.7);
+  --fg-muted: rgba(11, 14, 13, 0.55);
+  --surface: var(--white);
+  --surface-2: var(--white-dark);
+  --surface-strong: #C8C7C3;
+
+  --pillar: var(--white-light);
+  --pillar-shade: rgba(0, 0, 0, 0.18);
+
+  --nav-bg-from: rgba(32, 44, 37, 0.70);
+  --nav-bg-to: rgba(73, 85, 90, 0.70);
+  --nav-fg: #EDEDE8;
+  --nav-fg-hover: var(--pink-light);
+  --nav-active-bg: #171C19;
+  --nav-active-shadow: inset 10px 5px 10px #0C0D0D;
+
+  --filter-bar-bg: rgba(211, 210, 207, 0.6);
+  --filter-active-from: #4B5258;
+  --filter-active-to: #1F2624;
+  --filter-active-fg: #E5E7EB;
+  --filter-fg: #0a0a0a;
+}
+
+html[data-theme='dark'] {
+  --bg: var(--black-dark);
+  --fg: var(--white-light);
+  --fg-soft: rgba(237, 237, 232, 0.78);
+  --fg-muted: rgba(237, 237, 232, 0.55);
+  --surface: var(--black);
+  --surface-2: var(--black-light);
+  --surface-strong: #2A302D;
+
+  --pillar: #1F2624;
+  --pillar-shade: rgba(0, 0, 0, 0.55);
+
+  --nav-bg-from: rgba(11, 14, 13, 0.92);
+  --nav-bg-to: rgba(31, 38, 36, 0.92);
+  --nav-fg: #EDEDE8;
+  --nav-fg-hover: var(--pink-light);
+  --nav-active-bg: #EDEDE8;
+  /* Q4 vector (both negative in math coords) — light from bottom-right,
+     shadow falls toward top-left inside the pill, matching the icon’s identity. */
+  --nav-active-shadow: inset -10px -5px 12px rgba(12, 13, 13, 0.18);
+
+  --filter-bar-bg: rgba(31, 38, 36, 0.6);
+  --filter-active-from: #EDEDE8;
+  --filter-active-to: #C8C7C3;
+  --filter-active-fg: #0C0D0D;
+  --filter-fg: #EDEDE8;
+}
+
+@layer base {
+  html, body, #root {
+    height: 100%;
+  }
+  html { background: var(--bg); }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Roboto Mono', monospace;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    transition: background-color 360ms ease, color 360ms ease;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Libre Baskerville', serif;
+  }
+  ::selection { background: var(--pink-brand); color: #EDEDE8; }
+}
+
+@layer components {
+  .nav-link {
+    color: var(--nav-fg);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.2;
+    border: 1px solid color-mix(in srgb, var(--nav-fg) 20%, transparent);
+    transition: color 200ms ease, background 200ms ease, box-shadow 200ms ease,
+      border-color 200ms ease;
+  }
+  .nav-link:hover { color: var(--nav-fg-hover); }
+  .nav-link.active {
+    background: var(--nav-active-bg);
+    color: var(--nav-fg);
+    box-shadow: var(--nav-active-shadow);
+    border-color: var(--nav-active-bg);
+  }
+  html[data-theme='dark'] .nav-link.active {
+    color: #0C0D0D;
+  }
+  .nav-link.active:hover { color: var(--nav-fg); }
+  html[data-theme='dark'] .nav-link.active:hover { color: #0C0D0D; }
+}
+
+main { position: relative; z-index: 10; }
+
+/* Filter bar tabs — hover behavior identical to navbar */
+.filter-tab { transition: color 200ms ease, background 220ms ease, box-shadow 220ms ease; }
+.filter-tab[data-active='false']:hover { color: var(--pink-light) !important; }
+
