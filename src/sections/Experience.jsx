@@ -30,7 +30,7 @@ export default function Experience() {
       <div className="grid grid-cols-1 md:grid-cols-12 md:gap-16">
         <div className="md:col-span-1" aria-hidden />
         <div className="md:col-span-11">
-          <Timeline items={items} />
+          <Timeline items={items} glass />
         </div>
       </div>
     </section>

@@ -1,40 +1,116 @@
 import { useEffect, useRef, useState } from 'react'
 
-const PILLAR_WIDTH = 168
-const STEP = 90 // each enter triggers a single quarter-turn
-const T_ROT = 700 // ms
+/**
+ * Honeycomb background — independent flat-top hexagons. Replaces the previous
+ * vertical pillars while keeping the same interaction language:
+ *   - hover-driven (no auto-rotate)
+ *   - one hex flips per mouse crossing
+ *   - direction-of-flip depends on which side the cursor came from
+ *   - subtle borders so adjacent hexes stay distinguishable
+ *
+ * Geometry — flat-top hex with side length s:
+ *   width  = 2s     (corner-to-corner, horizontal)
+ *   height = s · √3 (flat-to-flat, vertical)
+ *   col stride = 1.5s   (horizontal spacing between column centres)
+ *   row stride = s · √3 (vertical spacing within the same column)
+ *   odd columns are offset vertically by row stride / 2
+ */
 
+const SIDE = 70 // hex side length s — controls density (smaller = more hexes)
+const HEX_W = SIDE * 2
+const HEX_H = SIDE * Math.sqrt(3)
+const COL_DX = SIDE * 1.5
+const ROW_DY = HEX_H
+
+const T_FLIP = 700 // ms per flip (180° rotateY)
 const ease = (x) => (x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2)
 
-export default function PillarsBackground() {
-  const [count, setCount] = useState(0)
+// flat-top hex polygon as percentages of its bounding box
+const HEX_CLIP =
+  'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)'
+
+export default function HexBackground() {
+  const [layout, setLayout] = useState({ cols: 0, rows: 0, hexes: [] })
   const wrappersRef = useRef([])
-  const anglesRef = useRef([]) // accumulated angle per pillar
-  const tokensRef = useRef([]) // monotonic token per pillar (for shade rAF)
+  // accumulated rotation per hex — 2 axes (X + Y) so the hex can flip in any
+  // of the four cardinal directions depending on the mouse's incoming side.
+  const anglesRef = useRef([])
+  const tokensRef = useRef([]) // shade animation token per hex
   const prevIdxRef = useRef(-1)
 
+  // Compute hex grid that covers the viewport with bleed on every side.
+  // Odd columns are vertically offset by half a row, so we start one row
+  // ABOVE the top edge for every column — otherwise odd columns leave a
+  // half-row gap that reveals the page background.
   useEffect(() => {
     const compute = () => {
-      const w = window.innerWidth
-      setCount(Math.ceil(w / PILLAR_WIDTH) + 2)
+      const W = window.innerWidth
+      const H = window.innerHeight
+      const cols = Math.ceil(W / COL_DX) + 2
+      const rows = Math.ceil(H / ROW_DY) + 3
+      const rowsPerCol = rows + 1 // because we start at r = -1
+      const hexes = []
+      let idx = 0
+      for (let c = 0; c < cols; c++) {
+        for (let r = -1; r < rows; r++) {
+          const cx = c * COL_DX + HEX_W / 2 - SIDE / 2
+          const cy = r * ROW_DY + (c % 2) * (ROW_DY / 2) + HEX_H / 2
+          hexes.push({ idx, c, r, cx, cy, x: cx - HEX_W / 2, y: cy - HEX_H / 2 })
+          idx++
+        }
+      }
+      setLayout({ cols, rows, rowsPerCol, hexes })
     }
     compute()
     window.addEventListener('resize', compute)
     return () => window.removeEventListener('resize', compute)
   }, [])
 
-  // reset state buffers when count changes
+  // reset state buffers when the grid changes
   useEffect(() => {
-    if (!count) return
-    anglesRef.current = Array(count).fill(0)
-    tokensRef.current = Array(count).fill(0)
+    const n = layout.hexes.length
+    if (!n) return
+    anglesRef.current = Array.from({ length: n }, () => ({ x: 0, y: 0 }))
+    tokensRef.current = Array(n).fill(0)
     prevIdxRef.current = -1
-  }, [count])
+  }, [layout.hexes.length])
 
-  // Mouse tracking — figure out which pillar the mouse is over and which side
-  // it came from. Trigger a single 90° rotation per crossing.
+  // Mouse tracking — find the hex whose centre is closest to the cursor.
+  // Triggers a single 180° flip when the cursor crosses into a different hex.
   useEffect(() => {
-    if (!count) return
+    const hexes = layout.hexes
+    if (!hexes.length) return
+
+    const findClosest = (mx, my) => {
+      // Coarse-to-fine: clamp by column first, then probe a 3×3 neighbourhood.
+      const c0 = Math.max(0, Math.min(layout.cols - 1, Math.floor(mx / COL_DX)))
+      let best = -1
+      let bestD = Infinity
+      for (let dc = -1; dc <= 1; dc++) {
+        const c = c0 + dc
+        if (c < 0 || c >= layout.cols) continue
+        // r is now allowed to start at -1 (odd-column gap fix)
+        const r0 = Math.floor(
+          (my - (c % 2) * (ROW_DY / 2) - HEX_H / 2) / ROW_DY
+        )
+        for (let dr = 0; dr <= 1; dr++) {
+          const r = r0 + dr
+          if (r < -1 || r >= layout.rows) continue
+          // hex index: column c stores rowsPerCol entries (r = -1, 0, 1, ...)
+          const i = c * layout.rowsPerCol + (r + 1)
+          const h = hexes[i]
+          if (!h) continue
+          const dx = mx - h.cx
+          const dy = my - h.cy
+          const d2 = dx * dx + dy * dy
+          if (d2 < bestD) {
+            bestD = d2
+            best = i
+          }
+        }
+      }
+      return best
+    }
 
     const animateShade = (idx) => {
       const myToken = (tokensRef.current[idx] || 0) + 1
@@ -44,12 +120,11 @@ export default function PillarsBackground() {
       if (!el) return
       const tick = (now) => {
         if (tokensRef.current[idx] !== myToken) return
-        const t = (now - start) / T_ROT
+        const t = (now - start) / T_FLIP
         if (t >= 1) {
           el.style.setProperty('--shade', '0')
           return
         }
-        // sin curve peaks mid-rotation, returns to 0
         const v = Math.sin(Math.min(t, 1) * Math.PI) * 0.85
         el.style.setProperty('--shade', v.toFixed(3))
         requestAnimationFrame(tick)
@@ -57,31 +132,42 @@ export default function PillarsBackground() {
       requestAnimationFrame(tick)
     }
 
-    const rotatePillar = (idx, fromLeft) => {
+    // Flip a hex 180° around the axis dictated by the cursor's direction:
+    // - mostly horizontal motion → rotate around Y (left/right)
+    // - mostly vertical motion   → rotate around X (up/down)
+    // Both axes accumulate independently, so a hex can end up flipped on any
+    // combination of the four cardinal directions.
+    const flipHex = (idx, dx, dy) => {
       const el = wrappersRef.current[idx]
       if (!el) return
-      // direction: mouse coming from the LEFT pushes the pillar clockwise
-      // (positive Y rotation in CSS); from the RIGHT pushes it the other way.
-      const delta = fromLeft ? STEP : -STEP
-      anglesRef.current[idx] = (anglesRef.current[idx] || 0) + delta
-      el.style.transition = `transform ${T_ROT}ms cubic-bezier(0.65, 0, 0.35, 1)`
-      el.style.transform = `rotateY(${anglesRef.current[idx]}deg)`
+      const a = anglesRef.current[idx] || (anglesRef.current[idx] = { x: 0, y: 0 })
+      if (Math.abs(dx) >= Math.abs(dy)) {
+        a.y += dx >= 0 ? 180 : -180
+      } else {
+        a.x += dy >= 0 ? -180 : 180
+      }
+      el.style.transition = `transform ${T_FLIP}ms cubic-bezier(0.65, 0, 0.35, 1)`
+      el.style.transform = `rotateX(${a.x}deg) rotateY(${a.y}deg)`
       animateShade(idx)
     }
 
     const onMove = (e) => {
-      const x = e.clientX
-      const idx = Math.floor(x / PILLAR_WIDTH)
-      if (idx < 0 || idx >= count) {
-        prevIdxRef.current = -1
-        return
-      }
+      const idx = findClosest(e.clientX, e.clientY)
+      if (idx < 0) return
       if (idx === prevIdxRef.current) return
       const prev = prevIdxRef.current
       prevIdxRef.current = idx
-      // First entry of the session — direction undecidable. Default to "from left".
-      const fromLeft = prev === -1 ? true : idx > prev
-      rotatePillar(idx, fromLeft)
+      // direction vector between the previous and current hex centres
+      let dx, dy
+      if (prev === -1) {
+        // first entry — undecidable; default to "from the left"
+        dx = 1
+        dy = 0
+      } else {
+        dx = hexes[idx].cx - hexes[prev].cx
+        dy = hexes[idx].cy - hexes[prev].cy
+      }
+      flipHex(idx, dx, dy)
     }
 
     const onLeave = () => {
@@ -89,81 +175,101 @@ export default function PillarsBackground() {
     }
 
     window.addEventListener('mousemove', onMove)
-    window.addEventListener('mouseleave', onLeave)
     document.addEventListener('mouseleave', onLeave)
     return () => {
       window.removeEventListener('mousemove', onMove)
-      window.removeEventListener('mouseleave', onLeave)
       document.removeEventListener('mouseleave', onLeave)
     }
-  }, [count])
+  }, [layout])
 
   return (
     <div
       aria-hidden="true"
-      className="fixed z-0 pointer-events-none"
+      className="fixed inset-0 z-0 pointer-events-none"
       style={{
-        top: -20,
-        bottom: -20,
-        left: 0,
-        right: 0,
-        perspective: '2400px',
-        perspectiveOrigin: '50% 40%',
+        perspective: '2200px',
+        perspectiveOrigin: '50% 50%',
+        // bleed beyond the viewport so edge hexes never reveal the canvas
+        margin: -HEX_H / 2,
       }}
     >
-      <div className="absolute inset-0 flex">
-        {Array.from({ length: count }).map((_, i) => (
+      {layout.hexes.map((h) => (
+        // 1 px inflate on each side hides hairline sub-pixel gaps between
+        // neighbouring hexes (ROW_DY uses √3, so vertical spacing is fractional).
+        <div
+          key={h.idx}
+          style={{
+            position: 'absolute',
+            left: h.x - 1,
+            top: h.y - 1,
+            width: HEX_W + 2,
+            height: HEX_H + 2,
+            transformStyle: 'preserve-3d',
+          }}
+        >
           <div
-            key={i}
-            className="relative h-full"
+            ref={(el) => (wrappersRef.current[h.idx] = el)}
             style={{
-              width: `${PILLAR_WIDTH}px`,
-              flex: '0 0 auto',
+              position: 'absolute',
+              inset: 0,
               transformStyle: 'preserve-3d',
+              willChange: 'transform',
+              transform: 'rotateY(0deg)',
             }}
           >
-            <div
-              ref={(el) => (wrappersRef.current[i] = el)}
-              style={{
-                transformStyle: 'preserve-3d',
-                position: 'absolute',
-                inset: 0,
-                willChange: 'transform',
-                transform: 'rotateY(0deg)',
-              }}
-            >
-              <Face transform={`translateZ(${PILLAR_WIDTH / 2}px)`} />
-              <Face transform={`rotateY(90deg) translateZ(${PILLAR_WIDTH / 2}px)`} />
-              <Face transform={`rotateY(180deg) translateZ(${PILLAR_WIDTH / 2}px)`} />
-              <Face transform={`rotateY(-90deg) translateZ(${PILLAR_WIDTH / 2}px)`} />
-            </div>
+            <Face />
+            <Face flipped />
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   )
 }
 
-function Face({ transform }) {
+function Face({ flipped = false }) {
   return (
     <div
-      className="absolute inset-0"
       style={{
-        transform,
+        position: 'absolute',
+        inset: 0,
         backfaceVisibility: 'hidden',
         WebkitBackfaceVisibility: 'hidden',
-        backgroundColor: 'var(--pillar)',
-        boxShadow:
-          'inset -1px 0 0 color-mix(in srgb, var(--fg) 9%, transparent), inset 1px 0 0 color-mix(in srgb, var(--bg) 60%, transparent)',
+        transform: flipped ? 'rotateY(180deg)' : 'none',
       }}
     >
+      {/* outer (border colour) clipped to hex — uses --hex-border so dark
+          mode can crank the alpha up for clearer separators. */}
       <div
-        className="absolute inset-0"
         style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'var(--hex-border)',
+          clipPath: HEX_CLIP,
+          WebkitClipPath: HEX_CLIP,
+        }}
+      />
+      {/* inner (fill) — slightly inset to leave a hairline border ring */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 1.5,
+          background: 'var(--pillar)',
+          clipPath: HEX_CLIP,
+          WebkitClipPath: HEX_CLIP,
+        }}
+      />
+      {/* directional shading — only visible while flipping */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 1.5,
           background:
             'linear-gradient(90deg, transparent 0%, transparent 35%, var(--pillar-shade) 100%)',
           opacity: 'var(--shade, 0)',
           mixBlendMode: 'multiply',
+          clipPath: HEX_CLIP,
+          WebkitClipPath: HEX_CLIP,
+          pointerEvents: 'none',
         }}
       />
     </div>

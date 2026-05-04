@@ -204,62 +204,6 @@ export default function Hero() {
           className="relative w-full"
           style={{ maxWidth: HERO_WIDTH_PX, minHeight: HERO_HEIGHT }}
         >
-          {/* ============== GLASS FLOOR — under the cube path ==============
-              A horizontal strip of crystallised glass sitting just below the
-              cube's bottom edge. Fades downward, with subtle prismatic facets
-              and a specular highlight at the top edge that reads as the line
-              the cube rolls on. */}
-          <div
-            aria-hidden
-            className="absolute pointer-events-none"
-            style={{
-              left: 0,
-              right: 0,
-              top: BAR_TOP + CUBE_SIZE,
-              height: 110,
-              overflow: 'hidden',
-              opacity: cubeVisible ? 1 : 0,
-              transition: 'opacity 600ms ease',
-            }}
-          >
-            {/* base glass tint, fading to transparent downward */}
-            <div
-              style={{
-                position: 'absolute',
-                inset: 0,
-                background:
-                  'linear-gradient(180deg, rgba(237,237,232,0.42) 0%, rgba(237,237,232,0.16) 35%, rgba(237,237,232,0.05) 70%, transparent 100%)',
-                backdropFilter: 'blur(8px) saturate(110%)',
-                WebkitBackdropFilter: 'blur(8px) saturate(110%)',
-              }}
-            />
-            {/* prismatic facets — two crossed sets of lines, masked to fade down */}
-            <div
-              style={{
-                position: 'absolute',
-                inset: 0,
-                background:
-                  'repeating-linear-gradient(120deg, transparent 0, transparent 14px, rgba(237,237,232,0.07) 14px, rgba(237,237,232,0.07) 15px), repeating-linear-gradient(60deg, transparent 0, transparent 14px, rgba(237,237,232,0.05) 14px, rgba(237,237,232,0.05) 15px)',
-                maskImage:
-                  'linear-gradient(180deg, black 0%, transparent 80%)',
-                WebkitMaskImage:
-                  'linear-gradient(180deg, black 0%, transparent 80%)',
-              }}
-            />
-            {/* specular highlight — bright line where cube touches glass */}
-            <div
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                right: 0,
-                height: 1.5,
-                background:
-                  'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.55) 50%, transparent 100%)',
-              }}
-            />
-          </div>
-
           {/* ============== NAMES ============== */}
           <NameSpan
             text={typed.first}
@@ -394,11 +338,12 @@ export default function Hero() {
             animate={
               !cubeVisible
                 ? { ...CUBE_OFF, width: CUBE_SIZE, height: CUBE_SIZE, rotate: 0, opacity: 0 }
-                : !cubeAtBar
+                : !cubeExpanded
                 ? {
-                    // Accelerates fast, then a gentle overshoot near the
-                    // landing spot followed by a small settle — bouncy feel
-                    // while the Y stays absolutely flat (rolling on glass).
+                    // Single, uninterrupted rolling animation. Final keyframe
+                    // lands at left = 0; Framer holds that value until the
+                    // expand stage — so the cube never disappears or snaps
+                    // between phases.
                     left: [-800, 28, -6, 0],
                     rotate: [0, 1102, 1074, 1080],
                     top: CUBE_AT_BAR.top,
@@ -410,13 +355,6 @@ export default function Hero() {
                       times: [0, 0.78, 0.91, 1],
                       ease: ['easeIn', 'easeOut', 'easeOut'],
                     },
-                  }
-                : !cubeExpanded
-                ? {
-                    ...CUBE_AT_BAR,
-                    rotate: 1080,
-                    opacity: 1,
-                    transition: { duration: 0 },
                   }
                 : {
                     ...CUBE_BAR_EXPANDED,

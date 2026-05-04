@@ -92,9 +92,10 @@ export default function Education() {
           </div>
         </div>
 
-        {/* RIGHT — timeline fills the remaining width and reflows automatically. */}
+        {/* RIGHT — each step in its own glass panel. The hex bg still
+            reads through them, but the body copy stays comfortable. */}
         <div style={{ flex: '1 1 auto', minWidth: 0 }}>
-          <Timeline items={items} />
+          <Timeline items={items} glass />
         </div>
       </div>
     </section>

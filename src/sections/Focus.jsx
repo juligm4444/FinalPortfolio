@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { useLocale } from '../i18n/LocaleProvider.jsx'
 import MediaSlot from '../components/MediaSlot.jsx'
+import GlassBlock from '../components/GlassBlock.jsx'
 
 export default function Focus() {
   const { t } = useLocale()
@@ -49,26 +50,28 @@ export default function Focus() {
             {t('about.focusTitle')}
           </motion.h2>
 
-          <div className="mt-8 space-y-5">
-            {[t('about.focusPara1'), t('about.focusPara2')].map((p, i) => (
-              <motion.p
-                key={i}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-80px' }}
-                transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: i * 0.05 }}
-                className="font-body"
-                style={{
-                  color: 'var(--fg-soft)',
-                  fontSize: 17,
-                  lineHeight: 1.7,
-                  maxWidth: '60ch',
-                }}
-              >
-                {p}
-              </motion.p>
-            ))}
-          </div>
+          <GlassBlock className="mt-8" padding="28px 32px">
+            <div className="space-y-5">
+              {[t('about.focusPara1'), t('about.focusPara2')].map((p, i) => (
+                <motion.p
+                  key={i}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-80px' }}
+                  transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: i * 0.05 }}
+                  className="font-body"
+                  style={{
+                    color: 'var(--fg-soft)',
+                    fontSize: 17,
+                    lineHeight: 1.7,
+                    maxWidth: '60ch',
+                  }}
+                >
+                  {p}
+                </motion.p>
+              ))}
+            </div>
+          </GlassBlock>
         </div>
       </div>
     </section>

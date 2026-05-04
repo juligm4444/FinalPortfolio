@@ -1,13 +1,14 @@
-import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { useLocale } from '../../i18n/LocaleProvider.jsx'
-import projects from '../../data/projects.js'
-import MiniSkills from '../../components/MiniSkills.jsx'
-import MediaSlot from '../../components/MediaSlot.jsx'
-import Timeline from '../../components/Timeline.jsx'
-import IconButton from '../../components/IconButton.jsx'
-import Highlight from '../../components/Highlight.jsx'
-import { ExternalLinkIcon, GitHubIcon } from '../../components/icons/IconSet.jsx'
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { useLocale } from '../../i18n/LocaleProvider.jsx';
+import projects from '../../data/projects.js';
+import MiniSkills from '../../components/MiniSkills.jsx';
+import MediaSlot from '../../components/MediaSlot.jsx';
+import Timeline from '../../components/Timeline.jsx';
+import IconButton from '../../components/IconButton.jsx';
+import Highlight from '../../components/Highlight.jsx';
+import GlassBlock from '../../components/GlassBlock.jsx';
+import { ExternalLinkIcon, GitHubIcon } from '../../components/icons/IconSet.jsx';
 
 const slabStyle = {
   background: '#FF0871',
@@ -19,11 +20,11 @@ const slabStyle = {
   fontWeight: 700,
   textTransform: 'uppercase',
   fontFamily: '"Space Grotesk", sans-serif',
-}
+};
 
 export default function Candelaria() {
-  const { t } = useLocale()
-  const project = projects.find((p) => p.slug === 'candelaria')
+  const { t } = useLocale();
+  const project = projects.find((p) => p.slug === 'candelaria');
 
   return (
     <article className="w-full">
@@ -66,10 +67,7 @@ export default function Candelaria() {
           }}
         >
           <div className="md:col-span-7 flex flex-col gap-10">
-            <MetaBlock
-              label={t('candelaria.sectionRoleLabel')}
-              value={t('candelaria.role')}
-            />
+            <MetaBlock label={t('candelaria.sectionRoleLabel')} value={t('candelaria.role')} />
             <MetaBlock
               label={t('candelaria.sectionTimelineLabel')}
               value={`${t('candelaria.period')} · ${t('candelaria.status')}`}
@@ -98,13 +96,7 @@ export default function Candelaria() {
             >
               {t('candelaria.ctaVisit')}
             </IconButton>
-            <IconButton
-              href={project.code}
-              external
-              variant="outline"
-              icon={GitHubIcon}
-              size="lg"
-            >
+            <IconButton href={project.code} external variant="outline" icon={GitHubIcon} size="lg">
               {t('candelaria.ctaCode')}
             </IconButton>
           </div>
@@ -117,7 +109,9 @@ export default function Candelaria() {
           <div className="md:col-span-7">
             <Kicker>{t('candelaria.summaryKicker')}</Kicker>
             <Title>{t('candelaria.summaryTitle')}</Title>
-            <Paragraphs items={t('candelaria.summaryParas')} highlight />
+            <GlassBlock className="mt-6" padding="28px 32px">
+              <Paragraphs items={t('candelaria.summaryParas')} highlight />
+            </GlassBlock>
           </div>
           <div className="md:col-span-5">
             <div className="md:sticky md:top-[120px]">
@@ -150,22 +144,24 @@ export default function Candelaria() {
           <div className="md:col-span-7">
             <Kicker>{t('candelaria.problemKicker')}</Kicker>
             <Title>{t('candelaria.problemTitle')}</Title>
-            <p
-              className="mt-6 font-body"
-              style={{
-                color: 'var(--fg-soft)',
-                fontSize: 17,
-                lineHeight: 1.7,
-                maxWidth: '60ch',
-              }}
-            >
-              <Highlight text={t('candelaria.problemLead')} />
-            </p>
-            <ul className="mt-8 space-y-3">
-              {t('candelaria.problemBullets').map((b, i) => (
-                <Bullet key={i}>{b}</Bullet>
-              ))}
-            </ul>
+            <GlassBlock className="mt-6" padding="28px 32px">
+              <p
+                className="font-body"
+                style={{
+                  color: 'var(--fg-soft)',
+                  fontSize: 17,
+                  lineHeight: 1.7,
+                  maxWidth: '60ch',
+                }}
+              >
+                <Highlight text={t('candelaria.problemLead')} />
+              </p>
+              <ul className="mt-8 space-y-3">
+                {t('candelaria.problemBullets').map((b, i) => (
+                  <Bullet key={i}>{b}</Bullet>
+                ))}
+              </ul>
+            </GlassBlock>
           </div>
           <div className="md:col-span-5">
             <div className="md:sticky md:top-[120px]">
@@ -195,6 +191,7 @@ export default function Candelaria() {
                 detail: step.intro,
                 bullets: step.bullets,
               }))}
+              glass={true}
             />
           </div>
         </div>
@@ -242,10 +239,7 @@ export default function Candelaria() {
           <div className="md:col-span-7">
             <Kicker>{t('candelaria.perfKicker')}</Kicker>
             <Title>{t('candelaria.perfTitle')}</Title>
-            <BrutalistTable
-              header={t('candelaria.perfHeader')}
-              rows={t('candelaria.perfRows')}
-            />
+            <BrutalistTable header={t('candelaria.perfHeader')} rows={t('candelaria.perfRows')} />
           </div>
         </div>
       </Section>
@@ -254,11 +248,13 @@ export default function Candelaria() {
       <Section>
         <Kicker>{t('candelaria.securityKicker')}</Kicker>
         <Title>{t('candelaria.securityTitle')}</Title>
-        <ul className="mt-8 grid grid-cols-1 gap-3 md:grid-cols-2">
-          {t('candelaria.securityBullets').map((b, i) => (
-            <Bullet key={i}>{b}</Bullet>
-          ))}
-        </ul>
+        <GlassBlock className="mt-8" padding="28px 32px">
+          <ul className="grid grid-cols-1 gap-3 md:grid-cols-2">
+            {t('candelaria.securityBullets').map((b, i) => (
+              <Bullet key={i}>{b}</Bullet>
+            ))}
+          </ul>
+        </GlassBlock>
       </Section>
 
       {/* REFLECTIONS */}
@@ -291,19 +287,13 @@ export default function Candelaria() {
           >
             {t('candelaria.ctaVisit')}
           </IconButton>
-          <IconButton
-            href={project.code}
-            external
-            variant="outline"
-            icon={GitHubIcon}
-            size="lg"
-          >
+          <IconButton href={project.code} external variant="outline" icon={GitHubIcon} size="lg">
             {t('candelaria.ctaCode')}
           </IconButton>
         </div>
       </section>
     </article>
-  )
+  );
 }
 
 /* =========================== building blocks =========================== */
@@ -318,15 +308,17 @@ function Section({ children }) {
         {children}
       </div>
     </section>
-  )
+  );
 }
 
 function InsetCard({ children }) {
   return (
     <div
       style={{
-        background: 'var(--surface-2)',
-        border: '1px solid color-mix(in srgb, var(--fg) 10%, transparent)',
+        background: 'var(--glass-bg)',
+        backdropFilter: 'blur(14px) saturate(140%)',
+        WebkitBackdropFilter: 'blur(14px) saturate(140%)',
+        border: '1px solid var(--glass-border)',
         padding: 'clamp(24px, 4vw, 48px)',
         position: 'relative',
         display: 'inline-block',
@@ -340,7 +332,7 @@ function InsetCard({ children }) {
       />
       <div style={{ paddingLeft: 18 }}>{children}</div>
     </div>
-  )
+  );
 }
 
 function Kicker({ children }) {
@@ -351,7 +343,7 @@ function Kicker({ children }) {
     >
       {children}
     </p>
-  )
+  );
 }
 
 function Title({ children }) {
@@ -369,7 +361,7 @@ function Title({ children }) {
     >
       {children}
     </h2>
-  )
+  );
 }
 
 function Paragraphs({ items, highlight = false }) {
@@ -390,11 +382,11 @@ function Paragraphs({ items, highlight = false }) {
         </p>
       ))}
     </div>
-  )
+  );
 }
 
 function Bullet({ children }) {
-  const [hover, setHover] = useState(false)
+  const [hover, setHover] = useState(false);
   return (
     <li
       onMouseEnter={() => setHover(true)}
@@ -422,7 +414,7 @@ function Bullet({ children }) {
       <Highlight text={typeof children === 'string' ? children : ''} />
       {typeof children === 'string' ? null : children}
     </li>
-  )
+  );
 }
 
 function MetaBlock({ label, value, className = '' }) {
@@ -441,11 +433,11 @@ function MetaBlock({ label, value, className = '' }) {
         {value}
       </p>
     </div>
-  )
+  );
 }
 
 function FeatureCard({ feature, index }) {
-  const [hover, setHover] = useState(false)
+  const [hover, setHover] = useState(false);
   return (
     <motion.div
       initial={{ opacity: 0, y: 16 }}
@@ -460,12 +452,8 @@ function FeatureCard({ feature, index }) {
         border: '1px solid color-mix(in srgb, var(--fg) 10%, transparent)',
         transition: 'transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease',
         transform: hover ? 'translateY(-4px)' : 'translateY(0)',
-        boxShadow: hover
-          ? '0 14px 28px color-mix(in srgb, var(--fg) 14%, transparent)'
-          : 'none',
-        borderColor: hover
-          ? '#FF0871'
-          : 'color-mix(in srgb, var(--fg) 10%, transparent)',
+        boxShadow: hover ? '0 14px 28px color-mix(in srgb, var(--fg) 14%, transparent)' : 'none',
+        borderColor: hover ? '#FF0871' : 'color-mix(in srgb, var(--fg) 10%, transparent)',
       }}
     >
       <span
@@ -491,7 +479,7 @@ function FeatureCard({ feature, index }) {
         <Highlight text={feature.body} />
       </p>
     </motion.div>
-  )
+  );
 }
 
 function BrutalistTable({ header, rows, accentRow }) {
@@ -528,19 +516,17 @@ function BrutalistTable({ header, rows, accentRow }) {
         </tbody>
       </table>
     </div>
-  )
+  );
 }
 
 function TableRow({ row, accent }) {
-  const [hover, setHover] = useState(false)
+  const [hover, setHover] = useState(false);
   return (
     <tr
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       style={{
-        background: hover
-          ? 'color-mix(in srgb, var(--fg) 5%, transparent)'
-          : 'transparent',
+        background: hover ? 'color-mix(in srgb, var(--fg) 5%, transparent)' : 'transparent',
         transition: 'background 200ms ease',
       }}
     >
@@ -559,5 +545,5 @@ function TableRow({ row, accent }) {
         </td>
       ))}
     </tr>
-  )
+  );
 }

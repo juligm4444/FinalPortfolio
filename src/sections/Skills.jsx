@@ -1,26 +1,26 @@
-import { useMemo, useState } from 'react'
-import { useLocale } from '../i18n/LocaleProvider.jsx'
+import { useMemo, useState } from 'react';
+import { useLocale } from '../i18n/LocaleProvider.jsx';
 
 const normalImgs = import.meta.glob('../assets/skills/Normal/*.png', {
   eager: true,
   import: 'default',
-})
+});
 const hoverImgs = import.meta.glob('../assets/skills/Hovered/*.png', {
   eager: true,
   import: 'default',
-})
+});
 
 const lookup = (folder, name) => {
-  const path = Object.keys(folder).find((k) => k.endsWith(`/${name}.png`))
-  return path ? folder[path] : null
-}
+  const path = Object.keys(folder).find((k) => k.endsWith(`/${name}.png`));
+  return path ? folder[path] : null;
+};
 
 const skill = (name, label) => ({
   name,
   label,
   normal: lookup(normalImgs, name),
   hover: lookup(hoverImgs, `${name}_hovered`),
-})
+});
 
 const CATEGORIES = {
   Design: [
@@ -46,81 +46,100 @@ const CATEGORIES = {
     skill('AndroidStudio', 'Android Studio'),
     skill('Django', 'Django'),
   ],
-  Tools: [
-    skill('Git', 'Git'),
-    skill('Vscode', 'VS Code'),
-    skill('Claude', 'Claude'),
-  ],
-}
+  Tools: [skill('Git', 'Git'), skill('Vscode', 'VS Code'), skill('Claude', 'Claude')],
+};
 
 // "All" — order chosen so the honeycomb (6/7/6/3) tiles cleanly
 const ALL_ORDER = [
   // row 1 (6)
-  'Figma', 'Python', 'Javascript', 'React', 'Css', 'Html',
+  'Figma',
+  'Python',
+  'Javascript',
+  'React',
+  'Css',
+  'Html',
   // row 2 (7)
-  'Mongo', 'Tailwind', 'Java', 'Framer', 'Git', 'Sql', 'AndroidStudio',
+  'Mongo',
+  'Tailwind',
+  'Java',
+  'Framer',
+  'Git',
+  'Sql',
+  'AndroidStudio',
   // row 3 (6)
-  'Illustrator', 'Photoshop', 'Angular', 'Django', 'Claude', 'Flutter',
+  'Illustrator',
+  'Photoshop',
+  'Angular',
+  'Django',
+  'Claude',
+  'Flutter',
   // row 4 (3 — centered)
-  'Unity', 'Unreal', 'Vscode',
-]
+  'Unity',
+  'Unreal',
+  'Vscode',
+];
 
 const ALL = ALL_ORDER.map((n) => {
   for (const cat of Object.values(CATEGORIES)) {
-    const found = cat.find((s) => s.name === n)
-    if (found) return found
+    const found = cat.find((s) => s.name === n);
+    if (found) return found;
   }
-  return null
-}).filter(Boolean)
+  return null;
+}).filter(Boolean);
 
 const TABS = [
   { key: 'All', i18n: 'about.filters.all' },
   { key: 'Design', i18n: 'about.filters.design' },
   { key: 'Development', i18n: 'about.filters.development' },
   { key: 'Tools', i18n: 'about.filters.tools' },
-]
+];
 
 // honeycomb pattern: alternating 6 / 7 / 6 / 7 — last row simply gets fewer items, centered
 const buildRows = (skills) => {
-  const rows = []
-  let i = 0
-  let big = true // start with 6
+  const rows = [];
+  let i = 0;
+  let big = true; // start with 6
   while (i < skills.length) {
-    const target = big ? 6 : 7
-    const slice = skills.slice(i, i + target)
-    rows.push(slice)
-    i += slice.length
-    big = !big
+    const target = big ? 6 : 7;
+    const slice = skills.slice(i, i + target);
+    rows.push(slice);
+    i += slice.length;
+    big = !big;
   }
-  return rows
-}
+  return rows;
+};
 
 export default function Skills() {
-  const { t } = useLocale()
-  const [active, setActive] = useState('All')
+  const { t } = useLocale();
+  const [active, setActive] = useState('All');
 
   const skills = useMemo(() => {
-    if (active === 'All') return ALL
-    return CATEGORIES[active]
-  }, [active])
+    if (active === 'All') return ALL;
+    return CATEGORIES[active];
+  }, [active]);
 
-  const rows = useMemo(() => buildRows(skills), [skills])
+  const rows = useMemo(() => buildRows(skills), [skills]);
 
   return (
-    <section className="mx-auto w-full max-w-[1400px] px-4 py-24 md:py-32 md:px-8">
-      <header className="mb-12 flex justify-center">
-        <div
-          className="font-display font-bold text-white-light"
+    <section className="mx-auto w-full max-w-[1200px] px-4 py-24 md:py-32 md:px-8">
+      <header className="mb-12 max-w-[60ch]">
+        <p
+          className="font-nav uppercase"
+          style={{ color: 'var(--fg-muted)', fontSize: 12, letterSpacing: '0.22em' }}
+        >
+          {t('about.stackKicker')}
+        </p>
+        <h2
+          className="mt-3 font-display"
           style={{
-            background: '#FF0871',
-            color: '#EDEDE8',
-            padding: '14px 32px',
-            fontSize: 32,
+            color: 'var(--fg)',
+            fontSize: 'clamp(30px, 3.8vw, 48px)',
             lineHeight: 1.1,
+            fontWeight: 700,
           }}
         >
           {t('about.stackTitle')}
-        </div>
+        </h2>
       </header>
 
       {/* Filter bar — flat, no glassmorphism */}
@@ -133,7 +152,7 @@ export default function Skills() {
         }}
       >
         {TABS.map((tab) => {
-          const isActive = tab.key === active
+          const isActive = tab.key === active;
           return (
             <button
               key={tab.key}
@@ -157,7 +176,7 @@ export default function Skills() {
             >
               {t(tab.i18n)}
             </button>
-          )
+          );
         })}
       </div>
 
@@ -168,7 +187,7 @@ export default function Skills() {
         ))}
       </div>
     </section>
-  )
+  );
 }
 
 function HoneycombRow({ skills, first }) {
@@ -185,12 +204,12 @@ function HoneycombRow({ skills, first }) {
         <HexSkill key={`${s.name}-${i}`} skill={s} />
       ))}
     </div>
-  )
+  );
 }
 
 function HexSkill({ skill }) {
-  const [hover, setHover] = useState(false)
-  const src = hover && skill.hover ? skill.hover : skill.normal
+  const [hover, setHover] = useState(false);
+  const src = hover && skill.hover ? skill.hover : skill.normal;
   return (
     <div
       onMouseEnter={() => setHover(true)}
@@ -221,5 +240,5 @@ function HexSkill({ skill }) {
         />
       )}
     </div>
-  )
+  );
 }

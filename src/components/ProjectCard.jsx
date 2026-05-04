@@ -18,7 +18,9 @@ export default function ProjectCard({
   project,
   t,
   variantClass = '',
-  aspectRatio = '4 / 3',
+  // The card now adapts to its content — a `minHeight` keeps a consistent
+  // visual rhythm across cards while letting the taller ones grow.
+  minHeight = 380,
 }) {
   const [hover, setHover] = useState(false)
   return (
@@ -33,7 +35,7 @@ export default function ProjectCard({
       style={{
         background: 'var(--surface-2)',
         border: '1px solid color-mix(in srgb, var(--fg) 8%, transparent)',
-        aspectRatio,
+        minHeight,
         transition: `transform 360ms cubic-bezier(0.22,1,0.36,1)`,
         transform: hover ? 'translateY(-4px)' : 'translateY(0)',
       }}
@@ -162,9 +164,8 @@ function SweepText({ children, hover, muted = false, accent }) {
 }
 
 function ProjectLogo({ project, hover }) {
-  // Logo slot — top-right. Doubled in size from the previous spec
-  // (~1/4 of a 600x450 card now), still anchored in the same corner.
-  const size = 192
+  // Logo slot — top-right. 75% of the previous spec (192 → 144).
+  const size = 144
   const containerStyle = {
     width: size,
     height: size,
