@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const LINKS = [
   { name: 'Instagram', href: 'https://www.instagram.com/juligm4/', Icon: InstagramIcon },
@@ -15,11 +15,24 @@ const LINKS = [
  *   glow ring in pink-dark
  */
 export default function Social({ size = 44, gap = 16, className = '' }) {
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== 'undefined' && window.innerWidth < 640
+  )
+
+  useEffect(() => {
+    const update = () => setIsMobile(window.innerWidth < 640)
+    window.addEventListener('resize', update)
+    return () => window.removeEventListener('resize', update)
+  }, [])
+
+  const effectiveSize = isMobile ? 28 : size
+  const effectiveGap = isMobile ? 8 : gap
+
   return (
-    <ul className={`flex flex-wrap items-center ${className}`} style={{ gap }}>
+    <ul className={`flex flex-wrap items-center ${className}`} style={{ gap: effectiveGap }}>
       {LINKS.map(({ name, href, Icon }) => (
         <li key={name}>
-          <SocialTile name={name} href={href} Icon={Icon} size={size} />
+          <SocialTile name={name} href={href} Icon={Icon} size={effectiveSize} />
         </li>
       ))}
     </ul>

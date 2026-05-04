@@ -12,6 +12,7 @@ const CUBE_SIZE = 76
 const BAR_GAP = 40
 const BAR_TOP = NAMES_BLOCK_H + BAR_GAP
 const HERO_HEIGHT = BAR_TOP + CUBE_SIZE + 40
+const HERO_PADDING = 32 // px-4 on both sides
 
 // Right slot for the giant "4" → and afterwards the icon.
 const SLOT = { left: HERO_WIDTH_PX - 220, top: 4, width: 220, height: 240 }
@@ -67,6 +68,21 @@ function computeRowPositions() {
 export default function Hero() {
   const { t } = useLocale()
   const click = useTypewriterSound()
+  const containerRef = useRef(null)
+  const [scale, setScale] = useState(1)
+
+  useEffect(() => {
+    const el = containerRef.current
+    if (!el) return
+    const update = () => {
+      const available = el.offsetWidth
+      setScale(Math.min(1, available / HERO_WIDTH_PX))
+    }
+    update()
+    const ro = new ResizeObserver(update)
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
 
   const [rowPos, setRowPos] = useState(() => computeRowPositions())
   // Recompute on font-load so positions stay accurate even before the font is ready.
@@ -201,9 +217,21 @@ export default function Hero() {
     <section className="relative w-full overflow-hidden">
       <div className="relative mx-auto flex min-h-[calc(100vh-75px)] flex-col items-center justify-center px-4 py-12">
         <div
+          ref={containerRef}
           className="relative w-full"
-          style={{ maxWidth: HERO_WIDTH_PX, minHeight: HERO_HEIGHT }}
+          style={{ maxWidth: HERO_WIDTH_PX, height: HERO_HEIGHT * scale }}
         >
+          <div
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: HERO_WIDTH_PX,
+              minHeight: HERO_HEIGHT,
+              transform: `scale(${scale})`,
+              transformOrigin: 'top left',
+            }}
+          >
           {/* ============== NAMES ============== */}
           <NameSpan
             text={typed.first}
@@ -385,6 +413,7 @@ export default function Hero() {
               )}
             </span>
           </motion.div>
+            </div>
         </div>
       </div>
 

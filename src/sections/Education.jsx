@@ -34,10 +34,10 @@ export default function Education() {
     <section className="mx-auto w-full max-w-[1200px] px-4 py-20 md:px-8 md:py-28">
       <div className="flex flex-col gap-12 md:flex-row md:gap-16">
         {/* LEFT — width === image width once measured. */}
-        <div style={{ flex: '0 0 auto' }}>
+        <div className="w-full md:w-auto" style={{ flex: '0 0 auto' }}>
           <div
             className="md:sticky md:top-[120px]"
-            style={{ width: photoWidth ? `${photoWidth}px` : 'fit-content' }}
+            style={{ width: photoWidth ? `${photoWidth}px` : '100%', maxWidth: '100%' }}
           >
             <p
               className="font-nav uppercase"
@@ -72,8 +72,9 @@ export default function Education() {
                 decoding="async"
                 style={{
                   display: 'block',
-                  height: PHOTO_HEIGHT,
-                  width: 'auto',
+                  width: '100%',
+                  height: 'auto',
+                  maxHeight: PHOTO_HEIGHT,
                   maxWidth: '100%',
                   objectFit: 'contain',
                 }}

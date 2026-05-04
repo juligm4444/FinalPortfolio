@@ -1,5 +1,25 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { useLocale } from '../i18n/LocaleProvider.jsx';
+
+function useWindowWidth() {
+  const [w, setW] = useState(() => typeof window !== 'undefined' ? window.innerWidth : 1200);
+  useEffect(() => {
+    const update = () => setW(window.innerWidth);
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
+  return w;
+}
+
+function getTileConfig(width) {
+  if (width < 768) {
+    return { w: 58, h: 67, gap: 5, rowOffset: -17, rowSizes: [4, 5], tabFontSize: 15, tabPadding: '6px 16px' };
+  }
+  if (width < 1024) {
+    return { w: 88, h: 101, gap: 10, rowOffset: -26, rowSizes: [5, 6], tabFontSize: 18, tabPadding: '8px 20px' };
+  }
+  return { w: 132, h: 152, gap: 14, rowOffset: -38, rowSizes: [6, 7], tabFontSize: 24, tabPadding: '8px 0' };
+}
 
 const normalImgs = import.meta.glob('../assets/skills/Normal/*.png', {
   eager: true,
@@ -94,17 +114,17 @@ const TABS = [
   { key: 'Tools', i18n: 'about.filters.tools' },
 ];
 
-// honeycomb pattern: alternating 6 / 7 / 6 / 7 — last row simply gets fewer items, centered
-const buildRows = (skills) => {
+// honeycomb pattern: alternating row sizes (e.g., [6, 7] or [4, 5])
+const buildRows = (skills, sizes = [6, 7]) => {
   const rows = [];
   let i = 0;
-  let big = true; // start with 6
+  let sizeIdx = 0;
   while (i < skills.length) {
-    const target = big ? 6 : 7;
+    const target = sizes[sizeIdx % sizes.length];
     const slice = skills.slice(i, i + target);
     rows.push(slice);
     i += slice.length;
-    big = !big;
+    sizeIdx++;
   }
   return rows;
 };
@@ -112,13 +132,15 @@ const buildRows = (skills) => {
 export default function Skills() {
   const { t } = useLocale();
   const [active, setActive] = useState('All');
+  const windowWidth = useWindowWidth();
+  const tileConfig = getTileConfig(windowWidth);
 
   const skills = useMemo(() => {
     if (active === 'All') return ALL;
     return CATEGORIES[active];
   }, [active]);
 
-  const rows = useMemo(() => buildRows(skills), [skills]);
+  const rows = useMemo(() => buildRows(skills, tileConfig.rowSizes), [skills, tileConfig.rowSizes]);
 
   return (
     <section className="mx-auto w-full max-w-[1200px] px-4 py-24 md:py-32 md:px-8">
@@ -144,15 +166,19 @@ export default function Skills() {
 
       {/* Filter bar — flat, no glassmorphism */}
       <div
-        className="mx-auto mb-16 flex w-full max-w-[1190px] flex-wrap items-center justify-center gap-2 overflow-hidden px-4 py-4 md:flex-nowrap md:justify-between md:px-36"
+        className="mx-auto mb-16 flex w-full max-w-[1190px] flex-wrap items-center gap-2 overflow-hidden py-4"
         style={{
           background: 'transparent',
           borderTop: '1px solid color-mix(in srgb, var(--fg) 12%, transparent)',
           borderBottom: '1px solid color-mix(in srgb, var(--fg) 12%, transparent)',
+          paddingLeft: windowWidth >= 1024 ? 144 : 16,
+          paddingRight: windowWidth >= 1024 ? 144 : 16,
+          justifyContent: windowWidth >= 1024 ? 'space-between' : 'center',
         }}
       >
         {TABS.map((tab) => {
           const isActive = tab.key === active;
+          const tabWidth = windowWidth >= 1024 ? 176 : 'auto';
           return (
             <button
               key={tab.key}
@@ -160,18 +186,18 @@ export default function Skills() {
               className="filter-tab font-nav transition-all duration-200"
               data-active={isActive}
               style={{
-                width: 176,
-                fontSize: 24,
-                lineHeight: '40px',
+                width: tabWidth,
+                fontSize: tileConfig.tabFontSize,
+                lineHeight: tileConfig.tabFontSize >= 20 ? '40px' : '32px',
                 fontWeight: isActive ? 700 : 400,
                 background: isActive
                   ? 'linear-gradient(90deg, var(--filter-active-from) 0%, var(--filter-active-to) 100%)'
                   : 'transparent',
                 color: isActive ? 'var(--filter-active-fg)' : 'var(--filter-fg)',
-                // shorter, sharper drop — looks attached to the bar instead of floating
                 boxShadow: isActive ? '3px 3px 0 0 rgba(12, 13, 13, 0.55)' : 'none',
                 textShadow: !isActive ? '1px 1px 1px rgba(0,0,0,0.18)' : 'none',
-                padding: '8px 0',
+                padding: tileConfig.tabPadding,
+                whiteSpace: 'nowrap',
               }}
             >
               {t(tab.i18n)}
@@ -183,31 +209,37 @@ export default function Skills() {
       {/* Honeycomb */}
       <div className="flex flex-col items-center">
         {rows.map((row, rIdx) => (
-          <HoneycombRow key={rIdx} skills={row} first={rIdx === 0} />
+          <HoneycombRow key={rIdx} skills={row} first={rIdx === 0} tileConfig={tileConfig} rowIndex={rIdx} category={active} />
         ))}
       </div>
     </section>
   );
 }
 
-function HoneycombRow({ skills, first }) {
+function HoneycombRow({ skills, first, tileConfig, rowIndex, category }) {
   // hexagons interlock vertically (point-top hex) when rows overlap by ~1/4 of height
+  // for Design only: odd rows shift left to align with gaps
+  const isOddRow = rowIndex % 2 === 1;
+  const shouldOffset = category === 'Design' && isOddRow;
+  const horizontalOffset = shouldOffset ? (tileConfig.w / 2 + tileConfig.gap / 2) : 0;
+
   return (
     <div
       className="flex justify-center"
       style={{
-        gap: 14,
-        marginTop: first ? 0 : -38,
+        gap: tileConfig.gap,
+        marginTop: first ? 0 : tileConfig.rowOffset,
+        transform: horizontalOffset ? `translateX(${-horizontalOffset}px)` : 'none',
       }}
     >
       {skills.map((s, i) => (
-        <HexSkill key={`${s.name}-${i}`} skill={s} />
+        <HexSkill key={`${s.name}-${i}`} skill={s} tileConfig={tileConfig} />
       ))}
     </div>
   );
 }
 
-function HexSkill({ skill }) {
+function HexSkill({ skill, tileConfig }) {
   const [hover, setHover] = useState(false);
   const src = hover && skill.hover ? skill.hover : skill.normal;
   return (
@@ -216,8 +248,8 @@ function HexSkill({ skill }) {
       onMouseLeave={() => setHover(false)}
       className="relative shrink-0"
       style={{
-        width: 132,
-        height: 152,
+        width: tileConfig.w,
+        height: tileConfig.h,
         transition: 'transform 220ms cubic-bezier(0.22, 1, 0.36, 1)',
         transform: hover ? 'scale(1.12)' : 'scale(1)',
         zIndex: hover ? 10 : 1,
