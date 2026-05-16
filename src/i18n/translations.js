@@ -165,6 +165,186 @@ const translations = {
       visitSite: 'Visit website',
       viewCode: 'GitHub repository',
     },
+    licorimetro: {
+      tag: 'Academic Project · Mobile App',
+      title: 'Licorímetro',
+      subtitle:
+        'Discover, understand and share the world of alcohol from a single social experience.',
+      role: 'Product Architecture · UX/UI Design · Mobile Development',
+      period: '2023',
+      status: 'Academic project',
+      sectionRoleLabel: 'Role',
+      sectionTimelineLabel: 'Timeline',
+
+      summaryKicker: 'Overview',
+      summaryTitle: 'A social ecosystem built around uncertainty',
+      summaryParas: [
+        'Licorímetro was born from a simple truth: when people come of age, alcohol becomes completely unfamiliar territory. What to drink. How much it costs. What it tastes like. What experiences it creates. The app proposed a single platform combining <<camera recognition>>, contextual information, community reviews, <<gamification>> and social discovery for any type of alcoholic beverage.',
+        'Unlike platforms limited to wine or beer, Licorímetro envisioned a broader scope — any beverage, any social context, any level of experience. The project combined <<architecture thinking>>, UX/UI design and mobile development built almost entirely solo within a week of intensive work.',
+      ],
+
+      problemKicker: 'Problem',
+      problemTitle: 'Alcohol as a fragmented information system',
+      problemLead:
+        'The experience of discovering alcohol is full of <<uncertainty and friction>>. Information is scattered, reviews are unreliable, and no existing platform addresses the full spectrum of alcoholic beverages with a <<social-first approach>>.',
+      problemBullets: [
+        'Information dispersed across unrelated platforms.',
+        'No visual recognition for beverages beyond wine.',
+        'Reviews limited to premium segments.',
+        'Buying decisions based on guesswork.',
+        'No social layer for discovery and sharing.',
+        'Existing apps siloed by category — wine only, beer only.',
+        'Young users completely underserved.',
+      ],
+
+      featuresKicker: 'Features',
+      featuresTitle: 'A social network built around discovery',
+      features: [
+        {
+          title: 'OCR Scanner',
+          body: 'Camera-based beverage recognition. Point at a label and instantly access product information, reviews and community data.',
+        },
+        {
+          title: 'Community Reviews',
+          body: 'Ratings on quality, flavor, price and experience. Every review enriches the shared knowledge base for the entire community.',
+        },
+        {
+          title: 'Tu Bodega',
+          body: 'A personal digital cellar — public or private. Save favorites, build collections and curate playlists of beverages by occasion.',
+        },
+        {
+          title: 'Badge System',
+          body: 'Gamification based on discovery milestones: categories explored, reviews submitted, community participation and engagement.',
+        },
+        {
+          title: 'Social Playlists',
+          body: 'Curated beverage collections by occasion, mood and event type. Shareable across the community and discoverable by others.',
+        },
+        {
+          title: 'Smart Recommendations',
+          body: 'Personalized suggestions based on favorites, past interactions and community behavior — a discovery engine for new experiences.',
+        },
+        {
+          title: 'Community Pricing',
+          body: 'A collaborative system to estimate real market prices, detect overcharging and help buyers make more informed decisions.',
+        },
+      ],
+
+      ocrKicker: 'Technical Challenge',
+      ocrTitle: 'Building computer vision without mobile experience',
+      ocrParas: [
+        'One of the greatest technical challenges of the project was the <<OCR system>>. The original plan relied on third-party visual recognition APIs — but during production, that solution stopped working.',
+        'With very little prior experience in mobile development, the system had to be <<rebuilt manually from scratch>>, using bitmap analysis and basic image processing. The result was a functional prototype capable of identifying beverages whose labels contained clear, readable text.',
+        'More than technical precision, the process represented <<accelerated learning>>, autonomous research and problem-solving under pressure — all within a week of continuous development.',
+      ],
+      ocrBullets: [
+        'Third-party API failed mid-production.',
+        'Rebuilt using bitmap map analysis.',
+        'Basic image processing without ML frameworks.',
+        'Functional prototype identifying text-label beverages.',
+        'Built within a single week of intensive development.',
+      ],
+
+      processKicker: 'User Flow',
+      processTitle: 'From discovery to community',
+      processSteps: [
+        {
+          n: '01',
+          title: 'Discover & Scan',
+          intro:
+            'The user encounters an unfamiliar beverage and opens the app. The camera module activates for instant scanning or manual search from the discovery feed.',
+          bullets: [
+            'Central camera access in main navigation.',
+            'OCR scanning for text-label recognition.',
+            'Browse recommendations and trending items.',
+            'Search by name, category or occasion.',
+          ],
+        },
+        {
+          n: '02',
+          title: 'Learn & Explore',
+          intro:
+            'After recognition, the product page surfaces contextual information: origin, alcohol content, flavor profile, price range and a community-built knowledge base.',
+          bullets: [
+            'Detailed product profile page.',
+            'Community reviews and ratings.',
+            'Price estimates from collaborative data.',
+            'Related products and discovery suggestions.',
+          ],
+        },
+        {
+          n: '03',
+          title: 'Experience & Share',
+          intro:
+            'After the experience, the user contributes back to the ecosystem: writing reviews, rating quality and flavor, and publishing to their social Bodega.',
+          bullets: [
+            'Review submission with multi-dimensional ratings.',
+            'Add to personal Bodega — public or private.',
+            'Create or add to social playlists.',
+            'Share experiences to the community feed.',
+          ],
+        },
+        {
+          n: '04',
+          title: 'Earn & Belong',
+          intro:
+            'Consistent contribution unlocks badges, improves reputation and builds community standing — creating a feedback loop of discovery and engagement.',
+          bullets: [
+            'Badge system for discovery milestones.',
+            'Reputation score based on reviews and activity.',
+            'Unlock new content as expertise grows.',
+            'Community leaderboards and social following.',
+          ],
+        },
+      ],
+
+      architectureKicker: 'Architecture',
+      architectureTitle: 'Thinking like a startup before building one',
+      architectureParas: [
+        'Although the final prototype was limited, the <<conceptual architecture>> of Licorímetro contemplated a much broader ecosystem. The system included authentication, profiles, reputation, gamification, smart recommendations, social storage, community interaction — and potential marketplace integrations.',
+        'Even from an academic stage, the project already contemplated <<retention strategies>>, commercial partnerships, monetization models and scalability. The thinking was product-first: not a school project that happened to have features, but a <<startup MVP that happened to be built in class>>.',
+      ],
+      architectureBullets: [
+        'Full authentication and profile system.',
+        'Reputation and gamification engine.',
+        'Smart recommendations based on behavior.',
+        'Social storage (Tu Bodega) with sharing.',
+        'Potential external marketplace integrations.',
+        'Monetization and commercial partnership model.',
+        'Scalability considered from day one.',
+      ],
+
+      challengesKicker: 'Challenges',
+      challengesTitle: 'Learning while building',
+      challengesParas: [
+        'The project was built almost entirely solo within the technical component. Beyond designing the product and structuring the experience, it required <<learning mobile development from scratch>> in an extremely compressed timeline — under one week of continuous production.',
+        'Despite technical, time and experience limitations, the project delivered: <<functional authentication>>, navigation, a working OCR system and a complete conceptual architecture. The academic feedback highlighted a clear duality: the prototype was limited, but the idea and architecture were <<extremely promising>>.',
+      ],
+
+      whatChangedKicker: 'Evolution',
+      whatChangedTitle: 'What I\'d build differently today',
+      whatChangedHeader: ['Aspect', 'Then (2023)', 'Now'],
+      whatChangedRows: [
+        ['Recognition', 'Bitmap OCR', 'Computer vision + AI'],
+        ['Architecture', 'Academic MVP', 'Production-scale system'],
+        ['Recommendations', 'Manual logic', 'ML-based personalization'],
+        ['Design system', 'Custom ad-hoc', 'Full design system'],
+        ['Testing', 'Manual QA', 'Automated test coverage'],
+        ['Data modeling', 'Basic schema', 'Scalable relational model'],
+      ],
+
+      reflectionsKicker: 'Reflections',
+      reflectionsTitle: 'More than a university app',
+      reflectionsParas: [
+        'Licorímetro never became a real startup. But it represented something more important: the ability to <<transform an everyday need into a complex digital system>> — combining product thinking, UX design and engineering within a single cohesive idea.',
+        'It marked the <<first contact with mobile development>>, the first experience with OCR, and one of the earliest real exercises in product architecture. More than the technical result, the project proved that <<curiosity, resilience and learning speed>> can turn a university idea into a vision with genuine potential.',
+      ],
+
+      stackKicker: 'Tools used',
+      stackTitle: 'Built with',
+
+      ctaCode: 'View on GitHub',
+    },
     candelaria: {
       tag: 'Student Research Group · Academic project',
       title: 'Candelaria Website',
@@ -507,6 +687,186 @@ const translations = {
       caseStudy: 'Semillero · Proyecto Académico →',
       visitSite: 'Visitar el sitio',
       viewCode: 'Repositorio GitHub',
+    },
+    licorimetro: {
+      tag: 'Proyecto Académico · App Móvil',
+      title: 'Licorímetro',
+      subtitle:
+        'Descubrir, entender y compartir el mundo del alcohol desde una sola experiencia social.',
+      role: 'Arquitectura de Producto · Diseño UX/UI · Desarrollo Móvil',
+      period: '2023',
+      status: 'Proyecto académico',
+      sectionRoleLabel: 'Rol',
+      sectionTimelineLabel: 'Cronología',
+
+      summaryKicker: 'Resumen',
+      summaryTitle: 'Un ecosistema social construido alrededor de la incertidumbre',
+      summaryParas: [
+        'Licorímetro nació de una verdad simple: cuando la gente llega a la mayoría de edad, el alcohol se convierte en un territorio completamente desconocido. Qué tomar. Cuánto cuesta. Qué sabor tiene. Qué experiencias genera. La app propuso una sola plataforma que combinara <<reconocimiento por cámara>>, información contextual, reviews comunitarias, <<gamificación>> y descubrimiento social para cualquier tipo de bebida alcohólica.',
+        'A diferencia de plataformas limitadas a vinos o cervezas, Licorímetro contemplaba un alcance más amplio — cualquier bebida, cualquier contexto social, cualquier nivel de experiencia. El proyecto combinó <<pensamiento de arquitectura>>, diseño UX/UI y desarrollo móvil construido casi en su totalidad en solitario en una semana de trabajo intensivo.',
+      ],
+
+      problemKicker: 'Problema',
+      problemTitle: 'El alcohol como sistema de información fragmentado',
+      problemLead:
+        'La experiencia de descubrir el alcohol está llena de <<incertidumbre y fricción>>. La información está dispersa, las reseñas son poco confiables y ninguna plataforma existente aborda el espectro completo de bebidas alcohólicas con un <<enfoque social>>.',
+      problemBullets: [
+        'Información dispersa en plataformas no relacionadas.',
+        'Sin reconocimiento visual para bebidas más allá del vino.',
+        'Reseñas limitadas a segmentos premium.',
+        'Decisiones de compra basadas en suposiciones.',
+        'Sin capa social para el descubrimiento y la comunidad.',
+        'Apps existentes fragmentadas por categoría — solo vinos, solo cervezas.',
+        'Usuarios jóvenes completamente desatendidos.',
+      ],
+
+      featuresKicker: 'Características',
+      featuresTitle: 'Una red social construida alrededor del descubrimiento',
+      features: [
+        {
+          title: 'Scanner OCR',
+          body: 'Reconocimiento de bebidas mediante la cámara. Apunta a una etiqueta y accede instantáneamente a la información del producto, reseñas y datos comunitarios.',
+        },
+        {
+          title: 'Reviews comunitarias',
+          body: 'Calificaciones de calidad, sabor, precio y experiencia. Cada reseña enriquece la base de conocimiento compartida para toda la comunidad.',
+        },
+        {
+          title: 'Tu Bodega',
+          body: 'Una bodega digital personal — pública o privada. Guarda favoritos, crea colecciones y arma playlists de bebidas por ocasión.',
+        },
+        {
+          title: 'Sistema de insignias',
+          body: 'Gamificación basada en hitos de descubrimiento: categorías exploradas, reseñas enviadas, participación comunitaria y engagement.',
+        },
+        {
+          title: 'Playlists sociales',
+          body: 'Colecciones de bebidas curadas por ocasión, ambiente y tipo de evento. Compartibles y descubribles por la comunidad.',
+        },
+        {
+          title: 'Recomendaciones inteligentes',
+          body: 'Sugerencias personalizadas basadas en favoritos, interacciones pasadas y comportamiento comunitario — un motor de descubrimiento de nuevas experiencias.',
+        },
+        {
+          title: 'Precio comunitario',
+          body: 'Sistema colaborativo para estimar precios reales de mercado, detectar sobrecostos y ayudar a compradores a tomar decisiones más informadas.',
+        },
+      ],
+
+      ocrKicker: 'Reto Técnico',
+      ocrTitle: 'Construir visión computacional sin experiencia móvil',
+      ocrParas: [
+        'Uno de los mayores retos técnicos del proyecto fue el <<sistema OCR>>. El plan original contemplaba el uso de APIs externas de reconocimiento visual — pero durante la producción, esa solución dejó de funcionar.',
+        'Con muy poca experiencia previa en desarrollo móvil, el sistema tuvo que ser <<reconstruido manualmente desde cero>>, usando análisis de mapas de bits y procesamiento básico de imagen. El resultado fue un prototipo funcional capaz de identificar bebidas cuyos logotipos contenían texto claro y legible.',
+        'Más allá de la precisión técnica, el proceso representó <<aprendizaje acelerado>>, investigación autónoma y resolución de problemas bajo presión — todo dentro de una semana de desarrollo continuo.',
+      ],
+      ocrBullets: [
+        'La API de terceros falló a mitad de la producción.',
+        'Reconstruido usando análisis de mapa de bits.',
+        'Procesamiento de imagen básico sin frameworks de ML.',
+        'Prototipo funcional para bebidas con etiquetas de texto.',
+        'Construido en una sola semana de desarrollo intensivo.',
+      ],
+
+      processKicker: 'Flujo de Usuario',
+      processTitle: 'Del descubrimiento a la comunidad',
+      processSteps: [
+        {
+          n: '01',
+          title: 'Descubrir y Escanear',
+          intro:
+            'El usuario encuentra una bebida desconocida y abre la app. El módulo de cámara se activa para escaneo instantáneo o búsqueda manual desde el feed de descubrimiento.',
+          bullets: [
+            'Acceso central a la cámara en la navegación principal.',
+            'Escaneo OCR para reconocimiento de etiquetas de texto.',
+            'Explorar recomendaciones y elementos en tendencia.',
+            'Buscar por nombre, categoría u ocasión.',
+          ],
+        },
+        {
+          n: '02',
+          title: 'Aprender y Explorar',
+          intro:
+            'Tras el reconocimiento, la página de producto muestra información contextual: origen, contenido alcohólico, perfil de sabor, rango de precios y una base de conocimiento construida por la comunidad.',
+          bullets: [
+            'Página de perfil detallado del producto.',
+            'Reseñas y calificaciones de la comunidad.',
+            'Estimados de precio de datos colaborativos.',
+            'Productos relacionados y sugerencias de descubrimiento.',
+          ],
+        },
+        {
+          n: '03',
+          title: 'Vivir y Compartir',
+          intro:
+            'Después de la experiencia, el usuario contribuye de vuelta al ecosistema: escribiendo reseñas, calificando calidad y sabor, y publicando en su Bodega social.',
+          bullets: [
+            'Envío de reseñas con calificaciones multidimensionales.',
+            'Agregar a Bodega personal — pública o privada.',
+            'Crear o agregar a playlists sociales.',
+            'Compartir experiencias al feed comunitario.',
+          ],
+        },
+        {
+          n: '04',
+          title: 'Ganar y Pertenecer',
+          intro:
+            'La contribución constante desbloquea insignias, mejora la reputación y construye posicionamiento comunitario — creando un ciclo de descubrimiento y engagement.',
+          bullets: [
+            'Sistema de insignias por hitos de descubrimiento.',
+            'Puntuación de reputación basada en reseñas y actividad.',
+            'Desbloquear nuevo contenido a medida que crece la experiencia.',
+            'Rankings comunitarios y seguimiento social.',
+          ],
+        },
+      ],
+
+      architectureKicker: 'Arquitectura',
+      architectureTitle: 'Pensar como startup antes de construir una',
+      architectureParas: [
+        'Aunque el prototipo final fue limitado, la <<arquitectura conceptual>> de Licorímetro contemplaba un ecosistema mucho más amplio. El sistema incluía autenticación, perfiles, reputación, gamificación, recomendaciones inteligentes, almacenamiento social, interacción comunitaria — e integraciones potenciales con marketplaces externos.',
+        'Incluso desde una etapa académica, el proyecto ya contemplaba <<estrategias de fidelización>>, alianzas comerciales, modelos de monetización y escalabilidad. El pensamiento era product-first: no un proyecto escolar que resultó tener features, sino un <<MVP de startup que resultó construirse en clase>>.',
+      ],
+      architectureBullets: [
+        'Sistema completo de autenticación y perfiles.',
+        'Motor de reputación y gamificación.',
+        'Recomendaciones inteligentes basadas en comportamiento.',
+        'Almacenamiento social (Tu Bodega) con sharing.',
+        'Potenciales integraciones con marketplaces externos.',
+        'Modelo de monetización y alianzas comerciales.',
+        'Escalabilidad considerada desde el día uno.',
+      ],
+
+      challengesKicker: 'Retos',
+      challengesTitle: 'Aprender mientras se construía',
+      challengesParas: [
+        'El proyecto fue construido casi en su totalidad en solitario dentro del componente técnico. Además de diseñar el producto y estructurar la experiencia, requirió <<aprender desarrollo móvil desde cero>> en un cronograma extremadamente comprimido — menos de una semana de producción continua.',
+        'A pesar de las limitaciones técnicas, de tiempo y de experiencia, el proyecto entregó: <<autenticación funcional>>, navegación, un sistema OCR funcional y una arquitectura conceptual completa. El feedback académico destacó una dualidad clara: el prototipo era limitado, pero la idea y la arquitectura eran <<extremadamente prometedoras>>.',
+      ],
+
+      whatChangedKicker: 'Evolución',
+      whatChangedTitle: 'Qué construiría diferente hoy',
+      whatChangedHeader: ['Aspecto', '2023', 'Hoy'],
+      whatChangedRows: [
+        ['Reconocimiento', 'OCR por bitmap', 'Computer vision + IA'],
+        ['Arquitectura', 'MVP académico', 'Sistema a escala productiva'],
+        ['Recomendaciones', 'Lógica manual', 'Personalización con ML'],
+        ['Design system', 'Componentes ad-hoc', 'Sistema de diseño completo'],
+        ['Testing', 'QA manual', 'Cobertura automatizada'],
+        ['Modelo de datos', 'Schema básico', 'Modelo relacional escalable'],
+      ],
+
+      reflectionsKicker: 'Reflexiones',
+      reflectionsTitle: 'Más que una aplicación universitaria',
+      reflectionsParas: [
+        'Licorímetro nunca se convirtió en una startup real. Pero representó algo más importante: la capacidad de <<transformar una necesidad cotidiana en un sistema digital complejo>> — combinando pensamiento de producto, diseño UX e ingeniería en una sola idea coherente.',
+        'Marcó el <<primer contacto con el desarrollo móvil>>, la primera experiencia con OCR y uno de los primeros ejercicios reales de arquitectura de producto. Más allá del resultado técnico, el proyecto demostró que <<curiosidad, resiliencia y velocidad de aprendizaje>> pueden convertir una idea universitaria en una visión con potencial real.',
+      ],
+
+      stackKicker: 'Herramientas usadas',
+      stackTitle: 'Construido con',
+
+      ctaCode: 'Ver en GitHub',
     },
     candelaria: {
       tag: 'Semillero · Proyecto Académico',

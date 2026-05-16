@@ -8,6 +8,7 @@ import About from './pages/About.jsx'
 import Projects from './pages/Projects.jsx'
 import Contact from './pages/Contact.jsx'
 import Candelaria from './pages/projects/Candelaria.jsx'
+import Licorimetro from './pages/projects/Licorimetro.jsx'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -29,6 +30,7 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/projects/candelaria" element={<Candelaria />} />
+          <Route path="/projects/licorimetro" element={<Licorimetro />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </main>
