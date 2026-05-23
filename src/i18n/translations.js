@@ -209,7 +209,7 @@ const translations = {
           body: 'Ratings on quality, flavor, price and experience. Every review enriches the shared knowledge base for the entire community.',
         },
         {
-          title: 'Tu Bodega',
+          title: 'Your Cellar',
           body: 'A personal digital cellar — public or private. Save favorites, build collections and curate playlists of beverages by occasion.',
         },
         {
@@ -314,13 +314,6 @@ const translations = {
         'Scalability considered from day one.',
       ],
 
-      challengesKicker: 'Challenges',
-      challengesTitle: 'Learning while building',
-      challengesParas: [
-        'The project was built almost entirely solo within the technical component. Beyond designing the product and structuring the experience, it required <<learning mobile development from scratch>> in an extremely compressed timeline — under one week of continuous production.',
-        'Despite technical, time and experience limitations, the project delivered: <<functional authentication>>, navigation, a working OCR system and a complete conceptual architecture. The academic feedback highlighted a clear duality: the prototype was limited, but the idea and architecture were <<extremely promising>>.',
-      ],
-
       whatChangedKicker: 'Evolution',
       whatChangedTitle: 'What I\'d build differently today',
       whatChangedHeader: ['Aspect', 'Then (2023)', 'Now'],
@@ -389,7 +382,7 @@ const translations = {
           n: '01',
           title: 'Research & Design System',
           intro:
-            "Definition of the 'Neon Velocity' visual system in Figma: typography, color palette, components and grids. 6 final screens (Home, Vehicle, Team, Publications, Support, About) with a mobile-first approach and cinematic vertical scroll.",
+            "'Neon Velocity' design system in Figma: typography, palette, components and 6 screens with mobile-first cinematic scroll.",
           bullets: [
             "Defined the 'Neon Velocity' design system in Figma.",
             'Designed 6 final screens with a mobile-first, cinematic-scrolling approach.',
@@ -401,7 +394,7 @@ const translations = {
           n: '02',
           title: 'Architecture & Backend',
           intro:
-            'Data model in PostgreSQL with Django 4.2 and Django REST Framework: 13+ models covering teams, members, publications, payments and tiers. Dual auth with djangorestframework-simplejwt for internal and external users.',
+            'PostgreSQL data model with Django 4.2 + DRF: 13+ models, dual JWT auth for internal and external users, Supabase for gamification.',
           bullets: [
             '13+ model schema in PostgreSQL with Django 4.2 and DRF.',
             'Dual auth: internal team users and external followers via JWT.',
@@ -413,7 +406,7 @@ const translations = {
           n: '03',
           title: 'Frontend & Integrations',
           intro:
-            'SPA in React 19 with React Router DOM 7 and Vite 7. Full Spanish/English localization with i18next. Cart and checkout with Stripe and PayU, including HMAC-SHA256 webhook verification.',
+            'React 19 SPA with Vite 7, full i18n (ES/EN) and dual-provider checkout — Stripe and PayU — verified via HMAC-SHA256.',
           bullets: [
             'SPA in React 19 with React Router DOM 7 and Vite 7.',
             'Full Spanish/English localization with i18next.',
@@ -425,7 +418,7 @@ const translations = {
           n: '04',
           title: 'Performance & Deployment',
           intro:
-            'Query optimization with select_related(), prefetch_related() and .only() in the Django ORM. Image compression with vite-plugin-imagemin and media via Supabase Storage. Monolithic deployment on Vercel: frontend at / and Django backend at /api/*.',
+            'ORM query optimization (select_related, prefetch_related), vite-plugin-imagemin compression and monolithic Vercel deployment.',
           bullets: [
             'Query optimization with select_related(), prefetch_related() and .only().',
             'Image compression with vite-plugin-imagemin.',
@@ -837,13 +830,6 @@ const translations = {
         'Escalabilidad considerada desde el día uno.',
       ],
 
-      challengesKicker: 'Retos',
-      challengesTitle: 'Aprender mientras se construía',
-      challengesParas: [
-        'El proyecto fue construido casi en su totalidad en solitario dentro del componente técnico. Además de diseñar el producto y estructurar la experiencia, requirió <<aprender desarrollo móvil desde cero>> en un cronograma extremadamente comprimido — menos de una semana de producción continua.',
-        'A pesar de las limitaciones técnicas, de tiempo y de experiencia, el proyecto entregó: <<autenticación funcional>>, navegación, un sistema OCR funcional y una arquitectura conceptual completa. El feedback académico destacó una dualidad clara: el prototipo era limitado, pero la idea y la arquitectura eran <<extremadamente prometedoras>>.',
-      ],
-
       whatChangedKicker: 'Evolución',
       whatChangedTitle: 'Qué construiría diferente hoy',
       whatChangedHeader: ['Aspecto', '2023', 'Hoy'],
@@ -912,7 +898,7 @@ const translations = {
           n: '01',
           title: 'Investigación y Sistema de Diseño',
           intro:
-            "Definición del sistema visual 'Neon Velocity' en Figma: tipografía, paleta de color, componentes y grids. Diseño de 6 pantallas finales (Home, Vehicle, Team, Publications, Support, About) con enfoque mobile-first y scrolling vertical cinematográfico.",
+            "Sistema de diseño ‘Neon Velocity’ en Figma: tipografía, paleta, componentes y 6 pantallas con scroll cinematográfico mobile-first.",
           bullets: [
             "Definición del sistema de diseño 'Neon Velocity' en Figma.",
             'Diseño de 6 pantallas finales con enfoque mobile-first y scrolling cinematográfico.',
@@ -924,7 +910,7 @@ const translations = {
           n: '02',
           title: 'Arquitectura y Backend',
           intro:
-            'Modelo de datos en PostgreSQL con Django 4.2 y Django REST Framework: 13+ modelos cubriendo equipos, miembros, publicaciones, pagos y tiers. Sistema de autenticación dual con djangorestframework-simplejwt para usuarios internos y externos.',
+            'Modelo de datos en PostgreSQL con Django 4.2 + DRF: 13+ modelos, auth dual con JWT para usuarios internos y externos, Supabase para gamificación.',
           bullets: [
             'Esquema de 13+ modelos en PostgreSQL con Django 4.2 y DRF.',
             'Sistema de auth dual: usuarios internos del equipo y seguidores externos vía JWT.',
@@ -936,7 +922,7 @@ const translations = {
           n: '03',
           title: 'Frontend e Integraciones',
           intro:
-            'SPA en React 19 con React Router DOM 7 y Vite 7. Internacionalización completa (español/inglés) con i18next. Carrito de compras y flujo de checkout con Stripe y PayU, incluyendo webhook handlers con verificación HMAC-SHA256.',
+            'SPA en React 19 con Vite 7, i18n completo (ES/EN) y checkout dual — Stripe y PayU — con verificación HMAC-SHA256.',
           bullets: [
             'SPA en React 19 con React Router DOM 7 y Vite 7.',
             'Internacionalización completa español/inglés con i18next.',
@@ -948,7 +934,7 @@ const translations = {
           n: '04',
           title: 'Rendimiento y Despliegue',
           intro:
-            'Optimización de queries con select_related(), prefetch_related() y .only() en Django ORM. Compresión de imágenes con vite-plugin-imagemin y servicio de media vía Supabase Storage. Despliegue monolítico en Vercel: frontend en / y backend Django en /api/*.',
+            'Optimización de queries (select_related, prefetch_related), compresión con vite-plugin-imagemin y despliegue monolítico en Vercel.',
           bullets: [
             'Optimización de queries con select_related(), prefetch_related() y .only().',
             'Compresión de imágenes con vite-plugin-imagemin.',

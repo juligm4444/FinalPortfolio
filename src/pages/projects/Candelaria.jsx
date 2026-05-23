@@ -3,12 +3,57 @@ import { motion } from 'framer-motion';
 import { useLocale } from '../../i18n/LocaleProvider.jsx';
 import projects from '../../data/projects.js';
 import MiniSkills from '../../components/MiniSkills.jsx';
-import MediaSlot from '../../components/MediaSlot.jsx';
 import Timeline from '../../components/Timeline.jsx';
+import candelariaSummaryImg from '../../assets/images/candelaria/summary.webp';
+import candelariaRoleImg from '../../assets/images/candelaria/role.webp';
+import candelariaProblemImg from '../../assets/images/candelaria/problem.webp';
+import candelariaProcessImg from '../../assets/images/candelaria/process.webp';
+import candelariaTiersImg from '../../assets/images/candelaria/tiers.webp';
+import candelariaPerformanceImg from '../../assets/images/candelaria/performance.webp';
+import candelariaReflectionsImg from '../../assets/images/candelaria/reflections.webp';
 import IconButton from '../../components/IconButton.jsx';
 import Highlight from '../../components/Highlight.jsx';
 import GlassBlock from '../../components/GlassBlock.jsx';
 import { ExternalLinkIcon, GitHubIcon } from '../../components/icons/IconSet.jsx';
+
+/* ======================== Feature icons (5) ======================== */
+const FEATURE_ICONS = [
+  /* 0  Auth & user management */
+  <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+    <circle cx="13" cy="9" r="4.5" stroke="currentColor" strokeWidth="1.5" />
+    <path d="M4 22c0-5 4-8 9-8s9 3 9 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    <rect x="15" y="14" width="8" height="6" rx="1" stroke="currentColor" strokeWidth="1.3" />
+    <path d="M17 14v-1.5a2 2 0 014 0V14" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+  </svg>,
+  /* 1  E-commerce & payments */
+  <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+    <path d="M4 5h2l3 12h12l2-8H7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <circle cx="11" cy="20" r="1.5" fill="currentColor" />
+    <circle cx="18" cy="20" r="1.5" fill="currentColor" />
+  </svg>,
+  /* 2  Gamification — follower tiers */
+  <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+    <path d="M7 4h12v7a6 6 0 01-12 0V4z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+    <path d="M4 6H7M19 6h3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    <path d="M3 8c0 2.5 1.8 4.5 4 5M23 8c0 2.5-1.8 4.5-4 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    <line x1="13" y1="17" x2="13" y2="21" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    <line x1="9" y1="21" x2="17" y2="21" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+  </svg>,
+  /* 3  Internal panel */
+  <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+    <rect x="4" y="4" width="8" height="8" rx="1" stroke="currentColor" strokeWidth="1.5" />
+    <rect x="14" y="4" width="8" height="8" rx="1" stroke="currentColor" strokeWidth="1.5" />
+    <rect x="4" y="14" width="8" height="8" rx="1" stroke="currentColor" strokeWidth="1.5" />
+    <rect x="14" y="14" width="8" height="8" rx="1" stroke="currentColor" strokeWidth="1.5" />
+  </svg>,
+  /* 4  Multilingual support */
+  <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+    <circle cx="13" cy="13" r="9" stroke="currentColor" strokeWidth="1.5" />
+    <path d="M13 4c-3 3-4.5 5.5-4.5 9s1.5 6 4.5 9M13 4c3 3 4.5 5.5 4.5 9s-1.5 6-4.5 9" stroke="currentColor" strokeWidth="1.5" />
+    <line x1="4" y1="13" x2="22" y2="13" stroke="currentColor" strokeWidth="1.5" />
+    <path d="M5 9h16M5 17h16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+  </svg>,
+];
 
 const slabStyle = {
   background: '#FF0871',
@@ -115,7 +160,7 @@ export default function Candelaria() {
           </div>
           <div className="md:col-span-5">
             <div className="md:sticky md:top-[120px]">
-              <MediaSlot ratio="4 / 5" alt="Candelaria — overview" />
+              <CaseImage src={candelariaSummaryImg} alt="Candelaria — overview" ratio="4 / 5" />
             </div>
           </div>
         </div>
@@ -126,7 +171,7 @@ export default function Candelaria() {
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
           <div className="md:col-span-5 md:order-1">
             <div className="md:sticky md:top-[120px]">
-              <MediaSlot ratio="1 / 1" alt="Design team — Candelaria" />
+              <CaseImage src={candelariaRoleImg} alt="Design team — Candelaria" ratio="1 / 1" />
             </div>
           </div>
           <div className="md:col-span-7 md:order-2">
@@ -165,7 +210,7 @@ export default function Candelaria() {
           </div>
           <div className="md:col-span-5">
             <div className="md:sticky md:top-[120px]">
-              <MediaSlot ratio="4 / 5" alt="Problem framing" />
+              <CaseImage src={candelariaProblemImg} alt="Problem framing" ratio="4 / 5" />
             </div>
           </div>
         </div>
@@ -179,7 +224,7 @@ export default function Candelaria() {
               <Kicker>{t('candelaria.processKicker')}</Kicker>
               <Title>{t('candelaria.processTitle')}</Title>
               <div className="mt-8 hidden md:block">
-                <MediaSlot ratio="4 / 3" alt="Process artifact" />
+                <CaseImage src={candelariaProcessImg} alt="Process artifact" ratio="4 / 3" />
               </div>
             </div>
           </div>
@@ -203,7 +248,7 @@ export default function Candelaria() {
         <Title>{t('candelaria.featuresTitle')}</Title>
         <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
           {t('candelaria.features').map((f, i) => (
-            <FeatureCard key={i} feature={f} index={i} />
+            <FeatureCard key={i} feature={f} index={i} icon={FEATURE_ICONS[i]} />
           ))}
         </div>
       </Section>
@@ -222,7 +267,7 @@ export default function Candelaria() {
           </div>
           <div className="md:col-span-5">
             <div className="md:sticky md:top-[120px]">
-              <MediaSlot ratio="1 / 1" alt="Gamification visual" />
+              <CaseImage src={candelariaTiersImg} alt="Gamification tiers" ratio="1 / 1" />
             </div>
           </div>
         </div>
@@ -233,7 +278,7 @@ export default function Candelaria() {
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
           <div className="md:col-span-5">
             <div className="md:sticky md:top-[120px]">
-              <MediaSlot ratio="4 / 5" alt="Performance dashboard" />
+              <CaseImage src={candelariaPerformanceImg} alt="Performance dashboard" ratio="4 / 5" />
             </div>
           </div>
           <div className="md:col-span-7">
@@ -269,7 +314,7 @@ export default function Candelaria() {
           </div>
           <div className="md:col-span-5">
             <div className="md:sticky md:top-[120px]">
-              <MediaSlot ratio="4 / 5" alt="Reflections — moodboard" />
+              <CaseImage src={candelariaReflectionsImg} alt="Reflections — moodboard" ratio="4 / 5" />
             </div>
           </div>
         </div>
@@ -293,6 +338,22 @@ export default function Candelaria() {
         </div>
       </section>
     </article>
+  );
+}
+
+/* =========================== media helpers =========================== */
+
+function CaseImage({ src, alt, ratio = '4 / 5' }) {
+  return (
+    <div style={{ width: '100%', aspectRatio: ratio, overflow: 'hidden', position: 'relative' }}>
+      <img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        decoding="async"
+        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+      />
+    </div>
   );
 }
 
@@ -436,7 +497,7 @@ function MetaBlock({ label, value, className = '' }) {
   );
 }
 
-function FeatureCard({ feature, index }) {
+function FeatureCard({ feature, index, icon }) {
   const [hover, setHover] = useState(false);
   return (
     <motion.div
@@ -452,7 +513,7 @@ function FeatureCard({ feature, index }) {
         border: '1px solid color-mix(in srgb, var(--fg) 10%, transparent)',
         transition: 'transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease',
         transform: hover ? 'translateY(-4px)' : 'translateY(0)',
-        boxShadow: hover ? '0 14px 28px color-mix(in srgb, var(--fg) 14%, transparent)' : 'none',
+        boxShadow: hover ? '0 14px 28px color-mix(in srgb, #FF0871 14%, transparent)' : 'none',
         borderColor: hover ? '#FF0871' : 'color-mix(in srgb, var(--fg) 10%, transparent)',
       }}
     >
@@ -466,6 +527,33 @@ function FeatureCard({ feature, index }) {
           transition: 'all 240ms ease',
         }}
       />
+
+      {/* Feature icon */}
+      {icon && (
+        <div
+          style={{
+            width: 44,
+            height: 44,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            background: hover
+              ? 'color-mix(in srgb, #FF0871 14%, transparent)'
+              : 'color-mix(in srgb, #FF0871 8%, transparent)',
+            border: `1px solid ${
+              hover
+                ? 'color-mix(in srgb, #FF0871 45%, transparent)'
+                : 'color-mix(in srgb, #FF0871 22%, transparent)'
+            }`,
+            color: '#FF0871',
+            marginBottom: 18,
+            transition: 'background 240ms ease, border-color 240ms ease',
+          }}
+        >
+          {icon}
+        </div>
+      )}
+
       <h3
         className="font-display"
         style={{ color: 'var(--fg)', fontSize: 20, lineHeight: 1.2, fontWeight: 700 }}

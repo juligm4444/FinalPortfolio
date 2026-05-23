@@ -7,7 +7,23 @@
       "Bash(git init *)",
       "Bash(git add *)",
       "Bash(git -c user.name=\"juligm4\" -c user.email=\"julian_gm4@hotmail.com\" commit -q -m \"checkpoint: pre-hexagon background — cube speed/glass, 2x card logo, About perf, Education layout + honest credentials\")",
-      "Bash(git tag *)"
+      "Bash(git tag *)",
+      "Bash(python)",
+      "Bash(node -e \"require\\('./src/i18n/translations.js'\\)\")",
+      "mcp__b2eddf55-d016-4e89-b5d0-876372e9636b__balance",
+      "mcp__b2eddf55-d016-4e89-b5d0-876372e9636b__models_explore",
+      "mcp__b2eddf55-d016-4e89-b5d0-876372e9636b__generate_image",
+      "mcp__b2eddf55-d016-4e89-b5d0-876372e9636b__job_display",
+      "mcp__b2eddf55-d016-4e89-b5d0-876372e9636b__generate_video",
+      "Bash(curl -sL \"https://d8j0ntlcm91z4.cloudfront.net/user_3Ck6CpVp3Jhg5ivFmzltRLLHDdx/hf_20260520_075755_b9bc1160-3de6-402f-b20f-e36fb03a5e7e_min.webp\" -o \"licorimetro/problem.webp\")",
+      "Bash(curl -sL \"https://d8j0ntlcm91z4.cloudfront.net/user_3Ck6CpVp3Jhg5ivFmzltRLLHDdx/hf_20260520_075759_0e39aa41-b7da-48c5-889a-ee436a87bfb9_min.webp\" -o \"licorimetro/evolution.webp\")",
+      "Bash(curl -sL \"https://d8j0ntlcm91z4.cloudfront.net/user_3Ck6CpVp3Jhg5ivFmzltRLLHDdx/hf_20260520_075803_a8f5fcba-643d-48b3-a1a8-f73c2e4629ff_min.webp\" -o \"licorimetro/reflections.webp\")",
+      "Bash(curl -sL \"https://d8j0ntlcm91z4.cloudfront.net/user_3Ck6CpVp3Jhg5ivFmzltRLLHDdx/hf_20260520_075808_12062f55-52b3-48ed-8ec1-ad25eed7b7e2_min.webp\" -o \"candelaria/summary.webp\")",
+      "Bash(curl -sL \"https://d8j0ntlcm91z4.cloudfront.net/user_3Ck6CpVp3Jhg5ivFmzltRLLHDdx/hf_20260520_075956_f8a3499b-d960-4b74-99b6-5c35fa60fd4c_min.webp\" -o \"candelaria/role.webp\")",
+      "Bash(curl -sL \"https://d8j0ntlcm91z4.cloudfront.net/user_3Ck6CpVp3Jhg5ivFmzltRLLHDdx/hf_20260520_080000_33b48fd3-02be-45fc-aa0f-7ea34b0826b6_min.webp\" -o \"candelaria/problem.webp\")",
+      "Bash(curl -sL \"https://d8j0ntlcm91z4.cloudfront.net/user_3Ck6CpVp3Jhg5ivFmzltRLLHDdx/hf_20260520_080004_9d2d9e3f-17df-4559-b0aa-2ef404f9f5b2_min.webp\" -o \"candelaria/process.webp\")",
+      "Bash(curl -sL \"https://d8j0ntlcm91z4.cloudfront.net/user_3Ck6CpVp3Jhg5ivFmzltRLLHDdx/hf_20260520_075823_6a43371a-6343-4bc6-a422-f686bbda7db9_min.webp\" -o \"candelaria/tiers.webp\")",
+      "Bash(curl -sL \"https://d8j0ntlcm91z4.cloudfront.net/user_3Ck6CpVp3Jhg5ivFmzltRLLHDdx/hf_20260520_080136_9974b67b-fe13-4930-b757-d2edfeda213b.mp4\" -o \"C:/Users/julia/Documents/FinalPortfolio/src/assets/images/licorimetro/summary-scan.mp4\")"
     ]
   }
 }
