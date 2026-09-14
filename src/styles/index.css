@@ -18,6 +18,80 @@
   font-display: swap;
 }
 
+/* ===== Candelaria project fonts — Sansation (display) + Helvetica Now (body) =====
+   Self-hosted, only downloaded when the Candelaria case-study page references them. */
+@font-face {
+  font-family: 'Sansation';
+  src: url('../assets/fonts/Sansation/Sansation-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Sansation';
+  src: url('../assets/fonts/Sansation/Sansation-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Sansation';
+  src: url('../assets/fonts/Sansation/Sansation-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Sansation';
+  src: url('../assets/fonts/Sansation/Sansation-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Sansation';
+  src: url('../assets/fonts/Sansation/Sansation-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Helvetica Now';
+  src: url('../assets/fonts/HelveticaNow/HelveticaNowDisplayLight.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Helvetica Now';
+  src: url('../assets/fonts/HelveticaNow/HelveticaNowDisplay.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Helvetica Now';
+  src: url('../assets/fonts/HelveticaNow/HelveticaNowDisplayMedium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Helvetica Now';
+  src: url('../assets/fonts/HelveticaNow/HelveticaNowDisplayBold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Helvetica Now';
+  src: url('../assets/fonts/HelveticaNow/HelveticaNowDisplayIt.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
 /* ================= THEME ================= */
 :root,
 html[data-theme='light'] {
@@ -66,6 +140,12 @@ html[data-theme='light'] {
   --filter-active-to: #1f2624;
   --filter-active-fg: #e5e7eb;
   --filter-fg: #0a0a0a;
+
+  /* Per-case-study accents. These carry small label text, so no single value
+     clears 4.5:1 on both grounds — each is tuned per theme.
+     Light: humbral 4.53:1, bloom 5.07:1. */
+  --accent-humbral: #8c6244;
+  --accent-bloom: #b03560;
 }
 
 html[data-theme='dark'] {
@@ -101,6 +181,11 @@ html[data-theme='dark'] {
   --filter-active-to: #c8c7c3;
   --filter-active-fg: #0c0d0d;
   --filter-fg: #edede8;
+
+  /* Lifted so the same accents clear 4.5:1 against the dark ground —
+     humbral 7.58:1, bloom 5.96:1. */
+  --accent-humbral: #c49a70;
+  --accent-bloom: #e0668c;
 }
 
 @layer base {
@@ -144,7 +229,9 @@ html[data-theme='dark'] {
     font-weight: 400;
     font-size: 20px;
     line-height: 1.2;
-    border: 1px solid color-mix(in srgb, var(--nav-fg) 20%, transparent);
+    /* The outline is a hover affordance, not a permanent frame — it stays
+       transparent (not `none`) so the box never reflows when it appears. */
+    border: 1px solid transparent;
     transition:
       color 200ms ease,
       background 200ms ease,
@@ -153,6 +240,7 @@ html[data-theme='dark'] {
   }
   .nav-link:hover {
     color: var(--nav-fg-hover);
+    border-color: color-mix(in srgb, var(--nav-fg) 20%, transparent);
   }
   .nav-link.active {
     background: var(--nav-active-bg);
@@ -175,6 +263,22 @@ main {
   position: relative;
   z-index: 10;
 }
+
+/* ===== Explore lanes =====
+   The parallelogram is a wide-viewport flourish only: on a narrow screen a
+   skewed band wastes the little width there is, so the skew starts at lg.
+   The inner wrapper counter-skews so text and images stay upright. */
+@media (min-width: 1024px) {
+  .lane-skew {
+    transform: skewY(calc(var(--lane-skew) * -1));
+  }
+  .lane-skew > .lane-content {
+    transform: skewY(var(--lane-skew));
+  }
+}
+
+/* No reduced-motion override here on purpose: the skew is a static shape, not
+   movement, and that preference is about animation. */
 
 /* Filter bar tabs — hover behavior identical to navbar */
 .filter-tab {

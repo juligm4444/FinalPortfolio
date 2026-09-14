@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { useLocale } from '../../i18n/LocaleProvider.jsx';
 import projects from '../../data/projects.js';
 import MiniSkills from '../../components/MiniSkills.jsx';
@@ -11,6 +11,7 @@ import licorimetroReflectionsImg from '../../assets/images/licorimetro/reflectio
 import licorimetroScanVideo from '../../assets/images/licorimetro/summary-scan.mp4';
 
 const ACCENT = 'var(--pink-brand)';
+const EASE = [0.16, 1, 0.3, 1];
 
 const slabStyle = {
   background: ACCENT,
@@ -188,15 +189,23 @@ const ARCH_LAYERS = [
 
 export default function Licorimetro() {
   const { t } = useLocale();
+  const reduced = useReducedMotion();
   const project = projects.find((p) => p.slug === 'licorimetro');
 
   return (
     <article className="w-full">
       {/* HERO */}
       <header className="mx-auto w-full max-w-[1200px] px-4 pt-16 md:px-8 md:pt-28">
-        <span style={slabStyle}>{t('licorimetro.tag')}</span>
+        <motion.span
+          style={slabStyle}
+          initial={{ opacity: 0, y: reduced ? 0 : 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: reduced ? 0 : 0.6, ease: EASE }}
+        >
+          {t('licorimetro.tag')}
+        </motion.span>
 
-        <h1
+        <motion.h1
           className="mt-6 font-display"
           style={{
             color: 'var(--fg)',
@@ -204,12 +213,16 @@ export default function Licorimetro() {
             lineHeight: 1.0,
             fontWeight: 700,
             letterSpacing: '-0.02em',
+            textWrap: 'balance',
           }}
+          initial={{ opacity: 0, y: reduced ? 0 : 28 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: reduced ? 0 : 1.0, ease: EASE, delay: reduced ? 0 : 0.1 }}
         >
           {t('licorimetro.title')}
-        </h1>
+        </motion.h1>
 
-        <p
+        <motion.p
           className="mt-8 font-body"
           style={{
             color: 'var(--fg-soft)',
@@ -217,16 +230,22 @@ export default function Licorimetro() {
             lineHeight: 1.5,
             maxWidth: '60ch',
           }}
+          initial={{ opacity: 0, y: reduced ? 0 : 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: reduced ? 0 : 0.85, ease: EASE, delay: reduced ? 0 : 0.24 }}
         >
           {t('licorimetro.subtitle')}
-        </p>
+        </motion.p>
 
-        <div
+        <motion.div
           className="mt-14 grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16"
           style={{
             borderTop: '1px solid color-mix(in srgb, var(--fg) 15%, transparent)',
             paddingTop: 36,
           }}
+          initial={{ opacity: 0, y: reduced ? 0 : 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: reduced ? 0 : 0.7, ease: EASE, delay: reduced ? 0 : 0.4 }}
         >
           <div className="md:col-span-12 flex flex-col gap-10">
             <MetaBlock label={t('licorimetro.sectionRoleLabel')} value={t('licorimetro.role')} />
@@ -246,18 +265,22 @@ export default function Licorimetro() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </header>
 
       {/* SUMMARY */}
       <Section>
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
           <div className="md:col-span-7">
-            <Kicker>{t('licorimetro.summaryKicker')}</Kicker>
-            <Title>{t('licorimetro.summaryTitle')}</Title>
-            <GlassBlock className="mt-6" padding="28px 32px">
-              <Paragraphs items={t('licorimetro.summaryParas')} highlight />
-            </GlassBlock>
+            <Reveal>
+              <Kicker>{t('licorimetro.summaryKicker')}</Kicker>
+              <Title>{t('licorimetro.summaryTitle')}</Title>
+            </Reveal>
+            <Reveal delay={0.14}>
+              <GlassBlock className="mt-6" padding="28px 32px">
+                <Paragraphs items={t('licorimetro.summaryParas')} highlight />
+              </GlassBlock>
+            </Reveal>
           </div>
           <div className="md:col-span-5">
             <div className="md:sticky md:top-[120px]">
@@ -276,8 +299,11 @@ export default function Licorimetro() {
             </div>
           </div>
           <div className="md:col-span-7">
-            <Kicker>{t('licorimetro.problemKicker')}</Kicker>
-            <Title>{t('licorimetro.problemTitle')}</Title>
+            <Reveal>
+              <Kicker>{t('licorimetro.problemKicker')}</Kicker>
+              <Title>{t('licorimetro.problemTitle')}</Title>
+            </Reveal>
+            <Reveal delay={0.14}>
             <GlassBlock className="mt-6" padding="28px 32px">
               <p
                 className="font-body"
@@ -296,14 +322,17 @@ export default function Licorimetro() {
                 ))}
               </ul>
             </GlassBlock>
+            </Reveal>
           </div>
         </div>
       </Section>
 
       {/* FEATURES */}
       <Section>
-        <Kicker>{t('licorimetro.featuresKicker')}</Kicker>
-        <Title>{t('licorimetro.featuresTitle')}</Title>
+        <Reveal>
+          <Kicker>{t('licorimetro.featuresKicker')}</Kicker>
+          <Title>{t('licorimetro.featuresTitle')}</Title>
+        </Reveal>
         <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
           {t('licorimetro.features').map((f, i) => (
             <FeatureCard key={i} feature={f} index={i} icon={FEATURE_ICONS[i]} />
@@ -321,14 +350,18 @@ export default function Licorimetro() {
           </div>
           <div className="md:col-span-7 md:order-2">
             <InsetCard>
-              <Kicker>{t('licorimetro.ocrKicker')}</Kicker>
-              <Title>{t('licorimetro.ocrTitle')}</Title>
+              <Reveal>
+                <Kicker>{t('licorimetro.ocrKicker')}</Kicker>
+                <Title>{t('licorimetro.ocrTitle')}</Title>
+              </Reveal>
+              <Reveal delay={0.14}>
               <Paragraphs items={t('licorimetro.ocrParas')} highlight />
               <ul className="mt-6 space-y-3">
                 {t('licorimetro.ocrBullets').map((b, i) => (
                   <Bullet key={i}>{b}</Bullet>
                 ))}
               </ul>
+              </Reveal>
             </InsetCard>
           </div>
         </div>
@@ -336,21 +369,25 @@ export default function Licorimetro() {
 
       {/* PROCESS — USER FLOW DIAGRAM */}
       <Section>
-        <Kicker>{t('licorimetro.processKicker')}</Kicker>
-        <Title>{t('licorimetro.processTitle')}</Title>
+        <Reveal>
+          <Kicker>{t('licorimetro.processKicker')}</Kicker>
+          <Title>{t('licorimetro.processTitle')}</Title>
+        </Reveal>
         <UserFlowDiagram steps={t('licorimetro.processSteps')} />
       </Section>
 
       {/* ARCHITECTURE DIAGRAM */}
       <Section>
-        <Kicker>{t('licorimetro.architectureKicker')}</Kicker>
-        <Title>{t('licorimetro.architectureTitle')}</Title>
-        <p
-          className="mt-4 font-body"
-          style={{ color: 'var(--fg-soft)', fontSize: 16, lineHeight: 1.7, maxWidth: '62ch' }}
-        >
-          <Highlight text={t('licorimetro.architectureParas')[0]} />
-        </p>
+        <Reveal>
+          <Kicker>{t('licorimetro.architectureKicker')}</Kicker>
+          <Title>{t('licorimetro.architectureTitle')}</Title>
+          <p
+            className="mt-4 font-body"
+            style={{ color: 'var(--fg-soft)', fontSize: 16, lineHeight: 1.7, maxWidth: '62ch' }}
+          >
+            <Highlight text={t('licorimetro.architectureParas')[0]} />
+          </p>
+        </Reveal>
         <ArchitectureDiagram />
       </Section>
 
@@ -363,12 +400,16 @@ export default function Licorimetro() {
             </div>
           </div>
           <div className="md:col-span-7">
-            <Kicker>{t('licorimetro.whatChangedKicker')}</Kicker>
-            <Title>{t('licorimetro.whatChangedTitle')}</Title>
+            <Reveal>
+              <Kicker>{t('licorimetro.whatChangedKicker')}</Kicker>
+              <Title>{t('licorimetro.whatChangedTitle')}</Title>
+            </Reveal>
+            <Reveal delay={0.14}>
             <BrutalistTable
               header={t('licorimetro.whatChangedHeader')}
               rows={t('licorimetro.whatChangedRows')}
             />
+            </Reveal>
           </div>
         </div>
       </Section>
@@ -378,9 +419,13 @@ export default function Licorimetro() {
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
           <div className="md:col-span-7">
             <InsetCard>
-              <Kicker>{t('licorimetro.reflectionsKicker')}</Kicker>
-              <Title>{t('licorimetro.reflectionsTitle')}</Title>
-              <Paragraphs items={t('licorimetro.reflectionsParas')} highlight />
+              <Reveal>
+                <Kicker>{t('licorimetro.reflectionsKicker')}</Kicker>
+                <Title>{t('licorimetro.reflectionsTitle')}</Title>
+              </Reveal>
+              <Reveal delay={0.14}>
+                <Paragraphs items={t('licorimetro.reflectionsParas')} highlight />
+              </Reveal>
             </InsetCard>
           </div>
           <div className="md:col-span-5">
@@ -451,7 +496,7 @@ function FlowStepCard({ step, icon, mobile = false }) {
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
-      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.85, ease: EASE }}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       style={{
@@ -791,12 +836,26 @@ function CaseVideo({ src, ratio = '1 / 1' }) {
 
 /* ======================== Building blocks ======================== */
 
+function Reveal({ children, delay = 0, y = 24 }) {
+  const reduced = useReducedMotion();
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: reduced ? 0 : y }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-60px' }}
+      transition={{ duration: reduced ? 0 : 1.0, ease: EASE, delay: reduced ? 0 : delay }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
 function Section({ children }) {
   return (
     <section className="w-full">
       <div
         className="mx-auto w-full max-w-[1200px] px-4 md:px-8"
-        style={{ paddingTop: 64, paddingBottom: 64 }}
+        style={{ paddingTop: 'clamp(64px, 8vw, 96px)', paddingBottom: 'clamp(64px, 8vw, 96px)' }}
       >
         {children}
       </div>
@@ -842,14 +901,15 @@ function Kicker({ children }) {
 function Title({ children, wide = false }) {
   return (
     <h2
-      className="mt-3 font-display"
+      className="mt-4 font-display"
       style={{
         color: 'var(--fg)',
         fontSize: 'clamp(30px, 4vw, 52px)',
         lineHeight: 1.05,
         fontWeight: 700,
-        letterSpacing: '-0.01em',
-        ...(wide ? { maxWidth: 'none' } : { maxWidth: '20ch' }),
+        letterSpacing: '-0.02em',
+        textWrap: 'balance',
+        ...(wide ? { maxWidth: 'none' } : { maxWidth: '22ch' }),
       }}
     >
       {children}
@@ -936,7 +996,7 @@ function FeatureCard({ feature, index, icon }) {
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-80px' }}
-      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: index * 0.04 }}
+      transition={{ duration: 0.85, ease: EASE, delay: index * 0.08 }}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       className="relative p-7"

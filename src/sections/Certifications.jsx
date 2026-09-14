@@ -149,8 +149,11 @@ function BadgeCard({ badge, title, verifyLabel, index }) {
         background: 'var(--surface-2)',
         border: '1px solid color-mix(in srgb, var(--fg) 10%, transparent)',
         padding: '28px 18px 20px',
-        // grow on hover (no extra glow/shadow)
-        transform: hover ? 'scale(1.04)' : 'scale(1)',
+        // grow on hover (no extra glow/shadow). The card lifts above its
+        // neighbours so the scaled edges are never clipped by the next cell.
+        transform: hover ? 'scale(1.07)' : 'scale(1)',
+        zIndex: hover ? 2 : 1,
+        willChange: 'transform',
         transition: 'transform 320ms cubic-bezier(0.22, 1, 0.36, 1), border-color 240ms ease',
         borderColor: hover
           ? 'color-mix(in srgb, var(--fg) 22%, transparent)'

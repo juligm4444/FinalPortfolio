@@ -67,9 +67,9 @@ const translations = {
       infoKicker: 'Information',
       infoTitle: 'A designer who codes — a developer who designs',
       infoPara1:
-        'I’m Julián Galindo, a Design student at Universidad de los Andes, focused on video games, interfaces and digital experiences. I’m graduating in 2028, and I enjoy anything that involves creating, exploring and understanding how people interact with what they use.',
+        'I\'m Julián Galindo, a Design student at Universidad de los Andes, focused on video games, interfaces and digital experiences. I\'m graduating in 2028, and I enjoy anything that involves creating, exploring and understanding how people interact with what they use.',
       infoPara2:
-        'I like observing, questioning and analyzing why something works the way it does. I think in systems — how things connect, and how good design can make an experience clearer, more pleasant and more human. I’m a mix of the technical and the sensitive: structure and aesthetics, logic and emotion.',
+        'I like observing, questioning and analyzing why something works the way it does. I think in systems — how things connect, and how good design can make an experience clearer, more pleasant and more human. I\'m a mix of the technical and the sensitive: structure and aesthetics, logic and emotion.',
       infoPara3:
         'Films, video games and music shape the way I see design — as a way to tell something, build atmospheres and create moments that feel genuine.',
       infoMediaCaption: 'Snapshot · 2025',
@@ -79,7 +79,7 @@ const translations = {
       educationItems: [
         {
           period: '2021 — 2028',
-          title: 'Bachelor’s in Design',
+          title: 'Bachelor\'s in Design',
           subtitle: 'Universidad de los Andes · Bogotá',
           detail:
             'Undergraduate thesis · Minor in Visual Computation, built on engineering coursework.',
@@ -101,7 +101,7 @@ const translations = {
       educationMediaCaption: 'Universidad de los Andes',
 
       experienceKicker: 'Experience',
-      experienceTitle: 'Where I’ve been building',
+      experienceTitle: 'Where I\'ve been building',
       experienceItems: [
         {
           period: 'Jun 2025 — Present',
@@ -130,7 +130,7 @@ const translations = {
       focusPara1:
         'I specialize in crafting intuitive, game-inspired interfaces with modern frontend technologies like React. My background in systems engineering and mobile development lets me build experiences that are visually engaging and structurally solid.',
       focusPara2:
-        'I’m passionate about blending creativity with logic — from playful prototypes in Figma to dynamic functionality with backend tools. Always learning, I thrive at the intersection of design and code, building digital experiences that connect with people.',
+        'I\'m passionate about blending creativity with logic — from playful prototypes in Figma to dynamic functionality with backend tools. Always learning, I thrive at the intersection of design and code, building digital experiences that connect with people.',
       focusMediaCaption: 'Selected motion frame',
 
       stackKicker: 'Skills',
@@ -158,12 +158,22 @@ const translations = {
     },
     projects: {
       title: 'Projects',
-      lead:
-        'A selection of recent work — design, frontend and 3D experiences.',
       placeholder: 'Case study coming soon.',
       caseStudy: 'Student Research Group · Academic project →',
+      caseStudyShort: 'View case study →',
       visitSite: 'Visit website',
       viewCode: 'GitHub repository',
+      featuredKicker: 'Featured',
+      exploreKicker: 'Explore',
+      exploreHint: 'Scroll over a lane, or use the arrows.',
+      prev: 'Previous project',
+      next: 'Next project',
+      goToSlide: 'Go to project',
+      category: {
+        digital: 'Digital',
+        product: 'Product',
+        visual: 'Visual',
+      },
     },
     licorimetro: {
       tag: 'Academic Project · Mobile App',
@@ -342,33 +352,77 @@ const translations = {
       tag: 'Student Research Group · Academic project',
       title: 'Candelaria Website',
       subtitle:
-        'Designing, building and shipping the full digital presence of a high-performance university competition team.',
-      role: 'Product Engineering · UX/UI Design · Full-stack',
+        'Design leader and sole developer of the full digital system for a university solar vehicle research team.',
+      faceDigital: 'A React and Django site built end to end — the team\'s public face, its sponsor pitch and its archive in one system.',
+      faceVisual: 'The visual identity underneath it: condor mark, division system and the rules that keep eight sub-teams looking like one.',
+      role: 'Design Lead · Product Engineering · Full-stack',
       period: '2025 – 2026',
       status: 'In development',
       sectionRoleLabel: 'Role',
       sectionTimelineLabel: 'Timeline & Status',
+      heroTagline: 'Defy the limits of the sun',
+
+      teamsKicker: 'The Team',
+      teamsTitle: 'Seven areas. One condor.',
+      teamsIntro:
+        'Candelaria is an interdisciplinary seedbed. Each area carries its own condor — the same silhouette, a different color — because every team owns a distinct responsibility inside the mission.',
+      teamsNote:
+        'The mark is rendered in brushed metal as a nod to the automotive world the vehicle competes in.',
+      teamsCredit: 'Condor logo system designed by me and the Candelaria design team.',
+      teams: [
+        { name: 'Batteries', role: 'Energy storage & power management' },
+        { name: 'Solar Cells', role: 'Photovoltaic capture & solar array' },
+        { name: 'Chassis', role: 'Structure, chassis & aerodynamics' },
+        { name: 'Committee', role: 'Steering board — faculty & department leads' },
+        { name: 'Design', role: 'Brand, UX & visual identity' },
+        { name: 'Logistics', role: 'Operations, events & logistics' },
+        { name: 'Human Resources', role: 'People, recruitment & culture' },
+      ],
 
       summaryKicker: 'Overview',
-      summaryTitle: 'A team’s digital home — not a portfolio',
+      summaryTitle: 'A team\'s digital home, not a portfolio',
       summaryParas: [
-        'Candelaria is the <<complete digital presence>> of a university engineering competition team. The site goes beyond a static portfolio: it integrates <<member management>>, publications, memberships, donations, a <<merchandise shop>> and a <<gamification system>> for followers — all under a kinetic, high-contrast visual identity.',
-        'The project was born out of the need to <<centralize the team’s communications>>, make external support easy, and offer a user experience that matches the team’s technical level. From database architecture to color palette, every decision was made with <<product and engineering criteria>>.',
+        'Candelaria is the <<complete digital presence>> of a university engineering competition team. The site goes beyond a static portfolio: it integrates <<member management>>, publications, memberships, donations, a <<merchandise shop>> and a <<gamification system>> for followers, all under a kinetic, high-contrast visual identity.',
+        'The project was born out of the need to <<centralize the team\'s communications>>, make external support easy, and offer a user experience that matches the team\'s technical level. From database architecture to color palette, every decision was made with <<product and engineering criteria>>.',
       ],
 
-      myRoleKicker: 'My role inside Candelaria',
+      myRoleKicker: 'Two roles, one project',
+      myRoleTitle: 'Design lead. Solo developer.',
       myRoleParas: [
-        'Candelaria is an interdisciplinary research seedbed focused on developing a solar-powered vehicle — combining technological innovation, sustainability and design applied to mobility.',
-        'I lead the design team — coordinating five people and steering the visual, conceptual and UX direction across deliverables. I plan and supervise design tasks, build interfaces and digital prototypes, support the visualization of technical information, and craft communication and brand materials around the vehicle and its systems.',
-        'I take part in weekly tracking meetings, strategic planning and interdisciplinary alignment with other areas of the seedbed — making sure technical goals, user experience and project presentation stay coherent. My hybrid profile across design, UX/UI and frontend lets me act as a bridge between the technical components and the way technology is communicated, understood and used by different stakeholders.',
+        'Candelaria is an interdisciplinary research seedbed focused on developing a solar-powered vehicle, combining technological innovation, sustainability and design applied to mobility.',
+        'I lead the design team, coordinating five people and steering the visual, conceptual and UX direction across deliverables. I plan and supervise design tasks, build interfaces and digital prototypes, support the visualization of technical information, and craft communication and brand materials around the vehicle and its systems.',
+        'I also designed and built the entire website solo: architecture, backend, frontend, integrations and deployment. My hybrid profile across design, UX/UI and frontend lets me act as a bridge between technical decisions and the way they are communicated, understood and experienced by different stakeholders.',
       ],
+
+      brandKicker: 'Design Direction',
+      brandTitle: 'Building Candelaria\'s visual language from scratch',
+      brandIntro: 'My work inside Candelaria extends well beyond the website. As design team leader, I established the visual foundations the entire team operates from and continue producing the communication materials that represent the initiative publicly.',
+      brandArtifacts: [
+        {
+          title: 'Brand Manual',
+          body: 'Established the complete color system (15-shade palette across 5 families: gold, deep purple, violet, lavender, gray), typography rules (Sansation for display, Helvetica Now for body), and usage guidelines for all official and digital formats.',
+        },
+        {
+          title: 'Design System',
+          body: 'Component library and design tokens in Figma (Neon Velocity), shared across the design team for consistent visual output and directly translated into the website\'s Tailwind CSS implementation.',
+        },
+        {
+          title: 'Visual Assets',
+          body: 'Member profile cards for Instagram (3:4) and LinkedIn (1:1), convocatory posters for new member recruitment, fundraising pieces including the Gran Rifa Candelaria, and ongoing social media content.',
+        },
+        {
+          title: 'Team Coordination',
+          body: 'Planning and supervising a 5-person design team: delegating production tasks, reviewing visual quality, and aligning design decisions with the seedbed\'s engineering and communication strategy.',
+        },
+      ],
+      brandPaletteLabel: 'Brand palette',
 
       problemKicker: 'Problem',
       problemTitle: 'Beyond a PDF and a donations link',
       problemLead:
         'University competition teams usually settle for <<partial solutions>>: an Instagram account, a PDF with their achievements, and a generic donations link. Candelaria needed <<something different>>.',
       problemBullets: [
-        'A platform that reflects the team’s technical and visual identity.',
+        'A platform that reflects the team\'s technical and visual identity.',
         'A system that lets external supporters back the team financially with real traceability.',
         'An internal panel where leaders can manage members, publications and roles without touching code.',
         'Support for two payment markets: international (Stripe) and Colombia (PayU).',
@@ -429,7 +483,7 @@ const translations = {
       ],
 
       featuresKicker: 'Features',
-      featuresTitle: 'What’s inside the platform',
+      featuresTitle: 'What\'s inside the platform',
       features: [
         {
           title: 'Auth & user management',
@@ -494,8 +548,9 @@ const translations = {
       reflectionsKicker: 'Reflections',
       reflectionsTitle: 'What I learned',
       reflectionsParas: [
-        'Candelaria is the project that forced me to think like a <<product engineer>>, not just a developer. Architectural decisions — when to use Django vs Supabase, how to model the tier system, how to abstract two payment providers — required reasoning about <<real trade-offs>>, not just shipping features.',
-        'The biggest lesson was designing for <<two completely different audiences>>: an external follower who wants to support with one click, and a team leader who needs to manage people and publish content. Building a single platform that serves both — without either feeling the interface wasn’t made for them — was the most interesting design challenge of the project.',
+        'Candelaria is the project that forced me to think like a <<product engineer>>, not just a developer. Architectural decisions about when to use Django vs Supabase, how to model the tier system, and how to abstract two payment providers required reasoning about <<real trade-offs>>, not just shipping features.',
+        'The biggest lesson was designing for <<two completely different audiences>>: an external follower who wants to support with one click, and a team leader who needs to manage people and publish content. Building a single platform that serves both without either feeling the interface wasn\'t made for them was the most interesting design challenge of the project.',
+        'Carrying both the <<design leadership>> and the <<technical development>> simultaneously revealed a clear advantage: when you set the brand rules and implement them in code, every inconsistency surfaces immediately. The cost is that you carry every inconsistency alone.',
       ],
 
       stackKicker: 'Tools used',
@@ -505,9 +560,315 @@ const translations = {
       ctaVisit: 'Visit the website',
       ctaCode: 'View on GitHub',
     },
+    sensewave: {
+      title: 'SenseWave',
+      subtitle: 'A speculative neurotechnology brand exploring direct neural interfaces for restoring human sensation.',
+
+      // One project, three faces — the lane it appears in decides which.
+      faceProduct: 'The Sense Eco glasses and a two-chip system: hardware that turns another person\'s recorded sensation into neural signal.',
+      faceDigital: 'The interface layer that curates a donated sensory library and hands the recipient control over what they feel, and when.',
+      faceVisual: 'A brand system built on empathy rather than spectacle — identity, language and motion for technology that has to feel trustworthy.',
+
+      heroPeriod: 'Sensewave · Speculative Design · 2024',
+      heroH1: 'What if memories',
+      heroH2: 'could be felt',
+      heroHAccent: 'again?',
+      heroSub: 'A speculative neurotechnology brand designing emotional reconnection through immersive sensory experience, for people who have lost access to the activities that once defined them.',
+      heroTags: ['Speculative Design', 'Neurotechnology', 'Brand Identity', 'UX Strategy'],
+
+      s2: 'The Human Problem',
+      s3: 'The Technology',
+      s4: 'The Donor System',
+      s5: 'Brand System',
+      s6: 'Digital Experience',
+      s7: 'Physical Product',
+      s8: 'Design Process',
+      s9: 'Exhibition & Recognition',
+
+      problemQuote: 'Every day, thousands of people live with the memory of sensations they can no longer feel.',
+      problemP1: 'Not the event. The feeling. The cold rush of a mountain descent. The weightlessness of open water. The rhythm of a run through morning fog.',
+      problemP2: 'Physical disability, acquired or degenerative, severs more than mobility. It severs the language the body once used to speak.',
+      statA: { value: '1.3B', label: 'People living with significant disability globally' },
+      statB: { value: '70%', label: 'Report sensory loss as their most defining deprivation' },
+
+      techH1: 'Sense Eco.',
+      techHAccent: 'A system,',
+      techH2: 'not a device.',
+      techP: 'SenseWave combines two technologies working in concert. The Sense Eco glasses serve as the interface layer. A proprietary chip system bridges the digital signal with neural memory.',
+      chips: [
+        { name: 'Chill Chip', tagline: 'Ambient Sensation Layer', desc: 'Processes low-intensity sensory data: temperature shifts, wind, ambient pressure. Translates continuous environmental context into background neural signal.' },
+        { name: 'Complex Chip', tagline: 'Dynamic Experience Layer', desc: 'Handles high-fidelity multi-sensory data: proprioception, kinesthetic feedback, muscle memory replay. The difference between awareness and lived experience.' },
+      ],
+
+      donorH1: 'Experiences donated.',
+      donorHAccent: 'Memories shared.',
+      donorP: 'What makes SenseWave unique is not the technology. It is the source. Real individuals voluntarily recording and sharing their sensory experiences, not as data, but as gifts.',
+      donorTransfer: 'Experience Transfer',
+      donorLabel: 'Donor',
+      recipientLabel: 'Recipient',
+      donorCards: [
+        { symbol: '○', title: 'The Donor', desc: 'An athlete, a dancer, a swimmer: anyone with a meaningful sensory experience they wish to share with someone who has lost access to it.' },
+        { symbol: '◇', title: 'The Exchange', desc: 'Experiences are recorded through the Sense Eco system, verified for quality, and anonymized before entering the library.' },
+        { symbol: '●', title: 'The Recipient', desc: 'Receives a curated sensory library. Not simulation: a genuine imprint from a real person, freely given.' },
+      ],
+
+      brandH1: 'Identity built',
+      brandHPre: 'on',
+      brandHAccent: 'empathy.',
+      brandP: 'SenseWave\'s visual language is intentionally quiet. The brand steps back, allowing the human story, not the technology, to take center stage. Every element serves the emotional narrative.',
+      colorLabel: 'Color System',
+      typoLabel: 'Typography · Display',
+      typoDisplay: 'Feel it again.',
+      typoSub: 'Emotional reconnection through design.',
+      typoRoles: [
+        { role: 'Display', name: 'Libre Baskerville' },
+        { role: 'UI / Body', name: 'Roboto Mono' },
+      ],
+
+      digitalH1: 'An interface',
+      digitalHAccent: 'as quiet',
+      digitalH2: 'as the experience.',
+      digitalP: 'The SenseWave digital product is designed to disappear. The UI serves the narrative, not the technology, drawing users into the experience rather than the interface.',
+
+      physicalH1: 'Objects that',
+      physicalHAccent: 'carry memory.',
+
+      processH1: 'Process rooted',
+      processHPre: 'in',
+      processHAccent: 'empathy.',
+      processSteps: [
+        { phase: '01', title: 'Research & Empathy', desc: 'Interviews and observation with people living with physical disabilities. Identifying the emotional gap, not the functional one.' },
+        { phase: '02', title: 'Concept Development', desc: 'Speculative technology framework. Defining the donor system concept. Brand positioning and narrative strategy.' },
+        { phase: '03', title: 'Visual Identity', desc: 'Logo system exploration. Typography pairing. Color strategy tested across dark and ambient environments.', highlight: true },
+        { phase: '04', title: 'Digital & Physical', desc: 'Simultaneous design of the digital interface and physical product language. Coherence across all touchpoints.' },
+        { phase: '05', title: 'Exhibition Preparation', desc: 'Adapting the narrative for academic and design audiences. Physical artifacts and presentation materials.' },
+      ],
+
+      exhibPeriod: 'Universidad de los Andes · 2024',
+      exhibTitle: 'Selected for the Annual Design Exhibition',
+      exhibP: 'SenseWave was selected among the cohort\'s standout projects for visual consistency, emotional clarity, and the strength of its speculative design framework.',
+      exhibTags: ['Visual Consistency', 'Branding Cohesion', 'Speculative Design'],
+
+      reflLabel: 'Final Reflection',
+      reflQuote: 'The most powerful technology is the one that makes you forget it\'s there.',
+      reflP1: 'SenseWave taught me that speculative design is most powerful when it asks human questions, not technological ones. The brand is not about what the technology can do: it\'s about what it means to someone who has been waiting to feel alive again.',
+      reflP2: 'This project reshaped how I think about emotional design: that the interface should serve the moment of connection, not interrupt it.',
+      reflTags: ['Emotional Design', 'Speculative Futures', 'Branding Systems', 'Experiential Interfaces', 'Human-Centered Technology'],
+    },
+    humbral: {
+      tag: 'Academic Project · Furniture',
+      title: 'El Humbral',
+      subtitle:
+        'A modular coffee table built from two interchangeable modules, where the user decides which face is the top.',
+      faceProduct: 'Two identical structures, two different surfaces. Swap which one sits on top and the table changes character — no tools, no hardware.',
+      faceVisual: 'A pattern drawn from the study of pre-Columbian geometry and Antonio Grass\'s work, rewritten to the table\'s own grid.',
+
+      metaRole: 'Role',
+      metaDimensions: 'Dimensions',
+      metaStatus: 'Status',
+      metaContext: 'Context',
+      dimsShort: '410 × 410 × 310 mm',
+      role: 'Product Design · Digital Fabrication',
+      period: '2026',
+      status: '1:5 prototype',
+      course: 'Design memoir · 2026-408',
+
+      heroKicker: 'El Humbral · Modular coffee table · 2026',
+      heroH1: 'There is no',
+      heroH2: 'correct side.',
+      heroSub: 'A coffee table that starts from a simple idea: the piece changes depending on which face you choose to show.',
+      heroTags: ['Furniture', 'Product Design', '3D', 'Materials', 'Laser Cutting'],
+
+      s1: 'Concept',
+      s2: 'The Pattern',
+      s3: 'Construction',
+      s4: 'Views & Dimensions',
+      s5: 'Configurations',
+      s6: 'In Use',
+      s7: 'Physical Prototype',
+
+      conceptQuote: 'There is no correct configuration. The table changes depending on which face you want to bring forward.',
+      conceptP1: 'El Humbral is a modular coffee table made of two modules that can swap places. Both share the same structure, but each presents a different surface: one carries a pattern engraved into the wood, the other a circular opening filled with glass.',
+      conceptP2: 'The intent was to work with reversibility. Rather than fixing one correct way to use the table, the two modules can be exchanged to produce two configurations — which element ends up on top is the user\'s decision.',
+      conceptP3: 'The project was developed as a 1:5 scale model in MDF, laser cut and engraved, from a 3D model where dimensions, joints and contact points were verified before fabrication.',
+
+      thresholdTitle: 'The threshold between wood and glass',
+      thresholdP1: 'The name comes from the idea of a threshold as a point of transition between two spaces: a place that belongs fully to neither, but connects them.',
+      thresholdP2: 'That idea reaches the object through two faces. One relates to wood, texture and the travel of the pattern; the other to glass, transparency and emptiness. With the pattern on top the table reads as solid and closed; with the glass on top, open and light.',
+      thresholdP3: 'The reference to the lagoons and to Muisca culture is a connection to territory: in the Cundiboyacense highlands the lagoons held an important place in belief and ritual, and Guatavita is tied to the offerings that later gave rise to the El Dorado myth. The project does not represent those rituals — it takes from them the idea of passage between two worlds.',
+
+      stepsTitle: 'The project in four steps',
+      steps: [
+        { n: '01', title: 'Pattern study', desc: 'Digitising the graphic derived from Antonio Grass and fitting it to a 0.5 cm grid.' },
+        { n: '02', title: '3D modelling', desc: 'Verifying dimensions, joints, frame centring and the stacking of both modules.' },
+        { n: '03', title: 'Cut and engrave', desc: 'MDF parts laid out on tabloid format; laser cut and engraved in a single pass.' },
+        { n: '04', title: 'Assembly and test', desc: 'Gluing frame and legs, checking the stops and both configurations.' },
+      ],
+
+      patternTitle: 'Reference to Antonio Grass',
+      patternP1: 'The pattern on the wooden face comes from exploring geometries associated with pre-Columbian graphics and with Antonio Grass\'s work. He studied and reinterpreted forms present in pre-Columbian iconography, carrying them into contemporary geometric compositions.',
+      patternP2: 'No specific piece was copied for El Humbral. The intent was to study resources — lines, modules, repetitions, steps and geometries — in order to build an original pattern.',
+      patternP3: 'That study produced three engravings. The first two were tested directly on MDF: one orthogonal, one radial. The third, refined, is the one that stayed on the final piece.',
+      patternP4: 'The radial version had a more direct relationship to some pre-Columbian forms, but was discarded because it did not speak to the orthogonal structure of the table.',
+
+      patternFig1: 'First engraving on MDF: orthogonal layout derived from the study of Grass\'s graphics.',
+      patternFig2: 'Second engraving on MDF: radial composition, discarded against the geometry of the table.',
+      patternFig3: 'Final engraving: the refined orthogonal layout on a 16 × 16 cell grid.',
+
+      gridTitle: 'From sketch to grid',
+      gridP1: 'The main lines were identified first and the drawing organised on a grid. From that base the paths and repetitions were adjusted until the composition came out cleaner.',
+      gridP2: 'The final pattern works at 0.5 and 1 cm on the model — 25 and 50 mm on the real product — and holds right angles throughout.',
+      gridSpecs: 'Grid 16 × 16 cells · Cell 0.5 cm model / 25 mm real · Area 8 × 8 cm / 400 × 400 mm',
+
+      adaptTitle: 'From first engraving to final',
+      adaptP1: 'The final engraving starts from the first (Fig. 2.1), but rewritten onto the geometry of the furniture itself: line width was taken to the thickness of the supports and legs — 60 mm on the real product, 1.2 cm on the model — and the breaks were aligned to the same grid that orders the frame and the stops.',
+      adaptP2: 'That change in thickness also solved a fabrication problem: the thin lines of the first version burned unevenly on MDF, while the wide stroke engraves clean and reads from a distance. The pattern stops being a drawing applied to the surface and becomes an extension of the measurement system the table is built with.',
+
+      constructTitle: 'Construction system',
+      constructP1: 'Each module works as an independent piece, made of a top board, a lower frame and four legs.',
+      constructP2: 'The board measures 410 × 410 mm with 45 mm thickness. Below it sits the frame — the «madre» — at 430 × 430 mm, which receives the four legs. Each leg has a 60 × 60 mm section and a height of 110 mm.',
+      constructP3: 'The structure was designed so the legs stay contained within the frame without significant displacement. Parts are joined by gluing, avoiding visible hardware.',
+      constructP4: 'To stack the two modules, small stops were added at the corners of the upper face. These stops reproduce the space that exists inside the lower frame: when a module is placed on top, its legs fall into that space and both bodies stay centred.',
+      constructP5: 'The joint between modules does not need to be permanent: it relies on weight, fit and the geometry of the parts.',
+
+      logicTitle: 'System logic',
+      logic: [
+        '1 · Board — defines the visible surface of each module: engraved pattern on one, glass window on the other.',
+        '2 · Frame — works as structure, receives the legs and keeps a rigid joint with the board.',
+        '3 · Legs and stops — let the module rest on the floor and receive the second module on top, without hardware.',
+      ],
+      logicNote: 'The two modules are practically identical in structure and differ only in the surface they present.',
+
+      partsTitle: 'Parts of one module, top to bottom',
+      parts: '8 corner stops · 60 × 60 × 15 mm\n1 glass · Ø 300 mm\n1 upper ring · Ø 300 / Ø 270 mm\n1 lower ring · Ø 300 / Ø 270 mm\n1 board · 410 × 410 × 45 mm\n1 «madre» frame · 430 × 430 × 15 mm\n4 legs · 60 × 60 × 110 mm',
+      partsNote: 'The two rings are glued one on top of the other inside the board\'s opening and form the platform the glass rests on, flush with the upper face.',
+
+      stackNote: 'Stacking works because the geometry repeats: the corner gap of the frame below and the pair of stops above have exactly the same measure as the leg section (60 × 60 mm).',
+
+      viewsIntro: 'The views on this sheet are drawn at 1:5 over the verified 3D model: each part occupies on paper exactly what it occupies on the model. Dimensions indicate real product measures, in millimetres.',
+      viewTop: 'Top view',
+      viewBottom: 'Bottom view',
+      viewSide: 'Side elevation',
+      viewIso: 'Isometric perspective',
+
+      dimsTitle: 'General dimensions · real product',
+      dims: 'Board — 410 × 410 × 45 mm\nFrame («madre») — 430 × 430 × 15 mm\nLegs — 60 × 60 × 110 mm\nCorner stops — 60 × 60 × 15 mm\nWindow — Ø 300 mm (inner ring Ø 270 mm)',
+      dimsHeight: 'Height of one module — 155 mm\nTotal height, two modules stacked — 310 mm',
+
+      notesTitle: 'Notes',
+      note1: 'The model was built at 1:5 scale in MDF, with 4.5 mm boards and 1.5 mm fine parts, equivalent to 45 and 15 mm on the real product.',
+      note2: 'The legs stay contained in the corner gap of the frame; the upper stops repeat that same gap on the board to receive the module stacked above.',
+
+      configIntro: 'The two modules are interchangeable. Changing which one is on top does not modify the structure or require tools: you lift one module and rest it on the other, fitting the legs into the corner stops. Each configuration changes the character of the table and the kind of use it favours.',
+      configATitle: 'Configuration A · pattern on top',
+      configAP1: 'The module with the engraved pattern sits on top. The surface is continuous and wooden, with greater visual presence, and the whole reads as more solid and closed.',
+      configAP2: 'It favours use as a permanent resting surface: trays, books, cups or a remote. The lower level, with the window, stays as visible storage.',
+      configBTitle: 'Configuration B · glass on top',
+      configBP1: 'The module with the circular window sits on top. The opening becomes the main element, reveals the lower level and visually lightens the whole.',
+      configBP2: 'It works when the table acts as a display case: whatever is stored below is exposed through the glass. The surface is also easier to clean.',
+
+      useIntro: 'Both configurations set with everyday objects for a coffee table: books, tray, cup and a small plant. The scenes were built with the same 3D model and at the same scale, to check the relationship between the furniture and the objects it holds.',
+      useFig1: 'Pattern on top: a continuous surface for resting and reading, with the lower level free for storage.',
+      useFig2: 'Glass on top: whatever is stored on the lower level stays in view through the window.',
+
+      protoTitle: 'Physical prototype',
+      protoP1: 'The prototype made it possible to physically verify the decisions taken during digital modelling.',
+      protoP2: 'Cutting and assembly allowed a review of the frame dimensions, leg position, how the stops perform and the relationship between the two modules.',
+      protoP3: 'It also helped identify adjustments before defining the final version: the exact position of the stops was corrected from what the model revealed.',
+
+      verifyTitle: 'What was verified',
+      verify: 'Leg fit in the corner gap of the frame\nFrame centring against the board\nStacking and centring of both modules\nLegibility of the engraving on MDF\nStability of the assembled whole',
+      verifySpecs: '1:5 scale model · 4.5 and 1.5 mm MDF · laser cut and engraved · glued joints.',
+
+      protoFig1: 'Stacked assembly: the window module over the engraved module.',
+      protoFig2: 'The two modules seen from above: engraved surface and window.',
+      protoFig3: 'Window module and «madre» frame before assembly.',
+      protoFig4: 'Top view of the assembly: the lower module\'s engraving seen through the window.',
+
+      photoNoteTitle: 'On the photographic record',
+      photoNote: 'The original shots were taken in the workshop, on the cutting table and with measuring instruments in frame. For this memoir they were processed digitally: background and extraneous elements were removed, and the four photographs were brought to a single neutral surface and a single lighting. The aim is to be able to compare the parts and read the construction system without distraction.',
+
+      specsTitle: 'Project data',
+      specs: 'Typology — Modular coffee table\nMaterials — MDF · glass / acrylic\nDimensions — 410 × 410 × 310 mm\nModules — 2, interchangeable\nFabrication — Laser cut and engraved · glued joints\nModel — 1:5 scale',
+    },
+    bloom: {
+      tag: 'Client Work · Information Architecture',
+      title: 'Bloom',
+      subtitle:
+        'Rebuilding the content taxonomy behind a women\'s health platform — from 75 loose tags to 28 that a phone can actually hold.',
+
+      metaRole: 'Role',
+      metaClient: 'Client',
+      metaTeam: 'Team',
+      role: 'UX Research · Information Architecture · Wireframing',
+      period: '2025',
+      status: 'Delivered',
+      client: 'Bloom / BeBloomers',
+      collaboration: 'In collaboration with another designer',
+
+      heroKicker: 'Bloom · Information architecture · 2025',
+      heroH1: 'Seventy-five tags',
+      heroH2: 'nobody could use.',
+      heroSub: 'My first real client project: a full redesign of how Bloom classifies every article, podcast and workshop it publishes.',
+      heroTags: ['UX Research', 'Information Architecture', 'Wireframing', 'Taxonomy'],
+
+      s1: 'The Brief',
+      s2: 'The Problem',
+      s3: 'Three Versions',
+      s4: 'The System in Use',
+      s5: 'Wireframes',
+      s6: 'Reflection',
+
+      briefP1: 'Bloom — BeBloomers — publishes articles, podcasts, workshops and guides on women\'s health and wellbeing. The team brought in two designers to rebuild the website from the ground up.',
+      briefP2: 'I worked on two fronts: full wireframes and small prototypes for the new site, and a complete reclassification of the tags and categories behind every digital product they publish.',
+      briefP3: 'This page is about the second front, because it is the part that changed how the product works rather than how it looks.',
+
+      problemQuote: 'A taxonomy is not a list of words. It is the shape of what a reader is allowed to find.',
+      problemP1: 'The original system had accumulated 75 unique tags. Tags had been added as content was published, never pruned, and never checked against each other — so several described the same thing at different levels of specificity.',
+      problemP2: 'The consequence was not untidiness, it was reach: with a tag list that long, filtering stops being a shortcut and becomes a second search problem. Most Bloom readers arrive on a phone, where a filter row that scrolls forever is simply not used.',
+
+      versionsIntro: 'Rather than propose one answer, I built three, each a defensible position on the same axis: how much can you compress a taxonomy before it stops being able to describe the content?',
+      v1Title: 'V1 · Recategorised original',
+      v1Count: '75 tags',
+      v1Desc: 'The existing tags reorganised under five categories — Body, Mind, Relationships, Sex, Culture — with duplicates removed. This version proves the categories hold, but keeps the volume problem.',
+      v2Title: 'V2 · Logical grouping',
+      v2Count: '46 tags',
+      v2Desc: 'Tags collapsed into concepts rather than phrasings. Sharp enough for Bloom AI to make precise recommendations, still heavy for a mobile filter row.',
+      v3Title: 'V3 · Simplified access',
+      v3Count: '28 tags',
+      v3Desc: 'The recommendation. Under 40% of the original count, balanced across the five categories, and short enough that the whole filter fits on a phone screen.',
+      v3Badge: 'Sweet spot',
+
+      tradeoffTitle: 'The trade-off, stated plainly',
+      tradeoffP1: 'V3 is not free. Condensing tags makes Bloom AI\'s recommendations less precise than V2 — fewer distinctions to reason over. I recommended it anyway, and said so in the deliverable, because the mobile reality outweighs the loss: a filter nobody opens produces no recommendations at all.',
+      tradeoffP2: 'I also marked the floor. Reducing below 28 would leave tags so general they stop discriminating between pieces, and the system would degrade from simplified to useless.',
+
+      bridgeTitle: 'Shared tags as bridges',
+      bridgeP1: 'The most useful decision was not reduction, it was overlap. Six tags deliberately live in more than one category — hormones, motherhood, sexual desire, emotional management, LGBTIQ+, gynaecology.',
+      bridgeP2: 'Those shared tags are what let Bloom AI connect an article filed under Body with a podcast filed under Mind. A reader looking at menopause and hormones can be pointed to anxiety and emotional management, because the taxonomy itself encodes the relationship.',
+      bridgeP3: 'The tinting that shows this overlap exists only in the specification. To the reader on the site, the bridge is invisible — it just feels like the recommendations understand them.',
+
+      structureTitle: 'Final structure · 28 tags across 5 categories',
+      categories: [
+        { name: 'Body', count: '12', tags: 'menstruation · contraceptives · pregnancy · fertility · menopause · endometriosis · STIs · personal care · hormones · motherhood · sexual desire · gynaecology' },
+        { name: 'Mind', count: '7', tags: 'anxiety · self-esteem · mental health · depression · self-knowledge · hormones · emotional management' },
+        { name: 'Relationships', count: '7', tags: 'partner · family · motherhood · community · toxic relationships · emotional management · LGBTIQ+' },
+        { name: 'Sex', count: '5', tags: 'sexuality · sexual desire · sex education · LGBTIQ+ · hormones' },
+        { name: 'Culture', count: '5', tags: 'feminism · teen · entertainment · gynaecology · LGBTIQ+' },
+      ],
+
+      caseTitle: 'How a piece lives in the system',
+      caseIntro: 'Every piece carries one category plus two to five tags. Tags shown tinted are shared — they appear in content from other categories, and Bloom AI reads them as bridges for cross-recommendation.',
+
+      reflLabel: 'Reflection',
+      reflQuote: 'The best argument I made on this project was for the version that performed worse on paper.',
+      reflP1: 'Working with a real client taught me that a recommendation is only useful if it comes with its cost attached. Presenting three versions rather than one turned the conversation from «do you like it» into «which trade-off do you want», and that is a conversation a client can actually take part in.',
+      reflP2: 'It also taught me that information architecture is design work with the highest leverage and the lowest visibility. Nobody will ever compliment a tag list. But every recommendation the platform makes runs through it.',
+      reflTags: ['Information Architecture', 'Taxonomy Design', 'Client Communication', 'Mobile-First Constraints'],
+    },
     contact: {
       title: 'Contact',
-      lead: 'Let’s build something that lasts. I read every message.',
+      lead: 'Let\'s build something that lasts. I read every message.',
       cta: 'julian_gm4@hotmail.com',
     },
     footer: {
@@ -674,12 +1035,22 @@ const translations = {
     },
     projects: {
       title: 'Proyectos',
-      lead:
-        'Una selección de trabajos recientes — diseño, frontend y experiencias 3D.',
       placeholder: 'Caso de estudio próximamente.',
       caseStudy: 'Semillero · Proyecto Académico →',
+      caseStudyShort: 'Ver caso de estudio →',
       visitSite: 'Visitar el sitio',
       viewCode: 'Repositorio GitHub',
+      featuredKicker: 'Destacados',
+      exploreKicker: 'Explorar',
+      exploreHint: 'Desplázate sobre una franja, o usa las flechas.',
+      prev: 'Proyecto anterior',
+      next: 'Proyecto siguiente',
+      goToSlide: 'Ir al proyecto',
+      category: {
+        digital: 'Digital',
+        product: 'Producto',
+        visual: 'Visual',
+      },
     },
     licorimetro: {
       tag: 'Proyecto Académico · App Móvil',
@@ -858,26 +1229,70 @@ const translations = {
       tag: 'Semillero · Proyecto Académico',
       title: 'Candelaria Website',
       subtitle:
-        'Diseñar, construir y desplegar la presencia digital completa de un equipo universitario de competición de alto rendimiento.',
-      role: 'Ingeniería de Producto · Diseño UX/UI · Full-stack',
+        'Líder de diseño y desarrollador único de la presencia digital completa de un equipo universitario de investigación en vehículos solares.',
+      faceDigital: 'Un sitio en React y Django construido de punta a punta — la cara pública del equipo, su pitch a patrocinadores y su archivo en un solo sistema.',
+      faceVisual: 'La identidad visual que lo sostiene: marca del cóndor, sistema de divisiones y las reglas que hacen que ocho subequipos se vean como uno.',
+      role: 'Líder de Diseño · Ingeniería de Producto · Full-stack',
       period: '2025 – 2026',
       status: 'En desarrollo',
       sectionRoleLabel: 'Rol',
       sectionTimelineLabel: 'Cronología y Estado',
+      heroTagline: 'Desafía los límites del sol',
+
+      teamsKicker: 'El Equipo',
+      teamsTitle: 'Siete áreas. Un cóndor.',
+      teamsIntro:
+        'Candelaria es un semillero interdisciplinario. Cada área lleva su propio cóndor — la misma silueta, un color distinto — porque cada equipo tiene una responsabilidad diferente dentro de la misión.',
+      teamsNote:
+        'La marca está resuelta en metal cepillado como guiño al mundo automotriz en el que compite el vehículo.',
+      teamsCredit: 'Sistema de logos del cóndor diseñado por mí y el equipo de diseño de Candelaria.',
+      teams: [
+        { name: 'Baterías', role: 'Almacenamiento de energía y gestión de potencia' },
+        { name: 'Celdas Solares', role: 'Captación fotovoltaica y arreglo solar' },
+        { name: 'Chasis', role: 'Estructura, chasis y aerodinámica' },
+        { name: 'Comité', role: 'Junta directiva — profesores y jefes de área' },
+        { name: 'Diseño', role: 'Marca, UX e identidad visual' },
+        { name: 'Logística', role: 'Operaciones, eventos y logística' },
+        { name: 'Recursos Humanos', role: 'Personas, reclutamiento y cultura' },
+      ],
 
       summaryKicker: 'Resumen',
-      summaryTitle: 'La casa digital de un equipo — no un portafolio',
+      summaryTitle: 'La casa digital de un equipo, no un portafolio',
       summaryParas: [
         'Candelaria es la <<presencia digital completa>> de un equipo universitario de ingeniería de competición. El sitio va más allá de un portafolio estático: integra <<gestión de miembros>>, publicaciones, membresías, donaciones, <<tienda de merchandise>> y un <<sistema de gamificación>> para seguidores, todo bajo una identidad visual cinética y de alto contraste.',
         'El proyecto nació de la necesidad de <<centralizar la comunicación del equipo>>, facilitar el apoyo externo y ofrecer una experiencia de usuario a la altura del nivel técnico del equipo. Desde la arquitectura de base de datos hasta la paleta de color, cada decisión fue tomada con <<criterio de producto y de ingeniería>>.',
       ],
 
-      myRoleKicker: 'Mi rol dentro de Candelaria',
+      myRoleKicker: 'Dos roles, un proyecto',
+      myRoleTitle: 'Líder de diseño. Desarrollador único.',
       myRoleParas: [
         'Candelaria es un semillero interdisciplinario enfocado en el desarrollo de un vehículo impulsado por energía solar, combinando innovación tecnológica, sostenibilidad y diseño aplicado a movilidad.',
-        'Soy líder del equipo de diseño — coordino un grupo de 5 personas y guío la dirección visual, conceptual y de experiencia de usuario en los distintos entregables. Planifico y superviso tareas de diseño, desarrollo interfaces y prototipos digitales, apoyo la visualización de información técnica y construyo materiales de comunicación e identidad visual relacionados con el vehículo y sus sistemas.',
-        'Participo activamente en reuniones semanales de seguimiento, organización estratégica y alineación interdisciplinaria con otras áreas del semillero, asegurando coherencia entre objetivos técnicos, experiencia de usuario y presentación del proyecto. Mi perfil híbrido entre diseño, UX/UI y desarrollo frontend me permite actuar como puente entre los componentes técnicos y la forma en que la tecnología es comunicada, entendida e interactuada por distintos usuarios y stakeholders.',
+        'Soy líder del equipo de diseño, coordinando un grupo de 5 personas y guiando la dirección visual, conceptual y de UX en los distintos entregables. Planifico y superviso tareas de diseño, desarrollo interfaces y prototipos digitales, apoyo la visualización de información técnica y construyo materiales de comunicación e identidad visual relacionados con el vehículo y sus sistemas.',
+        'También diseñé y construí el sitio web completo de forma individual: arquitectura, backend, frontend, integraciones y despliegue. Mi perfil híbrido entre diseño, UX/UI y frontend me permite actuar como puente entre decisiones técnicas y la forma en que se comunican, entienden y se experimentan por los distintos usuarios.',
       ],
+
+      brandKicker: 'Dirección de Diseño',
+      brandTitle: 'Construyendo el lenguaje visual de Candelaria desde cero',
+      brandIntro: 'Mi trabajo dentro de Candelaria va mucho más allá del sitio web. Como líder del equipo de diseño, establecí las bases visuales desde las que opera todo el equipo y continúo produciendo los materiales de comunicación que representan públicamente a la iniciativa.',
+      brandArtifacts: [
+        {
+          title: 'Manual de Marca',
+          body: 'Establecí el sistema de color completo (paleta de 15 tonos en 5 familias: dorado, púrpura profundo, violeta, lavanda, gris), reglas tipográficas con Sansation para display y Helvetica Now para cuerpo, y lineamientos de uso para todos los formatos oficiales y digitales.',
+        },
+        {
+          title: 'Sistema de Diseño',
+          body: 'Librería de componentes y tokens de diseño en Figma (Neon Velocity), compartida con el equipo de diseño para una producción visual consistente y directamente traducida a la implementación en Tailwind CSS del sitio.',
+        },
+        {
+          title: 'Piezas Visuales',
+          body: 'Perfiles de miembros para Instagram (3:4) y LinkedIn (1:1), piezas de convocatoria para nuevos integrantes, materiales de recaudación incluyendo la Gran Rifa Candelaria, y contenido de redes sociales.',
+        },
+        {
+          title: 'Coordinación del Equipo',
+          body: 'Planificación y supervisión de un equipo de diseño de 5 personas: delegación de tareas de producción, revisión de calidad visual y alineación de decisiones de diseño con la estrategia de ingeniería y comunicación del semillero.',
+        },
+      ],
+      brandPaletteLabel: 'Paleta de marca',
 
       problemKicker: 'Problema',
       problemTitle: 'Más allá de un PDF y un link de donaciones',
@@ -898,7 +1313,7 @@ const translations = {
           n: '01',
           title: 'Investigación y Sistema de Diseño',
           intro:
-            "Sistema de diseño ‘Neon Velocity’ en Figma: tipografía, paleta, componentes y 6 pantallas con scroll cinematográfico mobile-first.",
+            "Sistema de diseño 'Neon Velocity' en Figma: tipografía, paleta, componentes y 6 pantallas con scroll cinematográfico mobile-first.",
           bullets: [
             "Definición del sistema de diseño 'Neon Velocity' en Figma.",
             'Diseño de 6 pantallas finales con enfoque mobile-first y scrolling cinematográfico.',
@@ -1010,8 +1425,9 @@ const translations = {
       reflectionsKicker: 'Reflexiones',
       reflectionsTitle: 'Lo que aprendí',
       reflectionsParas: [
-        'Candelaria fue el proyecto que me obligó a pensar como <<product engineer>>, no solo como desarrollador. Tomar decisiones de arquitectura — cuándo usar Django vs Supabase, cómo modelar el sistema de tiers, cómo abstraer dos proveedores de pago — requirió razonar sobre <<trade-offs reales>>, no solo implementar features.',
+        'Candelaria fue el proyecto que me obligó a pensar como <<product engineer>>, no solo como desarrollador. Decisiones de arquitectura como cuándo usar Django vs Supabase, cómo modelar el sistema de tiers o cómo abstraer dos proveedores de pago requirieron razonar sobre <<trade-offs reales>>, no solo implementar features.',
         'El mayor aprendizaje fue diseñar para <<dos audiencias completamente distintas>>: un seguidor externo que quiere apoyar con un clic, y un líder de equipo que necesita administrar personas y publicar contenido. Construir una sola plataforma que sirva a ambos sin que ninguno sienta que la interfaz no fue pensada para él fue el reto de diseño más interesante del proyecto.',
+        'Sostener al mismo tiempo el <<liderazgo de diseño>> y el <<desarrollo técnico>> reveló una ventaja concreta: cuando eres quien establece las reglas de marca y quien las implementa en código, cualquier inconsistencia aparece de inmediato. El costo es que también cargas con cada inconsistencia solo.',
       ],
 
       stackKicker: 'Herramientas usadas',
@@ -1020,6 +1436,312 @@ const translations = {
 
       ctaVisit: 'Visitar el sitio',
       ctaCode: 'Ver en GitHub',
+    },
+    sensewave: {
+      title: 'SenseWave',
+      subtitle: 'Una marca especulativa de neurotecnología que explora interfaces neurales directas para restaurar la sensación humana.',
+
+      // Un proyecto, tres caras — la franja en la que aparece decide cuál.
+      faceProduct: 'Las gafas Sense Eco y un sistema de dos chips: el hardware que convierte la sensación grabada de otra persona en señal neural.',
+      faceDigital: 'La capa de interfaz que cura una biblioteca sensorial donada y le da al receptor control sobre qué siente y cuándo.',
+      faceVisual: 'Un sistema de marca construido sobre la empatía y no sobre el espectáculo — identidad, lenguaje y movimiento para una tecnología que debe inspirar confianza.',
+
+      heroPeriod: 'Sensewave · Diseño Especulativo · 2024',
+      heroH1: '¿Y si los recuerdos',
+      heroH2: 'pudieran volver a',
+      heroHAccent: 'sentirse?',
+      heroSub: 'Una marca especulativa de neurotecnología que diseña la reconexión emocional a través de experiencias sensoriales inmersivas, para personas que han perdido el acceso a las actividades que alguna vez las definieron.',
+      heroTags: ['Diseño Especulativo', 'Neurotecnología', 'Identidad de Marca', 'Estrategia UX'],
+
+      s2: 'El Problema Humano',
+      s3: 'La Tecnología',
+      s4: 'El Sistema de Donación',
+      s5: 'Sistema de Marca',
+      s6: 'Experiencia Digital',
+      s7: 'Producto Físico',
+      s8: 'Proceso de Diseño',
+      s9: 'Exhibición y Reconocimiento',
+
+      problemQuote: 'Cada día, miles de personas viven con el recuerdo de sensaciones que ya no pueden sentir.',
+      problemP1: 'No el evento. La sensación. El frío de un descenso en montaña. La ingravidez del agua abierta. El ritmo de una carrera entre la niebla matutina.',
+      problemP2: 'La discapacidad física, adquirida o degenerativa, corta más que la movilidad. Corta el lenguaje que el cuerpo usaba para hablar.',
+      statA: { value: '1.3B', label: 'Personas viviendo con discapacidad significativa a nivel global' },
+      statB: { value: '70%', label: 'Reportan la pérdida sensorial como su privación más definitoria' },
+
+      techH1: 'Sense Eco.',
+      techHAccent: 'Un sistema,',
+      techH2: 'no un dispositivo.',
+      techP: 'SenseWave combina dos tecnologías trabajando en conjunto. Las gafas Sense Eco son la capa de interfaz. Un sistema de chips propietario conecta la señal digital con la memoria neural.',
+      chips: [
+        { name: 'Chill Chip', tagline: 'Capa de Sensación Ambiental', desc: 'Procesa datos sensoriales de baja intensidad: cambios de temperatura, viento, presión ambiental. Traduce el contexto ambiental continuo en señal neural de fondo.' },
+        { name: 'Complex Chip', tagline: 'Capa de Experiencia Dinámica', desc: 'Maneja datos multisensoriales de alta fidelidad: propiocepción, retroalimentación cinestésica, reproducción de memoria muscular. La diferencia entre conciencia y experiencia vivida.' },
+      ],
+
+      donorH1: 'Experiencias donadas.',
+      donorHAccent: 'Recuerdos compartidos.',
+      donorP: 'Lo que hace único a SenseWave no es la tecnología. Es la fuente. Personas reales que voluntariamente graban y comparten sus experiencias sensoriales, no como datos, sino como regalos.',
+      donorTransfer: 'Transferencia de Experiencia',
+      donorLabel: 'Donante',
+      recipientLabel: 'Receptor',
+      donorCards: [
+        { symbol: '○', title: 'El Donante', desc: 'Un atleta, un bailarín, un nadador: cualquier persona con una experiencia sensorial significativa que desea compartir con alguien que ha perdido el acceso a ella.' },
+        { symbol: '◇', title: 'El Intercambio', desc: 'Las experiencias se graban a través del sistema Sense Eco, se verifican en calidad y se anonimizan antes de ingresar a la biblioteca.' },
+        { symbol: '●', title: 'El Receptor', desc: 'Recibe una biblioteca sensorial curada. No es simulación: es una huella genuina de una persona real, entregada libremente.' },
+      ],
+
+      brandH1: 'Identidad construida',
+      brandHPre: 'sobre la',
+      brandHAccent: 'empatía.',
+      brandP: 'El lenguaje visual de SenseWave es intencionalmente silencioso. La marca da un paso atrás, permitiendo que la historia humana, no la tecnología, sea el centro. Cada elemento sirve a la narrativa emocional.',
+      colorLabel: 'Sistema de Color',
+      typoLabel: 'Tipografía · Display',
+      typoDisplay: 'Vuélvelo a sentir.',
+      typoSub: 'Reconexión emocional a través del diseño.',
+      typoRoles: [
+        { role: 'Display', name: 'Libre Baskerville' },
+        { role: 'UI / Cuerpo', name: 'Roboto Mono' },
+      ],
+
+      digitalH1: 'Una interfaz',
+      digitalHAccent: 'tan silenciosa',
+      digitalH2: 'como la experiencia.',
+      digitalP: 'El producto digital de SenseWave está diseñado para desaparecer. La interfaz sirve a la narrativa, no a la tecnología, llevando a los usuarios a la experiencia en lugar de a la interfaz.',
+
+      physicalH1: 'Objetos que',
+      physicalHAccent: 'cargan con la memoria.',
+
+      processH1: 'Proceso arraigado',
+      processHPre: 'en la',
+      processHAccent: 'empatía.',
+      processSteps: [
+        { phase: '01', title: 'Investigación y Empatía', desc: 'Entrevistas y observación con personas que viven con discapacidades físicas. Identificar la brecha emocional, no la funcional.' },
+        { phase: '02', title: 'Desarrollo del Concepto', desc: 'Marco tecnológico especulativo. Definición del concepto de sistema de donación. Posicionamiento de marca y estrategia narrativa.' },
+        { phase: '03', title: 'Identidad Visual', desc: 'Exploración del sistema de logo. Selección tipográfica. Estrategia de color probada en entornos oscuros y ambientales.', highlight: true },
+        { phase: '04', title: 'Digital y Físico', desc: 'Diseño simultáneo de la interfaz digital y el lenguaje de producto físico. Coherencia en todos los puntos de contacto.' },
+        { phase: '05', title: 'Preparación para la Exhibición', desc: 'Adaptación de la narrativa para audiencias académicas y de diseño. Artefactos físicos y materiales de presentación.' },
+      ],
+
+      exhibPeriod: 'Universidad de los Andes · 2024',
+      exhibTitle: 'Seleccionado para la Exhibición Anual de Diseño',
+      exhibP: 'SenseWave fue seleccionado entre los proyectos destacados de la cohorte por su consistencia visual, claridad emocional y la solidez de su marco de diseño especulativo.',
+      exhibTags: ['Consistencia Visual', 'Cohesión de Marca', 'Diseño Especulativo'],
+
+      reflLabel: 'Reflexión Final',
+      reflQuote: 'La tecnología más poderosa es aquella que te hace olvidar que está ahí.',
+      reflP1: 'SenseWave me enseñó que el diseño especulativo es más poderoso cuando hace preguntas humanas, no tecnológicas. La marca no trata sobre lo que puede hacer la tecnología: trata sobre lo que significa para alguien que ha estado esperando volver a sentirse vivo.',
+      reflP2: 'Este proyecto cambió la forma en que pienso sobre el diseño emocional: que la interfaz debe servir al momento de conexión, no interrumpirlo.',
+      reflTags: ['Diseño Emocional', 'Futuros Especulativos', 'Sistemas de Marca', 'Interfaces Experienciales', 'Tecnología Centrada en el Ser Humano'],
+    },
+    humbral: {
+      tag: 'Proyecto Académico · Mobiliario',
+      title: 'El Humbral',
+      subtitle:
+        'Una mesa de centro modular compuesta por dos módulos intercambiables, donde el usuario decide cuál cara queda arriba.',
+      faceProduct: 'Dos estructuras idénticas, dos superficies distintas. Cambiar cuál queda arriba transforma el carácter de la mesa — sin herramientas ni herrajes.',
+      faceVisual: 'Un patrón que parte del estudio de la geometría precolombina y del trabajo de Antonio Grass, reescrito sobre la propia cuadrícula de la mesa.',
+
+      metaRole: 'Rol',
+      metaDimensions: 'Dimensiones',
+      metaStatus: 'Estado',
+      metaContext: 'Contexto',
+      dimsShort: '410 × 410 × 310 mm',
+      role: 'Diseño de Producto · Fabricación Digital',
+      period: '2026',
+      status: 'Prototipo 1:5',
+      course: 'Memoria de diseño · 2026-408',
+
+      heroKicker: 'El Humbral · Mesa de centro modular · 2026',
+      heroH1: 'No existe una',
+      heroH2: 'cara correcta.',
+      heroSub: 'Una mesa de centro que parte de una idea sencilla: la pieza cambia según qué cara elijas mostrar.',
+      heroTags: ['Mobiliario', 'Diseño de Producto', '3D', 'Materiales', 'Corte Láser'],
+
+      s1: 'Concepto',
+      s2: 'El Patrón',
+      s3: 'Sistema Constructivo',
+      s4: 'Vistas y Dimensiones',
+      s5: 'Configuraciones',
+      s6: 'La Mesa en Uso',
+      s7: 'Prototipo Físico',
+
+      conceptQuote: 'No existe una configuración correcta. La mesa cambia dependiendo de qué cara se quiera destacar.',
+      conceptP1: 'El Humbral es una mesa de centro modular compuesta por dos módulos que pueden cambiar de posición. Ambos tienen la misma estructura, pero cada uno presenta una superficie diferente: uno incorpora un patrón grabado en madera y el otro una abertura circular con vidrio.',
+      conceptP2: 'La intención principal fue trabajar con la idea de reversibilidad. En lugar de definir una única forma de usar la mesa, los dos módulos pueden intercambiarse y generar dos configuraciones diferentes: la decisión de qué elemento queda arriba es del usuario.',
+      conceptP3: 'El proyecto se desarrolló como maqueta a escala 1:5 en MDF, cortada y grabada con láser, a partir de un modelo 3D en el que se verificaron dimensiones, encajes y puntos de contacto antes de fabricar.',
+
+      thresholdTitle: 'El umbral entre la madera y el vidrio',
+      thresholdP1: 'El nombre viene de la idea de un umbral como punto de transición entre dos espacios: un lugar que no pertenece por completo a ninguno de los dos, sino que funciona como conexión entre ellos.',
+      thresholdP2: 'Esta idea se lleva al objeto mediante dos caras. Una está relacionada con la madera, la textura y el recorrido del patrón; la otra con el vidrio, la transparencia y el vacío. Con el patrón arriba la mesa se percibe más sólida y cerrada; con el vidrio arriba, más abierta y ligera.',
+      thresholdP3: 'La referencia a las lagunas y a la cultura muisca aparece como una conexión con el territorio: en el altiplano cundiboyacense las lagunas tuvieron un papel importante dentro de las creencias y los rituales, y la de Guatavita está asociada a ofrendas que más adelante dieron origen al mito de El Dorado. El proyecto no representa esos rituales: toma de ellos la idea de tránsito entre dos mundos.',
+
+      stepsTitle: 'El proyecto en cuatro pasos',
+      steps: [
+        { n: '01', title: 'Estudio del patrón', desc: 'Digitalización de la gráfica derivada de Antonio Grass y ajuste sobre una malla de 0.5 cm.' },
+        { n: '02', title: 'Modelado 3D', desc: 'Verificación de dimensiones, encajes, centrado del marco y apilado de los dos módulos.' },
+        { n: '03', title: 'Corte y grabado', desc: 'Piezas en MDF distribuidas en formato tabloide; corte y grabado láser en una sola pasada.' },
+        { n: '04', title: 'Ensamble y prueba', desc: 'Pegado de marco y patas, comprobación de los topes y de las dos configuraciones.' },
+      ],
+
+      patternTitle: 'Referencia a Antonio Grass',
+      patternP1: 'El patrón de la cara de madera parte de una exploración de geometrías asociadas a la gráfica precolombina y al trabajo de Antonio Grass. Su obra estudió y reinterpretó formas presentes en la iconografía precolombina, llevándolas a composiciones geométricas contemporáneas.',
+      patternP2: 'Para El Humbral no se tomó una pieza específica como copia. La intención fue estudiar recursos como líneas, módulos, repeticiones, escalonados y geometrías para construir un patrón propio.',
+      patternP3: 'De ese estudio salieron tres grabados. Los dos primeros se probaron directamente sobre MDF: uno de trazado ortogonal y otro de composición radial. El tercero, ya depurado, es el que quedó en la pieza final.',
+      patternP4: 'La versión radial tenía una relación más directa con algunas formas precolombinas, pero terminó descartándose porque no dialogaba con la estructura ortogonal de la mesa.',
+
+      patternFig1: 'Primer grabado sobre MDF: trazado ortogonal derivado del estudio de la gráfica de Grass.',
+      patternFig2: 'Segundo grabado sobre MDF: composición radial, descartada frente a la geometría de la mesa.',
+      patternFig3: 'Grabado definitivo: el trazado ortogonal depurado sobre una cuadrícula de 16 × 16 celdas.',
+
+      gridTitle: 'Del boceto a la malla',
+      gridP1: 'Primero se identificaron las líneas principales y se organizó el dibujo sobre una cuadrícula. A partir de esa base se ajustaron los recorridos y las repeticiones hasta conseguir una composición más limpia.',
+      gridP2: 'El patrón final trabaja con medidas de 0.5 y 1 cm en la maqueta —25 y 50 mm en el producto real— y mantiene ángulos rectos en todo el recorrido.',
+      gridSpecs: 'Malla 16 × 16 celdas · Celda 0.5 cm maqueta / 25 mm real · Área 8 × 8 cm / 400 × 400 mm',
+
+      adaptTitle: 'Del primer grabado al definitivo',
+      adaptP1: 'El grabado final parte del primero (Fig. 2.1), pero reescrito sobre la geometría del propio mueble: el ancho de las líneas se llevó al grosor de los soportes y las patas —60 mm en el producto real, 1.2 cm en la maqueta— y los quiebres se alinearon con la misma cuadrícula que ordena el marco y los topes.',
+      adaptP2: 'Ese cambio de espesor también resolvió un problema de fabricación: las líneas delgadas de la primera versión se quemaban de forma irregular sobre el MDF, mientras que el trazo ancho se graba limpio y se lee desde lejos. El patrón deja de ser un dibujo aplicado sobre la superficie y pasa a ser una extensión del sistema de medidas con el que está construida la mesa.',
+
+      constructTitle: 'Sistema constructivo',
+      constructP1: 'Cada módulo funciona como una pieza independiente. Está compuesto por un tablero superior, un marco inferior y cuatro patas.',
+      constructP2: 'El tablero mide 410 × 410 mm, con 45 mm de espesor. Debajo va el marco o «madre», de 430 × 430 mm, que recibe las cuatro patas. Cada pata tiene una sección de 60 × 60 mm y una altura de 110 mm.',
+      constructP3: 'La estructura se diseñó para que las patas queden contenidas dentro del marco y no tengan desplazamientos importantes. Las piezas se unen por pegado, evitando herrajes visibles.',
+      constructP4: 'Para apilar los dos módulos se agregaron pequeños topes en las esquinas de la cara superior. Estos topes reproducen el espacio que existe dentro del marco inferior: al colocar un módulo encima, sus patas caen dentro de ese espacio y los dos cuerpos quedan centrados.',
+      constructP5: 'La unión entre módulos no necesita ser permanente: se basa en el propio peso, el encaje y la geometría de las piezas.',
+
+      logicTitle: 'Lógica del sistema',
+      logic: [
+        '1 · Tablero — define la superficie visible de cada módulo: patrón grabado en uno, ventana de vidrio en el otro.',
+        '2 · Marco — funciona como estructura, recibe las patas y mantiene la unión rígida con el tablero.',
+        '3 · Patas y topes — permiten apoyar el módulo en el piso y recibir el segundo módulo encima, sin herrajes.',
+      ],
+      logicNote: 'Los dos módulos son prácticamente iguales en estructura y distintos solo en la superficie que presentan.',
+
+      partsTitle: 'Piezas de un módulo, de arriba abajo',
+      parts: '8 topes de esquina · 60 × 60 × 15 mm\n1 vidrio · Ø 300 mm\n1 anillo superior · Ø 300 / Ø 270 mm\n1 anillo inferior · Ø 300 / Ø 270 mm\n1 tablero · 410 × 410 × 45 mm\n1 marco «madre» · 430 × 430 × 15 mm\n4 patas · 60 × 60 × 110 mm',
+      partsNote: 'Los dos anillos se pegan uno sobre otro dentro del hueco del tablero y forman la plataforma sobre la que apoya el vidrio, que queda a ras de la cara superior.',
+
+      stackNote: 'El apilado funciona porque la geometría se repite: el hueco de esquina del marco, abajo, y el par de topes, arriba, tienen exactamente la misma medida que la sección de la pata (60 × 60 mm).',
+
+      viewsIntro: 'Las vistas de esta lámina están dibujadas a escala 1:5 sobre el modelo 3D verificado: cada pieza ocupa en el papel exactamente lo mismo que en la maqueta. Las cotas indican las medidas reales del producto, en milímetros.',
+      viewTop: 'Vista superior',
+      viewBottom: 'Vista inferior',
+      viewSide: 'Alzado lateral',
+      viewIso: 'Perspectiva isométrica',
+
+      dimsTitle: 'Dimensiones generales · producto real',
+      dims: 'Tablero — 410 × 410 × 45 mm\nMarco («madre») — 430 × 430 × 15 mm\nPatas — 60 × 60 × 110 mm\nTopes de esquina — 60 × 60 × 15 mm\nVentana — Ø 300 mm (anillo interior Ø 270 mm)',
+      dimsHeight: 'Altura de un módulo — 155 mm\nAltura total, dos módulos apilados — 310 mm',
+
+      notesTitle: 'Notas',
+      note1: 'La maqueta se construyó a escala 1:5 en MDF, con tableros de 4.5 mm y piezas finas de 1.5 mm, equivalentes a 45 y 15 mm en el producto real.',
+      note2: 'Las patas quedan contenidas en el hueco de esquina del marco; los topes superiores repiten ese mismo hueco sobre el tablero para recibir el módulo que se apila encima.',
+
+      configIntro: 'Los dos módulos son intercambiables. Cambiar cuál queda arriba no modifica la estructura ni requiere herramientas: se levanta un módulo y se apoya sobre el otro, encajando las patas en los topes de esquina. Cada configuración cambia el carácter de la mesa y el tipo de uso que favorece.',
+      configATitle: 'Configuración A · patrón arriba',
+      configAP1: 'El módulo con el patrón grabado queda en la parte superior. La superficie es continua y de madera, con mayor presencia visual, y el conjunto se percibe más sólido y cerrado.',
+      configAP2: 'Favorece el uso como superficie de apoyo permanente: bandejas, libros, tazas o control remoto. El nivel inferior, con la ventana, queda como espacio de guardado a la vista.',
+      configBTitle: 'Configuración B · vidrio arriba',
+      configBP1: 'El módulo con la ventana circular queda arriba. La abertura se convierte en el elemento principal, deja ver el nivel inferior y aligera visualmente el conjunto.',
+      configBP2: 'Funciona cuando la mesa actúa como vitrina: lo que se guarda abajo queda expuesto a través del vidrio. La superficie también resulta más fácil de limpiar.',
+
+      useIntro: 'Ambientación de las dos configuraciones con objetos de uso cotidiano en una mesa de centro: libros, bandeja, taza y una planta pequeña. Las escenas se construyeron con el mismo modelo 3D y a la misma escala, para comprobar la relación entre el mueble y los objetos que sostiene.',
+      useFig1: 'Configuración con el patrón arriba: superficie continua para apoyo y lectura, con el nivel inferior libre para guardar.',
+      useFig2: 'Configuración con el vidrio arriba: lo que se guarda en el nivel inferior queda a la vista a través de la ventana.',
+
+      protoTitle: 'Prototipo físico',
+      protoP1: 'El prototipo permitió comprobar físicamente las decisiones tomadas durante el modelado digital.',
+      protoP2: 'A través del corte y el ensamblaje fue posible revisar las dimensiones del marco, la posición de las patas, el funcionamiento de los topes y la relación entre los dos módulos.',
+      protoP3: 'También sirvió para identificar ajustes antes de definir la versión final: la posición exacta de los topes se corrigió a partir de lo observado en la maqueta.',
+
+      verifyTitle: 'Qué se verificó',
+      verify: 'Encaje de la pata en el hueco de esquina del marco\nCentrado del marco respecto al tablero\nApilado y centrado de los dos módulos\nLegibilidad del grabado sobre MDF\nEstabilidad del conjunto armado',
+      verifySpecs: 'Maqueta a escala 1:5 · MDF de 4.5 y 1.5 mm · corte y grabado láser · uniones pegadas.',
+
+      protoFig1: 'Conjunto apilado: el módulo con ventana sobre el módulo grabado.',
+      protoFig2: 'Los dos módulos vistos desde arriba: superficie grabada y ventana.',
+      protoFig3: 'Módulo con ventana y marco «madre» antes del ensamblaje.',
+      protoFig4: 'Vista superior del conjunto: el grabado del módulo inferior visto a través de la ventana.',
+
+      photoNoteTitle: 'Sobre el registro fotográfico',
+      photoNote: 'Las tomas originales se hicieron en el taller, sobre la mesa de corte y con instrumentos de medición a la vista. Para esta memoria se procesaron digitalmente: se retiraron el fondo y los elementos ajenos, y las cuatro fotografías se llevaron a una misma superficie neutra y a una misma iluminación. El objetivo es poder comparar las piezas entre sí y leer el sistema constructivo sin distracciones.',
+
+      specsTitle: 'Datos del proyecto',
+      specs: 'Tipología — Mesa de centro modular\nMateriales — MDF · vidrio / acrílico\nDimensiones — 410 × 410 × 310 mm\nMódulos — 2, intercambiables\nFabricación — Corte y grabado láser · uniones pegadas\nMaqueta — Escala 1:5',
+    },
+    bloom: {
+      tag: 'Trabajo con Cliente · Arquitectura de Información',
+      title: 'Bloom',
+      subtitle:
+        'Rehacer la taxonomía de contenido de una plataforma de salud femenina — de 75 tags sueltos a 28 que caben en un teléfono.',
+
+      metaRole: 'Rol',
+      metaClient: 'Cliente',
+      metaTeam: 'Equipo',
+      role: 'Investigación UX · Arquitectura de Información · Wireframing',
+      period: '2025',
+      status: 'Entregado',
+      client: 'Bloom / BeBloomers',
+      collaboration: 'En colaboración con otro diseñador',
+
+      heroKicker: 'Bloom · Arquitectura de información · 2025',
+      heroH1: 'Setenta y cinco tags',
+      heroH2: 'que nadie podía usar.',
+      heroSub: 'Mi primer trabajo real con cliente: el rediseño completo de cómo Bloom clasifica cada artículo, podcast y taller que publica.',
+      heroTags: ['Investigación UX', 'Arquitectura de Información', 'Wireframing', 'Taxonomía'],
+
+      s1: 'El Encargo',
+      s2: 'El Problema',
+      s3: 'Tres Versiones',
+      s4: 'El Sistema en Uso',
+      s5: 'Wireframes',
+      s6: 'Reflexión',
+
+      briefP1: 'Bloom —BeBloomers— publica artículos, podcasts, talleres y guías sobre salud y bienestar femenino. El equipo convocó a dos diseñadores para rehacer el sitio web desde cero.',
+      briefP2: 'Trabajé en dos frentes: wireframes completos y pequeños prototipos del nuevo sitio, y la reclasificación completa de los tags y categorías de todos los productos digitales que publican.',
+      briefP3: 'Esta página trata del segundo frente, porque es la parte que cambió cómo funciona el producto y no cómo se ve.',
+
+      problemQuote: 'Una taxonomía no es una lista de palabras. Es la forma de lo que a un lector se le permite encontrar.',
+      problemP1: 'El sistema original había acumulado 75 tags únicos. Se habían ido agregando a medida que se publicaba contenido, nunca se podaron y nunca se contrastaron entre sí — así que varios describían lo mismo con distintos niveles de especificidad.',
+      problemP2: 'La consecuencia no era desorden, era alcance: con una lista de tags tan larga, filtrar deja de ser un atajo y se convierte en un segundo problema de búsqueda. La mayoría de lectoras de Bloom llegan desde un teléfono, donde una fila de filtros que se desplaza sin fin sencillamente no se usa.',
+
+      versionsIntro: 'En lugar de proponer una respuesta, construí tres, cada una una postura defendible sobre el mismo eje: ¿cuánto se puede comprimir una taxonomía antes de que deje de poder describir el contenido?',
+      v1Title: 'V1 · Original recategorizado',
+      v1Count: '75 tags',
+      v1Desc: 'Los tags existentes reorganizados bajo cinco categorías —Cuerpo, Mente, Relaciones, Sexo, Cultura— y sin duplicados. Esta versión demuestra que las categorías se sostienen, pero conserva el problema de volumen.',
+      v2Title: 'V2 · Agrupación lógica',
+      v2Count: '46 tags',
+      v2Desc: 'Tags condensados en conceptos y no en formulaciones. Lo bastante precisa para que Bloom AI recomiende con exactitud, todavía pesada para una fila de filtros en móvil.',
+      v3Title: 'V3 · Acceso simplificado',
+      v3Count: '28 tags',
+      v3Desc: 'La recomendación. Menos del 40% del conteo original, balanceada entre las cinco categorías, y lo bastante corta para que el filtro completo quepa en una pantalla de teléfono.',
+      v3Badge: 'Sweet spot',
+
+      tradeoffTitle: 'El trade-off, dicho sin rodeos',
+      tradeoffP1: 'V3 no es gratis. Condensar los tags hace que las recomendaciones de Bloom AI sean menos precisas que en V2 — hay menos distinciones sobre las cuales razonar. La recomendé igual, y lo dejé escrito en el entregable, porque la realidad móvil pesa más que esa pérdida: un filtro que nadie abre no produce ninguna recomendación.',
+      tradeoffP2: 'También marqué el piso. Reducir por debajo de 28 dejaría tags tan generales que dejan de discriminar entre piezas, y el sistema pasaría de simplificado a inútil.',
+
+      bridgeTitle: 'Tags compartidos como puentes',
+      bridgeP1: 'La decisión más útil no fue la reducción, fue el solapamiento. Seis tags viven deliberadamente en más de una categoría — hormonas, maternidad, deseo sexual, gestión emocional, LGTBIQ+, ginecología.',
+      bridgeP2: 'Esos tags compartidos son los que permiten que Bloom AI conecte un artículo archivado en Cuerpo con un podcast archivado en Mente. A quien lee sobre menopausia y hormonas se le puede señalar ansiedad y gestión emocional, porque la taxonomía misma codifica esa relación.',
+      bridgeP3: 'El tinte que muestra ese solapamiento existe solo en la especificación. Para quien lee el sitio, el puente es invisible — simplemente siente que las recomendaciones la entienden.',
+
+      structureTitle: 'Estructura final · 28 tags en 5 categorías',
+      categories: [
+        { name: 'Cuerpo', count: '12', tags: 'menstruación · anticonceptivos · embarazo · fertilidad · menopausia · endometriosis · ITS · cuidado personal · hormonas · maternidad · deseo sexual · ginecología' },
+        { name: 'Mente', count: '7', tags: 'ansiedad · autoestima · salud mental · depresión · autoconocimiento · hormonas · gestión emocional' },
+        { name: 'Relaciones', count: '7', tags: 'pareja · familia · maternidad · comunidad · relaciones tóxicas · gestión emocional · LGTBIQ+' },
+        { name: 'Sexo', count: '5', tags: 'sexualidad · deseo sexual · educación sexual · LGTBIQ+ · hormonas' },
+        { name: 'Cultura', count: '5', tags: 'feminismo · teen · entretenimiento · ginecología · LGTBIQ+' },
+      ],
+
+      caseTitle: 'Cómo vive un contenido en el sistema',
+      caseIntro: 'Cada pieza tiene una categoría más dos a cinco tags. Los tags con fondo tintado son mixtos — aparecen en contenidos de otras categorías, y Bloom AI los lee como puentes para recomendación cruzada.',
+
+      reflLabel: 'Reflexión',
+      reflQuote: 'El mejor argumento que di en este proyecto fue a favor de la versión que rendía peor sobre el papel.',
+      reflP1: 'Trabajar con un cliente real me enseñó que una recomendación solo sirve si viene con su costo adjunto. Presentar tres versiones en lugar de una convirtió la conversación de «¿te gusta?» a «¿cuál trade-off quieres?», y esa es una conversación en la que un cliente sí puede participar.',
+      reflP2: 'También me enseñó que la arquitectura de información es el trabajo de diseño con más apalancamiento y menos visibilidad. Nadie va a elogiar jamás una lista de tags. Pero cada recomendación que hace la plataforma pasa por ahí.',
+      reflTags: ['Arquitectura de Información', 'Diseño de Taxonomías', 'Comunicación con Cliente', 'Restricciones Mobile-First'],
     },
     contact: {
       title: 'Contacto',

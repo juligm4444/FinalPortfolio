@@ -1,39 +1,43 @@
 import { useLocale } from '../i18n/LocaleProvider.jsx'
-import projects from '../data/projects.js'
-import ProjectCard from '../components/ProjectCard.jsx'
+import FeaturedSlider from '../components/FeaturedSlider.jsx'
+import ExploreLanes from '../components/ExploreLanes.jsx'
 
+/**
+ * /projects answers two different questions, so it is built in two parts:
+ *   FEATURED — "what should I look at first?"  (auto slider)
+ *   EXPLORE  — "what kind of work is there?"   (three manual lanes)
+ *
+ * On wide viewports the page title is set as an oversized ground layer rather
+ * than a heading block: it fills the space the removed lead paragraph left
+ * without adding another thing to read.
+ */
 export default function Projects() {
   const { t } = useLocale()
+
   return (
     <>
-      <section className="mx-auto w-full max-w-[1200px] px-4 pb-12 pt-20 md:px-8 md:pt-32">
+      {/* One title, set as large as the viewport allows and pulled slightly
+          past the left margin so it reads as ground rather than as a label.
+          The optical overhang is in `em`, so it tracks the type size instead
+          of drifting as the clamp scales. */}
+      <section className="mx-auto w-full max-w-[1600px] overflow-hidden px-4 pb-8 pt-16 md:px-8 md:pt-24">
         <h1
           className="font-display"
           style={{
             color: 'var(--fg)',
-            fontSize: 'clamp(48px, 7vw, 96px)',
-            lineHeight: 1.02,
+            fontSize: 'clamp(52px, 13vw, 200px)',
+            lineHeight: 0.92,
             fontWeight: 700,
-            letterSpacing: '-0.01em',
+            letterSpacing: '-0.035em',
+            marginLeft: '-0.055em',
           }}
         >
           {t('projects.title')}
         </h1>
-        <p
-          className="mt-6 font-body"
-          style={{ color: 'var(--fg-soft)', fontSize: 18, lineHeight: 1.7, maxWidth: '60ch' }}
-        >
-          {t('projects.lead')}
-        </p>
       </section>
 
-      <section className="mx-auto w-full max-w-[1200px] px-4 py-16 md:px-8 md:py-24">
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
-          {projects.map((p) => (
-            <ProjectCard key={p.slug} project={p} t={t} />
-          ))}
-        </div>
-      </section>
+      <FeaturedSlider />
+      <ExploreLanes />
     </>
   )
 }

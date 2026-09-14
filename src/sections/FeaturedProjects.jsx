@@ -1,14 +1,15 @@
 import { motion } from 'framer-motion'
 import { useLocale } from '../i18n/LocaleProvider.jsx'
-import projects from '../data/projects.js'
+import { homeFeatured } from '../data/projects.js'
 import TextLink from '../components/TextLink.jsx'
 import ProjectCard from '../components/ProjectCard.jsx'
 
-const SPANS = ['md:col-span-7', 'md:col-span-5', 'md:col-span-5', 'md:col-span-7']
+// Three cards: two side by side, one full-width closer.
+const SPANS = ['md:col-span-7', 'md:col-span-5', 'md:col-span-12']
 
 export default function FeaturedProjects() {
   const { t } = useLocale()
-  const featured = projects.filter((p) => p.featured)
+  const featured = homeFeatured
 
   return (
     <section className="mx-auto w-full max-w-[1200px] px-4 py-24 md:px-8 md:py-32">
