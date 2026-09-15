@@ -310,6 +310,18 @@ html[data-locked] body {
   overscroll-behavior: none;
 }
 
+/* Every work's artwork sits in a square of exactly this size, so a portrait
+   photo and a wide logo take up the same room. Sized against the panel, not
+   the viewport, so it shrinks with the band on narrow screens. */
+:root {
+  --media-size: clamp(64px, 11vh, 104px);
+}
+@media (min-width: 1024px) {
+  :root {
+    --media-size: clamp(96px, 15vh, 150px);
+  }
+}
+
 /* Below lg the three stack, and a third of a phone screen is too short for a
    column layout — so each band lays out as a wide row instead and the set
    still fills exactly one screen. */

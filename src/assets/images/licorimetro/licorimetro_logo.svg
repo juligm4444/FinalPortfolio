@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-label="Licorímetro">
+  <!--
+    A stand-in mark, authored here rather than supplied — replace it with the
+    real identity when there is one.
+
+    The name is the brief: licor + metro, a meter for liquor. So the bottle is
+    drawn as a gauge — a measured fill level with a scale down its side — and
+    crossed by the scan line that stands for the label-reading the app is
+    actually built around. Two flat colours and no fine detail, because this
+    has to survive at 96px inside a glass panel.
+  -->
+  <defs>
+    <clipPath id="lm-bottle">
+      <path d="M114 34h28v33c0 6 3 11 8 15l12 10c6 5 9 12 9 20v87a15 15 0 0 1-15 15h-56a15 15 0 0 1-15-15v-87c0-8 3-15 9-20l12-10c5-4 8-9 8-15z"/>
+    </clipPath>
+  </defs>
+
+  <rect width="256" height="256" rx="34" fill="#9B2335"/>
+
+  <g clip-path="url(#lm-bottle)">
+    <!-- The measured contents: a level, not a full bottle. -->
+    <rect x="76" y="150" width="104" height="80" fill="#EDEDE8"/>
+    <!-- Scale ticks, reading up from the level. -->
+    <g fill="#EDEDE8">
+      <rect x="150" y="96" width="22" height="5"/>
+      <rect x="158" y="114" width="14" height="5"/>
+      <rect x="150" y="132" width="22" height="5"/>
+    </g>
+    <!-- The scan line. Kept well clear of the liquid surface: sitting next to
+         it, the two read as one reflection instead of two separate ideas. -->
+    <rect x="70" y="188" width="116" height="9" fill="#9B2335"/>
+  </g>
+
+  <path
+    d="M114 34h28v33c0 6 3 11 8 15l12 10c6 5 9 12 9 20v87a15 15 0 0 1-15 15h-56a15 15 0 0 1-15-15v-87c0-8 3-15 9-20l12-10c5-4 8-9 8-15z"
+    fill="none" stroke="#EDEDE8" stroke-width="9" stroke-linejoin="round"/>
+
+  <!-- Cap. -->
+  <rect x="110" y="24" width="36" height="14" rx="4" fill="#EDEDE8"/>
+</svg>

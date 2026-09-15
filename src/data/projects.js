@@ -2,8 +2,9 @@ import candelariaLogo from '../assets/images/candelaria/condor-main.webp'
 import candelariaSite from '../assets/images/candelaria/website-hero.webp'
 import sensewaveGlasses from '../assets/images/sensewave/a3-glasses.webp'
 import humbralRender from '../assets/images/humbral/config-pattern-up.webp'
-// TODO: swap in the real Licorímetro and Bloom artwork once supplied.
-// Until then `image: null` renders the typographic fallback in the panel.
+import bloomLogo from '../assets/images/bloom/bloom_logo.webp'
+// Authored here rather than supplied — see the note in the file itself.
+import licorimetroLogo from '../assets/images/licorimetro/licorimetro_logo.svg'
 
 /**
  * The showcase lists WORKS, not projects.
@@ -56,7 +57,7 @@ const works = [
     descI18n: 'works.licorimetro.desc',
     tagKeys: ['android', 'java', 'ocr', 'mobile'],
     href: '/projects/licorimetro',
-    image: null,
+    image: licorimetroLogo,
   },
   {
     id: 'bloom',
@@ -66,7 +67,7 @@ const works = [
     descI18n: 'works.bloom.desc',
     tagKeys: ['uxResearch', 'ia', 'wireframing'],
     href: '/projects/bloom',
-    image: null,
+    image: bloomLogo,
   },
 
   // ── PRODUCTO ──────────────────────────────────────────────────────────

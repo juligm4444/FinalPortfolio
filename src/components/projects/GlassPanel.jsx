@@ -159,35 +159,45 @@ export default function GlassPanel({
  */
 function WorkMedia({ work, t }) {
   return (
-    // A fixed frame. The panel centres media and caption together as one
-    // block, so the leftover height ends up as margin around the pair rather
-    // than as a void between them.
-    <div className="flex h-full w-[34%] shrink-0 items-center justify-center lg:h-[clamp(96px,16vh,164px)] lg:w-full">
-      {work.image ? (
-        <img
-          src={work.image}
-          alt={t(work.titleI18n)}
-          draggable="false"
-          decoding="async"
-          className="h-full w-full"
-          style={{ objectFit: 'contain' }}
-        />
-      ) : (
-        // Stands in until the real artwork arrives — typographic rather than
-        // an empty box or a borrowed icon.
-        <span
-          aria-hidden
-          className="select-none text-center font-display"
-          style={{
-            color: 'var(--glass-ink-faint)',
-            fontWeight: 700,
-            fontSize: 'clamp(44px, 5vw, 92px)',
-            lineHeight: 0.9,
-          }}
-        >
-          {t(work.titleI18n).slice(0, 2)}
-        </span>
-      )}
+    // One square frame, identical for every work. A frame that only fixed its
+    // height let a portrait photo render as a narrow strip beside a wide logo,
+    // which is exactly the inconsistency it was meant to prevent.
+    <div className="flex shrink-0 items-center justify-center lg:w-full">
+      <div
+        className="flex items-center justify-center overflow-hidden"
+        style={{
+          width: 'var(--media-size)',
+          height: 'var(--media-size)',
+        }}
+      >
+        {work.image ? (
+          <img
+            src={work.image}
+            alt={t(work.titleI18n)}
+            draggable="false"
+            decoding="async"
+            className="h-full w-full"
+            // Photographs and screenshots fill the square; marks are left
+            // whole inside it. Cropping a logo to a square would be vandalism.
+            style={{ objectFit: work.fit === 'cover' ? 'cover' : 'contain' }}
+          />
+        ) : (
+          // Guard for a work added before its artwork — typographic rather
+          // than an empty box or a borrowed icon.
+          <span
+            aria-hidden
+            className="select-none text-center font-display"
+            style={{
+              color: 'var(--glass-ink-faint)',
+              fontWeight: 700,
+              fontSize: 'clamp(40px, 4.4vw, 76px)',
+              lineHeight: 0.9,
+            }}
+          >
+            {t(work.titleI18n).slice(0, 2)}
+          </span>
+        )}
+      </div>
     </div>
   )
 }
