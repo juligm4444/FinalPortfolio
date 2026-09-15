@@ -1,6 +1,5 @@
 import candelariaLogo from '../assets/images/candelaria/condor-main.webp'
 import candelariaSite from '../assets/images/candelaria/website-hero.webp'
-import sensewaveLogo from '../assets/images/sensewave_logo.png'
 import sensewaveGlasses from '../assets/images/sensewave/a3-glasses.webp'
 import humbralRender from '../assets/images/humbral/config-pattern-up.webp'
 // TODO: swap in the real Licorímetro and Bloom artwork once supplied.
@@ -22,16 +21,18 @@ import humbralRender from '../assets/images/humbral/config-pattern-up.webp'
  *             "Furniture" or "Mobiliario" without duplicating the list here.
  */
 
-// Left to right. Product sits in the middle on purpose: it is the category
-// with the least obvious link to the other two, and centring it keeps the
-// digital-to-visual reading order intact on either side.
-export const PANELS = ['desarrollo', 'producto', 'branding']
+// Left to right. No work appears twice: a reader who meets the same card in
+// two columns learns that the columns do not mean anything. Where one project
+// produced genuinely different jobs — the Candelaria brand and the Candelaria
+// site — those are separate entries with separate names, which is not the
+// same thing as listing one work twice.
+export const PANELS = ['desarrollo', 'marcaux', 'producto']
 
-/** Extremes travel down, centre travels up — the three never drift in sync. */
+/** Extremes travel down, centre travels up — the three never move as a block. */
 export const PANEL_DIRECTION = {
   desarrollo: 1,
-  producto: -1,
-  branding: 1,
+  marcaux: -1,
+  producto: 1,
 }
 
 const works = [
@@ -59,7 +60,7 @@ const works = [
   },
   {
     id: 'bloom',
-    panel: 'desarrollo',
+    panel: 'marcaux',
     titleI18n: 'works.bloom.title',
     kickerI18n: 'works.bloom.kicker',
     descI18n: 'works.bloom.desc',
@@ -80,7 +81,7 @@ const works = [
     image: humbralRender,
   },
   {
-    id: 'sensewave-product',
+    id: 'sensewave',
     panel: 'producto',
     titleI18n: 'works.sensewaveProduct.title',
     kickerI18n: 'works.sensewaveProduct.kicker',
@@ -91,26 +92,16 @@ const works = [
     fit: 'cover',
   },
 
-  // ── BRANDING ──────────────────────────────────────────────────────────
+  // ── MARCA Y UX ────────────────────────────────────────────────────────
   {
     id: 'candelaria-brand',
-    panel: 'branding',
+    panel: 'marcaux',
     titleI18n: 'works.candelariaBrand.title',
     kickerI18n: 'works.candelariaBrand.kicker',
     descI18n: 'works.candelariaBrand.desc',
     tagKeys: ['brandDesign', 'visualIdentity', 'artDirection'],
     href: '/projects/candelaria',
     image: candelariaLogo,
-  },
-  {
-    id: 'sensewave-brand',
-    panel: 'branding',
-    titleI18n: 'works.sensewaveBrand.title',
-    kickerI18n: 'works.sensewaveBrand.kicker',
-    descI18n: 'works.sensewaveBrand.desc',
-    tagKeys: ['brandIdentity', 'speculative', 'motion'],
-    href: '/projects/sensewave',
-    image: sensewaveLogo,
   },
 ]
 

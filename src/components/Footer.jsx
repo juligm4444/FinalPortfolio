@@ -21,7 +21,13 @@ const animateScrollToTop = (duration = 700) => {
   requestAnimationFrame(step)
 }
 
-export default function Footer() {
+/**
+ * `compact` collapses the footer to a single short strip. The showcase page
+ * has to fit navbar, content and footer inside one screen with nothing to
+ * scroll, so there the footer gives up its padding and its back-to-top
+ * button — a scroll-to-top control on a page that cannot scroll is a lie.
+ */
+export default function Footer({ compact = false }) {
   const { t } = useLocale()
 
   const onBackToTop = () => {
@@ -39,19 +45,31 @@ export default function Footer() {
         borderTop: '1px solid color-mix(in srgb, var(--fg) 12%, transparent)',
       }}
     >
-      <div className="mx-auto flex w-full max-w-[1400px] flex-col items-center justify-between gap-8 px-6 py-10 md:flex-row md:px-10 lg:px-16">
+      <div
+        className={
+          compact
+            ? 'mx-auto flex h-[var(--footer-compact-h)] w-full max-w-[1400px] items-center justify-between gap-4 px-6 md:px-10 lg:px-16'
+            : 'mx-auto flex w-full max-w-[1400px] flex-col items-center justify-between gap-8 px-6 py-10 md:flex-row md:px-10 lg:px-16'
+        }
+      >
         <p
-          className="font-nav"
+          className={compact ? 'hidden font-nav sm:block' : 'font-nav'}
           style={{
             color: 'var(--fg-muted)',
-            fontSize: 15,
+            fontSize: compact ? 12 : 15,
             letterSpacing: '0.04em',
           }}
         >
           {t('footer.copyright')}
         </p>
 
-        <nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+        <nav
+          className={
+            compact
+              ? 'flex items-center justify-center gap-x-5'
+              : 'flex flex-wrap items-center justify-center gap-x-6 gap-y-2'
+          }
+        >
           {[
             { to: '/', key: 'home' },
             { to: '/about', key: 'about' },
@@ -64,7 +82,7 @@ export default function Footer() {
               className="font-nav transition-colors"
               style={{
                 color: 'var(--fg-muted)',
-                fontSize: 15,
+                fontSize: compact ? 12 : 15,
                 letterSpacing: '0.04em',
               }}
               onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--fg)')}
@@ -75,6 +93,7 @@ export default function Footer() {
           ))}
         </nav>
 
+        {compact ? null : (
         <button
           type="button"
           onClick={onBackToTop}
@@ -121,6 +140,7 @@ export default function Footer() {
             <path d="m5 12 7-7 7 7" />
           </svg>
         </button>
+        )}
       </div>
     </footer>
   )

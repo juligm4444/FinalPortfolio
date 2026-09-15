@@ -286,16 +286,28 @@ main {
 }
 
 /* ===== Projects showcase =====
-   One screen, split three ways. `dvh` rather than `vh` so mobile browser
-   chrome collapsing does not leave a strip of page showing under the panels;
-   the 75px is the sticky navbar the showcase sits below. */
+   The whole page is one screen: navbar, panels and a compact footer, with
+   nothing left over to scroll. `dvh` rather than `vh` so collapsing mobile
+   browser chrome cannot push the footer out of view. */
 :root {
-  --showcase-h: calc(100dvh - 75px);
+  --nav-h: 75px;
+  --footer-compact-h: 48px;
+  --showcase-h: calc(100dvh - var(--nav-h) - var(--footer-compact-h));
 }
 @supports not (height: 100dvh) {
   :root {
-    --showcase-h: calc(100vh - 75px);
+    --showcase-h: calc(100vh - var(--nav-h) - var(--footer-compact-h));
   }
+}
+
+/* The showcase route locks the document. Without this the rubber-band on
+   iOS and the scrollbar gutter on desktop both reintroduce the scroll the
+   layout was built to avoid. */
+html[data-locked],
+html[data-locked] body {
+  overflow: hidden;
+  height: 100%;
+  overscroll-behavior: none;
 }
 
 /* Below lg the three stack, and a third of a phone screen is too short for a

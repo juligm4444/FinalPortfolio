@@ -26,13 +26,26 @@ export default function App() {
   // with the work itself, so it only renders at "/".
   const { pathname } = useLocation()
   const isHome = pathname === '/'
+  // The showcase is sized to the viewport and must not scroll. Flagging it on
+  // <html> lets the stylesheet lock the page and size the panels in one place,
+  // rather than the page fighting its own layout from JS.
+  const isShowcase = pathname === '/projects'
+
+  useEffect(() => {
+    const root = document.documentElement
+    if (isShowcase) root.setAttribute('data-locked', 'true')
+    else root.removeAttribute('data-locked')
+    return () => root.removeAttribute('data-locked')
+  }, [isShowcase])
 
   return (
-    <div className="relative flex min-h-screen w-full flex-col">
+    <div
+      className={`relative flex w-full flex-col ${isShowcase ? 'h-[100dvh]' : 'min-h-screen'}`}
+    >
       {isHome && <PillarsBackground />}
       <Navbar />
       <ScrollToTop />
-      <main className="relative z-10 flex-1">
+      <main className="relative z-10 min-h-0 flex-1">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -45,8 +58,8 @@ export default function App() {
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </main>
-      <div className="relative z-10">
-        <Footer />
+      <div className="relative z-10 shrink-0">
+        <Footer compact={isShowcase} />
       </div>
     </div>
   )

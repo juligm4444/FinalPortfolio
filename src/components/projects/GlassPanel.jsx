@@ -1,64 +1,44 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 
 /**
- * One of the three columns: a sheet of frosted glass over the drifting
- * crescents, cycling through the works that belong to its category.
+ * One of the three columns: a sheet of frosted glass over the fluids, showing
+ * the works in its category.
  *
- * Behaviour, in priority order:
- *   - It advances on its own. Neighbouring panels travel in opposite
- *     directions (extremes down, centre up) so the three never move as a block.
- *   - Pointing at it stops the cycle, fogs the glass further and grows the
- *     sheet slightly. Stopping on hover is the whole point: you cannot read a
- *     card that is about to leave.
- *   - Scrolling over it steps through the works by hand. The wheel is only
- *     captured while there is somewhere to go in that direction; at either end
- *     the page scrolls normally, so the section can never trap the reader.
+ * It owns no timer. The index comes from a counter shared by all three
+ * columns, so they always turn together; a manual step only shifts this
+ * column's offset within that shared clock. Hovering holds the clock for
+ * everyone, which is the point — releasing must not leave one column out of
+ * phase with the other two.
+ *
+ * Pointing at the sheet fogs the glass further and grows it slightly.
+ * Scrolling over it steps through by hand, and the wheel is only captured
+ * while the gesture has somewhere to go, so the page is never trapped.
  */
 
-const AUTO_INTERVAL = 5200 // ms per work
-const WHEEL_COOLDOWN = 420 // ms between manual steps
+const WHEEL_COOLDOWN = 420
 
 export default function GlassPanel({
   category,
   works,
   direction,
   index,
+  cursorSeed,
   active,
-  paused,
   revealed,
   contentIn,
   onActivate,
   onRelease,
+  onStep,
   t,
 }) {
-  const [cursor, setCursor] = useState(0)
-  const [travel, setTravel] = useState(direction) // which way the card exits
   const panelRef = useRef(null)
   const lastStepRef = useRef(0)
   const count = works.length
+  const cursor = ((cursorSeed % count) + count) % count
 
-  const step = useCallback(
-    (delta) => {
-      setTravel(delta > 0 ? direction : -direction)
-      setCursor((i) => (((i + delta) % count) + count) % count)
-    },
-    [count, direction],
-  )
-
-  // Autoplay. Held while the pointer is on this panel, while the intro is
-  // still running, or when the tab is hidden.
-  useEffect(() => {
-    if (paused || active || !contentIn || count < 2) return
-    const id = setInterval(() => {
-      setTravel(direction)
-      setCursor((i) => (i + 1) % count)
-    }, AUTO_INTERVAL)
-    return () => clearInterval(id)
-  }, [paused, active, contentIn, count, direction])
-
-  // Native listener so preventDefault actually applies; React attaches wheel
-  // handlers passively.
+  // Native listener: React attaches wheel handlers passively, so
+  // preventDefault would be ignored.
   useEffect(() => {
     const node = panelRef.current
     if (!node || !active) return
@@ -66,19 +46,16 @@ export default function GlassPanel({
     const onWheel = (e) => {
       const dir = Math.sign(e.deltaY)
       if (dir === 0) return
-      const next = cursor + dir
-      if (next < 0 || next > count - 1) return // let the page have it
-
       e.preventDefault()
       const now = performance.now()
       if (now - lastStepRef.current < WHEEL_COOLDOWN) return
       lastStepRef.current = now
-      step(dir)
+      onStep(dir)
     }
 
     node.addEventListener('wheel', onWheel, { passive: false })
     return () => node.removeEventListener('wheel', onWheel)
-  }, [active, cursor, count, step])
+  }, [active, onStep])
 
   const work = works[cursor]
   if (!work) return null
@@ -89,30 +66,26 @@ export default function GlassPanel({
       onMouseEnter={onActivate}
       onMouseLeave={onRelease}
       aria-label={t(`projects.category.${category}`)}
-      className="glass-panel group relative flex-1 overflow-hidden"
+      className="glass-panel relative flex-1 overflow-hidden"
       style={{
-        // Sheets rise in sequence rather than all at once.
         opacity: revealed ? 1 : 0,
-        transform: `translateY(${revealed ? 0 : 40}px) scale(${active ? 1.02 : 1})`,
+        transform: `translateY(${revealed ? 0 : 36}px) scale(${active ? 1.02 : 1})`,
         transitionProperty: 'opacity, transform',
-        transitionDuration: '760ms, 760ms',
+        transitionDuration: '720ms, 720ms',
         transitionTimingFunction: 'cubic-bezier(0.22,1,0.36,1)',
-        transitionDelay: revealed ? `${index * 130}ms` : '0ms',
+        transitionDelay: revealed ? `${index * 120}ms` : '0ms',
         zIndex: active ? 3 : 2,
       }}
     >
-      {/* The glass itself. Fogging on hover is a backdrop-filter change, not a
-          colour change, so whatever drifts underneath stays visible — just
-          less so. */}
+      {/* Fogging on hover is a backdrop-filter change, not a colour change, so
+          the fluids underneath stay visible — just less so. */}
       <div
         aria-hidden
         className="absolute inset-0"
         style={{
           background: active ? 'var(--glass-panel-hover)' : 'var(--glass-panel)',
-          backdropFilter: `blur(${active ? 30 : 16}px) saturate(${active ? 1.35 : 1.12})`,
-          WebkitBackdropFilter: `blur(${active ? 30 : 16}px) saturate(${active ? 1.35 : 1.12})`,
-          // The seam runs between panels, so it follows the stacking axis:
-          // sides when they sit in a row, top and bottom when they stack.
+          backdropFilter: `blur(${active ? 34 : 18}px) saturate(${active ? 1.4 : 1.15})`,
+          WebkitBackdropFilter: `blur(${active ? 34 : 18}px) saturate(${active ? 1.4 : 1.15})`,
           border: '0 solid var(--glass-panel-edge)',
           borderTopWidth: 1,
           borderBottomWidth: 1,
@@ -122,17 +95,16 @@ export default function GlassPanel({
 
       <Link
         to={work.href}
-        className="relative flex h-full flex-col overflow-hidden px-4 py-3 lg:px-8 lg:pb-10 lg:pt-8"
+        className="relative flex h-full flex-col overflow-hidden px-4 py-3 lg:px-7 lg:py-6"
       >
-        {/* The comp's banner heading only fits once the panel is a tall
-            column. On a short wide band it would eat the row it shares with
-            the work, so there the category moves into the caption instead. */}
+        {/* The banner heading only fits once the panel is a tall column; on a
+            short wide band the category rides in the caption instead. */}
         <h2
-          className="hidden text-center font-nav uppercase lg:block"
+          className="hidden shrink-0 text-center font-nav uppercase lg:block"
           style={{
             color: 'var(--glass-ink)',
             fontWeight: 700,
-            fontSize: 'clamp(28px, 2.6vw, 56px)',
+            fontSize: 'clamp(24px, 2.1vw, 44px)',
             letterSpacing: '0.01em',
             lineHeight: 1.05,
           }}
@@ -140,15 +112,12 @@ export default function GlassPanel({
           {t(`projects.category.${category}`)}
         </h2>
 
-        {/* Keyed on the work so every change replays the entry, and the exit
-            direction follows the panel's travel. Row on narrow screens, where
-            a band is wide and short; column once it becomes a tall column. */}
         <div
           key={work.id}
-          className="flex min-h-0 flex-1 flex-row items-center gap-4 lg:flex-col lg:items-stretch lg:gap-0"
+          className="flex min-h-0 flex-1 flex-row items-center gap-4 lg:flex-col lg:items-stretch lg:justify-center lg:gap-5"
           style={{
             animation: contentIn
-              ? `panel-in-${travel > 0 ? 'down' : 'up'} 620ms cubic-bezier(0.22,1,0.36,1) both`
+              ? `panel-in-${direction > 0 ? 'down' : 'up'} 620ms cubic-bezier(0.22,1,0.36,1) both`
               : 'none',
             opacity: contentIn ? undefined : 0,
           }}
@@ -157,18 +126,18 @@ export default function GlassPanel({
           <WorkCaption work={work} category={category} t={t} />
         </div>
 
-        <div className="hidden lg:block">
-          <Progress count={count} cursor={cursor} active={active} />
+        <div className="hidden shrink-0 lg:block">
+          <Progress count={count} cursor={cursor} />
         </div>
       </Link>
 
       <style>{`
         @keyframes panel-in-down {
-          from { opacity: 0; transform: translateY(-28px); }
+          from { opacity: 0; transform: translateY(-26px); }
           to   { opacity: 1; transform: translateY(0); }
         }
         @keyframes panel-in-up {
-          from { opacity: 0; transform: translateY(28px); }
+          from { opacity: 0; transform: translateY(26px); }
           to   { opacity: 1; transform: translateY(0); }
         }
         @media (prefers-reduced-motion: reduce) {
@@ -180,34 +149,39 @@ export default function GlassPanel({
   )
 }
 
+/**
+ * A fixed frame, identical in every panel and every work.
+ *
+ * Letting each image size itself meant a wide screenshot and a tall render
+ * pushed their captions to different heights, so the three columns never
+ * lined up. The frame is deliberately modest: the images are here to identify
+ * the work, and the words are what actually sell it.
+ */
 function WorkMedia({ work, t }) {
   return (
-    <div className="flex h-full w-[38%] shrink-0 items-center justify-center lg:h-auto lg:min-h-0 lg:w-auto lg:flex-1 lg:py-8">
+    // A fixed frame. The panel centres media and caption together as one
+    // block, so the leftover height ends up as margin around the pair rather
+    // than as a void between them.
+    <div className="flex h-full w-[34%] shrink-0 items-center justify-center lg:h-[clamp(96px,16vh,164px)] lg:w-full">
       {work.image ? (
         <img
           src={work.image}
           alt={t(work.titleI18n)}
           draggable="false"
-          // Not lazy: there are seven of these and they are the page. Deferring
-          // them leaves an empty panel exactly when the intro hands over.
           decoding="async"
-          className="max-h-full max-w-full"
-          style={{
-            objectFit: work.fit === 'cover' ? 'cover' : 'contain',
-            // A screenshot needs an edge to sit on; a cut-out render does not.
-            boxShadow: work.fit === 'cover' ? '0 18px 40px rgba(0,0,0,0.28)' : 'none',
-          }}
+          className="h-full w-full"
+          style={{ objectFit: 'contain' }}
         />
       ) : (
-        // Stands in until the real artwork arrives. Deliberately typographic
-        // rather than an empty box or a generic icon.
+        // Stands in until the real artwork arrives — typographic rather than
+        // an empty box or a borrowed icon.
         <span
           aria-hidden
           className="select-none text-center font-display"
           style={{
             color: 'var(--glass-ink-faint)',
             fontWeight: 700,
-            fontSize: 'clamp(56px, 7vw, 132px)',
+            fontSize: 'clamp(44px, 5vw, 92px)',
             lineHeight: 0.9,
           }}
         >
@@ -225,13 +199,13 @@ function WorkCaption({ work, category, t }) {
         className="font-nav uppercase"
         style={{
           color: 'var(--glass-ink-soft)',
-          fontSize: 'clamp(9px, 0.7vw, 12px)',
+          fontSize: 'clamp(9px, 0.62vw, 11px)',
           letterSpacing: '0.24em',
           fontWeight: 700,
         }}
       >
-        {/* The category rides along here only where the banner heading is
-            hidden, so it is never stated twice. */}
+        {/* The category rides along only where the banner heading is hidden,
+            so it is never stated twice. */}
         <span className="lg:hidden">{t(`projects.category.${category}`)} · </span>
         {t(work.kickerI18n)}
       </p>
@@ -240,7 +214,7 @@ function WorkCaption({ work, category, t }) {
         className="mt-1 font-display lg:mt-2"
         style={{
           color: 'var(--glass-ink)',
-          fontSize: 'clamp(19px, 2.1vw, 44px)',
+          fontSize: 'clamp(19px, 1.7vw, 34px)',
           lineHeight: 1.08,
           fontWeight: 700,
         }}
@@ -248,13 +222,13 @@ function WorkCaption({ work, category, t }) {
         {t(work.titleI18n)}
       </h3>
 
-      {/* Clamped on narrow screens: a band is a third of a phone and the
-          description must not push the tags into the next panel. */}
+      {/* Clamped: the panel cannot grow, so a long description has to give way
+          rather than push the tags out of the frame. */}
       <p
-        className="mt-1.5 font-nav [-webkit-box-orient:vertical] [display:-webkit-box] [-webkit-line-clamp:2] overflow-hidden lg:mt-3 lg:block lg:overflow-visible"
+        className="[-webkit-box-orient:vertical] [display:-webkit-box] [-webkit-line-clamp:2] mt-1.5 overflow-hidden font-nav lg:mt-2 lg:[-webkit-line-clamp:3]"
         style={{
           color: 'var(--glass-ink)',
-          fontSize: 'clamp(11px, 0.95vw, 18px)',
+          fontSize: 'clamp(11px, 0.8vw, 15px)',
           lineHeight: 1.4,
           fontWeight: 700,
         }}
@@ -262,21 +236,17 @@ function WorkCaption({ work, category, t }) {
         {t(work.descI18n)}
       </p>
 
-      <ul className="mt-2 flex flex-wrap gap-1.5 lg:mt-4 lg:gap-2">
+      <ul className="mt-2 flex flex-wrap gap-1.5 lg:mt-3">
         {work.tagKeys.map((key, i) => (
-          <li
-            key={key}
-            // Two tags is all a band has room for; the column shows them all.
-            className={i > 1 ? 'hidden lg:block' : undefined}
-          >
+          <li key={key} className={i > 1 ? 'hidden lg:block' : undefined}>
             <span
               className="block font-nav"
               style={{
                 color: 'var(--glass-ink)',
-                fontSize: 'clamp(10px, 0.8vw, 15px)',
+                fontSize: 'clamp(10px, 0.68vw, 13px)',
                 fontWeight: 700,
                 border: '2px solid var(--glass-ink)',
-                padding: '4px 9px',
+                padding: '3px 8px',
               }}
             >
               {t(`tags.${key}`)}
@@ -288,20 +258,18 @@ function WorkCaption({ work, category, t }) {
   )
 }
 
-/** Which work of how many, and whether the cycle is currently held. */
-function Progress({ count, cursor, active }) {
+function Progress({ count, cursor }) {
   if (count < 2) return null
   return (
-    <div className="mt-5 flex items-center justify-center gap-2">
+    <div className="mt-3 flex items-center justify-center gap-2">
       {Array.from({ length: count }, (_, i) => (
         <span
           key={i}
           className="block"
           style={{
-            width: 28,
+            width: 26,
             height: 2,
             background: i === cursor ? 'var(--glass-ink)' : 'var(--glass-ink-faint)',
-            opacity: active && i === cursor ? 1 : 0.85,
             transition: 'background 300ms ease',
           }}
         />

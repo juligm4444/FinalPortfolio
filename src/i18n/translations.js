@@ -165,8 +165,8 @@ const translations = {
       viewCode: 'GitHub repository',
       category: {
         desarrollo: 'Development',
+        marcaux: 'Brand & UX',
         producto: 'Product',
-        branding: 'Branding',
       },
     },
     // Discipline labels for the showcase panels. Proper nouns and universally
@@ -226,11 +226,6 @@ const translations = {
         kicker: 'Identity · Research Group',
         title: 'Candelaria',
         desc: 'Research group building a solar-powered car. Condor mark, division system and art direction.',
-      },
-      sensewaveBrand: {
-        kicker: 'Identity · Speculative',
-        title: 'SenseWave',
-        desc: 'A brand system built on empathy rather than spectacle, for technology that has to feel trustworthy.',
       },
     },
     licorimetro: {
@@ -1100,8 +1095,8 @@ const translations = {
       viewCode: 'Repositorio GitHub',
       category: {
         desarrollo: 'Desarrollo',
+        marcaux: 'Marca y UX',
         producto: 'Producto',
-        branding: 'Branding',
       },
     },
     // Etiquetas de disciplina de los paneles. Los nombres propios y los
@@ -1161,11 +1156,6 @@ const translations = {
         kicker: 'Identidad · Semillero',
         title: 'Candelaria',
         desc: 'Grupo de investigación enfocado en la elaboración de un auto potenciado por energía solar.',
-      },
-      sensewaveBrand: {
-        kicker: 'Identidad · Especulativo',
-        title: 'SenseWave',
-        desc: 'Un sistema de marca construido sobre la empatía y no sobre el espectáculo, para una tecnología que debe inspirar confianza.',
       },
     },
     licorimetro: {
