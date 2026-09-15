@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { useLocale } from '../../i18n/LocaleProvider.jsx';
-import projects from '../../data/projects.js';
+import { caseStudies } from '../../data/projects.js';
 import MiniSkills from '../../components/MiniSkills.jsx';
 import Highlight from '../../components/Highlight.jsx';
 import GlassBlock from '../../components/GlassBlock.jsx';
@@ -190,7 +190,7 @@ const ARCH_LAYERS = [
 export default function Licorimetro() {
   const { t } = useLocale();
   const reduced = useReducedMotion();
-  const project = projects.find((p) => p.slug === 'licorimetro');
+  const project = caseStudies.licorimetro;
 
   return (
     <article className="w-full">
@@ -261,7 +261,7 @@ export default function Licorimetro() {
                 {t('licorimetro.stackKicker')}
               </p>
               <div className="mt-5">
-                <MiniSkills skills={project ? project.skills : []} size={56} gap={10} />
+                <MiniSkills skills={project.skills} size={56} gap={10} />
               </div>
             </div>
           </div>

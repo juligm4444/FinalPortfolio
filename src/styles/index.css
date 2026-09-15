@@ -146,6 +146,17 @@ html[data-theme='light'] {
      Light: humbral 4.53:1, bloom 5.07:1. */
   --accent-humbral: #8c6244;
   --accent-bloom: #b03560;
+
+  /* ── Projects showcase ──
+     The sheets sit over a field that swings between brand pink and paper
+     cream, so panel ink cannot follow the page foreground: it has to hold
+     against both. Near-black does, and it is what the comp specifies. */
+  --glass-panel: rgba(237, 237, 232, 0.42);
+  --glass-panel-hover: rgba(237, 237, 232, 0.62);
+  --glass-panel-edge: rgba(237, 237, 232, 0.55);
+  --glass-ink: #0c0d0d;
+  --glass-ink-soft: rgba(12, 13, 13, 0.62);
+  --glass-ink-faint: rgba(12, 13, 13, 0.28);
 }
 
 html[data-theme='dark'] {
@@ -186,6 +197,16 @@ html[data-theme='dark'] {
      humbral 7.58:1, bloom 5.96:1. */
   --accent-humbral: #c49a70;
   --accent-bloom: #e0668c;
+
+  /* Smoked rather than frosted: over the dark theme's slate crescent a pale
+     sheet would glow, so the glass darkens the field instead of lightening
+     it, and the ink flips to paper. */
+  --glass-panel: rgba(12, 13, 13, 0.46);
+  --glass-panel-hover: rgba(12, 13, 13, 0.66);
+  --glass-panel-edge: rgba(237, 237, 232, 0.16);
+  --glass-ink: #edede8;
+  --glass-ink-soft: rgba(237, 237, 232, 0.66);
+  --glass-ink-faint: rgba(237, 237, 232, 0.3);
 }
 
 @layer base {
@@ -264,21 +285,37 @@ main {
   z-index: 10;
 }
 
-/* ===== Explore lanes =====
-   The parallelogram is a wide-viewport flourish only: on a narrow screen a
-   skewed band wastes the little width there is, so the skew starts at lg.
-   The inner wrapper counter-skews so text and images stay upright. */
-@media (min-width: 1024px) {
-  .lane-skew {
-    transform: skewY(calc(var(--lane-skew) * -1));
-  }
-  .lane-skew > .lane-content {
-    transform: skewY(var(--lane-skew));
+/* ===== Projects showcase =====
+   One screen, split three ways. `dvh` rather than `vh` so mobile browser
+   chrome collapsing does not leave a strip of page showing under the panels;
+   the 75px is the sticky navbar the showcase sits below. */
+:root {
+  --showcase-h: calc(100dvh - 75px);
+}
+@supports not (height: 100dvh) {
+  :root {
+    --showcase-h: calc(100vh - 75px);
   }
 }
 
-/* No reduced-motion override here on purpose: the skew is a static shape, not
-   movement, and that preference is about animation. */
+/* Below lg the three stack, and a third of a phone screen is too short for a
+   column layout — so each band lays out as a wide row instead and the set
+   still fills exactly one screen. */
+@media (max-width: 1023px) {
+  .glass-panel {
+    height: calc(var(--showcase-h) / 3);
+  }
+}
+
+/* Once the panels sit side by side the seam has to run vertically instead. */
+@media (min-width: 1024px) {
+  .glass-panel > [aria-hidden] {
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 1px;
+    border-right-width: 1px;
+  }
+}
 
 /* Filter bar tabs — hover behavior identical to navbar */
 .filter-tab {

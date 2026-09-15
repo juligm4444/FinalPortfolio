@@ -103,10 +103,21 @@ export default function FeaturedProjects() {
       </header>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-12 md:gap-8">
-        {featured.map((p, i) => (
+        {featured.map((w, i) => (
           <ProjectCard
-            key={p.slug}
-            project={p}
+            key={w.id}
+            // The showcase speaks in works; the card still speaks in projects.
+            // Adapting here keeps the card untouched and the data model honest.
+            project={{
+              slug: w.id,
+              href: w.href,
+              titleI18n: w.titleI18n,
+              summaryI18n: w.descI18n,
+              tag: t(w.kickerI18n),
+              period: t(`projects.category.${w.panel}`),
+              accent: '#FF0871',
+              logo: w.image,
+            }}
             t={t}
             variantClass={SPANS[i % SPANS.length]}
           />

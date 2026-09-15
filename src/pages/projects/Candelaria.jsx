@@ -2,7 +2,7 @@ import { createContext, useContext, useRef, Fragment } from 'react';
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { useLocale } from '../../i18n/LocaleProvider.jsx';
 import { useTheme } from '../../theme/ThemeProvider.jsx';
-import projects from '../../data/projects.js';
+import { caseStudies } from '../../data/projects.js';
 import MiniSkills from '../../components/MiniSkills.jsx';
 import { ExternalLinkIcon, GitHubIcon } from '../../components/icons/IconSet.jsx';
 
@@ -227,7 +227,7 @@ function CButton({ href, children, variant = 'primary', Icon }) {
    ───────────────────────────────────────── */
 function Hero() {
   const { c, t } = useC();
-  const project = projects.find((p) => p.slug === 'candelaria');
+  const project = caseStudies.candelaria;
   const ref = useRef(null);
   const reduce = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
@@ -679,7 +679,7 @@ function ReflectionsSection() {
    ───────────────────────────────────────── */
 function FinalCTA() {
   const { c, t } = useC();
-  const project = projects.find((p) => p.slug === 'candelaria');
+  const project = caseStudies.candelaria;
   return (
     <section style={{ background: c.bg, paddingTop: 96, paddingBottom: 128, paddingInline: 'clamp(20px, 5vw, 80px)', position: 'relative', overflow: 'hidden' }}>
       <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: `radial-gradient(ellipse 80% 60% at 50% 100%, ${c.glowSoft} 0%, transparent 60%)` }} />
