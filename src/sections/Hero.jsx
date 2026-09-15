@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import useTypewriterSound from '../hooks/useTypewriterSound.js'
 import { useLocale } from '../i18n/LocaleProvider.jsx'
-import iconPng from '../assets/identity/Icon.png'
+import iconPng from '../assets/identity/Icon.webp'
 
 // ============== layout constants ==============
 const HERO_WIDTH_PX = 600

@@ -514,7 +514,7 @@ function FlowStepCard({ step, icon, mobile = false }) {
     >
       <span
         style={{
-          fontFamily: '"JetBrains Mono", monospace',
+          fontFamily: '"Space Grotesk", sans-serif',
           fontSize: 10,
           letterSpacing: '0.18em',
           color: ACCENT,
@@ -605,7 +605,7 @@ function ArchitectureDiagram() {
             >
               <p
                 style={{
-                  fontFamily: '"JetBrains Mono", monospace',
+                  fontFamily: '"Space Grotesk", sans-serif',
                   fontSize: 9,
                   letterSpacing: '0.22em',
                   textTransform: 'uppercase',
@@ -709,7 +709,7 @@ function OCRScanVisual() {
       {/* Content */}
       <div
         style={{
-          fontFamily: '"JetBrains Mono", monospace',
+          fontFamily: '"Roboto Mono", monospace',
           display: 'flex',
           flexDirection: 'column',
           gap: 14,

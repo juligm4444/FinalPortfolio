@@ -2,7 +2,10 @@ import { motion } from 'framer-motion'
 import { useLocale } from '../i18n/LocaleProvider.jsx'
 import MediaSlot from '../components/MediaSlot.jsx'
 import GlassBlock from '../components/GlassBlock.jsx'
-import infoImg from '../assets/images/info.jpeg'
+// The original is a 50 MP phone photo; decoding it on navigation is what made
+// this page hitch. Two sized copies cover every layout it appears in.
+import infoImg from '../assets/images/info.webp'
+import infoImgSmall from '../assets/images/info-600.webp'
 
 export default function AboutInformation() {
   const { t } = useLocale()
@@ -70,6 +73,8 @@ export default function AboutInformation() {
             {/* swap the src for a Spline URL by passing `spline=...` instead */}
             <MediaSlot
               src={infoImg}
+              srcSet={`${infoImgSmall} 600w, ${infoImg} 1080w`}
+              sizes="(min-width: 768px) 40vw, 92vw"
               alt="Julián Galindo"
               caption={t('about.infoMediaCaption')}
               ratio="4 / 5"

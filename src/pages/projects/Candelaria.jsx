@@ -1,10 +1,11 @@
 import { createContext, useContext, useRef, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { useLocale } from '../../i18n/LocaleProvider.jsx';
 import { useTheme } from '../../theme/ThemeProvider.jsx';
 import { caseStudies } from '../../data/projects.js';
 import MiniSkills from '../../components/MiniSkills.jsx';
-import { ExternalLinkIcon, GitHubIcon } from '../../components/icons/IconSet.jsx';
+import { ArrowRightIcon, ExternalLinkIcon, GitHubIcon, InstagramIcon } from '../../components/icons/IconSet.jsx';
 
 /* case-study imagery */
 import summaryImg from '../../assets/images/candelaria/summary.webp';
@@ -67,8 +68,12 @@ const C_LIGHT = {
   btnText:      '#EFEEEA',
 };
 
-const DISPLAY = '"Sansation", sans-serif';
-const BODY = '"Helvetica Now", Helvetica, Arial, sans-serif';
+/* Type follows the portfolio, not the brand manual: the page is one of many
+   case studies and should read as part of the same site. Colour and layout
+   are what carry Candelaria's own identity here. */
+const DISPLAY = '"Libre Baskerville", serif';
+const BODY = '"Roboto Mono", monospace';
+const LABEL = '"Space Grotesk", sans-serif';
 const EASE = [0.16, 1, 0.3, 1];
 
 const BRAND_PALETTE = [
@@ -145,11 +150,11 @@ function SectionTag({ number, label }) {
   return (
     <Reveal>
       <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginBottom: 60 }}>
-        <span style={{ fontFamily: BODY, fontSize: 11, letterSpacing: '0.26em', color: c.gold, textTransform: 'uppercase', fontWeight: 500 }}>
+        <span style={{ fontFamily: LABEL, fontSize: 11, letterSpacing: '0.26em', color: c.gold, textTransform: 'uppercase', fontWeight: 500 }}>
           {String(number).padStart(2, '0')}
         </span>
         <div style={{ flex: 1, height: 1, background: c.borderAccent }} />
-        <span style={{ fontFamily: BODY, fontSize: 11, letterSpacing: '0.22em', color: c.textMuted, textTransform: 'uppercase' }}>
+        <span style={{ fontFamily: LABEL, fontSize: 11, letterSpacing: '0.22em', color: c.textMuted, textTransform: 'uppercase' }}>
           {label}
         </span>
       </div>
@@ -160,7 +165,7 @@ function SectionTag({ number, label }) {
 function Kicker({ children }) {
   const { c } = useC();
   return (
-    <p style={{ fontFamily: BODY, fontSize: 12, letterSpacing: '0.24em', color: c.gold, textTransform: 'uppercase', fontWeight: 500, marginBottom: 16 }}>
+    <p style={{ fontFamily: LABEL, fontSize: 12, letterSpacing: '0.24em', color: c.gold, textTransform: 'uppercase', fontWeight: 500, marginBottom: 16 }}>
       {children}
     </p>
   );
@@ -198,24 +203,32 @@ function CImage({ src, alt, ratio = '4 / 5' }) {
   );
 }
 
-function CButton({ href, children, variant = 'primary', Icon }) {
+function CButton({ href, to, children, variant = 'primary', Icon }) {
   const { c } = useC();
   const base = {
     display: 'inline-flex', alignItems: 'center', gap: 10, padding: '13px 24px',
-    fontFamily: BODY, fontWeight: 500, fontSize: 14, letterSpacing: '0.02em',
+    fontFamily: LABEL, fontWeight: 600, fontSize: 14, letterSpacing: '0.02em',
     textDecoration: 'none', transition: 'transform 200ms ease, background 200ms ease, border-color 200ms ease',
     cursor: 'pointer',
   };
   const styles = variant === 'primary'
     ? { ...base, background: c.lavender, color: c.btnText, border: `1px solid ${c.lavender}` }
     : { ...base, background: 'transparent', color: c.text, border: `1px solid ${c.borderAccent}` };
+  const handlers = {
+    onMouseEnter: (e) => { e.currentTarget.style.transform = 'translateY(-2px)'; if (variant !== 'primary') e.currentTarget.style.borderColor = c.violet; },
+    onMouseLeave: (e) => { e.currentTarget.style.transform = 'translateY(0)'; if (variant !== 'primary') e.currentTarget.style.borderColor = c.borderAccent; },
+  };
+  // `to` stays inside the portfolio; `href` leaves it in a new tab.
+  if (to) {
+    return (
+      <Link to={to} style={styles} {...handlers}>
+        {Icon && <Icon />}
+        {children}
+      </Link>
+    );
+  }
   return (
-    <a
-      href={href} target="_blank" rel="noreferrer noopener"
-      style={styles}
-      onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-2px)'; if (variant !== 'primary') e.currentTarget.style.borderColor = c.violet; }}
-      onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; if (variant !== 'primary') e.currentTarget.style.borderColor = c.borderAccent; }}
-    >
+    <a href={href} target="_blank" rel="noreferrer noopener" style={styles} {...handlers}>
       {Icon && <Icon />}
       {children}
     </a>
@@ -225,8 +238,32 @@ function CButton({ href, children, variant = 'primary', Icon }) {
 /* ─────────────────────────────────────────
    HERO
    ───────────────────────────────────────── */
+/* The brand and the website are two works with two destinations: the brand
+   lives on the team's Instagram, the site is its own product. */
+function CTAs() {
+  const { t, variant } = useC();
+  const project = caseStudies.candelaria;
+  if (variant === 'brand') {
+    return (
+      <>
+        <CButton href={project.instagram} variant="primary" Icon={InstagramIcon}>{t('candelaria.brandPage.ctaInstagram')}</CButton>
+        <CButton to="/projects/candelaria-website" variant="outline" Icon={ArrowRightIcon}>{t('candelaria.brandPage.ctaWebsite')}</CButton>
+      </>
+    );
+  }
+  return (
+    <>
+      <CButton href={project.site} variant="primary" Icon={ExternalLinkIcon}>{t('candelaria.ctaVisit')}</CButton>
+      <CButton href={project.code} variant="outline" Icon={GitHubIcon}>{t('candelaria.ctaCode')}</CButton>
+    </>
+  );
+}
+
+const BRAND_SKILLS = ['Figma', 'Illustrator', 'Photoshop'];
+
 function Hero() {
-  const { c, t } = useC();
+  const { c, t, variant } = useC();
+  const brand = variant === 'brand';
   const project = caseStudies.candelaria;
   const ref = useRef(null);
   const reduce = useReducedMotion();
@@ -246,21 +283,21 @@ function Hero() {
       <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative', zIndex: 2 }}>
         <motion.p
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2, delay: 0.2 }}
-          style={{ fontFamily: BODY, fontSize: 12, letterSpacing: '0.26em', color: c.gold, textTransform: 'uppercase', fontWeight: 500 }}
+          style={{ fontFamily: LABEL, fontSize: 12, letterSpacing: '0.26em', color: c.gold, textTransform: 'uppercase', fontWeight: 500 }}
         >
-          {t('candelaria.tag')}
+          {t(brand ? 'candelaria.brandPage.tag' : 'candelaria.tag')}
         </motion.p>
 
         <motion.h1
           initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.1, delay: 0.35, ease: EASE }}
-          style={{ fontFamily: DISPLAY, fontSize: 'clamp(52px, 10vw, 132px)', fontWeight: 700, lineHeight: 0.98, color: c.text, letterSpacing: '0.01em', textTransform: 'uppercase', marginTop: 26 }}
+          style={{ fontFamily: DISPLAY, fontSize: 'clamp(44px, 8vw, 112px)', fontWeight: 700, lineHeight: 1.02, color: c.text, letterSpacing: '-0.02em', marginTop: 26, maxWidth: '12ch' }}
         >
-          Candelaria
+          {t(brand ? 'candelaria.brandPage.title' : 'candelaria.title')}
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.1, delay: 0.6 }}
-          style={{ fontFamily: DISPLAY, fontSize: 'clamp(18px, 2.4vw, 30px)', color: c.gold, letterSpacing: '0.04em', marginTop: 18, textTransform: 'uppercase', fontWeight: 400 }}
+          style={{ fontFamily: LABEL, fontSize: 'clamp(16px, 2vw, 24px)', color: c.gold, letterSpacing: '0.12em', marginTop: 18, textTransform: 'uppercase', fontWeight: 600 }}
         >
           {t('candelaria.heroTagline')}
         </motion.p>
@@ -269,28 +306,29 @@ function Hero() {
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.1, delay: 0.75 }}
           style={{ fontFamily: BODY, fontWeight: 300, fontSize: 'clamp(15px, 1.6vw, 18px)', color: c.textSoft, lineHeight: 1.75, maxWidth: '54ch', marginTop: 28 }}
         >
-          {t('candelaria.subtitle')}
+          {t(brand ? 'candelaria.brandPage.subtitle' : 'candelaria.subtitle')}
         </motion.p>
 
         {/* meta + CTAs */}
         <motion.div
           initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.95, ease: EASE }}
-          style={{ marginTop: 52, borderTop: `1px solid ${c.border}`, paddingTop: 36, display: 'grid', gap: 40, gridTemplateColumns: '1fr', alignItems: 'start' }}
-          className="md:grid-cols-[1.4fr_1fr]"
+          style={{ marginTop: 52, borderTop: `1px solid ${c.border}`, paddingTop: 36, display: 'grid', gap: 40, alignItems: 'start' }}
+          // Columns live in the class, not inline: an inline template would
+          // override the breakpoint and pin the CTAs under the meta forever.
+          className="grid-cols-1 md:grid-cols-[1.4fr_1fr]"
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: 26 }}>
-            <Meta label={t('candelaria.sectionRoleLabel')} value={t('candelaria.role')} />
+            <Meta label={t('candelaria.sectionRoleLabel')} value={t(brand ? 'candelaria.brandPage.role' : 'candelaria.role')} />
             <Meta label={t('candelaria.sectionTimelineLabel')} value={`${t('candelaria.period')} · ${t('candelaria.status')}`} />
             <div>
-              <p style={{ fontFamily: BODY, fontSize: 11, letterSpacing: '0.22em', color: c.textMuted, textTransform: 'uppercase', marginBottom: 16 }}>
+              <p style={{ fontFamily: LABEL, fontSize: 11, letterSpacing: '0.22em', color: c.textMuted, textTransform: 'uppercase', marginBottom: 16 }}>
                 {t('candelaria.stackKicker')}
               </p>
-              <MiniSkills skills={project.skills} size={52} gap={10} />
+              <MiniSkills skills={brand ? BRAND_SKILLS : project.skills} size={52} gap={10} />
             </div>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 14, alignItems: 'stretch' }} className="md:items-end">
-            <CButton href={project.site} variant="primary" Icon={ExternalLinkIcon}>{t('candelaria.ctaVisit')}</CButton>
-            <CButton href={project.code} variant="outline" Icon={GitHubIcon}>{t('candelaria.ctaCode')}</CButton>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }} className="items-stretch md:items-end">
+            <CTAs />
           </div>
         </motion.div>
       </div>
@@ -302,7 +340,7 @@ function Meta({ label, value }) {
   const { c } = useC();
   return (
     <div>
-      <p style={{ fontFamily: BODY, fontSize: 11, letterSpacing: '0.22em', color: c.textMuted, textTransform: 'uppercase' }}>{label}</p>
+      <p style={{ fontFamily: LABEL, fontSize: 11, letterSpacing: '0.22em', color: c.textMuted, textTransform: 'uppercase' }}>{label}</p>
       <p style={{ fontFamily: DISPLAY, fontSize: 18, lineHeight: 1.4, fontWeight: 700, color: c.text, marginTop: 8 }}>{value}</p>
     </div>
   );
@@ -311,11 +349,11 @@ function Meta({ label, value }) {
 /* ─────────────────────────────────────────
    SUMMARY
    ───────────────────────────────────────── */
-function SummarySection() {
+function SummarySection({ number }) {
   const { t } = useC();
   return (
     <CSection surface>
-      <SectionTag number={1} label={t('candelaria.summaryKicker')} />
+      <SectionTag number={number} label={t('candelaria.summaryKicker')} />
       <div className="grid grid-cols-1 gap-14 md:grid-cols-12 md:gap-16 items-start">
         <div className="md:col-span-7">
           <Reveal><Title>{t('candelaria.summaryTitle')}</Title></Reveal>
@@ -332,18 +370,23 @@ function SummarySection() {
 /* ─────────────────────────────────────────
    MY ROLE
    ───────────────────────────────────────── */
-function RoleSection() {
-  const { t } = useC();
+function RoleSection({ number }) {
+  const { t, variant } = useC();
+  const brand = variant === 'brand';
+  // The first paragraph frames the group; the second is the design team, the
+  // third the site. Each page keeps the half that is its own.
+  const paras = t('candelaria.myRoleParas');
+  const items = brand ? paras.slice(0, 2) : [paras[0], paras[2]];
   return (
     <CSection>
-      <SectionTag number={2} label={t('candelaria.myRoleKicker')} />
+      <SectionTag number={number} label={t('candelaria.myRoleKicker')} />
       <div className="grid grid-cols-1 gap-14 md:grid-cols-12 md:gap-16 items-start">
         <div className="md:col-span-5 md:order-1">
           <Reveal delay={0.1} duration={1.2}><CImage src={roleImg} alt="Design team — Candelaria" ratio="1 / 1" /></Reveal>
         </div>
         <div className="md:col-span-7 md:order-2">
-          <Reveal><Title>{t('candelaria.myRoleTitle')}</Title></Reveal>
-          <Reveal delay={0.12}><div style={{ marginTop: 28 }}><Body items={t('candelaria.myRoleParas')} /></div></Reveal>
+          <Reveal><Title>{t(brand ? 'candelaria.brandPage.roleTitle' : 'candelaria.myRoleTitle')}</Title></Reveal>
+          <Reveal delay={0.12}><div style={{ marginTop: 28 }}><Body items={items} /></div></Reveal>
         </div>
       </div>
     </CSection>
@@ -372,7 +415,7 @@ function TeamCard({ meta, name, role, index }) {
       <div style={{ position: 'relative', width: 96, height: 96, margin: '0 auto 18px' }}>
         <img src={meta.logo} alt={`${name} condor`} style={{ width: '100%', height: '100%', objectFit: 'contain', filter: `drop-shadow(0 0 18px ${meta.color}55)` }} />
       </div>
-      <p style={{ position: 'relative', fontFamily: BODY, fontSize: 10, letterSpacing: '0.22em', color: meta.color, textTransform: 'uppercase', fontWeight: 500, marginBottom: 6 }}>
+      <p style={{ position: 'relative', fontFamily: LABEL, fontSize: 10, letterSpacing: '0.22em', color: meta.color, textTransform: 'uppercase', fontWeight: 500, marginBottom: 6 }}>
         {meta.abbr}
       </p>
       <h3 style={{ position: 'relative', fontFamily: DISPLAY, fontSize: 17, fontWeight: 700, color: c.text, marginBottom: 8 }}>{name}</h3>
@@ -381,12 +424,12 @@ function TeamCard({ meta, name, role, index }) {
   );
 }
 
-function TeamSection() {
+function TeamSection({ number }) {
   const { c, t } = useC();
   const teams = t('candelaria.teams');
   return (
     <CSection surface>
-      <SectionTag number={3} label={t('candelaria.teamsKicker')} />
+      <SectionTag number={number} label={t('candelaria.teamsKicker')} />
       <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16 items-start" style={{ marginBottom: 56 }}>
         <div className="md:col-span-6">
           <Reveal><Title>{t('candelaria.teamsTitle')}</Title></Reveal>
@@ -404,7 +447,7 @@ function TeamSection() {
         <Reveal delay={0.24} className="col-span-2 md:col-span-1">
           <div style={{ background: c.card, border: `1px solid ${c.borderAccent}`, padding: '28px 24px', textAlign: 'center', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
             <img src={condorMain} alt="Candelaria condor" style={{ width: 96, height: 96, objectFit: 'contain', filter: `drop-shadow(0 0 20px ${c.gold}66)` }} />
-            <p style={{ fontFamily: BODY, fontSize: 10, letterSpacing: '0.2em', color: c.gold, textTransform: 'uppercase', fontWeight: 500, marginTop: 14, lineHeight: 1.6 }}>
+            <p style={{ fontFamily: LABEL, fontSize: 10, letterSpacing: '0.2em', color: c.gold, textTransform: 'uppercase', fontWeight: 500, marginTop: 14, lineHeight: 1.6 }}>
               {t('candelaria.teamsCredit')}
             </p>
           </div>
@@ -417,11 +460,11 @@ function TeamSection() {
 /* ─────────────────────────────────────────
    DESIGN DIRECTION — brand artifacts + palette
    ───────────────────────────────────────── */
-function BrandSection() {
+function BrandSection({ number }) {
   const { c, t } = useC();
   return (
     <CSection>
-      <SectionTag number={4} label={t('candelaria.brandKicker')} />
+      <SectionTag number={number} label={t('candelaria.brandKicker')} />
       <div style={{ maxWidth: 640, marginBottom: 48 }}>
         <Reveal><Title>{t('candelaria.brandTitle')}</Title></Reveal>
         <Reveal delay={0.12}><p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 16, lineHeight: 1.75, color: c.textSoft, marginTop: 22 }}>{t('candelaria.brandIntro')}</p></Reveal>
@@ -440,7 +483,7 @@ function BrandSection() {
 
       <Reveal delay={0.16}>
         <div style={{ marginTop: 44 }}>
-          <p style={{ fontFamily: BODY, fontSize: 11, letterSpacing: '0.22em', color: c.textMuted, textTransform: 'uppercase', marginBottom: 18 }}>
+          <p style={{ fontFamily: LABEL, fontSize: 11, letterSpacing: '0.22em', color: c.textMuted, textTransform: 'uppercase', marginBottom: 18 }}>
             {t('candelaria.brandPaletteLabel')}
           </p>
           <div style={{ display: 'flex', height: 64, overflow: 'hidden', gap: 3 }}>
@@ -457,11 +500,11 @@ function BrandSection() {
 /* ─────────────────────────────────────────
    PROBLEM
    ───────────────────────────────────────── */
-function ProblemSection() {
+function ProblemSection({ number }) {
   const { c, t } = useC();
   return (
     <CSection surface>
-      <SectionTag number={5} label={t('candelaria.problemKicker')} />
+      <SectionTag number={number} label={t('candelaria.problemKicker')} />
       <div className="grid grid-cols-1 gap-14 md:grid-cols-12 md:gap-16 items-start">
         <div className="md:col-span-7">
           <Reveal><Title>{t('candelaria.problemTitle')}</Title></Reveal>
@@ -495,11 +538,11 @@ function Bullet({ children }) {
 /* ─────────────────────────────────────────
    PROCESS — timeline list
    ───────────────────────────────────────── */
-function ProcessSection() {
+function ProcessSection({ number }) {
   const { c, t } = useC();
   return (
     <CSection>
-      <SectionTag number={6} label={t('candelaria.processKicker')} />
+      <SectionTag number={number} label={t('candelaria.processKicker')} />
       <div className="grid grid-cols-1 gap-14 md:grid-cols-12 md:gap-16 items-start">
         <div className="md:col-span-4">
           <div style={{ position: 'sticky', top: 120 }}>
@@ -512,7 +555,7 @@ function ProcessSection() {
             <Reveal key={step.n} delay={i * 0.06}>
               <div style={{ padding: '28px 0', borderBottom: `1px solid ${c.border}` }}>
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: 16 }}>
-                  <span style={{ fontFamily: BODY, fontSize: 12, letterSpacing: '0.2em', color: c.gold, fontWeight: 500 }}>{step.n}</span>
+                  <span style={{ fontFamily: LABEL, fontSize: 12, letterSpacing: '0.2em', color: c.gold, fontWeight: 500 }}>{step.n}</span>
                   <h3 style={{ fontFamily: DISPLAY, fontSize: 21, fontWeight: 700, color: c.text }}>{step.title}</h3>
                 </div>
                 <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 15, lineHeight: 1.7, color: c.textSoft, marginTop: 12, marginLeft: 32 }}>{step.intro}</p>
@@ -531,11 +574,11 @@ function ProcessSection() {
 /* ─────────────────────────────────────────
    FEATURES
    ───────────────────────────────────────── */
-function FeaturesSection() {
+function FeaturesSection({ number }) {
   const { c, t } = useC();
   return (
     <CSection surface>
-      <SectionTag number={7} label={t('candelaria.featuresKicker')} />
+      <SectionTag number={number} label={t('candelaria.featuresKicker')} />
       <div style={{ marginBottom: 44 }}>
         <Reveal><Title>{t('candelaria.featuresTitle')}</Title></Reveal>
       </div>
@@ -572,7 +615,7 @@ function CTable({ header, rows, accentRow }) {
         <thead>
           <tr>
             {header.map((h, i) => (
-              <th key={i} style={{ textAlign: 'left', padding: '14px 16px', fontSize: 11, letterSpacing: '0.2em', color: c.textMuted, textTransform: 'uppercase', borderBottom: `2px solid ${c.borderAccent}`, fontWeight: 500 }}>{h}</th>
+              <th key={i} style={{ fontFamily: LABEL, textAlign: 'left', padding: '14px 16px', fontSize: 11, letterSpacing: '0.2em', color: c.textMuted, textTransform: 'uppercase', borderBottom: `2px solid ${c.borderAccent}`, fontWeight: 500 }}>{h}</th>
             ))}
           </tr>
         </thead>
@@ -593,11 +636,11 @@ function CTable({ header, rows, accentRow }) {
   );
 }
 
-function TiersSection() {
+function TiersSection({ number }) {
   const { t } = useC();
   return (
     <CSection>
-      <SectionTag number={8} label={t('candelaria.tiersKicker')} />
+      <SectionTag number={number} label={t('candelaria.tiersKicker')} />
       <div className="grid grid-cols-1 gap-14 md:grid-cols-12 md:gap-16 items-start">
         <div className="md:col-span-7">
           <Reveal><Title>{t('candelaria.tiersTitle')}</Title></Reveal>
@@ -613,11 +656,11 @@ function TiersSection() {
   );
 }
 
-function PerformanceSection() {
+function PerformanceSection({ number }) {
   const { t } = useC();
   return (
     <CSection surface>
-      <SectionTag number={9} label={t('candelaria.perfKicker')} />
+      <SectionTag number={number} label={t('candelaria.perfKicker')} />
       <div className="grid grid-cols-1 gap-14 md:grid-cols-12 md:gap-16 items-start">
         <div className="md:col-span-5 md:order-1">
           <Reveal delay={0.1} duration={1.2}><CImage src={performanceImg} alt="Performance dashboard" ratio="4 / 5" /></Reveal>
@@ -634,11 +677,11 @@ function PerformanceSection() {
 /* ─────────────────────────────────────────
    SECURITY
    ───────────────────────────────────────── */
-function SecuritySection() {
+function SecuritySection({ number }) {
   const { c, t } = useC();
   return (
     <CSection>
-      <SectionTag number={10} label={t('candelaria.securityKicker')} />
+      <SectionTag number={number} label={t('candelaria.securityKicker')} />
       <div style={{ maxWidth: 620, marginBottom: 36 }}>
         <Reveal><Title>{t('candelaria.securityTitle')}</Title></Reveal>
       </div>
@@ -656,11 +699,11 @@ function SecuritySection() {
 /* ─────────────────────────────────────────
    REFLECTIONS
    ───────────────────────────────────────── */
-function ReflectionsSection() {
+function ReflectionsSection({ number }) {
   const { t } = useC();
   return (
     <CSection surface>
-      <SectionTag number={11} label={t('candelaria.reflectionsKicker')} />
+      <SectionTag number={number} label={t('candelaria.reflectionsKicker')} />
       <div className="grid grid-cols-1 gap-14 md:grid-cols-12 md:gap-16 items-start">
         <div className="md:col-span-7">
           <Reveal><Title>{t('candelaria.reflectionsTitle')}</Title></Reveal>
@@ -678,17 +721,17 @@ function ReflectionsSection() {
    FINAL CTA
    ───────────────────────────────────────── */
 function FinalCTA() {
-  const { c, t } = useC();
-  const project = caseStudies.candelaria;
+  const { c, t, variant } = useC();
   return (
     <section style={{ background: c.bg, paddingTop: 96, paddingBottom: 128, paddingInline: 'clamp(20px, 5vw, 80px)', position: 'relative', overflow: 'hidden' }}>
       <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: `radial-gradient(ellipse 80% 60% at 50% 100%, ${c.glowSoft} 0%, transparent 60%)` }} />
       <div style={{ maxWidth: 720, margin: '0 auto', textAlign: 'center', position: 'relative', zIndex: 1 }}>
         <img src={condorMain} alt="" aria-hidden style={{ width: 88, height: 88, objectFit: 'contain', margin: '0 auto 28px', filter: `drop-shadow(0 0 24px ${c.gold}55)` }} />
-        <Title size="clamp(28px, 4vw, 44px)" style={{ marginBottom: 32 }}>{t('candelaria.title')}</Title>
+        <Title size="clamp(28px, 4vw, 44px)" style={{ marginBottom: 32 }}>
+          {t(variant === 'brand' ? 'candelaria.brandPage.closingTitle' : 'candelaria.title')}
+        </Title>
         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 14 }}>
-          <CButton href={project.site} variant="primary" Icon={ExternalLinkIcon}>{t('candelaria.ctaVisit')}</CButton>
-          <CButton href={project.code} variant="outline" Icon={GitHubIcon}>{t('candelaria.ctaCode')}</CButton>
+          <CTAs />
         </div>
       </div>
     </section>
@@ -696,30 +739,50 @@ function FinalCTA() {
 }
 
 /* ─────────────────────────────────────────
-   MAIN EXPORT
+   PAGES
+   Two works out of one project: the identity and the site. They share the
+   palette and the primitives above, and nothing else.
    ───────────────────────────────────────── */
-export default function Candelaria() {
+function CandelariaPage({ variant, children }) {
   const { theme } = useTheme();
   const { t } = useLocale();
   const c = theme === 'dark' ? C_DARK : C_LIGHT;
 
   return (
-    <CCtx.Provider value={{ c, t }}>
+    <CCtx.Provider value={{ c, t, variant }}>
       <article style={{ background: c.bg, color: c.text }}>
         <Hero />
-        <SummarySection />
-        <RoleSection />
-        <TeamSection />
-        <BrandSection />
-        <ProblemSection />
-        <ProcessSection />
-        <FeaturesSection />
-        <TiersSection />
-        <PerformanceSection />
-        <SecuritySection />
-        <ReflectionsSection />
+        {children}
         <FinalCTA />
       </article>
     </CCtx.Provider>
+  );
+}
+
+/** /projects/candelaria — the brand. */
+export default function Candelaria() {
+  return (
+    <CandelariaPage variant="brand">
+      <RoleSection number={1} />
+      <TeamSection number={2} />
+      <BrandSection number={3} />
+    </CandelariaPage>
+  );
+}
+
+/** /projects/candelaria-website — the site. */
+export function CandelariaWebsite() {
+  return (
+    <CandelariaPage variant="website">
+      <SummarySection number={1} />
+      <RoleSection number={2} />
+      <ProblemSection number={3} />
+      <ProcessSection number={4} />
+      <FeaturesSection number={5} />
+      <TiersSection number={6} />
+      <PerformanceSection number={7} />
+      <SecuritySection number={8} />
+      <ReflectionsSection number={9} />
+    </CandelariaPage>
   );
 }

@@ -45,7 +45,7 @@ const works = [
     kickerI18n: 'works.candelariaWebsite.kicker',
     descI18n: 'works.candelariaWebsite.desc',
     tagKeys: ['js', 'react', 'django', 'fullstack'],
-    href: '/projects/candelaria',
+    href: '/projects/candelaria-website',
     image: candelariaSite,
     fit: 'cover',
   },
@@ -118,6 +118,7 @@ export const caseStudies = {
   candelaria: {
     skills: ['React', 'Django', 'Tailwind', 'Figma', 'Python', 'Claude', 'Git', 'Vscode'],
     site: 'https://www.candelaria.website/',
+    instagram: 'https://www.instagram.com/candelaria_solarcar/',
     code: 'https://github.com/juligm4444/CandelariaWebsite',
   },
   licorimetro: {

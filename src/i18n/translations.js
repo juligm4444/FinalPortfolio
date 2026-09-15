@@ -414,6 +414,17 @@ const translations = {
       sectionRoleLabel: 'Role',
       sectionTimelineLabel: 'Timeline & Status',
       heroTagline: 'Defy the limits of the sun',
+      brandPage: {
+        tag: 'Student Research Group · Brand Identity',
+        title: 'Candelaria',
+        subtitle:
+          'Design lead behind the visual identity of a university solar vehicle research team: the condor mark, a logo system for seven divisions and the brand manual the whole team works from.',
+        role: 'Design Lead · Brand Identity · Art Direction',
+        roleTitle: 'Leading the design team.',
+        ctaInstagram: 'Follow on Instagram',
+        ctaWebsite: 'See the website case study',
+        closingTitle: 'Follow the team on Instagram',
+      },
 
       teamsKicker: 'The Team',
       teamsTitle: 'Seven areas. One condor.',
@@ -801,7 +812,7 @@ const translations = {
       viewsIntro: 'The views on this sheet are drawn at 1:5 over the verified 3D model: each part occupies on paper exactly what it occupies on the model. Dimensions indicate real product measures, in millimetres.',
       viewTop: 'Top view',
       viewBottom: 'Bottom view',
-      viewSide: 'Side elevation',
+      viewSide: 'Side view',
       viewIso: 'Isometric perspective',
 
       dimsTitle: 'General dimensions · real product',
@@ -874,7 +885,7 @@ const translations = {
 
       briefP1: 'Bloom — BeBloomers — publishes articles, podcasts, workshops and guides on women\'s health and wellbeing. The team brought in two designers to rebuild the website from the ground up.',
       briefP2: 'I worked on two fronts: full wireframes and small prototypes for the new site, and a complete reclassification of the tags and categories behind every digital product they publish.',
-      briefP3: 'This page is about the second front, because it is the part that changed how the product works rather than how it looks.',
+      briefP3: 'This page covers both: the taxonomy first, because it changed how the product works, and then the wireframes, where that structure turns into screens.',
 
       problemQuote: 'A taxonomy is not a list of words. It is the shape of what a reader is allowed to find.',
       problemP1: 'The original system had accumulated 75 unique tags. Tags had been added as content was published, never pruned, and never checked against each other — so several described the same thing at different levels of specificity.',
@@ -911,7 +922,37 @@ const translations = {
       ],
 
       caseTitle: 'How a piece lives in the system',
-      caseIntro: 'Every piece carries one category plus two to five tags. Tags shown tinted are shared — they appear in content from other categories, and Bloom AI reads them as bridges for cross-recommendation.',
+      caseIntro: 'Every piece carries one category plus two to five tags. Marked tags are shared — they appear in content from other categories, and Bloom AI reads them as bridges for cross-recommendation. Point at one to see what it connects.',
+
+      explorerLabel: 'Taxonomy explorer',
+      explorerHint: 'Switch versions to watch the taxonomy compress. Point at any tag to find every category it lives in.',
+      explorerTags: 'tags',
+      explorerShared: 'Shared across categories',
+      explorerLang: 'Tags appear in Spanish, as they were delivered to the client.',
+      caseFormats: ['Article', 'Podcast', 'Guide'],
+      caseBridge: 'Bridge',
+
+      wfTitle: 'Every screen was drawn for a phone first',
+      wfStat: '80%+',
+      wfStatLabel: 'of Bloom\'s users were already reading from a phone or mobile device, according to the analytics reviewed before the work began.',
+      wfP1: 'That number set the canvas. Every wireframe was built at 390 px wide, so hierarchy, tap targets and the length of each scroll were decided where most readers actually are — not scaled down from a desktop layout afterwards.',
+      wfP2: 'It is also why the taxonomy had to fit on one screen: the filters, the content grid and Bloom AI all share the same narrow column.',
+      wfViewerHint: 'Scroll inside the phone, or let it run.',
+      wfScreens: [
+        { key: 'home', name: 'Home', desc: 'The full front page: value proposition, direct access to Bloom AI, and content grouped by format.' },
+        { key: 'article', name: 'Article', desc: 'Long-form reading with key terms marked in the text, related content mid-read and topic personalisation at the end.' },
+        { key: 'program', name: 'Podcast', desc: 'A programme page: hosts, episodes filterable by season, guest or tag, and a sign-up for new episodes.' },
+        { key: 'ia', name: 'Bloom AI', desc: 'The assistant\'s landing: what it is, the evidence behind its answers and how a question becomes one.' },
+        { key: 'community', name: 'Community', desc: 'Events, WhatsApp groups and Bloom House — the part of Bloom that happens off the screen.' },
+      ],
+      wfFlowTitle: 'Reading an article, step by step',
+      wfFlow: [
+        'The article, with key terms marked.',
+        'The global menu, one tap away.',
+        'Tapping a term offers a Bloom AI explanation.',
+        'Bloom AI answers with the article as context.',
+        'Keep exploring: related content by format.',
+      ],
 
       reflLabel: 'Reflection',
       reflQuote: 'The best argument I made on this project was for the version that performed worse on paper.',
@@ -1344,6 +1385,17 @@ const translations = {
       sectionRoleLabel: 'Rol',
       sectionTimelineLabel: 'Cronología y Estado',
       heroTagline: 'Desafía los límites del sol',
+      brandPage: {
+        tag: 'Semillero · Identidad de Marca',
+        title: 'Candelaria',
+        subtitle:
+          'Líder de diseño detrás de la identidad visual de un semillero universitario de vehículos solares: la marca del cóndor, un sistema de logos para siete áreas y el manual de marca con el que trabaja todo el equipo.',
+        role: 'Líder de Diseño · Identidad de Marca · Dirección de Arte',
+        roleTitle: 'Liderando al equipo de diseño.',
+        ctaInstagram: 'Seguir en Instagram',
+        ctaWebsite: 'Ver el caso del website',
+        closingTitle: 'Sigue al equipo en Instagram',
+      },
 
       teamsKicker: 'El Equipo',
       teamsTitle: 'Siete áreas. Un cóndor.',
@@ -1731,7 +1783,7 @@ const translations = {
       viewsIntro: 'Las vistas de esta lámina están dibujadas a escala 1:5 sobre el modelo 3D verificado: cada pieza ocupa en el papel exactamente lo mismo que en la maqueta. Las cotas indican las medidas reales del producto, en milímetros.',
       viewTop: 'Vista superior',
       viewBottom: 'Vista inferior',
-      viewSide: 'Alzado lateral',
+      viewSide: 'Vista lateral',
       viewIso: 'Perspectiva isométrica',
 
       dimsTitle: 'Dimensiones generales · producto real',
@@ -1804,7 +1856,7 @@ const translations = {
 
       briefP1: 'Bloom —BeBloomers— publica artículos, podcasts, talleres y guías sobre salud y bienestar femenino. El equipo convocó a dos diseñadores para rehacer el sitio web desde cero.',
       briefP2: 'Trabajé en dos frentes: wireframes completos y pequeños prototipos del nuevo sitio, y la reclasificación completa de los tags y categorías de todos los productos digitales que publican.',
-      briefP3: 'Esta página trata del segundo frente, porque es la parte que cambió cómo funciona el producto y no cómo se ve.',
+      briefP3: 'Esta página recorre ambos: primero la taxonomía, porque cambió cómo funciona el producto, y después los wireframes, donde esa estructura se vuelve pantallas.',
 
       problemQuote: 'Una taxonomía no es una lista de palabras. Es la forma de lo que a un lector se le permite encontrar.',
       problemP1: 'El sistema original había acumulado 75 tags únicos. Se habían ido agregando a medida que se publicaba contenido, nunca se podaron y nunca se contrastaron entre sí — así que varios describían lo mismo con distintos niveles de especificidad.',
@@ -1841,7 +1893,37 @@ const translations = {
       ],
 
       caseTitle: 'Cómo vive un contenido en el sistema',
-      caseIntro: 'Cada pieza tiene una categoría más dos a cinco tags. Los tags con fondo tintado son mixtos — aparecen en contenidos de otras categorías, y Bloom AI los lee como puentes para recomendación cruzada.',
+      caseIntro: 'Cada pieza tiene una categoría más dos a cinco tags. Los tags marcados son mixtos — aparecen en contenidos de otras categorías, y Bloom AI los lee como puentes para recomendación cruzada. Pasa el cursor sobre uno para ver qué conecta.',
+
+      explorerLabel: 'Explorador de taxonomía',
+      explorerHint: 'Cambia de versión para ver cómo se comprime la taxonomía. Pasa el cursor sobre un tag para encontrar todas las categorías donde vive.',
+      explorerTags: 'tags',
+      explorerShared: 'Compartido entre categorías',
+      explorerLang: 'Los tags aparecen tal como se entregaron al cliente.',
+      caseFormats: ['Artículo', 'Podcast', 'Guía'],
+      caseBridge: 'Puente',
+
+      wfTitle: 'Cada pantalla se dibujó primero para un celular',
+      wfStat: '+80%',
+      wfStatLabel: 'de los usuarios de Bloom ya leían desde un celular o dispositivo móvil, según las analíticas revisadas antes de empezar el trabajo.',
+      wfP1: 'Ese dato definió el lienzo. Todos los wireframes se construyeron a 390 px de ancho, así que la jerarquía, las zonas táctiles y el largo de cada scroll se decidieron donde de verdad están las lectoras — no se adaptaron después desde un diseño de escritorio.',
+      wfP2: 'También es la razón por la que la taxonomía tenía que caber en una pantalla: los filtros, la grilla de contenido y Bloom IA comparten la misma columna angosta.',
+      wfViewerHint: 'Haz scroll dentro del celular, o déjalo correr.',
+      wfScreens: [
+        { key: 'home', name: 'Inicio', desc: 'La portada completa: propuesta de valor, acceso directo a Bloom IA y el contenido agrupado por formato.' },
+        { key: 'article', name: 'Artículo', desc: 'Lectura larga con términos clave marcados en el texto, contenido relacionado a mitad de lectura y personalización de temas al final.' },
+        { key: 'program', name: 'Podcast', desc: 'La ficha de un programa: presentadoras, episodios filtrables por temporada, invitada o tag, y suscripción a novedades.' },
+        { key: 'ia', name: 'Bloom IA', desc: 'La landing del asistente: qué es, la evidencia detrás de sus respuestas y cómo una pregunta se vuelve una respuesta.' },
+        { key: 'community', name: 'Comunidad', desc: 'Eventos, grupos de WhatsApp y Bloom House — la parte de Bloom que pasa fuera de la pantalla.' },
+      ],
+      wfFlowTitle: 'Leer un artículo, paso a paso',
+      wfFlow: [
+        'El artículo, con términos clave marcados.',
+        'El menú global, a un toque.',
+        'Tocar un término ofrece la explicación de Bloom IA.',
+        'Bloom IA responde con el artículo como contexto.',
+        'Sigue explorando: contenido relacionado por formato.',
+      ],
 
       reflLabel: 'Reflexión',
       reflQuote: 'El mejor argumento que di en este proyecto fue a favor de la versión que rendía peor sobre el papel.',

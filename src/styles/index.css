@@ -326,7 +326,7 @@ html[data-locked] body {
    as the type inside it, so it grows with the text instead of clipping it. */
 @media (min-width: 1024px) {
   .showcase-caption {
-    min-height: clamp(190px, 12.5vw, 280px);
+    min-height: clamp(180px, 12vw, 260px);
   }
 }
 

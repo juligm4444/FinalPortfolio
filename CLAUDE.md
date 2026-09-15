@@ -48,8 +48,11 @@ src/
 | `/about` | `pages/About.jsx` |
 | `/projects` | `pages/Projects.jsx` |
 | `/projects/licorimetro` | `pages/projects/Licorimetro.jsx` |
-| `/projects/candelaria` | `pages/projects/Candelaria.jsx` |
+| `/projects/candelaria` | `pages/projects/Candelaria.jsx` (brand, default export) |
+| `/projects/candelaria-website` | `pages/projects/Candelaria.jsx` (`CandelariaWebsite`) |
 | `/projects/sensewave` | `pages/projects/Sensewave.jsx` |
+| `/projects/humbral` | `pages/projects/Humbral.jsx` |
+| `/projects/bloom` | `pages/projects/Bloom.jsx` |
 | `/contact` | `pages/Contact.jsx` |
 
 ## Key conventions
@@ -59,6 +62,7 @@ src/
 - **New projects** require an entry in `src/data/projects.js` (slug, i18n keys, accent color, skills, links) plus a new page under `src/pages/projects/` and a route in `App.jsx`.
 - **Skill icons** come in pairs: `src/assets/skills/Normal/<Name>.png` and `src/assets/skills/Hovered/<Name>_hovered.png`.
 - **`PillarsBackground`** is a global decorative layer rendered behind all content in `App.jsx`.
+- **Case-study typography is fixed site-wide:** Libre Baskerville (`font-display`) for headings, Roboto Mono (`font-body`) for prose, Space Grotesk (`font-nav`) for labels, tags and buttons. Layout and palette may vary per project; fonts may not.
 - Theme is applied via `data-theme` attribute, so CSS should use `[data-theme='dark']` selectors rather than a `.dark` class.
 
 ## Dev commands

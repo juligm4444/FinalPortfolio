@@ -85,11 +85,11 @@ function SectionTag({ number, label }) {
   return (
     <Reveal>
       <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginBottom: 72 }}>
-        <span style={{ fontFamily: '"Roboto Mono", monospace', fontSize: 10, letterSpacing: '0.28em', color: sw.accent, textTransform: 'uppercase' }}>
+        <span style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: 10, letterSpacing: '0.28em', color: sw.accent, textTransform: 'uppercase' }}>
           {String(number).padStart(2, '0')}
         </span>
         <div style={{ flex: 1, height: 1, background: sw.borderAccent }} />
-        <span style={{ fontFamily: '"Roboto Mono", monospace', fontSize: 10, letterSpacing: '0.22em', color: sw.textMuted, textTransform: 'uppercase' }}>
+        <span style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: 10, letterSpacing: '0.22em', color: sw.textMuted, textTransform: 'uppercase' }}>
           {label}
         </span>
       </div>
@@ -142,7 +142,7 @@ function SWAsset({ id, label, description, ratio = '16/9', className = '' }) {
         }} />
       ))}
       <div style={{ position: 'relative', zIndex: 1, textAlign: 'center', padding: '20px 28px' }}>
-        <p style={{ fontFamily: '"Roboto Mono", monospace', fontSize: 9, letterSpacing: '0.26em', color: sw.accent, textTransform: 'uppercase', marginBottom: 10 }}>
+        <p style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: 9, letterSpacing: '0.26em', color: sw.accent, textTransform: 'uppercase', marginBottom: 10 }}>
           ASSET {id} · PENDING
         </p>
         <p style={{ fontFamily: '"Libre Baskerville", serif', fontSize: 13, color: sw.text, lineHeight: 1.4, marginBottom: 8, fontWeight: 600 }}>
@@ -224,7 +224,7 @@ function HeroSection() {
       </motion.div>
 
       <motion.div style={{ opacity: textOpacity, position: 'relative', zIndex: 2, textAlign: 'center', maxWidth: 800 }}>
-        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.4, delay: 0.3 }} style={{ fontFamily: '"Roboto Mono", monospace', fontSize: 10, letterSpacing: '0.28em', color: sw.accent, textTransform: 'uppercase', marginBottom: 28 }}>
+        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.4, delay: 0.3 }} style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: 10, letterSpacing: '0.28em', color: sw.accent, textTransform: 'uppercase', marginBottom: 28 }}>
           {t('sensewave.heroPeriod')}
         </motion.p>
 
@@ -241,7 +241,7 @@ function HeroSection() {
 
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.0, delay: 1.2 }} style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '8px 20px', marginTop: 44 }}>
           {t('sensewave.heroTags').map((tag) => (
-            <span key={tag} style={{ fontFamily: '"Roboto Mono", monospace', fontSize: 10, letterSpacing: '0.18em', color: sw.textMuted, textTransform: 'uppercase', padding: '6px 14px', border: `1px solid ${sw.border}` }}>
+            <span key={tag} style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: 10, letterSpacing: '0.18em', color: sw.textMuted, textTransform: 'uppercase', padding: '6px 14px', border: `1px solid ${sw.border}` }}>
               {tag}
             </span>
           ))}
@@ -333,7 +333,7 @@ function TechnologySection() {
               <div style={{ background: sw.card, border: `1px solid ${sw.borderAccent}`, padding: 28 }}>
                 <img src={chipImages[i]} alt={`${chip.name} chip render`} style={{ width: '100%', aspectRatio: '16/9', objectFit: 'cover', display: 'block' }} />
                 <div style={{ marginTop: 22 }}>
-                  <p style={{ fontFamily: '"Roboto Mono", monospace', fontSize: 9, letterSpacing: '0.22em', color: sw.accent, textTransform: 'uppercase', marginBottom: 8 }}>{chip.tagline}</p>
+                  <p style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: 9, letterSpacing: '0.22em', color: sw.accent, textTransform: 'uppercase', marginBottom: 8 }}>{chip.tagline}</p>
                   <h3 style={{ fontFamily: '"Libre Baskerville", serif', fontSize: 20, fontWeight: 700, color: sw.text, marginBottom: 10 }}>{chip.name}</h3>
                   <p style={{ fontFamily: '"Roboto Mono", monospace', fontSize: 13, lineHeight: 1.75, color: sw.textSoft }}>{chip.desc}</p>
                 </div>
@@ -359,13 +359,13 @@ function DonorCircles() {
         transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
         style={{ width: 120, height: 120, borderRadius: '50%', border: `2px solid ${sw.accent}`, background: `radial-gradient(circle, rgba(139,157,232,0.12) 0%, transparent 70%)`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}
       >
-        <span style={{ fontFamily: '"Roboto Mono", monospace', fontSize: 9, letterSpacing: '0.2em', color: sw.accent, textTransform: 'uppercase' }}>{t('sensewave.donorLabel')}</span>
+        <span style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: 9, letterSpacing: '0.2em', color: sw.accent, textTransform: 'uppercase' }}>{t('sensewave.donorLabel')}</span>
       </motion.div>
 
       <div className="hidden md:block" style={{ flex: 1, maxWidth: 320, position: 'relative', height: 2, marginInline: 8 }}>
         <div style={{ height: 1, background: sw.borderAccent }} />
         <motion.div animate={reduce ? {} : { x: ['-10%', '110%'] }} transition={{ duration: 2.8, repeat: Infinity, ease: 'easeInOut' }} aria-hidden style={{ position: 'absolute', top: -4, width: 56, height: 9, background: `linear-gradient(90deg, transparent, ${sw.accent}, transparent)`, borderRadius: 4 }} />
-        <div style={{ position: 'absolute', top: -18, left: '50%', transform: 'translateX(-50%)', fontFamily: '"Roboto Mono", monospace', fontSize: 9, letterSpacing: '0.2em', color: sw.textMuted, textTransform: 'uppercase', whiteSpace: 'nowrap' }}>
+        <div style={{ position: 'absolute', top: -18, left: '50%', transform: 'translateX(-50%)', fontFamily: '"Space Grotesk", sans-serif', fontSize: 9, letterSpacing: '0.2em', color: sw.textMuted, textTransform: 'uppercase', whiteSpace: 'nowrap' }}>
           {t('sensewave.donorTransfer')}
         </div>
       </div>
@@ -377,7 +377,7 @@ function DonorCircles() {
         transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut', delay: 1.75 }}
         style={{ width: 120, height: 120, borderRadius: '50%', border: `2px solid ${sw.violet}`, background: `radial-gradient(circle, rgba(184,166,240,0.12) 0%, transparent 70%)`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}
       >
-        <span style={{ fontFamily: '"Roboto Mono", monospace', fontSize: 9, letterSpacing: '0.2em', color: sw.violet, textTransform: 'uppercase' }}>{t('sensewave.recipientLabel')}</span>
+        <span style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: 9, letterSpacing: '0.2em', color: sw.violet, textTransform: 'uppercase' }}>{t('sensewave.recipientLabel')}</span>
       </motion.div>
     </div>
   );
@@ -453,7 +453,7 @@ function BrandSection() {
 
       <Reveal delay={0.1}>
         <div style={{ marginBottom: 56 }}>
-          <p style={{ fontFamily: '"Roboto Mono", monospace', fontSize: 10, letterSpacing: '0.22em', color: sw.textMuted, textTransform: 'uppercase', marginBottom: 20 }}>
+          <p style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: 10, letterSpacing: '0.22em', color: sw.textMuted, textTransform: 'uppercase', marginBottom: 20 }}>
             {t('sensewave.colorLabel')}
           </p>
           <div style={{ display: 'flex', height: 72, overflow: 'hidden', gap: 3 }}>
@@ -468,7 +468,7 @@ function BrandSection() {
 
       <Reveal delay={0.15}>
         <div style={{ background: sw.card, border: `1px solid ${sw.border}`, padding: 'clamp(28px, 4vw, 48px)', marginBottom: 40 }}>
-          <p style={{ fontFamily: '"Roboto Mono", monospace', fontSize: 10, letterSpacing: '0.22em', color: sw.textMuted, textTransform: 'uppercase', marginBottom: 24 }}>
+          <p style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: 10, letterSpacing: '0.22em', color: sw.textMuted, textTransform: 'uppercase', marginBottom: 24 }}>
             {t('sensewave.typoLabel')}
           </p>
           <p style={{ fontFamily: '"Libre Baskerville", serif', fontSize: 'clamp(28px, 5vw, 64px)', fontWeight: 700, lineHeight: 1.05, color: sw.text, letterSpacing: '-0.03em' }}>
@@ -480,7 +480,7 @@ function BrandSection() {
           <div className="flex gap-8 flex-wrap mt-6">
             {roles.map((f) => (
               <div key={f.role}>
-                <p style={{ fontFamily: '"Roboto Mono", monospace', fontSize: 9, letterSpacing: '0.18em', color: sw.textMuted, textTransform: 'uppercase', marginBottom: 6 }}>{f.role}</p>
+                <p style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: 9, letterSpacing: '0.18em', color: sw.textMuted, textTransform: 'uppercase', marginBottom: 6 }}>{f.role}</p>
                 <p style={{ fontFamily: '"Roboto Mono", monospace', fontSize: 14, color: sw.text }}>{f.name}</p>
               </div>
             ))}
@@ -586,7 +586,7 @@ function ProcessSection() {
         {steps.map((step, i) => (
           <Reveal key={step.phase} delay={i * 0.08} duration={0.9}>
             <div style={{ padding: '26px 0', borderBottom: `1px solid ${sw.border}`, display: 'grid', gridTemplateColumns: 'auto 1fr', gap: 24 }}>
-              <span style={{ fontFamily: '"Roboto Mono", monospace', fontSize: 10, letterSpacing: '0.22em', color: step.highlight ? sw.accent : sw.textMuted, textTransform: 'uppercase', paddingTop: 3 }}>
+              <span style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: 10, letterSpacing: '0.22em', color: step.highlight ? sw.accent : sw.textMuted, textTransform: 'uppercase', paddingTop: 3 }}>
                 {step.phase}
               </span>
               <div>
@@ -613,7 +613,7 @@ function ExhibitionSection() {
       <div style={{ maxWidth: 720, margin: '0 auto', textAlign: 'center' }}>
         <Reveal duration={1.2}>
           <div style={{ border: `1px solid ${sw.borderAccent}`, padding: 'clamp(32px, 5vw, 64px)', background: `radial-gradient(ellipse 100% 60% at 50% 0%, ${sw.glow} 0%, transparent 60%)` }}>
-            <p style={{ fontFamily: '"Roboto Mono", monospace', fontSize: 9, letterSpacing: '0.28em', color: sw.accent, textTransform: 'uppercase', marginBottom: 24 }}>
+            <p style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: 9, letterSpacing: '0.28em', color: sw.accent, textTransform: 'uppercase', marginBottom: 24 }}>
               {t('sensewave.exhibPeriod')}
             </p>
             <h2 style={{ fontFamily: '"Libre Baskerville", serif', fontSize: 'clamp(22px, 3.5vw, 36px)', fontWeight: 700, lineHeight: 1.2, color: sw.text, letterSpacing: '-0.015em', marginBottom: 20 }}>
@@ -624,7 +624,7 @@ function ExhibitionSection() {
             </p>
             <div className="flex justify-center flex-wrap gap-3" style={{ marginTop: 36 }}>
               {tags.map((tag) => (
-                <span key={tag} style={{ fontFamily: '"Roboto Mono", monospace', fontSize: 9, letterSpacing: '0.18em', color: sw.textMuted, textTransform: 'uppercase', padding: '7px 14px', border: `1px solid ${sw.border}` }}>
+                <span key={tag} style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: 9, letterSpacing: '0.18em', color: sw.textMuted, textTransform: 'uppercase', padding: '7px 14px', border: `1px solid ${sw.border}` }}>
                   {tag}
                 </span>
               ))}
@@ -647,7 +647,7 @@ function ReflectionSection() {
       <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: `radial-gradient(ellipse 80% 60% at 50% 100%, ${sw.glow} 0%, transparent 60%)` }} />
       <div style={{ maxWidth: 800, margin: '0 auto', textAlign: 'center' }}>
         <Reveal duration={1.3}>
-          <p style={{ fontFamily: '"Roboto Mono", monospace', fontSize: 9, letterSpacing: '0.28em', color: sw.accent, textTransform: 'uppercase', marginBottom: 32 }}>
+          <p style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: 9, letterSpacing: '0.28em', color: sw.accent, textTransform: 'uppercase', marginBottom: 32 }}>
             {t('sensewave.reflLabel')}
           </p>
           <blockquote style={{ fontFamily: '"Libre Baskerville", serif', fontSize: 'clamp(22px, 3.8vw, 40px)', fontWeight: 700, lineHeight: 1.18, color: sw.text, letterSpacing: '-0.02em', fontStyle: 'italic', margin: 0 }}>
@@ -665,7 +665,7 @@ function ReflectionSection() {
         <Reveal delay={0.35} duration={1.1}>
           <div className="flex justify-center flex-wrap gap-3" style={{ marginTop: 52 }}>
             {tags.map((tag, i) => (
-              <span key={tag} style={{ fontFamily: '"Roboto Mono", monospace', fontSize: 9, letterSpacing: '0.16em', color: i === 0 ? sw.accent : sw.textMuted, textTransform: 'uppercase', padding: '6px 14px', border: `1px solid ${i === 0 ? sw.borderAccent : sw.border}` }}>
+              <span key={tag} style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: 9, letterSpacing: '0.16em', color: i === 0 ? sw.accent : sw.textMuted, textTransform: 'uppercase', padding: '6px 14px', border: `1px solid ${i === 0 ? sw.borderAccent : sw.border}` }}>
                 {tag}
               </span>
             ))}

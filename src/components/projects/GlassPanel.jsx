@@ -77,19 +77,20 @@ export default function GlassPanel({
         zIndex: active ? 3 : 2,
       }}
     >
-      {/* Fogging on hover is a backdrop-filter change, not a colour change, so
-          the fluids underneath stay visible — just less so. */}
+      {/* At rest the fluids run bare under the content; the glass only
+          condenses on the column being pointed at. Blur is animated from
+          zero rather than toggled, so the sheet fogs up instead of popping. */}
       <div
         aria-hidden
         className="absolute inset-0"
         style={{
-          background: active ? 'var(--glass-panel-hover)' : 'var(--glass-panel)',
-          backdropFilter: `blur(${active ? 34 : 18}px) saturate(${active ? 1.4 : 1.15})`,
-          WebkitBackdropFilter: `blur(${active ? 34 : 18}px) saturate(${active ? 1.4 : 1.15})`,
+          background: active ? 'var(--glass-panel-hover)' : 'transparent',
+          backdropFilter: `blur(${active ? 30 : 0}px) saturate(${active ? 1.35 : 1})`,
+          WebkitBackdropFilter: `blur(${active ? 30 : 0}px) saturate(${active ? 1.35 : 1})`,
           border: '0 solid var(--glass-panel-edge)',
           borderTopWidth: 1,
           borderBottomWidth: 1,
-          transition: 'background 420ms ease, backdrop-filter 420ms ease',
+          transition: 'background 420ms ease, backdrop-filter 420ms ease, -webkit-backdrop-filter 420ms ease',
         }}
       />
 
@@ -114,7 +115,7 @@ export default function GlassPanel({
 
         <div
           key={work.id}
-          className="flex min-h-0 flex-1 flex-row items-center gap-4 lg:flex-col lg:items-stretch lg:gap-0"
+          className="flex min-h-0 flex-1 flex-row items-center gap-4 lg:flex-col lg:items-stretch lg:justify-center lg:gap-8"
           style={{
             animation: contentIn
               ? `panel-in-${direction > 0 ? 'down' : 'up'} 620ms cubic-bezier(0.22,1,0.36,1) both`
@@ -162,10 +163,10 @@ function WorkMedia({ work, t }) {
     // One square frame, identical for every work. A frame that only fixed its
     // height let a portrait photo render as a narrow strip beside a wide logo,
     // which is exactly the inconsistency it was meant to prevent.
-    // On a column the artwork owns all the height the caption leaves over and
-    // centres in it. The caption below has a fixed floor, so that space is the
-    // same in all three columns and the frames line up side by side.
-    <div className="flex shrink-0 items-center justify-center lg:min-h-0 lg:w-full lg:flex-1">
+    // Artwork and caption travel as one block centred in the column. The
+    // caption has a fixed floor, so the block is the same height in all three
+    // columns and the frames still line up side by side.
+    <div className="flex shrink-0 items-center justify-center lg:min-h-0 lg:w-full">
       <div
         className="flex aspect-square items-center justify-center overflow-hidden"
         style={{
@@ -254,7 +255,7 @@ function WorkCaption({ work, category, t }) {
       </p>
 
       {/* One row on a band: a tag that would wrap is dropped whole, never cut. */}
-      <ul className="mt-2 flex max-h-[30px] flex-wrap gap-1.5 overflow-hidden lg:mt-auto lg:max-h-none lg:gap-2 lg:pt-4">
+      <ul className="mt-2 flex max-h-[30px] flex-wrap gap-1.5 overflow-hidden lg:mt-4 lg:max-h-none lg:gap-2">
         {work.tagKeys.map((key, i) => (
           <li key={key} className={i > 1 ? 'hidden lg:block' : undefined}>
             <span

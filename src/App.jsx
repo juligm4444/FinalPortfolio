@@ -7,7 +7,7 @@ import Home from './pages/Home.jsx'
 import About from './pages/About.jsx'
 import Projects from './pages/Projects.jsx'
 import Contact from './pages/Contact.jsx'
-import Candelaria from './pages/projects/Candelaria.jsx'
+import Candelaria, { CandelariaWebsite } from './pages/projects/Candelaria.jsx'
 import Licorimetro from './pages/projects/Licorimetro.jsx'
 import Sensewave from './pages/projects/Sensewave.jsx'
 import Humbral from './pages/projects/Humbral.jsx'
@@ -51,6 +51,7 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/projects/candelaria" element={<Candelaria />} />
+          <Route path="/projects/candelaria-website" element={<CandelariaWebsite />} />
           <Route path="/projects/licorimetro" element={<Licorimetro />} />
           <Route path="/projects/sensewave" element={<Sensewave />} />
           <Route path="/projects/humbral" element={<Humbral />} />

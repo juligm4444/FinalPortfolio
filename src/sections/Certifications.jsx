@@ -2,13 +2,13 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useLocale } from '../i18n/LocaleProvider.jsx'
 
-const badgeImgs = import.meta.glob('../assets/badges/*.png', {
+const badgeImgs = import.meta.glob('../assets/badges/*.webp', {
   eager: true,
   import: 'default',
 })
 
 const lookup = (slug) => {
-  const path = Object.keys(badgeImgs).find((k) => k.endsWith(`/${slug}.png`))
+  const path = Object.keys(badgeImgs).find((k) => k.endsWith(`/${slug}.webp`))
   return path ? badgeImgs[path] : null
 }
 

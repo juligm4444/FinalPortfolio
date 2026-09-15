@@ -6,6 +6,8 @@ import SplineSlot from './SplineSlot.jsx'
  */
 export default function MediaSlot({
   src,
+  srcSet,
+  sizes,
   spline,
   alt = '',
   caption,
@@ -29,6 +31,8 @@ export default function MediaSlot({
         {src ? (
           <img
             src={src}
+            srcSet={srcSet}
+            sizes={sizes}
             alt={alt}
             className="h-full w-full"
             style={{ objectFit: 'cover', display: 'block' }}

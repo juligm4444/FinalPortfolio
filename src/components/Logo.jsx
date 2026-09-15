@@ -1,6 +1,6 @@
 import { useTheme } from '../theme/ThemeProvider.jsx'
-import lightLogo from '../assets/identity/LightIcon.png'
-import darkLogo from '../assets/identity/DarkIcon.png'
+import lightLogo from '../assets/identity/LightIcon.webp'
+import darkLogo from '../assets/identity/DarkIcon.webp'
 
 /**
  * Brand mark — swaps automatically with the active theme.
