@@ -95,7 +95,7 @@ export default function GlassPanel({
 
       <Link
         to={work.href}
-        className="relative flex h-full flex-col overflow-hidden px-4 py-3 lg:px-7 lg:py-6"
+        className="relative flex h-full flex-col overflow-hidden px-4 py-3.5 lg:px-8 lg:py-7"
       >
         {/* The banner heading only fits once the panel is a tall column; on a
             short wide band the category rides in the caption instead. */}
@@ -104,7 +104,7 @@ export default function GlassPanel({
           style={{
             color: 'var(--glass-ink)',
             fontWeight: 700,
-            fontSize: 'clamp(24px, 2.1vw, 44px)',
+            fontSize: 'clamp(30px, 2.6vw, 54px)',
             letterSpacing: '0.01em',
             lineHeight: 1.05,
           }}
@@ -114,7 +114,7 @@ export default function GlassPanel({
 
         <div
           key={work.id}
-          className="flex min-h-0 flex-1 flex-row items-center gap-4 lg:flex-col lg:items-stretch lg:justify-center lg:gap-5"
+          className="flex min-h-0 flex-1 flex-row items-center gap-4 lg:flex-col lg:items-stretch lg:gap-0"
           style={{
             animation: contentIn
               ? `panel-in-${direction > 0 ? 'down' : 'up'} 620ms cubic-bezier(0.22,1,0.36,1) both`
@@ -162,12 +162,16 @@ function WorkMedia({ work, t }) {
     // One square frame, identical for every work. A frame that only fixed its
     // height let a portrait photo render as a narrow strip beside a wide logo,
     // which is exactly the inconsistency it was meant to prevent.
-    <div className="flex shrink-0 items-center justify-center lg:w-full">
+    // On a column the artwork owns all the height the caption leaves over and
+    // centres in it. The caption below has a fixed floor, so that space is the
+    // same in all three columns and the frames line up side by side.
+    <div className="flex shrink-0 items-center justify-center lg:min-h-0 lg:w-full lg:flex-1">
       <div
-        className="flex items-center justify-center overflow-hidden"
+        className="flex aspect-square items-center justify-center overflow-hidden"
         style={{
           width: 'var(--media-size)',
-          height: 'var(--media-size)',
+          maxWidth: '100%',
+          maxHeight: '100%',
         }}
       >
         {work.image ? (
@@ -204,27 +208,30 @@ function WorkMedia({ work, t }) {
 
 function WorkCaption({ work, category, t }) {
   return (
-    <div className="flex min-w-0 flex-1 flex-col justify-center lg:flex-none lg:justify-start">
+    // The floor keeps every column's caption the same height, so titles,
+    // descriptions and tags sit on shared lines across the three panels.
+    <div className="showcase-caption flex min-w-0 flex-1 flex-col justify-center lg:flex-none lg:justify-start">
       <p
         className="font-nav uppercase"
         style={{
           color: 'var(--glass-ink-soft)',
-          fontSize: 'clamp(9px, 0.62vw, 11px)',
-          letterSpacing: '0.24em',
+          fontSize: 'clamp(10px, 0.74vw, 14px)',
+          letterSpacing: '0.2em',
           fontWeight: 700,
         }}
       >
-        {/* The category rides along only where the banner heading is hidden,
-            so it is never stated twice. */}
-        <span className="lg:hidden">{t(`projects.category.${category}`)} · </span>
-        {t(work.kickerI18n)}
+        {/* A band has no banner heading, so the category takes the kicker's
+            place there; the kicker's detail is already in the tags, and both
+            together wrapped to three lines on a phone. */}
+        <span className="lg:hidden">{t(`projects.category.${category}`)}</span>
+        <span className="hidden lg:inline">{t(work.kickerI18n)}</span>
       </p>
 
       <h3
-        className="mt-1 font-display lg:mt-2"
+        className="mt-1 font-display lg:mt-2.5"
         style={{
           color: 'var(--glass-ink)',
-          fontSize: 'clamp(19px, 1.7vw, 34px)',
+          fontSize: 'clamp(22px, 2.1vw, 42px)',
           lineHeight: 1.08,
           fontWeight: 700,
         }}
@@ -235,28 +242,29 @@ function WorkCaption({ work, category, t }) {
       {/* Clamped: the panel cannot grow, so a long description has to give way
           rather than push the tags out of the frame. */}
       <p
-        className="[-webkit-box-orient:vertical] [display:-webkit-box] [-webkit-line-clamp:2] mt-1.5 overflow-hidden font-nav lg:mt-2 lg:[-webkit-line-clamp:3]"
+        className="[-webkit-box-orient:vertical] [display:-webkit-box] [-webkit-line-clamp:2] mt-1.5 max-w-[36ch] overflow-hidden font-nav lg:mt-3 lg:[-webkit-line-clamp:3]"
         style={{
           color: 'var(--glass-ink)',
-          fontSize: 'clamp(11px, 0.8vw, 15px)',
-          lineHeight: 1.4,
+          fontSize: 'clamp(13px, 1vw, 19px)',
+          lineHeight: 1.45,
           fontWeight: 700,
         }}
       >
         {t(work.descI18n)}
       </p>
 
-      <ul className="mt-2 flex flex-wrap gap-1.5 lg:mt-3">
+      {/* One row on a band: a tag that would wrap is dropped whole, never cut. */}
+      <ul className="mt-2 flex max-h-[30px] flex-wrap gap-1.5 overflow-hidden lg:mt-auto lg:max-h-none lg:gap-2 lg:pt-4">
         {work.tagKeys.map((key, i) => (
           <li key={key} className={i > 1 ? 'hidden lg:block' : undefined}>
             <span
-              className="block font-nav"
+              className="block whitespace-nowrap font-nav"
               style={{
                 color: 'var(--glass-ink)',
-                fontSize: 'clamp(10px, 0.68vw, 13px)',
+                fontSize: 'clamp(11px, 0.84vw, 16px)',
                 fontWeight: 700,
                 border: '2px solid var(--glass-ink)',
-                padding: '3px 8px',
+                padding: '0.3em 0.75em',
               }}
             >
               {t(`tags.${key}`)}
@@ -271,7 +279,7 @@ function WorkCaption({ work, category, t }) {
 function Progress({ count, cursor }) {
   if (count < 2) return null
   return (
-    <div className="mt-3 flex items-center justify-center gap-2">
+    <div className="mt-5 flex items-center justify-center gap-2">
       {Array.from({ length: count }, (_, i) => (
         <span
           key={i}

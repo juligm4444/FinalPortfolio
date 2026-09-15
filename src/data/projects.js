@@ -1,6 +1,6 @@
 import candelariaLogo from '../assets/images/candelaria/condor-main.webp'
 import candelariaSite from '../assets/images/candelaria/website-hero.webp'
-import sensewaveGlasses from '../assets/images/sensewave/a3-glasses.webp'
+import sensewaveMark from '../assets/images/sensewave/sensewave_mark.webp'
 import humbralRender from '../assets/images/humbral/config-pattern-up.webp'
 import bloomLogo from '../assets/images/bloom/bloom_logo.webp'
 // Authored here rather than supplied — see the note in the file itself.
@@ -89,8 +89,7 @@ const works = [
     descI18n: 'works.sensewaveProduct.desc',
     tagKeys: ['productDesign', 'wearable', 'threeD', 'concept'],
     href: '/projects/sensewave',
-    image: sensewaveGlasses,
-    fit: 'cover',
+    image: sensewaveMark,
   },
 
   // ── MARCA Y UX ────────────────────────────────────────────────────────

@@ -311,14 +311,22 @@ html[data-locked] body {
 }
 
 /* Every work's artwork sits in a square of exactly this size, so a portrait
-   photo and a wide logo take up the same room. Sized against the panel, not
-   the viewport, so it shrinks with the band on narrow screens. */
+   photo and a wide logo take up the same room. On a stacked band it is also
+   capped by the band itself, so a short phone never pushes it out of frame. */
 :root {
-  --media-size: clamp(64px, 11vh, 104px);
+  --media-size: min(clamp(128px, 22vh, 208px), calc(var(--showcase-h) / 3 - 28px), 42vw);
 }
 @media (min-width: 1024px) {
   :root {
-    --media-size: clamp(96px, 15vh, 150px);
+    --media-size: clamp(192px, 30vh, 300px);
+  }
+}
+
+/* A shared floor for the caption block on columns. Sized in the same units
+   as the type inside it, so it grows with the text instead of clipping it. */
+@media (min-width: 1024px) {
+  .showcase-caption {
+    min-height: clamp(190px, 12.5vw, 280px);
   }
 }
 

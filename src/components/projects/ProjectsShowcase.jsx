@@ -3,6 +3,7 @@ import { useReducedMotion } from 'framer-motion'
 import { useLocale } from '../../i18n/LocaleProvider.jsx'
 import { PANELS, PANEL_DIRECTION, worksByPanel } from '../../data/projects.js'
 import ShowcaseStage from './ShowcaseStage.jsx'
+import { TIMELINE } from './fluid.js'
 import GlassPanel from './GlassPanel.jsx'
 
 /**
@@ -17,20 +18,19 @@ import GlassPanel from './GlassPanel.jsx'
  *
  * The opening runs once per browser session. It is a good piece of theatre
  * the first time and a toll booth every time after, and the likeliest reason
- * to come back here is returning from a case study.
+ * to come back here is returning from a case study. Its geometry lives in
+ * fluid.js; this only switches the React-side phases on the same clock.
  *
- *   intro (0ms)    fluids off-canvas at opposite edges
- *   fill  (120ms)  they flow in and meet
- *   word  (1700ms) PROJECTS surfaces, coloured by whatever is under it
- *   sink  (3200ms) it submerges as the sheets rise
- *   live  (3950ms) content lands and the cycle starts
+ *   intro  crescents curl in over charcoal and flood into the wave
+ *   word   PROJECTS surfaces, coloured by whatever flows under it
+ *   sink   it submerges as the sheets rise and the wave settles
+ *   live   content lands, the cycle starts, the fluids keep moving
  */
 
 const SEQUENCE = [
-  { phase: 'fill', at: 120 },
-  { phase: 'word', at: 1700 },
-  { phase: 'sink', at: 3200 },
-  { phase: 'live', at: 3950 },
+  { phase: 'word', at: TIMELINE.word },
+  { phase: 'sink', at: TIMELINE.sink },
+  { phase: 'live', at: TIMELINE.live },
 ]
 
 const CYCLE_MS = 5600
@@ -101,7 +101,7 @@ export default function ProjectsShowcase() {
 
   return (
     <div className="relative w-full overflow-hidden" style={{ height: 'var(--showcase-h)' }}>
-      <ShowcaseStage phase={phase} wordVisible={phase === 'word'} />
+      <ShowcaseStage intro={!skipIntro} wordVisible={phase === 'word'} />
 
       <div className="relative flex h-full w-full flex-col lg:flex-row">
         {PANELS.map((category, i) => (
