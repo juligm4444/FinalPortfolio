@@ -2,7 +2,6 @@ import { createContext, useContext, useRef, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { useLocale } from '../../i18n/LocaleProvider.jsx';
-import { useTheme } from '../../theme/ThemeProvider.jsx';
 import { caseStudies } from '../../data/projects.js';
 import MiniSkills from '../../components/MiniSkills.jsx';
 import { ArrowRightIcon, ExternalLinkIcon, GitHubIcon, InstagramIcon } from '../../components/icons/IconSet.jsx';
@@ -30,24 +29,6 @@ import condorRRHH from '../../assets/images/candelaria/condor-RRHH.webp';
    DESIGN TOKENS — dark aubergine / light off-white
    Sourced from the live site + brand manual.
    ───────────────────────────────────────── */
-const C_DARK = {
-  bg:           '#18101D',
-  surface:      '#20172A',
-  card:         '#291D36',
-  gold:         '#FFB938',
-  goldDeep:     '#F2A413',
-  violet:       '#C471EA',
-  violetSoft:   '#BC56EB',
-  lavender:     '#B793F0',
-  text:         '#ECDEF0',
-  textSoft:     'rgba(236,222,240,0.64)',
-  textMuted:    'rgba(236,222,240,0.40)',
-  border:       'rgba(236,222,240,0.09)',
-  borderAccent: 'rgba(196,113,234,0.22)',
-  glow:         'rgba(196,113,234,0.55)',
-  glowSoft:     'rgba(196,113,234,0.10)',
-  btnText:      '#18101D',
-};
 
 const C_LIGHT = {
   bg:           '#EFEEEA',
@@ -744,9 +725,8 @@ function FinalCTA() {
    palette and the primitives above, and nothing else.
    ───────────────────────────────────────── */
 function CandelariaPage({ variant, children }) {
-  const { theme } = useTheme();
   const { t } = useLocale();
-  const c = theme === 'dark' ? C_DARK : C_LIGHT;
+  const c = C_LIGHT;
 
   return (
     <CCtx.Provider value={{ c, t, variant }}>

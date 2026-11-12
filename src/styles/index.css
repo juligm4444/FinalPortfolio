@@ -56,121 +56,107 @@
   font-display: swap;
 }
 
-/* ================= THEME ================= */
-:root,
-html[data-theme='light'] {
-  /* Palette (constant brand) */
-  --black-light: #1f2624;
-  --black: #141a18;
-  --black-dark: #0b0e0d;
-  --pink-light: #ff85b6;
-  --pink: #ff3d90;
-  --pink-dark: #ff0066;
-  --gray-light: #535c61;
-  --gray: #3f4548;
-  --gray-dark: #2f3335;
-  --white-light: #edede8;
-  --white: #e1e0dc;
-  --white-dark: #d3d2cf;
-  --pink-brand: #ff0871;
+/* ================= TOKENS (REDESIGN §2, Fase 1) =================
+   Sin modo claro/oscuro. Una sola paleta: concreto, niebla, musgo, ocobo. */
+:root {
+  /* Color */
+  --mist: #DDF2EB;            /* fondo base */
+  --concrete-100: #D9D6CF;    /* losas, superficies */
+  --concrete-300: #A9A59C;    /* bordes, relieves */
+  --concrete-500: #59564F;    /* texto secundario (6.27 sobre mist, 5.04 sobre losa) */
+  --concrete-900: #1E1F1D;    /* texto principal */
+  --moss-400: #4B8A10;        /* SOLO gráfico: musgo, bordes de foco. No texto */
+  --moss-700: #2F5D1A;        /* superficie de CTA y texto verde */
+  --bloom: #FF3D90;           /* acento decorativo. No texto sobre claros */
+  --bloom-deep: #FF0066;      /* acento activo, decorativo */
+  --bloom-ink: #B8004F;       /* rosa para texto y enlaces (5.70 sobre mist) */
 
-  /* Themed */
-  --bg: var(--white-light);
-  --fg: var(--black-dark);
-  --fg-soft: rgba(11, 14, 13, 0.7);
-  --fg-muted: rgba(11, 14, 13, 0.55);
-  --surface: var(--white);
-  --surface-2: var(--white-dark);
-  --surface-strong: #c8c7c3;
+  /* Semánticos */
+  --bg: var(--mist);
+  --surface: var(--concrete-100);
+  --border: var(--concrete-300);
+  --text: var(--concrete-900);
+  --text-muted: var(--concrete-500);
+  --cta-bg: var(--moss-700);
+  --cta-text: var(--mist);
+  --focus-ring: var(--moss-400);
+  --veil: rgb(221 242 235 / 0.88); /* panel bajo todo texto que pise el fondo */
 
-  --pillar: var(--white-light);
-  --pillar-shade: rgba(0, 0, 0, 0.18);
-  /* hex separators — subtle in light mode */
-  --hex-border: color-mix(in srgb, var(--fg) 12%, transparent);
+  /* Tipografía */
+  --font-display: 'Libre Baskerville', Georgia, serif;
+  --font-body: 'Roboto Mono', ui-monospace, monospace;
+  --font-label: 'Space Grotesk', system-ui, sans-serif;
 
-  /* glass blocks behind important Roboto-Mono content */
+  --text-h1: clamp(2.5rem, 1.6rem + 3.9vw, 4.5rem);
+  --text-h2: clamp(1.75rem, 1.47rem + 1.2vw, 2.5rem);
+  --text-h3: 1.5rem;
+  --text-species: 1.375rem;
+  --text-body: 1rem;
+  --text-small: 0.8125rem;
+  --text-label: 0.875rem;
+  --text-label-sm: 0.75rem;
+
+  --leading-h1: 1.05;
+  --leading-h2: 1.15;
+  --leading-h3: 1.25;
+  --leading-body: 1.6;
+  --tracking-h1: -0.01em;
+  --tracking-label: 0.08em;
+
+  /* Espacio y forma */
+  --space-1: 4px;  --space-2: 8px;  --space-3: 12px; --space-4: 16px;
+  --space-6: 24px; --space-8: 32px; --space-12: 48px; --space-16: 64px; --space-24: 96px;
+  --radius-slab: 2px;
+  --radius-pill: 999px;
+
+  /* Relieve de losa: sombra dura, sin desenfoque */
+  --slab-shadow: 0 3px 0 rgb(89 86 79 / 0.45), inset 0 1px 0 rgb(255 255 255 / 0.5);
+  --slab-shadow-pressed: 0 1px 0 rgb(89 86 79 / 0.45), inset 0 1px 0 rgb(255 255 255 / 0.3);
+  --cta-shadow: 0 4px 0 rgb(31 61 18 / 0.5);
+
+  /* Layout */
+  --nav-offset: 240px;
+  --content-max: 1104px;
+
+  /* ── Alias de la paleta anterior ──
+     Las páginas y secciones existentes siguen leyendo estos nombres hasta que
+     se reescriban en Fases 5–8. Apuntan a los tokens nuevos; no añadir usos. */
+  --fg: var(--text);
+  --fg-soft: rgb(30 31 29 / 0.78);
+  --fg-muted: var(--text-muted);
+  --surface-2: var(--concrete-300);
+  --surface-strong: var(--concrete-300);
+  --pink-light: var(--bloom);
+  --pink: var(--bloom);
+  --pink-dark: var(--bloom-deep);
+  --pink-brand: var(--bloom-deep);
+  --white-light: var(--mist);
+  --white: var(--concrete-100);
+  --white-dark: var(--concrete-300);
+  --black-light: var(--concrete-500);
+  --black: var(--concrete-900);
+  --black-dark: var(--concrete-900);
+  --gray-light: var(--concrete-500);
+  --gray: var(--concrete-500);
+  --gray-dark: var(--concrete-900);
+  --pillar: var(--concrete-100);
+  --pillar-shade: rgb(0 0 0 / 0.18);
+  --hex-border: color-mix(in srgb, var(--text) 12%, transparent);
   --glass-bg: color-mix(in srgb, var(--surface) 55%, transparent);
-  --glass-border: color-mix(in srgb, var(--fg) 12%, transparent);
-
-  --nav-bg-from: rgba(32, 44, 37, 0.7);
-  --nav-bg-to: rgba(73, 85, 90, 0.7);
-  --nav-fg: #edede8;
-  --nav-fg-hover: var(--pink-light);
-  --nav-active-bg: #171c19;
-  --nav-active-shadow: inset 10px 5px 10px #0c0d0d;
-
-  --filter-bar-bg: rgba(211, 210, 207, 0.6);
-  --filter-active-from: #4b5258;
-  --filter-active-to: #1f2624;
-  --filter-active-fg: #e5e7eb;
-  --filter-fg: #0a0a0a;
-
-  /* Per-case-study accents. These carry small label text, so no single value
-     clears 4.5:1 on both grounds — each is tuned per theme.
-     Light: umbral 4.53:1, bloom 5.07:1. */
+  --glass-border: color-mix(in srgb, var(--text) 12%, transparent);
+  --filter-bar-bg: rgb(217 214 207 / 0.6);
+  --filter-active-from: var(--concrete-500);
+  --filter-active-to: var(--concrete-900);
+  --filter-active-fg: var(--mist);
+  --filter-fg: var(--text);
   --accent-umbral: #8c6244;
   --accent-bloom: #b03560;
-
-  /* ── Projects showcase ──
-     The sheets sit over a field that swings between brand pink and paper
-     cream, so panel ink cannot follow the page foreground: it has to hold
-     against both. Near-black does, and it is what the comp specifies. */
-  --glass-panel: rgba(237, 237, 232, 0.42);
-  --glass-panel-hover: rgba(237, 237, 232, 0.62);
-  --glass-panel-edge: rgba(237, 237, 232, 0.55);
-  --glass-ink: #0c0d0d;
-  --glass-ink-soft: rgba(12, 13, 13, 0.62);
-  --glass-ink-faint: rgba(12, 13, 13, 0.28);
-}
-
-html[data-theme='dark'] {
-  --bg: var(--black-dark);
-  --fg: var(--white-light);
-  --fg-soft: rgba(237, 237, 232, 0.78);
-  --fg-muted: rgba(237, 237, 232, 0.55);
-  --surface: var(--black);
-  --surface-2: var(--black-light);
-  --surface-strong: #2a302d;
-
-  --pillar: #1f2624;
-  --pillar-shade: rgba(0, 0, 0, 0.55);
-  /* hex separators — solid Black Dark in dark mode (the hex fill is
-     black-light, so the darker rim incises a clear seam between cells). */
-  --hex-border: var(--black-dark);
-
-  /* glass blocks — slightly cooler tint in dark mode */
-  --glass-bg: color-mix(in srgb, var(--surface) 50%, transparent);
-  --glass-border: color-mix(in srgb, var(--fg) 18%, transparent);
-
-  --nav-bg-from: rgba(11, 14, 13, 0.92);
-  --nav-bg-to: rgba(31, 38, 36, 0.92);
-  --nav-fg: #edede8;
-  --nav-fg-hover: var(--pink-light);
-  --nav-active-bg: #edede8;
-  /* Q4 vector (both negative in math coords) — light from bottom-right,
-     shadow falls toward top-left inside the pill, matching the icon’s identity. */
-  --nav-active-shadow: inset -10px -5px 12px rgba(12, 13, 13, 0.18);
-
-  --filter-bar-bg: rgba(31, 38, 36, 0.6);
-  --filter-active-from: #edede8;
-  --filter-active-to: #c8c7c3;
-  --filter-active-fg: #0c0d0d;
-  --filter-fg: #edede8;
-
-  /* Lifted so the same accents clear 4.5:1 against the dark ground —
-     umbral 7.58:1, bloom 5.96:1. */
-  --accent-umbral: #c49a70;
-  --accent-bloom: #e0668c;
-
-  /* Smoked rather than frosted: over the dark theme's slate crescent a pale
-     sheet would glow, so the glass darkens the field instead of lightening
-     it, and the ink flips to paper. */
-  --glass-panel: rgba(12, 13, 13, 0.46);
-  --glass-panel-hover: rgba(12, 13, 13, 0.66);
-  --glass-panel-edge: rgba(237, 237, 232, 0.16);
-  --glass-ink: #edede8;
-  --glass-ink-soft: rgba(237, 237, 232, 0.66);
-  --glass-ink-faint: rgba(237, 237, 232, 0.3);
+  --glass-panel: rgb(221 242 235 / 0.42);
+  --glass-panel-hover: rgb(221 242 235 / 0.62);
+  --glass-panel-edge: rgb(221 242 235 / 0.55);
+  --glass-ink: var(--concrete-900);
+  --glass-ink-soft: rgb(30 31 29 / 0.62);
+  --glass-ink-faint: rgb(30 31 29 / 0.28);
 }
 
 @layer base {
@@ -184,14 +170,11 @@ html[data-theme='dark'] {
   }
   body {
     background: var(--bg);
-    color: var(--fg);
-    font-family: 'Roboto Mono', monospace;
+    color: var(--text);
+    font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
-    transition:
-      background-color 360ms ease,
-      color 360ms ease;
   }
   h1,
   h2,
@@ -199,18 +182,22 @@ html[data-theme='dark'] {
   h4,
   h5,
   h6 {
-    font-family: 'Libre Baskerville', serif;
+    font-family: var(--font-display);
   }
   ::selection {
-    background: var(--pink-brand);
-    color: #edede8;
+    background: var(--bloom);
+    color: var(--concrete-900);
+  }
+  :focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 3px;
   }
 }
 
 @layer components {
   .nav-link {
-    color: var(--nav-fg);
-    font-family: 'Space Grotesk', sans-serif;
+    color: var(--text);
+    font-family: var(--font-label);
     font-weight: 400;
     font-size: 20px;
     line-height: 1.2;
@@ -224,23 +211,17 @@ html[data-theme='dark'] {
       border-color 200ms ease;
   }
   .nav-link:hover {
-    color: var(--nav-fg-hover);
-    border-color: color-mix(in srgb, var(--nav-fg) 20%, transparent);
+    color: var(--moss-700);
+    border-color: var(--border);
   }
   .nav-link.active {
-    background: var(--nav-active-bg);
-    color: var(--nav-fg);
-    box-shadow: var(--nav-active-shadow);
-    border-color: var(--nav-active-bg);
-  }
-  html[data-theme='dark'] .nav-link.active {
-    color: #0c0d0d;
+    background: var(--surface);
+    color: var(--text);
+    box-shadow: var(--slab-shadow);
+    border-color: var(--border);
   }
   .nav-link.active:hover {
-    color: var(--nav-fg);
-  }
-  html[data-theme='dark'] .nav-link.active:hover {
-    color: #0c0d0d;
+    color: var(--text);
   }
 }
 
@@ -321,5 +302,5 @@ html[data-locked] body {
     box-shadow 220ms ease;
 }
 .filter-tab[data-active='false']:hover {
-  color: var(--pink-light) !important;
+  color: var(--moss-700) !important;
 }

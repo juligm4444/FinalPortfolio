@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
 import { useLocale } from '../../i18n/LocaleProvider.jsx'
-import { useTheme } from '../../theme/ThemeProvider.jsx'
 import { FIELD, frame, toPath } from './fluid.js'
 
 /**
@@ -33,22 +32,11 @@ const THEMES = {
     inkPale: '#FF3D90',
     inkPink: '#EDEDE8',
   },
-  dark: {
-    // Frame 74: slate ground, and the pale crescent becomes charcoal.
-    ground: ['#49555A', '#383838'],
-    pale: ['#2A2F2D', '#141816'],
-    pink: ['#FF3D90', '#FF0871'],
-    // Same rule, only the colours change.
-    inkGround: '#EDEDE8',
-    inkPale: '#FF3D90',
-    inkPink: '#1A1E1C',
-  },
 }
 
 export default function ShowcaseStage({ intro, wordVisible }) {
   const { t } = useLocale()
-  const { theme } = useTheme()
-  const c = THEMES[theme === 'dark' ? 'dark' : 'light']
+  const c = THEMES.light
 
   // Each outline is computed once per frame and written to every node that
   // needs it. A <use> inside <clipPath> does not reliably resolve a <defs>

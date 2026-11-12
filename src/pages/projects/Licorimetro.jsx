@@ -73,24 +73,24 @@ const FEATURE_ICONS = [
 /* ======================== User-flow step icons ======================== */
 const FLOW_ICONS = [
   /* Scan */
-  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+  <svg key="flow-1" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
     <rect x="2" y="5" width="16" height="11" rx="1.5" stroke="currentColor" strokeWidth="1.4" />
     <circle cx="10" cy="10.5" r="2.5" stroke="currentColor" strokeWidth="1.4" />
     <path d="M7 5l1-2h4l1 2" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
   </svg>,
   /* Learn */
-  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+  <svg key="flow-2" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
     <rect x="3" y="4" width="14" height="13" rx="1" stroke="currentColor" strokeWidth="1.4" />
     <line x1="3" y1="8" x2="17" y2="8" stroke="currentColor" strokeWidth="1.4" />
     <line x1="6" y1="12" x2="14" y2="12" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
   </svg>,
   /* Share */
-  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+  <svg key="flow-3" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
     <path d="M10 2v10M6 6l4-4 4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
     <path d="M4 14v4h12v-4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
   </svg>,
   /* Earn */
-  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+  <svg key="flow-4" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
     <path d="M6 3h8v5a4 4 0 01-8 0V3z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
     <path d="M3 5H6M14 5h3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
     <path d="M2 7c0 2 1.5 3.5 4 4M18 7c0 2-1.5 3.5-4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />

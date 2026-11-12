@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import Logo from './Logo.jsx'
 import { useLocale } from '../i18n/LocaleProvider.jsx'
-import { useTheme } from '../theme/ThemeProvider.jsx'
 import cvEn from '../assets/files/CV-English.pdf'
 import cvEs from '../assets/files/CV-Español.pdf'
 
@@ -17,7 +16,6 @@ const NAV_HEIGHT = 75
 
 export default function Navbar() {
   const { t, locale, toggle: toggleLocale } = useLocale()
-  const { theme, toggle: toggleTheme } = useTheme()
   const [open, setOpen] = useState(false)
 
   const cvHref = locale === 'es' ? cvEs : cvEn
@@ -75,15 +73,6 @@ export default function Navbar() {
           >
             {locale.toUpperCase()}
           </button>
-          <button
-            onClick={toggleTheme}
-            aria-label={t(theme === 'dark' ? 'nav.themeLight' : 'nav.themeDark')}
-            title={t(theme === 'dark' ? 'nav.themeLight' : 'nav.themeDark')}
-            className="nav-link inline-flex items-center justify-center"
-            style={{ width: 46, height: 46, border: 'none' }}
-          >
-            <ThemeIcon dark={theme === 'dark'} />
-          </button>
           <a
             href={cvHref}
             download={cvFile}
@@ -132,12 +121,6 @@ export default function Navbar() {
             <button onClick={toggleLocale} className="nav-link h-11 w-full">
               {locale.toUpperCase()}
             </button>
-            <button
-              onClick={toggleTheme}
-              className="nav-link flex h-11 w-full items-center justify-center"
-            >
-              <ThemeIcon dark={theme === 'dark'} />
-            </button>
             <a
               href={cvHref}
               download={cvFile}
@@ -149,37 +132,6 @@ export default function Navbar() {
         </ul>
       </div>
     </header>
-  )
-}
-
-function ThemeIcon({ dark }) {
-  return dark ? (
-    <svg
-      width="22"
-      height="22"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <circle cx="12" cy="12" r="4" />
-      <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
-    </svg>
-  ) : (
-    <svg
-      width="22"
-      height="22"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-    </svg>
   )
 }
 

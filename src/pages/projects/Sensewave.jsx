@@ -1,7 +1,6 @@
 import { createContext, useContext, useRef, useMemo } from 'react';
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { useLocale } from '../../i18n/LocaleProvider.jsx';
-import { useTheme } from '../../theme/ThemeProvider.jsx';
 import a1HeroVideo from '../../assets/images/sensewave/a1-hero.mp4';
 import a2Problem from '../../assets/images/sensewave/a2-problem.webp';
 import a3Glasses from '../../assets/images/sensewave/a3-glasses.webp';
@@ -17,19 +16,6 @@ import a9AccessCard from '../../assets/images/sensewave/a9-access-card.webp';
 /* ─────────────────────────────────────────
    DESIGN TOKENS — two sets for light / dark
    ───────────────────────────────────────── */
-const SW_DARK = {
-  bg:           '#02020A',
-  surface:      '#070710',
-  card:         '#0D0D1A',
-  accent:       '#8B9DE8',
-  violet:       '#B8A6F0',
-  text:         '#EEEEF5',
-  textSoft:     'rgba(238,238,245,0.62)',
-  textMuted:    'rgba(238,238,245,0.34)',
-  border:       'rgba(238,238,245,0.07)',
-  borderAccent: 'rgba(139,157,232,0.20)',
-  glow:         'rgba(139,157,232,0.06)',
-};
 
 const SW_LIGHT = {
   bg:           '#F2F2FA',
@@ -645,9 +631,8 @@ function ReflectionSection() {
    MAIN EXPORT
    ───────────────────────────────────────── */
 export default function Sensewave() {
-  const { theme } = useTheme();
   const { t } = useLocale();
-  const sw = theme === 'dark' ? SW_DARK : SW_LIGHT;
+  const sw = SW_LIGHT;
 
   return (
     <SWCtx.Provider value={{ sw, t }}>
