@@ -8,6 +8,8 @@ const translations = {
       webglActive: 'WebGL contexts live',
       webglWaiting: 'Waiting for a slot',
       webglCaps: 'Device verdict',
+      fps: 'Frames per second',
+      botanicalVariants: 'Botanical Text — language variants',
     },
     meta: {
       siteName: 'Julián Galindo — Designer & Developer',
@@ -984,6 +986,8 @@ const translations = {
       webglActive: 'Contextos WebGL vivos',
       webglWaiting: 'En espera de cupo',
       webglCaps: 'Veredicto del dispositivo',
+      fps: 'Cuadros por segundo',
+      botanicalVariants: 'Botanical Text — variantes de idioma',
     },
     meta: {
       siteName: 'Julián Galindo — Diseñador y Desarrollador',
