@@ -93,18 +93,18 @@ El pasto usa el mismo motor de pelo que el dock (PlushTile). Un solo canvas comp
 ## 8. Datos corregidos (reemplazan lo que hoy dice el sitio)
 
 **Educación**
-- Ingeniería de Sistemas y Computación, Universidad de los Andes: 2021-1 a 2025-1 (9 semestres).
+- Ingeniería de Sistemas y Computación, Universidad de los Andes: 2021-1 a 2025-1 (9 semestres). Incluye la Opción en Computación Visual: terminada.
 - Diseño, Universidad de los Andes: desde 2025-2. Grado previsto: 2028.
-- Opción en Computación Visual: terminada.
-- Bachillerato: Cambridge International School, 2015–2020.
+- Bachillerato: Cambridge International School, 2015–2020. Programa IB · Mejor egresado, generación 2020.
+- Sin "Tesis de pregrado" en Diseño.
 
 Encuadre: el cambio se cuenta, no se esconde. La ingeniería es la base sobre la que hoy diseña y construye.
 
 **Experiencia**
-- Outlier — Latam CoderAI Trainer. Jun 2025 – presente.
-- Bloom / BeBloomers — freelance: investigación UX, arquitectura de información, wireframing. 2025.
-- Universidad de los Andes — monitor. *(fechas y curso: por completar)*
-- Candelaria — semillero de investigación: marca y sitio web. 2025–2026. Rotulado como semillero.
+- Outlier — Latam CoderAI Trainer. Jun 2025 – Ene 2026.
+- Bloom / BeBloomers — freelance: investigación UX, arquitectura de información, wireframing. Jun 2026.
+- Universidad de los Andes — monitor, Pensamiento Algorítmico. Ago 2026 – presente.
+- Candelaria — semillero de investigación: marca y sitio web. Oct 2025 – presente. Rotulado como semillero.
 
 Licorímetro sale de experiencia: es proyecto académico.
 
@@ -116,7 +116,6 @@ Licorímetro sale de experiencia: es proyecto académico.
 
 - Sacar `src/assets/fonts/HelveticaNow/` del repo público (fuente comercial de Monotype) y sustituirla en Candelaria.
 - Borrar copy muerto: `home.featuredItems`, `about.certUpcoming*`, `about.focus*` si queda sin uso.
-- Confirmar los términos de OriginKit antes de subir su código a un repo público. Si no lo permiten: repo privado o carpeta fuera de git.
 
 ## 10. Componentes externos
 

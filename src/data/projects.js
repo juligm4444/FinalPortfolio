@@ -73,6 +73,7 @@ const works = [
   // ── PRODUCTO ──────────────────────────────────────────────────────────
   {
     id: 'umbral',
+    year: 2026,
     panel: 'producto',
     titleI18n: 'works.umbral.title',
     kickerI18n: 'works.umbral.kicker',

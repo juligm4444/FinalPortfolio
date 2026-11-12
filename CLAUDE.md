@@ -84,7 +84,7 @@ npm run lint     # ESLint
 | `sensewave` | Academic (2025) | Speculative neurotechnology brand — design-only case study |
 | `candelaria` | In development (Oct 2025–present) | Brand + full-stack site for the university solar vehicle research hub (semillero) |
 | `bloom` | Freelance (Jun 2026) | UX research, information architecture and wireframing for Bloom / BeBloomers |
-| `umbral` | Year not set in data | Object project (El Umbral) — date to be confirmed |
+| `umbral` | Academic (2026) | Object project (El Umbral) — modular coffee table |
 
 ## Owner
 
