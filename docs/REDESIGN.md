@@ -69,7 +69,7 @@ Rutas: `/` · `/about` · `/projects` · `/projects/:slug`. La página `/contact
 - Cuatro grupos: **Web**, **Digital**, **Objeto**, **Marca**.
 - Web: Flipping Website Screenshot Deck (21st.dev). Tarjetas: Candelaria Website, proyecto freelance en curso, este portafolio, adidas × Milo J.
 - Digital: Licorímetro, Bloom.
-- Objeto: El Humbral, SenseWave. Vista previa en pedestal de concreto con vista explotada al hover.
+- Objeto: El Umbral, SenseWave. Vista previa en pedestal de concreto con vista explotada al hover.
 - Marca: Candelaria.
 - Bloque "Herramientas": Citron Keyscape con teclas de concreto, una tecnología por tecla, logo de Julián en la tecla central. Única instancia en todo el sitio.
 

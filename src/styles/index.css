@@ -107,8 +107,8 @@ html[data-theme='light'] {
 
   /* Per-case-study accents. These carry small label text, so no single value
      clears 4.5:1 on both grounds — each is tuned per theme.
-     Light: humbral 4.53:1, bloom 5.07:1. */
-  --accent-humbral: #8c6244;
+     Light: umbral 4.53:1, bloom 5.07:1. */
+  --accent-umbral: #8c6244;
   --accent-bloom: #b03560;
 
   /* ── Projects showcase ──
@@ -158,8 +158,8 @@ html[data-theme='dark'] {
   --filter-fg: #edede8;
 
   /* Lifted so the same accents clear 4.5:1 against the dark ground —
-     humbral 7.58:1, bloom 5.96:1. */
-  --accent-humbral: #c49a70;
+     umbral 7.58:1, bloom 5.96:1. */
+  --accent-umbral: #c49a70;
   --accent-bloom: #e0668c;
 
   /* Smoked rather than frosted: over the dark theme's slate crescent a pale

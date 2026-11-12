@@ -12,33 +12,33 @@ import {
   SubHeading,
 } from '../../components/CaseStudy.jsx'
 
-import configPatternUp from '../../assets/images/humbral/config-pattern-up.webp'
-import configGlassUp from '../../assets/images/humbral/config-glass-up.webp'
-import patternOrtho from '../../assets/images/humbral/pattern-ortho.webp'
-import patternRadial from '../../assets/images/humbral/pattern-radial.webp'
-import patternFinal from '../../assets/images/humbral/pattern-final.webp'
-import exploded from '../../assets/images/humbral/exploded.webp'
-import cornerStops from '../../assets/images/humbral/corner-stops.webp'
-import cornerDetail from '../../assets/images/humbral/corner-detail.webp'
-import underside from '../../assets/images/humbral/underside.webp'
-import viewTop from '../../assets/images/humbral/view-top.webp'
-import viewBottom from '../../assets/images/humbral/view-bottom.webp'
-import viewSide from '../../assets/images/humbral/view-side.webp'
-import viewIso from '../../assets/images/humbral/view-iso.webp'
-import usePatternUp from '../../assets/images/humbral/use-pattern-up.webp'
-import useGlassUp from '../../assets/images/humbral/use-glass-up.webp'
-import protoStacked from '../../assets/images/humbral/proto-stacked.webp'
-import protoBothModules from '../../assets/images/humbral/proto-both-modules.webp'
-import protoWindowFrame from '../../assets/images/humbral/proto-window-frame.webp'
-import protoThroughGlass from '../../assets/images/humbral/proto-through-glass.webp'
+import configPatternUp from '../../assets/images/umbral/config-pattern-up.webp'
+import configGlassUp from '../../assets/images/umbral/config-glass-up.webp'
+import patternOrtho from '../../assets/images/umbral/pattern-ortho.webp'
+import patternRadial from '../../assets/images/umbral/pattern-radial.webp'
+import patternFinal from '../../assets/images/umbral/pattern-final.webp'
+import exploded from '../../assets/images/umbral/exploded.webp'
+import cornerStops from '../../assets/images/umbral/corner-stops.webp'
+import cornerDetail from '../../assets/images/umbral/corner-detail.webp'
+import underside from '../../assets/images/umbral/underside.webp'
+import viewTop from '../../assets/images/umbral/view-top.webp'
+import viewBottom from '../../assets/images/umbral/view-bottom.webp'
+import viewSide from '../../assets/images/umbral/view-side.webp'
+import viewIso from '../../assets/images/umbral/view-iso.webp'
+import usePatternUp from '../../assets/images/umbral/use-pattern-up.webp'
+import useGlassUp from '../../assets/images/umbral/use-glass-up.webp'
+import protoStacked from '../../assets/images/umbral/proto-stacked.webp'
+import protoBothModules from '../../assets/images/umbral/proto-both-modules.webp'
+import protoWindowFrame from '../../assets/images/umbral/proto-window-frame.webp'
+import protoThroughGlass from '../../assets/images/umbral/proto-through-glass.webp'
 
 // Theme-aware: the wood tone that carries label text needs a different
 // lightness on each ground to stay legible. Values live in index.css.
-const ACCENT = 'var(--accent-humbral)'
+const ACCENT = 'var(--accent-umbral)'
 
-export default function Humbral() {
+export default function Umbral() {
   const { t } = useLocale()
-  const h = (k) => t(`humbral.${k}`)
+  const h = (k) => t(`umbral.${k}`)
 
   return (
     <>

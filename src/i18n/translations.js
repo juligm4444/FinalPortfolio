@@ -204,9 +204,9 @@ const translations = {
         title: 'Bloom',
         desc: 'Wireframes and a rebuilt content taxonomy for a women’s health platform: 75 tags down to 28.',
       },
-      humbral: {
+      umbral: {
         kicker: 'Furniture · Modular',
-        title: 'El Humbral',
+        title: 'El Umbral',
         desc: 'Coffee table of two interchangeable modules, drawn from pre-Columbian engraving and geometry.',
       },
       sensewaveProduct: {
@@ -705,9 +705,9 @@ const translations = {
       reflP2: 'This project reshaped how I think about emotional design: that the interface should serve the moment of connection, not interrupt it.',
       reflTags: ['Emotional Design', 'Speculative Futures', 'Branding Systems', 'Experiential Interfaces', 'Human-Centered Technology'],
     },
-    humbral: {
+    umbral: {
       tag: 'Academic Project · Furniture',
-      title: 'El Humbral',
+      title: 'El Umbral',
       subtitle:
         'A modular coffee table built from two interchangeable modules, where the user decides which face is the top.',
       faceProduct: 'Two identical structures, two different surfaces. Swap which one sits on top and the table changes character — no tools, no hardware.',
@@ -723,7 +723,7 @@ const translations = {
       status: '1:5 prototype',
       course: 'Design memoir · 2026-408',
 
-      heroKicker: 'El Humbral · Modular coffee table · 2026',
+      heroKicker: 'El Umbral · Modular coffee table · 2026',
       heroH1: 'There is no',
       heroH2: 'correct side.',
       heroSub: 'A coffee table that starts from a simple idea: the piece changes depending on which face you choose to show.',
@@ -738,7 +738,7 @@ const translations = {
       s7: 'Physical Prototype',
 
       conceptQuote: 'There is no correct configuration. The table changes depending on which face you want to bring forward.',
-      conceptP1: 'El Humbral is a modular coffee table made of two modules that can swap places. Both share the same structure, but each presents a different surface: one carries a pattern engraved into the wood, the other a circular opening filled with glass.',
+      conceptP1: 'El Umbral is a modular coffee table made of two modules that can swap places. Both share the same structure, but each presents a different surface: one carries a pattern engraved into the wood, the other a circular opening filled with glass.',
       conceptP2: 'The intent was to work with reversibility. Rather than fixing one correct way to use the table, the two modules can be exchanged to produce two configurations — which element ends up on top is the user\'s decision.',
       conceptP3: 'The project was developed as a 1:5 scale model in MDF, laser cut and engraved, from a 3D model where dimensions, joints and contact points were verified before fabrication.',
 
@@ -757,7 +757,7 @@ const translations = {
 
       patternTitle: 'Reference to Antonio Grass',
       patternP1: 'The pattern on the wooden face comes from exploring geometries associated with pre-Columbian graphics and with Antonio Grass\'s work. He studied and reinterpreted forms present in pre-Columbian iconography, carrying them into contemporary geometric compositions.',
-      patternP2: 'No specific piece was copied for El Humbral. The intent was to study resources — lines, modules, repetitions, steps and geometries — in order to build an original pattern.',
+      patternP2: 'No specific piece was copied for El Umbral. The intent was to study resources — lines, modules, repetitions, steps and geometries — in order to build an original pattern.',
       patternP3: 'That study produced three engravings. The first two were tested directly on MDF: one orthogonal, one radial. The third, refined, is the one that stayed on the final piece.',
       patternP4: 'The radial version had a more direct relationship to some pre-Columbian forms, but was discarded because it did not speak to the orthogonal structure of the table.',
 
@@ -1161,9 +1161,9 @@ const translations = {
         title: 'Bloom',
         desc: 'Wireframes y taxonomía de contenido rehecha para una plataforma de salud femenina: de 75 tags a 28.',
       },
-      humbral: {
+      umbral: {
         kicker: 'Mobiliario · Modular',
-        title: 'El Humbral',
+        title: 'El Umbral',
         desc: 'Coffee Table compuesta de dos módulos inspirada en grabados y elementos precolombinos.',
       },
       sensewaveProduct: {
@@ -1662,9 +1662,9 @@ const translations = {
       reflP2: 'Este proyecto cambió la forma en que pienso sobre el diseño emocional: que la interfaz debe servir al momento de conexión, no interrumpirlo.',
       reflTags: ['Diseño Emocional', 'Futuros Especulativos', 'Sistemas de Marca', 'Interfaces Experienciales', 'Tecnología Centrada en el Ser Humano'],
     },
-    humbral: {
+    umbral: {
       tag: 'Proyecto Académico · Mobiliario',
-      title: 'El Humbral',
+      title: 'El Umbral',
       subtitle:
         'Una mesa de centro modular compuesta por dos módulos intercambiables, donde el usuario decide cuál cara queda arriba.',
       faceProduct: 'Dos estructuras idénticas, dos superficies distintas. Cambiar cuál queda arriba transforma el carácter de la mesa — sin herramientas ni herrajes.',
@@ -1680,7 +1680,7 @@ const translations = {
       status: 'Prototipo 1:5',
       course: 'Memoria de diseño · 2026-408',
 
-      heroKicker: 'El Humbral · Mesa de centro modular · 2026',
+      heroKicker: 'El Umbral · Mesa de centro modular · 2026',
       heroH1: 'No existe una',
       heroH2: 'cara correcta.',
       heroSub: 'Una mesa de centro que parte de una idea sencilla: la pieza cambia según qué cara elijas mostrar.',
@@ -1695,7 +1695,7 @@ const translations = {
       s7: 'Prototipo Físico',
 
       conceptQuote: 'No existe una configuración correcta. La mesa cambia dependiendo de qué cara se quiera destacar.',
-      conceptP1: 'El Humbral es una mesa de centro modular compuesta por dos módulos que pueden cambiar de posición. Ambos tienen la misma estructura, pero cada uno presenta una superficie diferente: uno incorpora un patrón grabado en madera y el otro una abertura circular con vidrio.',
+      conceptP1: 'El Umbral es una mesa de centro modular compuesta por dos módulos que pueden cambiar de posición. Ambos tienen la misma estructura, pero cada uno presenta una superficie diferente: uno incorpora un patrón grabado en madera y el otro una abertura circular con vidrio.',
       conceptP2: 'La intención principal fue trabajar con la idea de reversibilidad. En lugar de definir una única forma de usar la mesa, los dos módulos pueden intercambiarse y generar dos configuraciones diferentes: la decisión de qué elemento queda arriba es del usuario.',
       conceptP3: 'El proyecto se desarrolló como maqueta a escala 1:5 en MDF, cortada y grabada con láser, a partir de un modelo 3D en el que se verificaron dimensiones, encajes y puntos de contacto antes de fabricar.',
 
@@ -1714,7 +1714,7 @@ const translations = {
 
       patternTitle: 'Referencia a Antonio Grass',
       patternP1: 'El patrón de la cara de madera parte de una exploración de geometrías asociadas a la gráfica precolombina y al trabajo de Antonio Grass. Su obra estudió y reinterpretó formas presentes en la iconografía precolombina, llevándolas a composiciones geométricas contemporáneas.',
-      patternP2: 'Para El Humbral no se tomó una pieza específica como copia. La intención fue estudiar recursos como líneas, módulos, repeticiones, escalonados y geometrías para construir un patrón propio.',
+      patternP2: 'Para El Umbral no se tomó una pieza específica como copia. La intención fue estudiar recursos como líneas, módulos, repeticiones, escalonados y geometrías para construir un patrón propio.',
       patternP3: 'De ese estudio salieron tres grabados. Los dos primeros se probaron directamente sobre MDF: uno de trazado ortogonal y otro de composición radial. El tercero, ya depurado, es el que quedó en la pieza final.',
       patternP4: 'La versión radial tenía una relación más directa con algunas formas precolombinas, pero terminó descartándose porque no dialogaba con la estructura ortogonal de la mesa.',
 

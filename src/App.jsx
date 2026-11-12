@@ -10,7 +10,7 @@ import Contact from './pages/Contact.jsx'
 import Candelaria, { CandelariaWebsite } from './pages/projects/Candelaria.jsx'
 import Licorimetro from './pages/projects/Licorimetro.jsx'
 import Sensewave from './pages/projects/Sensewave.jsx'
-import Humbral from './pages/projects/Humbral.jsx'
+import Umbral from './pages/projects/Umbral.jsx'
 import Bloom from './pages/projects/Bloom.jsx'
 
 function ScrollToTop() {
@@ -54,7 +54,7 @@ export default function App() {
           <Route path="/projects/candelaria-website" element={<CandelariaWebsite />} />
           <Route path="/projects/licorimetro" element={<Licorimetro />} />
           <Route path="/projects/sensewave" element={<Sensewave />} />
-          <Route path="/projects/humbral" element={<Humbral />} />
+          <Route path="/projects/umbral" element={<Umbral />} />
           <Route path="/projects/bloom" element={<Bloom />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>

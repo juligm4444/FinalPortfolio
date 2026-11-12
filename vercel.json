@@ -1,3 +1,6 @@
 {
+  "redirects": [
+    { "source": "/projects/humbral", "destination": "/projects/umbral", "permanent": true }
+  ],
   "rewrites": [{ "source": "/(.*)", "destination": "/" }]
 }

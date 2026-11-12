@@ -1,7 +1,7 @@
 import candelariaLogo from '../assets/images/candelaria/condor-main.webp'
 import candelariaSite from '../assets/images/candelaria/website-hero.webp'
 import sensewaveMark from '../assets/images/sensewave/sensewave_mark.webp'
-import humbralRender from '../assets/images/humbral/config-pattern-up.webp'
+import umbralRender from '../assets/images/umbral/config-pattern-up.webp'
 import bloomLogo from '../assets/images/bloom/bloom_logo.webp'
 // Authored here rather than supplied — see the note in the file itself.
 import licorimetroLogo from '../assets/images/licorimetro/licorimetro_logo.svg'
@@ -72,14 +72,14 @@ const works = [
 
   // ── PRODUCTO ──────────────────────────────────────────────────────────
   {
-    id: 'humbral',
+    id: 'umbral',
     panel: 'producto',
-    titleI18n: 'works.humbral.title',
-    kickerI18n: 'works.humbral.kicker',
-    descI18n: 'works.humbral.desc',
+    titleI18n: 'works.umbral.title',
+    kickerI18n: 'works.umbral.kicker',
+    descI18n: 'works.umbral.desc',
     tagKeys: ['threeD', 'furniture', 'productDesign'],
-    href: '/projects/humbral',
-    image: humbralRender,
+    href: '/projects/umbral',
+    image: umbralRender,
   },
   {
     id: 'sensewave',
@@ -131,7 +131,7 @@ export const caseStudies = {
     site: 'https://relate-work-91947002.figma.site/',
     code: null,
   },
-  humbral: {
+  umbral: {
     skills: ['Figma', 'Illustrator'],
     site: null,
     code: null,
@@ -151,7 +151,7 @@ export function worksByPanel(panel) {
  * The three the homepage teases — one per panel, so the range is obvious
  * before anyone clicks through to /projects.
  */
-export const homeFeatured = ['candelaria-website', 'humbral', 'candelaria-brand']
+export const homeFeatured = ['candelaria-website', 'umbral', 'candelaria-brand']
   .map((id) => works.find((w) => w.id === id))
   .filter(Boolean)
 

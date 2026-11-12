@@ -53,7 +53,7 @@ src/
 | `/projects/candelaria` | `pages/projects/Candelaria.jsx` (brand, default export) |
 | `/projects/candelaria-website` | `pages/projects/Candelaria.jsx` (`CandelariaWebsite`) |
 | `/projects/sensewave` | `pages/projects/Sensewave.jsx` |
-| `/projects/humbral` | `pages/projects/Humbral.jsx` |
+| `/projects/umbral` | `pages/projects/Umbral.jsx` |
 | `/projects/bloom` | `pages/projects/Bloom.jsx` |
 | `/contact` | `pages/Contact.jsx` |
 
@@ -84,7 +84,7 @@ npm run lint     # ESLint
 | `sensewave` | Academic (2025) | Speculative neurotechnology brand — design-only case study |
 | `candelaria` | In development (Oct 2025–present) | Brand + full-stack site for the university solar vehicle research hub (semillero) |
 | `bloom` | Freelance (Jun 2026) | UX research, information architecture and wireframing for Bloom / BeBloomers |
-| `humbral` | Year not set in data | Object project (El Humbral) — date to be confirmed |
+| `umbral` | Year not set in data | Object project (El Umbral) — date to be confirmed |
 
 ## Owner
 
