@@ -36,28 +36,6 @@ const translations = {
       followKicker: 'Stay connected',
       followTitle: 'Follow me on social',
       followLead: 'Process, work-in-progress and quieter notes — wherever you hang out.',
-      featuredItems: [
-        {
-          title: 'Licorímetro',
-          description: 'A social mobile app for discovering and reviewing alcoholic beverages with OCR recognition.',
-          tag: 'Mobile · OCR',
-        },
-        {
-          title: 'Web Portfolio',
-          description: 'Personal portfolio with React, Tailwind and 3D — accessible and responsive.',
-          tag: 'Frontend · Design',
-        },
-        {
-          title: 'Atelier OS',
-          description: 'Design system and frontend for a creative studio.',
-          tag: 'Design System',
-        },
-        {
-          title: 'Hidden Routes',
-          description: 'Bilingual editorial platform with custom CMS.',
-          tag: 'Full-stack · Editorial',
-        },
-      ],
     },
     about: {
       title: 'About',
@@ -1021,28 +999,6 @@ const translations = {
       followKicker: 'Sigamos en contacto',
       followTitle: 'Sígueme en redes sociales',
       followLead: 'Proceso, work-in-progress y notas más íntimas — donde tú prefieras.',
-      featuredItems: [
-        {
-          title: 'Licorímetro',
-          description: 'App social móvil para descubrir y reseñar bebidas alcohólicas con reconocimiento por OCR.',
-          tag: 'Mobile · OCR',
-        },
-        {
-          title: 'Portafolio Web',
-          description: 'Portafolio personal con React, Tailwind y 3D — accesible y responsivo.',
-          tag: 'Frontend · Diseño',
-        },
-        {
-          title: 'Atelier OS',
-          description: 'Sistema de diseño y frontend para un estudio creativo.',
-          tag: 'Sistema de diseño',
-        },
-        {
-          title: 'Hidden Routes',
-          description: 'Plataforma editorial bilingüe con CMS a medida.',
-          tag: 'Full-stack · Editorial',
-        },
-      ],
     },
     about: {
       title: 'Sobre mí',
