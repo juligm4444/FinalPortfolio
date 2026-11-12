@@ -602,41 +602,6 @@ function ProcessSection() {
 }
 
 /* ─────────────────────────────────────────
-   SECTION 9 — EXHIBITION & RECOGNITION
-   ───────────────────────────────────────── */
-function ExhibitionSection() {
-  const { sw, t } = useSW();
-  const tags = t('sensewave.exhibTags');
-  return (
-    <CinematicSection py={120}>
-      <SectionTag number={9} label={t('sensewave.s9')} />
-      <div style={{ maxWidth: 720, margin: '0 auto', textAlign: 'center' }}>
-        <Reveal duration={1.2}>
-          <div style={{ border: `1px solid ${sw.borderAccent}`, padding: 'clamp(32px, 5vw, 64px)', background: `radial-gradient(ellipse 100% 60% at 50% 0%, ${sw.glow} 0%, transparent 60%)` }}>
-            <p style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: 9, letterSpacing: '0.28em', color: sw.accent, textTransform: 'uppercase', marginBottom: 24 }}>
-              {t('sensewave.exhibPeriod')}
-            </p>
-            <h2 style={{ fontFamily: '"Libre Baskerville", serif', fontSize: 'clamp(22px, 3.5vw, 36px)', fontWeight: 700, lineHeight: 1.2, color: sw.text, letterSpacing: '-0.015em', marginBottom: 20 }}>
-              {t('sensewave.exhibTitle')}
-            </h2>
-            <p style={{ fontFamily: '"Roboto Mono", monospace', fontSize: 14, lineHeight: 1.85, color: sw.textSoft, maxWidth: '44ch', margin: '0 auto' }}>
-              {t('sensewave.exhibP')}
-            </p>
-            <div className="flex justify-center flex-wrap gap-3" style={{ marginTop: 36 }}>
-              {tags.map((tag) => (
-                <span key={tag} style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: 9, letterSpacing: '0.18em', color: sw.textMuted, textTransform: 'uppercase', padding: '7px 14px', border: `1px solid ${sw.border}` }}>
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-        </Reveal>
-      </div>
-    </CinematicSection>
-  );
-}
-
-/* ─────────────────────────────────────────
    SECTION 10 — FINAL REFLECTION
    ───────────────────────────────────────── */
 function ReflectionSection() {
@@ -695,7 +660,6 @@ export default function Sensewave() {
         <DigitalSection />
         <PhysicalSection />
         <ProcessSection />
-        <ExhibitionSection />
         <ReflectionSection />
       </article>
     </SWCtx.Provider>

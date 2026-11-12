@@ -639,7 +639,6 @@ const translations = {
       s6: 'Digital Experience',
       s7: 'Physical Product',
       s8: 'Design Process',
-      s9: 'Exhibition & Recognition',
 
       problemQuote: 'Every day, thousands of people live with the memory of sensations they can no longer feel.',
       problemP1: 'Not the event. The feeling. The cold rush of a mountain descent. The weightlessness of open water. The rhythm of a run through morning fog.',
@@ -699,11 +698,6 @@ const translations = {
         { phase: '04', title: 'Digital & Physical', desc: 'Simultaneous design of the digital interface and physical product language. Coherence across all touchpoints.' },
         { phase: '05', title: 'Exhibition Preparation', desc: 'Adapting the narrative for academic and design audiences. Physical artifacts and presentation materials.' },
       ],
-
-      exhibPeriod: 'Universidad de los Andes · 2024',
-      exhibTitle: 'Selected for the Annual Design Exhibition',
-      exhibP: 'SenseWave was selected among the cohort\'s standout projects for visual consistency, emotional clarity, and the strength of its speculative design framework.',
-      exhibTags: ['Visual Consistency', 'Branding Cohesion', 'Speculative Design'],
 
       reflLabel: 'Final Reflection',
       reflQuote: 'The most powerful technology is the one that makes you forget it\'s there.',
@@ -1602,7 +1596,6 @@ const translations = {
       s6: 'Experiencia Digital',
       s7: 'Producto Físico',
       s8: 'Proceso de Diseño',
-      s9: 'Exhibición y Reconocimiento',
 
       problemQuote: 'Cada día, miles de personas viven con el recuerdo de sensaciones que ya no pueden sentir.',
       problemP1: 'No el evento. La sensación. El frío de un descenso en montaña. La ingravidez del agua abierta. El ritmo de una carrera entre la niebla matutina.',
@@ -1662,11 +1655,6 @@ const translations = {
         { phase: '04', title: 'Digital y Físico', desc: 'Diseño simultáneo de la interfaz digital y el lenguaje de producto físico. Coherencia en todos los puntos de contacto.' },
         { phase: '05', title: 'Preparación para la Exhibición', desc: 'Adaptación de la narrativa para audiencias académicas y de diseño. Artefactos físicos y materiales de presentación.' },
       ],
-
-      exhibPeriod: 'Universidad de los Andes · 2024',
-      exhibTitle: 'Seleccionado para la Exhibición Anual de Diseño',
-      exhibP: 'SenseWave fue seleccionado entre los proyectos destacados de la cohorte por su consistencia visual, claridad emocional y la solidez de su marco de diseño especulativo.',
-      exhibTags: ['Consistencia Visual', 'Cohesión de Marca', 'Diseño Especulativo'],
 
       reflLabel: 'Reflexión Final',
       reflQuote: 'La tecnología más poderosa es aquella que te hace olvidar que está ahí.',
