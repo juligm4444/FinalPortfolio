@@ -18,8 +18,8 @@
   font-display: swap;
 }
 
-/* ===== Candelaria project fonts — Sansation (display) + Helvetica Now (body) =====
-   Self-hosted, only downloaded when the Candelaria case-study page references them. */
+/* ===== Candelaria project fonts — Sansation =====
+   Self-hosted, only downloaded when a page references it. */
 @font-face {
   font-family: 'Sansation';
   src: url('../assets/fonts/Sansation/Sansation-Light.ttf') format('truetype');
@@ -52,42 +52,6 @@
   font-family: 'Sansation';
   src: url('../assets/fonts/Sansation/Sansation-BoldItalic.ttf') format('truetype');
   font-weight: 700;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Helvetica Now';
-  src: url('../assets/fonts/HelveticaNow/HelveticaNowDisplayLight.otf') format('opentype');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Helvetica Now';
-  src: url('../assets/fonts/HelveticaNow/HelveticaNowDisplay.otf') format('opentype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Helvetica Now';
-  src: url('../assets/fonts/HelveticaNow/HelveticaNowDisplayMedium.otf') format('opentype');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Helvetica Now';
-  src: url('../assets/fonts/HelveticaNow/HelveticaNowDisplayBold.otf') format('opentype');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Helvetica Now';
-  src: url('../assets/fonts/HelveticaNow/HelveticaNowDisplayIt.otf') format('opentype');
-  font-weight: 400;
   font-style: italic;
   font-display: swap;
 }
