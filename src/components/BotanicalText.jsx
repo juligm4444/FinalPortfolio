@@ -58,7 +58,9 @@ export default function BotanicalText({ text, as: Tag = 'h1', size = 140, lang, 
     sceneRef.current?.setText(text)
   }, [text])
 
-  const lines = text.split('\n').length
+  const rows = text.split('\n')
+  const lines = rows.length
+  const chars = Math.max(...rows.map((r) => r.length))
 
   return (
     <div
@@ -66,7 +68,7 @@ export default function BotanicalText({ text, as: Tag = 'h1', size = 140, lang, 
       className={`botanical ${className}`}
       lang={lang}
       data-webgl={live ? 'active' : 'fallback'}
-      style={{ '--bt-size': `min(${size}px, 14vw)`, '--bt-lines': lines }}
+      style={{ '--bt-size': `min(${size}px, 14vw)`, '--bt-lines': lines, '--bt-chars': chars }}
     >
       <Tag className="sr-only">{text}</Tag>
       {!live && (

@@ -3,6 +3,7 @@ import { useLocale } from '../i18n/LocaleProvider.jsx'
 import translations from '../i18n/translations.js'
 import { useWebGLRegistry, getCapabilities } from '../webgl/index.js'
 import BotanicalText from '../components/BotanicalText.jsx'
+import MoonlitPetals from '../components/MoonlitPetals.jsx'
 
 /* Frames per second over a half-second window, sampled in rAF. */
 function useFps() {
@@ -48,6 +49,18 @@ export default function Lab() {
               {translations[lang].nav.langShort[lang]}
             </figcaption>
             <BotanicalText as="p" text={translations[lang].lab.title} lang={lang} size={88} />
+          </figure>
+        ))}
+      </div>
+
+      <h2 className="mt-12 font-display text-h3">{t('lab.moonlitVariants')}</h2>
+      <div className="mt-4 grid gap-6 md:grid-cols-2">
+        {['es', 'en'].map((lang) => (
+          <figure key={lang} className="m-0">
+            <figcaption className="mb-2 font-label text-label-sm uppercase text-text-muted">
+              {translations[lang].lab.moonlitCaption}
+            </figcaption>
+            <MoonlitPetals label={translations[lang].lab.moonlitLabel} lang={lang} />
           </figure>
         ))}
       </div>

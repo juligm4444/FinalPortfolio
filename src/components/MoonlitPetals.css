@@ -1,0 +1,25 @@
+/* Moonlit Petals — frame and static fallback (REDESIGN §4.2). */
+.moonlit {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  background: var(--mist);
+}
+@media (max-width: 640px) {
+  .moonlit {
+    aspect-ratio: 4 / 5;
+  }
+}
+.moonlit__still,
+.moonlit__live {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.moonlit__still {
+  object-fit: cover;
+  object-position: left center;
+  display: block;
+}

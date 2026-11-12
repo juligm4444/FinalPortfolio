@@ -10,6 +10,9 @@ const translations = {
       webglCaps: 'Device verdict',
       fps: 'Frames per second',
       botanicalVariants: 'Botanical Text — language variants',
+      moonlitVariants: 'Moonlit Petals — language variants',
+      moonlitCaption: 'Ocobo in overcast daylight',
+      moonlitLabel: 'A tree in pink ocobo bloom under an overcast sky, petals drifting down. Moving across it stirs the blossoms.',
     },
     meta: {
       siteName: 'Julián Galindo — Designer & Developer',
@@ -988,6 +991,9 @@ const translations = {
       webglCaps: 'Veredicto del dispositivo',
       fps: 'Cuadros por segundo',
       botanicalVariants: 'Botanical Text — variantes de idioma',
+      moonlitVariants: 'Moonlit Petals — variantes de idioma',
+      moonlitCaption: 'Ocobo a la luz de un día nublado',
+      moonlitLabel: 'Un árbol de ocobo en flor rosada bajo un cielo nublado, con pétalos que caen. Al pasar el puntero por encima se agitan las flores.',
     },
     meta: {
       siteName: 'Julián Galindo — Diseñador y Desarrollador',
