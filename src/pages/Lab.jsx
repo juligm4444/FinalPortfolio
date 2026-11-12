@@ -4,6 +4,7 @@ import translations from '../i18n/translations.js'
 import { useWebGLRegistry, getCapabilities } from '../webgl/index.js'
 import BotanicalText from '../components/BotanicalText.jsx'
 import MoonlitPetals from '../components/MoonlitPetals.jsx'
+import VelourBolster from '../components/VelourBolster.jsx'
 
 /* Frames per second over a half-second window, sampled in rAF. */
 function useFps() {
@@ -63,6 +64,12 @@ export default function Lab() {
             <MoonlitPetals label={translations[lang].lab.moonlitLabel} lang={lang} />
           </figure>
         ))}
+      </div>
+
+      <h2 className="mt-12 font-display text-h3">{t('lab.velourVariants')}</h2>
+      <div className="mt-6 flex flex-wrap items-center gap-x-12 gap-y-10">
+        <VelourBolster label={translations.es.lab.velourLabel} lang="es" to="/projects" />
+        <VelourBolster label={translations.en.lab.velourLabel} lang="en" onClick={() => {}} />
       </div>
 
       <dl className="mt-12 grid max-w-md grid-cols-[auto_1fr] gap-x-6 gap-y-2 font-label text-label-sm uppercase">
