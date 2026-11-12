@@ -78,18 +78,18 @@ const translations = {
       educationTitle: 'Where I learned to think in systems',
       educationItems: [
         {
-          period: '2021 — 2028',
+          period: '2025-2 — 2028 (expected)',
           title: 'Bachelor\'s in Design',
           subtitle: 'Universidad de los Andes · Bogotá',
           detail:
-            'Undergraduate thesis · Minor in Visual Computation, built on engineering coursework.',
+            'The career change, told straight: I design and build on top of the engineering foundation. Expected graduation: 2028.',
         },
         {
-          period: '2021 — 2023',
-          title: 'Systems & Computer Engineering — coursework',
+          period: '2021-1 — 2025-1',
+          title: 'Systems & Computer Engineering',
           subtitle: 'Universidad de los Andes · Bogotá',
           detail:
-            'Foundations in algorithms, data structures, software architecture, and mobile + web development. Transitioned to Design; credits applied toward the Minor in Visual Computation.',
+            'Nine semesters: algorithms, data structures, software architecture, and mobile + web development. Option in Visual Computing: completed.',
         },
         {
           period: '2015 — 2020',
@@ -114,13 +114,27 @@ const translations = {
           ],
         },
         {
-          period: 'Jan 2023 — May 2023',
-          role: 'Design & Mobile Developer · Licorímetro',
-          company: 'University Project',
+          period: '2025 — 2026',
+          role: 'Brand & website · research hub (semillero)',
+          company: 'Candelaria · university solar vehicle team',
           bullets: [
-            'Engineered a mobile app for alcoholic beverage recognition using OCR.',
-            'Designed UI in Figma and architected an OOP solution to accelerate development.',
-            'Launched a beta in Android Studio with Firebase and third-party APIs.',
+            'Brand identity and website for the Candelaria research hub (semillero).',
+          ],
+        },
+        {
+          period: '2025',
+          role: 'Freelance · UX research, information architecture, wireframing',
+          company: 'Bloom / BeBloomers',
+          bullets: [
+            'UX research, information architecture and wireframing.',
+          ],
+        },
+        {
+          period: 'TODO: dates',
+          role: 'Teaching assistant (monitor) · TODO: course',
+          company: 'Universidad de los Andes',
+          bullets: [
+            'TODO: dates and course to be completed.',
           ],
         },
       ],
@@ -1049,18 +1063,18 @@ const translations = {
       educationTitle: 'Donde aprendí a pensar en sistemas',
       educationItems: [
         {
-          period: '2021 — 2028',
+          period: '2025-2 — 2028 (previsto)',
           title: 'Pregrado en Diseño',
           subtitle: 'Universidad de los Andes · Bogotá',
           detail:
-            'Tesis de pregrado · Opción en Computación Visual, construida sobre los créditos de Ingeniería de Sistemas.',
+            'El cambio de carrera, contado de frente: diseño y construyo sobre la base de la ingeniería. Grado previsto: 2028.',
         },
         {
-          period: '2021 — 2023',
-          title: 'Ingeniería de Sistemas y Computación — formación',
+          period: '2021-1 — 2025-1',
+          title: 'Ingeniería de Sistemas y Computación',
           subtitle: 'Universidad de los Andes · Bogotá',
           detail:
-            'Bases en algoritmos, estructuras de datos, arquitectura de software y desarrollo móvil y web. Tras esos semestres me cambié a Diseño; los créditos se aplicaron a la Opción en Computación Visual.',
+            'Nueve semestres: algoritmos, estructuras de datos, arquitectura de software y desarrollo móvil y web. Opción en Computación Visual: terminada.',
         },
         {
           period: '2015 — 2020',
@@ -1085,13 +1099,27 @@ const translations = {
           ],
         },
         {
-          period: 'Ene 2023 — May 2023',
-          role: 'Diseño & Desarrollo Móvil · Licorímetro',
-          company: 'Proyecto Universitario',
+          period: '2025 — 2026',
+          role: 'Marca y sitio web · semillero de investigación',
+          company: 'Candelaria · equipo universitario de vehículo solar',
           bullets: [
-            'Construí una app móvil para reconocer bebidas alcohólicas con OCR.',
-            'Diseñé la UI en Figma y arquitecté una solución OOP para acelerar el desarrollo.',
-            'Lancé una beta en Android Studio con Firebase y APIs de terceros.',
+            'Identidad de marca y sitio web del semillero de investigación Candelaria.',
+          ],
+        },
+        {
+          period: '2025',
+          role: 'Freelance · investigación UX, arquitectura de información, wireframing',
+          company: 'Bloom / BeBloomers',
+          bullets: [
+            'Investigación UX, arquitectura de información y wireframing.',
+          ],
+        },
+        {
+          period: 'TODO: fechas',
+          role: 'Monitor · TODO: curso',
+          company: 'Universidad de los Andes',
+          bullets: [
+            'TODO: fechas y curso por completar.',
           ],
         },
       ],
