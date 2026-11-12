@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion'
 
 /**
  * Full-width marquee strip between Hero and Bio.

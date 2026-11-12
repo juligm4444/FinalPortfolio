@@ -28,42 +28,42 @@ const slabStyle = {
 /* ======================== Feature icons (7) ======================== */
 const FEATURE_ICONS = [
   /* 0  OCR Scanner */
-  <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+  <svg key="icon-1" width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
     <rect x="7" y="5" width="12" height="16" rx="1" stroke="currentColor" strokeWidth="1.5" />
     <line x1="10" y1="11" x2="16" y2="11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
     <line x1="10" y1="15" x2="16" y2="15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
     <path d="M3 8V5h3M23 8V5h-3M3 18v3h3M23 18v3h-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
   </svg>,
   /* 1  Community Reviews */
-  <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+  <svg key="icon-2" width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
     <path d="M13 4 16 10 22 11 17 16 18.5 22 13 19 7.5 22 9 16 4 11 10 10Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
   </svg>,
   /* 2  Your Cellar */
-  <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+  <svg key="icon-3" width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
     <path d="M9 4h8L15 12a3.6 3.6 0 01-2 1.5A3.6 3.6 0 0111 12L9 4z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
     <line x1="13" y1="14" x2="13" y2="21" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
     <line x1="9.5" y1="21" x2="16.5" y2="21" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
   </svg>,
   /* 3  Badge System */
-  <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+  <svg key="icon-4" width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
     <path d="M13 3 20.5 5.8v7A7.5 7.5 0 0113 22a7.5 7.5 0 01-7.5-9.2V5.8Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
     <path d="M9.5 13l2.5 2.5L17 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
   </svg>,
   /* 4  Social Playlists */
-  <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+  <svg key="icon-5" width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
     <line x1="4" y1="9" x2="16" y2="9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
     <line x1="4" y1="13" x2="16" y2="13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
     <line x1="4" y1="17" x2="11" y2="17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
     <path d="M19 11l6 3-6 3V11z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" fill="currentColor" fillOpacity="0.12" />
   </svg>,
   /* 5  Smart Recommendations */
-  <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+  <svg key="icon-6" width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
     <path d="M13 3v3M13 20v3M3 13h3M20 13h3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
     <path d="M6.5 6.5l2 2M17.5 17.5l2 2M6.5 19.5l2-2M17.5 8.5l2-2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
     <circle cx="13" cy="13" r="3.5" stroke="currentColor" strokeWidth="1.5" />
   </svg>,
   /* 6  Community Pricing */
-  <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+  <svg key="icon-7" width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
     <path d="M5 5h9l9 9-9 9-9-9V5z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
     <circle cx="11" cy="11" r="1.8" fill="currentColor" />
     <line x1="16" y1="7" x2="21" y2="4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" opacity="0.4" />

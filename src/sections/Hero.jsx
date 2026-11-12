@@ -12,7 +12,6 @@ const CUBE_SIZE = 76
 const BAR_GAP = 40
 const BAR_TOP = NAMES_BLOCK_H + BAR_GAP
 const HERO_HEIGHT = BAR_TOP + CUBE_SIZE + 40
-const HERO_PADDING = 32 // px-4 on both sides
 
 // Right slot for the giant "4" → and afterwards the icon.
 const SLOT = { left: HERO_WIDTH_PX - 220, top: 4, width: 220, height: 240 }
@@ -171,7 +170,6 @@ export default function Hero() {
     return () => {
       cancelled = true
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [click, heroFirst, heroMiddle, heroLast, heroTagline, resetKey])
 
   /* ---- derived state ---- */
