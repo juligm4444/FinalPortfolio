@@ -82,25 +82,15 @@ const translations = {
       experienceTitle: 'Where I\'ve been building',
       experienceItems: [
         {
-          period: 'Jun 2025 — Present',
-          role: 'Latam CoderAI Trainer (LLM & code review)',
-          company: 'Outlier',
+          period: 'Aug 2026 — Present',
+          role: 'Teaching assistant (monitor) · Algorithmic Thinking',
+          company: 'Universidad de los Andes',
           bullets: [
-            'Reviewing and correcting AI-generated code responses to improve training data.',
-            'Building 2D/3D animations and scenes with Python and JavaScript (Pygame, p5.js, WebGL).',
-            'Crafting and refining prompts for user-defined functional requirements.',
+            'Supporting 23 students in a creative-coding course with p5.js: grading submissions with feedback, answering technical questions and guiding the creative approach of their projects.',
           ],
         },
         {
-          period: '2025 — 2026',
-          role: 'Brand & website · research hub (semillero)',
-          company: 'Candelaria · university solar vehicle team',
-          bullets: [
-            'Brand identity and website for the Candelaria research hub (semillero).',
-          ],
-        },
-        {
-          period: '2025',
+          period: 'Jun 2026',
           role: 'Freelance · UX research, information architecture, wireframing',
           company: 'Bloom / BeBloomers',
           bullets: [
@@ -108,11 +98,21 @@ const translations = {
           ],
         },
         {
-          period: 'Aug 2026 — Present',
-          role: 'Teaching assistant (monitor) · Algorithmic Thinking',
-          company: 'Universidad de los Andes',
+          period: 'Oct 2025 — Present',
+          role: 'Brand & website · research hub (semillero)',
+          company: 'Candelaria · university solar vehicle team',
           bullets: [
-            'Supporting 23 students in a creative-coding course with p5.js: grading submissions with feedback, answering technical questions and guiding the creative approach of their projects.',
+            'Brand identity and website for the Candelaria research hub (semillero).',
+          ],
+        },
+        {
+          period: 'Jun 2025 — Jan 2026',
+          role: 'Latam CoderAI Trainer (LLM & code review)',
+          company: 'Outlier',
+          bullets: [
+            'Reviewing and correcting AI-generated code responses to improve training data.',
+            'Building 2D/3D animations and scenes with Python and JavaScript (Pygame, p5.js, WebGL).',
+            'Crafting and refining prompts for user-defined functional requirements.',
           ],
         },
       ],
@@ -625,7 +625,7 @@ const translations = {
       faceDigital: 'The interface layer that curates a donated sensory library and hands the recipient control over what they feel, and when.',
       faceVisual: 'A brand system built on empathy rather than spectacle — identity, language and motion for technology that has to feel trustworthy.',
 
-      heroPeriod: 'Sensewave · Speculative Design · 2024',
+      heroPeriod: 'Sensewave · Speculative Design · 2025',
       heroH1: 'What if memories',
       heroH2: 'could be felt',
       heroHAccent: 'again?',
@@ -857,7 +857,7 @@ const translations = {
       metaClient: 'Client',
       metaTeam: 'Team',
       role: 'UX Research · Information Architecture · Wireframing',
-      period: '2025',
+      period: 'Jun 2026',
       status: 'Delivered',
       client: 'Bloom / BeBloomers',
       collaboration: 'In collaboration with another designer',
@@ -1045,25 +1045,15 @@ const translations = {
       experienceTitle: 'Dónde he construido',
       experienceItems: [
         {
-          period: 'Jun 2025 — Presente',
-          role: 'Latam CoderAI Trainer (LLM & code review)',
-          company: 'Outlier',
+          period: 'Ago 2026 — Presente',
+          role: 'Monitor · Pensamiento Algorítmico',
+          company: 'Universidad de los Andes',
           bullets: [
-            'Reviso y corrijo respuestas de código generadas por IA para mejorar los datos de entrenamiento.',
-            'Construyo animaciones y escenas 2D/3D con Python y JavaScript (Pygame, p5.js, WebGL).',
-            'Diseño y refino prompts a partir de requerimientos funcionales del usuario.',
+            'Acompaño a 23 estudiantes en un curso de programación creativa con p5.js: califico entregas con retroalimentación, resuelvo dudas técnicas y oriento el enfoque creativo de sus proyectos.',
           ],
         },
         {
-          period: '2025 — 2026',
-          role: 'Marca y sitio web · semillero de investigación',
-          company: 'Candelaria · equipo universitario de vehículo solar',
-          bullets: [
-            'Identidad de marca y sitio web del semillero de investigación Candelaria.',
-          ],
-        },
-        {
-          period: '2025',
+          period: 'Jun 2026',
           role: 'Freelance · investigación UX, arquitectura de información, wireframing',
           company: 'Bloom / BeBloomers',
           bullets: [
@@ -1071,11 +1061,21 @@ const translations = {
           ],
         },
         {
-          period: 'Ago 2026 — Presente',
-          role: 'Monitor · Pensamiento Algorítmico',
-          company: 'Universidad de los Andes',
+          period: 'Oct 2025 — Presente',
+          role: 'Marca y sitio web · semillero de investigación',
+          company: 'Candelaria · equipo universitario de vehículo solar',
           bullets: [
-            'Acompaño a 23 estudiantes en un curso de programación creativa con p5.js: califico entregas con retroalimentación, resuelvo dudas técnicas y oriento el enfoque creativo de sus proyectos.',
+            'Identidad de marca y sitio web del semillero de investigación Candelaria.',
+          ],
+        },
+        {
+          period: 'Jun 2025 — Ene 2026',
+          role: 'Latam CoderAI Trainer (LLM & code review)',
+          company: 'Outlier',
+          bullets: [
+            'Reviso y corrijo respuestas de código generadas por IA para mejorar los datos de entrenamiento.',
+            'Construyo animaciones y escenas 2D/3D con Python y JavaScript (Pygame, p5.js, WebGL).',
+            'Diseño y refino prompts a partir de requerimientos funcionales del usuario.',
           ],
         },
       ],
@@ -1588,7 +1588,7 @@ const translations = {
       faceDigital: 'La capa de interfaz que cura una biblioteca sensorial donada y le da al receptor control sobre qué siente y cuándo.',
       faceVisual: 'Un sistema de marca construido sobre la empatía y no sobre el espectáculo — identidad, lenguaje y movimiento para una tecnología que debe inspirar confianza.',
 
-      heroPeriod: 'Sensewave · Diseño Especulativo · 2024',
+      heroPeriod: 'Sensewave · Diseño Especulativo · 2025',
       heroH1: '¿Y si los recuerdos',
       heroH2: 'pudieran volver a',
       heroHAccent: 'sentirse?',
@@ -1820,7 +1820,7 @@ const translations = {
       metaClient: 'Cliente',
       metaTeam: 'Equipo',
       role: 'Investigación UX · Arquitectura de Información · Wireframing',
-      period: '2025',
+      period: 'Jun 2026',
       status: 'Entregado',
       client: 'Bloom / BeBloomers',
       collaboration: 'En colaboración con otro diseñador',

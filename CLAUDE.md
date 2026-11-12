@@ -81,9 +81,9 @@ npm run lint     # ESLint
 | Slug | Status | Description |
 |---|---|---|
 | `licorimetro` | Academic (2023) | Android mobile app with OCR for beverage discovery |
-| `sensewave` | Academic (2024) | Speculative neurotechnology brand — design-only case study |
-| `candelaria` | In development (2025–2026) | Brand + full-stack site for the university solar vehicle research hub (semillero) |
-| `bloom` | Freelance (2025) | UX research, information architecture and wireframing for Bloom / BeBloomers |
+| `sensewave` | Academic (2025) | Speculative neurotechnology brand — design-only case study |
+| `candelaria` | In development (Oct 2025–present) | Brand + full-stack site for the university solar vehicle research hub (semillero) |
+| `bloom` | Freelance (Jun 2026) | UX research, information architecture and wireframing for Bloom / BeBloomers |
 | `humbral` | Year not set in data | Object project (El Humbral) — date to be confirmed |
 
 ## Owner
