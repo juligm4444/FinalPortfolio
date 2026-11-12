@@ -108,11 +108,11 @@ const translations = {
           ],
         },
         {
-          period: 'TODO: dates',
-          role: 'Teaching assistant (monitor) · TODO: course',
+          period: 'Aug 2026 — Present',
+          role: 'Teaching assistant (monitor) · Algorithmic Thinking',
           company: 'Universidad de los Andes',
           bullets: [
-            'TODO: dates and course to be completed.',
+            'Supporting 23 students in a creative-coding course with p5.js: grading submissions with feedback, answering technical questions and guiding the creative approach of their projects.',
           ],
         },
       ],
@@ -1071,11 +1071,11 @@ const translations = {
           ],
         },
         {
-          period: 'TODO: fechas',
-          role: 'Monitor · TODO: curso',
+          period: 'Ago 2026 — Presente',
+          role: 'Monitor · Pensamiento Algorítmico',
           company: 'Universidad de los Andes',
           bullets: [
-            'TODO: fechas y curso por completar.',
+            'Acompaño a 23 estudiantes en un curso de programación creativa con p5.js: califico entregas con retroalimentación, resuelvo dudas técnicas y oriento el enfoque creativo de sus proyectos.',
           ],
         },
       ],
