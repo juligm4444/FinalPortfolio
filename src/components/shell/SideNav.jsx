@@ -1,4 +1,4 @@
-import { NavLink, Link } from 'react-router-dom'
+import LocaleLink, { LocaleNavLink } from '../LocaleLink.jsx'
 import Logo from '../Logo.jsx'
 import { useLocale } from '../../i18n/LocaleProvider.jsx'
 
@@ -17,16 +17,16 @@ export default function SideNav() {
 
   return (
     <nav className="side-nav" aria-label={t('nav.label')}>
-      <Link to="/" className="side-nav__brand" aria-label={t('nav.homeAria')}>
+      <LocaleLink to="/" className="side-nav__brand" aria-label={t('nav.homeAria')}>
         <Logo size={36} />
-      </Link>
+      </LocaleLink>
 
       <ul className="side-nav__list">
         {ROUTES.map((r) => (
           <li key={r.key}>
-            <NavLink to={r.to} end={r.end} className="nav-pill">
+            <LocaleNavLink to={r.to} end={r.end} className="nav-pill">
               {t(`nav.${r.key}`)}
-            </NavLink>
+            </LocaleNavLink>
           </li>
         ))}
       </ul>

@@ -1,5 +1,5 @@
 import { createContext, useContext, useRef, Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import Link from '../../components/LocaleLink.jsx';
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { useLocale } from '../../i18n/LocaleProvider.jsx';
 import { caseStudies } from '../../data/projects.js';

@@ -2,6 +2,16 @@ export const LOCALES = ['en', 'es']
 
 const translations = {
   en: {
+    meta: {
+      siteName: 'Julián Galindo — Designer & Developer',
+      home: {
+        title: 'Julián Galindo — Designer & Developer',
+        description: 'Portfolio of Julián Galindo: product design and full-stack development, from the structure underneath to what grows on top.',
+      },
+      about: { title: 'About', description: 'Systems engineering as the base, design as what grows on it. Education, experience and the career change, told straight.' },
+      projects: { title: 'Projects', description: 'Web, digital, object and brand work: Candelaria, Licorímetro, Bloom, El Umbral and SenseWave.' },
+      lab: { title: 'Lab', description: 'Component bench. Nothing to see here yet.' },
+    },
     nav: {
       label: 'Main navigation',
       skip: 'Skip to content',
@@ -961,6 +971,16 @@ const translations = {
   },
 
   es: {
+    meta: {
+      siteName: 'Julián Galindo — Diseñador y Desarrollador',
+      home: {
+        title: 'Julián Galindo — Diseñador y Desarrollador',
+        description: 'Portafolio de Julián Galindo: diseño de producto y desarrollo full-stack, desde la estructura que sostiene hasta lo que crece encima.',
+      },
+      about: { title: 'Sobre mí', description: 'Ingeniería de sistemas como base, diseño como lo que crece encima. Educación, experiencia y el cambio de carrera, contado de frente.' },
+      projects: { title: 'Proyectos', description: 'Trabajo web, digital, de objeto y de marca: Candelaria, Licorímetro, Bloom, El Umbral y SenseWave.' },
+      lab: { title: 'Laboratorio', description: 'Banco de componentes. Todavía no hay nada que ver.' },
+    },
     nav: {
       label: 'Navegación principal',
       skip: 'Saltar al contenido',

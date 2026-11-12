@@ -1,6 +1,9 @@
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, Navigate, Outlet, useLocation, useParams } from 'react-router-dom'
 import { useEffect } from 'react'
 import AppShell from './components/shell/AppShell.jsx'
+import Seo from './components/shell/Seo.jsx'
+import { LocaleProvider, preferredLocale } from './i18n/LocaleProvider.jsx'
+import { isLocale, localePath, splitLocale, LOCALES } from './i18n/routes.js'
 import Home from './pages/Home.jsx'
 import About from './pages/About.jsx'
 import Projects from './pages/Projects.jsx'
@@ -18,11 +21,28 @@ function ScrollToTop() {
   return null
 }
 
-export default function App() {
+/* `/` and any path without a language prefix: send the visitor to the same
+   page under the language they prefer. Unknown pages go home. */
+function LocaleRedirect() {
+  const { pathname, search, hash } = useLocation()
+  const { locale, path } = splitLocale(pathname)
+  const target = locale ?? preferredLocale()
+  return <Navigate to={localePath(target, path) + search + hash} replace />
+}
+
+function NotFound() {
+  const { lang } = useParams()
+  return <Navigate to={localePath(isLocale(lang) ? lang : 'es', '/')} replace />
+}
+
+/* Everything under /:lang. Validates the prefix, owns the locale and the shell. */
+function LangLayout() {
+  const { lang } = useParams()
   const { pathname } = useLocation()
+  const { path } = splitLocale(pathname)
   // The showcase is sized to the viewport and must not scroll. Flagging it on
   // <html> lets the stylesheet lock the page in one place.
-  const isShowcase = pathname === '/projects'
+  const isShowcase = path === '/projects'
 
   useEffect(() => {
     const root = document.documentElement
@@ -31,20 +51,37 @@ export default function App() {
     return () => root.removeAttribute('data-locked')
   }, [isShowcase])
 
+  if (!isLocale(lang)) return <LocaleRedirect />
+
   return (
-    <AppShell locked={isShowcase}>
-      <ScrollToTop />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/projects/candelaria" element={<Candelaria />} />
-        <Route path="/projects/candelaria-website" element={<CandelariaWebsite />} />
-        <Route path="/projects/licorimetro" element={<Licorimetro />} />
-        <Route path="/projects/sensewave" element={<Sensewave />} />
-        <Route path="/projects/umbral" element={<Umbral />} />
-        <Route path="/projects/bloom" element={<Bloom />} />
-      </Routes>
-    </AppShell>
+    <LocaleProvider locale={lang}>
+      <Seo />
+      <AppShell locked={isShowcase}>
+        <ScrollToTop />
+        <Outlet />
+      </AppShell>
+    </LocaleProvider>
   )
 }
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/:lang" element={<LangLayout />}>
+        <Route index element={<Home />} />
+        <Route path="about" element={<About />} />
+        <Route path="projects" element={<Projects />} />
+        <Route path="projects/candelaria" element={<Candelaria />} />
+        <Route path="projects/candelaria-website" element={<CandelariaWebsite />} />
+        <Route path="projects/licorimetro" element={<Licorimetro />} />
+        <Route path="projects/sensewave" element={<Sensewave />} />
+        <Route path="projects/umbral" element={<Umbral />} />
+        <Route path="projects/bloom" element={<Bloom />} />
+        <Route path="*" element={<NotFound />} />
+      </Route>
+      <Route path="*" element={<LocaleRedirect />} />
+    </Routes>
+  )
+}
+
+export { LOCALES }

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { Link } from 'react-router-dom'
+import Link from '../LocaleLink.jsx'
 
 /**
  * One of the three columns: a sheet of frosted glass over the fluids, showing

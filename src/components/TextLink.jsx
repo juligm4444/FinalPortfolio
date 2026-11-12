@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import Link from './LocaleLink.jsx'
 
 /**
  * Hover-aware text link — slight scale-up + colour shift to pink-light.

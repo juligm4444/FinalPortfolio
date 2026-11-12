@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import Link from './LocaleLink.jsx'
 import { motion } from 'framer-motion'
 
 const SWEEP_DURATION = '700ms'
