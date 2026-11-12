@@ -1,5 +1,7 @@
 # FinalPortfolio — juligm4.com
 
+> Redesign in progress: **`docs/REDESIGN.md` is the source of truth and wins over this file if they contradict.**
+
 Personal portfolio for Julián Galindo Mora. React + Vite SPA deployed on Vercel.
 
 ## Stack
@@ -80,8 +82,10 @@ npm run lint     # ESLint
 |---|---|---|
 | `licorimetro` | Academic (2023) | Android mobile app with OCR for beverage discovery |
 | `sensewave` | Academic (2024) | Speculative neurotechnology brand — design-only case study |
-| `candelaria` | In development (2025–2026) | Full-stack site for a university solar vehicle team |
+| `candelaria` | In development (2025–2026) | Brand + full-stack site for the university solar vehicle research hub (semillero) |
+| `bloom` | Freelance (2025) | UX research, information architecture and wireframing for Bloom / BeBloomers |
+| `humbral` | Year not set in data | Object project (El Humbral) — date to be confirmed |
 
 ## Owner
 
-Julián Galindo Mora — Design student, Universidad de los Andes, graduating 2028. Designer + developer. Contact: julian_gm4@hotmail.com
+Julián Galindo Mora — Design student, Universidad de los Andes (since 2025-2, expected graduation 2028). Previously Systems & Computer Engineering at the same university, 2021-1 to 2025-1 (9 semesters; Visual Computing option completed). Designer + developer. Contact: julian_gm4@hotmail.com
