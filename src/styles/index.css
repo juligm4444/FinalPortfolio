@@ -225,18 +225,13 @@
   }
 }
 
-main {
-  position: relative;
-  z-index: 10;
-}
-
 /* ===== Projects showcase =====
    The whole page is one screen: navbar, panels and a compact footer, with
    nothing left over to scroll. `dvh` rather than `vh` so collapsing mobile
    browser chrome cannot push the footer out of view. */
 :root {
-  --nav-h: 75px;
-  --footer-compact-h: 48px;
+  --nav-h: 0px;
+  --footer-compact-h: var(--dock-h, 88px);
   --showcase-h: calc(100dvh - var(--nav-h) - var(--footer-compact-h));
 }
 @supports not (height: 100dvh) {

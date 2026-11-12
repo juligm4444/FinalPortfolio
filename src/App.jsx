@@ -1,8 +1,6 @@
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
-import Navbar from './components/Navbar.jsx'
-import Footer from './components/Footer.jsx'
-import PillarsBackground from './components/PillarsBackground.jsx'
+import AppShell from './components/shell/AppShell.jsx'
 import Home from './pages/Home.jsx'
 import About from './pages/About.jsx'
 import Projects from './pages/Projects.jsx'
@@ -22,13 +20,9 @@ function ScrollToTop() {
 }
 
 export default function App() {
-  // The honeycomb is the homepage's signature. Everywhere else it competes
-  // with the work itself, so it only renders at "/".
   const { pathname } = useLocation()
-  const isHome = pathname === '/'
   // The showcase is sized to the viewport and must not scroll. Flagging it on
-  // <html> lets the stylesheet lock the page and size the panels in one place,
-  // rather than the page fighting its own layout from JS.
+  // <html> lets the stylesheet lock the page in one place.
   const isShowcase = pathname === '/projects'
 
   useEffect(() => {
@@ -39,29 +33,20 @@ export default function App() {
   }, [isShowcase])
 
   return (
-    <div
-      className={`relative flex w-full flex-col ${isShowcase ? 'h-[100dvh]' : 'min-h-screen'}`}
-    >
-      {isHome && <PillarsBackground />}
-      <Navbar />
+    <AppShell locked={isShowcase}>
       <ScrollToTop />
-      <main className="relative z-10 min-h-0 flex-1">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/projects/candelaria" element={<Candelaria />} />
-          <Route path="/projects/candelaria-website" element={<CandelariaWebsite />} />
-          <Route path="/projects/licorimetro" element={<Licorimetro />} />
-          <Route path="/projects/sensewave" element={<Sensewave />} />
-          <Route path="/projects/umbral" element={<Umbral />} />
-          <Route path="/projects/bloom" element={<Bloom />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-      </main>
-      <div className="relative z-10 shrink-0">
-        <Footer compact={isShowcase} />
-      </div>
-    </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/projects/candelaria" element={<Candelaria />} />
+        <Route path="/projects/candelaria-website" element={<CandelariaWebsite />} />
+        <Route path="/projects/licorimetro" element={<Licorimetro />} />
+        <Route path="/projects/sensewave" element={<Sensewave />} />
+        <Route path="/projects/umbral" element={<Umbral />} />
+        <Route path="/projects/bloom" element={<Bloom />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </AppShell>
   )
 }
