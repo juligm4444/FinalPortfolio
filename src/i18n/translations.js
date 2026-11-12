@@ -2,6 +2,13 @@ export const LOCALES = ['en', 'es']
 
 const translations = {
   en: {
+    lab: {
+      title: 'Lab',
+      lead: 'Component bench for the redesign. Each OriginKit port lands here first, alone, before it goes into a page.',
+      webglActive: 'WebGL contexts live',
+      webglWaiting: 'Waiting for a slot',
+      webglCaps: 'Device verdict',
+    },
     meta: {
       siteName: 'Julián Galindo — Designer & Developer',
       home: {
@@ -971,6 +978,13 @@ const translations = {
   },
 
   es: {
+    lab: {
+      title: 'Laboratorio',
+      lead: 'Banco de componentes del rediseño. Cada porte de OriginKit aterriza aquí primero, solo, antes de entrar a una página.',
+      webglActive: 'Contextos WebGL vivos',
+      webglWaiting: 'En espera de cupo',
+      webglCaps: 'Veredicto del dispositivo',
+    },
     meta: {
       siteName: 'Julián Galindo — Diseñador y Desarrollador',
       home: {
