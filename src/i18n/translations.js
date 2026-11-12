@@ -9,7 +9,6 @@ const translations = {
       home: 'Home',
       about: 'About',
       projects: 'Projects',
-      contact: 'Contact',
       cv: 'Cv',
       lang: 'EN',
       langShort: { en: 'EN', es: 'ES' },
@@ -959,11 +958,6 @@ const translations = {
       reflP2: 'It also taught me that information architecture is design work with the highest leverage and the lowest visibility. Nobody will ever compliment a tag list. But every recommendation the platform makes runs through it.',
       reflTags: ['Information Architecture', 'Taxonomy Design', 'Client Communication', 'Mobile-First Constraints'],
     },
-    contact: {
-      title: 'Contact',
-      lead: 'Let\'s build something that lasts. I read every message.',
-      cta: 'julian_gm4@hotmail.com',
-    },
   },
 
   es: {
@@ -974,7 +968,6 @@ const translations = {
       home: 'Inicio',
       about: 'Sobre mí',
       projects: 'Proyectos',
-      contact: 'Contacto',
       cv: 'Cv',
       lang: 'ES',
       langShort: { en: 'EN', es: 'ES' },
@@ -1923,11 +1916,6 @@ const translations = {
       reflP1: 'Trabajar con un cliente real me enseñó que una recomendación solo sirve si viene con su costo adjunto. Presentar tres versiones en lugar de una convirtió la conversación de «¿te gusta?» a «¿cuál trade-off quieres?», y esa es una conversación en la que un cliente sí puede participar.',
       reflP2: 'También me enseñó que la arquitectura de información es el trabajo de diseño con más apalancamiento y menos visibilidad. Nadie va a elogiar jamás una lista de tags. Pero cada recomendación que hace la plataforma pasa por ahí.',
       reflTags: ['Arquitectura de Información', 'Diseño de Taxonomías', 'Comunicación con Cliente', 'Restricciones Mobile-First'],
-    },
-    contact: {
-      title: 'Contacto',
-      lead: 'Construyamos algo que perdure. Leo cada mensaje.',
-      cta: 'julian_gm4@hotmail.com',
     },
   },
 }

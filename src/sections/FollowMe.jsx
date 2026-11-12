@@ -4,7 +4,7 @@ import Social from '../components/Social.jsx'
 
 /**
  * Closing block on the home page — centred, social-first.
- * Same Social tiles as the contact page, just framed as an invitation.
+ * Social tiles framed as an invitation.
  */
 export default function FollowMe() {
   const { t } = useLocale()

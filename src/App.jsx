@@ -4,7 +4,6 @@ import AppShell from './components/shell/AppShell.jsx'
 import Home from './pages/Home.jsx'
 import About from './pages/About.jsx'
 import Projects from './pages/Projects.jsx'
-import Contact from './pages/Contact.jsx'
 import Candelaria, { CandelariaWebsite } from './pages/projects/Candelaria.jsx'
 import Licorimetro from './pages/projects/Licorimetro.jsx'
 import Sensewave from './pages/projects/Sensewave.jsx'
@@ -45,7 +44,6 @@ export default function App() {
         <Route path="/projects/sensewave" element={<Sensewave />} />
         <Route path="/projects/umbral" element={<Umbral />} />
         <Route path="/projects/bloom" element={<Bloom />} />
-        <Route path="/contact" element={<Contact />} />
       </Routes>
     </AppShell>
   )
