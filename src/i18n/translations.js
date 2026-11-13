@@ -2,6 +2,13 @@ export const LOCALES = ['en', 'es']
 
 const translations = {
   en: {
+    herbarium: {
+      items: {
+        'candelaria-website': { genus: 'Web · Full-stack', year: 'Oct 2025 — present', role: 'Design lead, product engineering' },
+        bloom: { genus: 'Digital · UX', year: 'Jun 2026', role: 'UX research, information architecture' },
+        sensewave: { genus: 'Object · Speculative brand', year: '2025', role: 'Brand and product design' },
+      },
+    },
     keyscape: {
       label: 'A bed of concrete keys, one technology on each, with the site logo on the central key and moss in the slots.',
       caption: 'Tools',
@@ -73,12 +80,9 @@ const translations = {
       bioPill1: 'Structure',
       bioPill2: 'Aesthetics',
       bioPill3: 'Human-centered',
-      featuredKicker: 'Selected work',
-      featuredTitle: 'Featured projects',
-      featuredCta: 'See all projects',
-      followKicker: 'Stay connected',
-      followTitle: 'Follow me on social',
-      followLead: 'Process, work-in-progress and quieter notes — wherever you hang out.',
+      herbKicker: 'Herbarium',
+      herbTitle: 'Specimens from the last two years',
+      herbCta: 'All projects',
     },
     about: {
       title: 'About',
@@ -992,6 +996,13 @@ const translations = {
   },
 
   es: {
+    herbarium: {
+      items: {
+        'candelaria-website': { genus: 'Web · Full-stack', year: 'Oct 2025 — presente', role: 'Diseño e ingeniería de producto' },
+        bloom: { genus: 'Digital · UX', year: 'Jun 2026', role: 'Investigación UX, arquitectura de información' },
+        sensewave: { genus: 'Objeto · Marca especulativa', year: '2025', role: 'Diseño de marca y producto' },
+      },
+    },
     keyscape: {
       label: 'Un lecho de teclas de concreto, una tecnología en cada una, con el logo del sitio en la tecla central y musgo en las ranuras.',
       caption: 'Herramientas',
@@ -1063,12 +1074,9 @@ const translations = {
       bioPill1: 'Estructura',
       bioPill2: 'Estética',
       bioPill3: 'Centrado en la persona',
-      featuredKicker: 'Trabajo seleccionado',
-      featuredTitle: 'Proyectos destacados',
-      featuredCta: 'Ver todos los proyectos',
-      followKicker: 'Sigamos en contacto',
-      followTitle: 'Sígueme en redes sociales',
-      followLead: 'Proceso, work-in-progress y notas más íntimas — donde tú prefieras.',
+      herbKicker: 'Herbario',
+      herbTitle: 'Especímenes de los últimos dos años',
+      herbCta: 'Todos los proyectos',
     },
     about: {
       title: 'Sobre mí',

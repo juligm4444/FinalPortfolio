@@ -42,7 +42,7 @@ const MODES = {
     // Dock: a short dense moss skin creeping in from the edges.
     moss: { dens: 3.0, lenPx: 3.4, lift: 7, frizz: 3, rimShare: 0.2, width: 1.0, clump: 0.2, edge: 5.2, floor: 0.1 },
     // Herbario: grass standing round the slab, little on the slab itself.
-    grass: { dens: 1.4, lenPx: 14, lift: 6, frizz: 4, rimShare: 0.6, width: 1.1, clump: 0.3, edge: 9.0, floor: 0.01 },
+    grass: { dens: 1.4, lenPx: 14, lift: 6, frizz: 4, rimShare: 0.6, width: 1.1, clump: 0.3, edge: 9.0, floor: 0 },
 }
 const LOOK = {
     corner: 0.08, // matches --radius-slab on a small tile

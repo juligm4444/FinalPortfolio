@@ -149,10 +149,10 @@ export function worksByPanel(panel) {
 }
 
 /**
- * The three the homepage teases — one per panel, so the range is obvious
- * before anyone clicks through to /projects.
+ * The three the Herbario on the homepage presses: web, digital, object —
+ * one per group, so the range is obvious before anyone clicks through.
  */
-export const homeFeatured = ['candelaria-website', 'umbral', 'candelaria-brand']
+export const homeFeatured = ['candelaria-website', 'bloom', 'sensewave']
   .map((id) => works.find((w) => w.id === id))
   .filter(Boolean)
 

@@ -8,10 +8,10 @@ export default function Bio() {
 
   return (
     <section className="mx-auto w-full max-w-[1200px] px-4 py-24 md:px-8 md:py-32">
-      <div className="grid grid-cols-1 items-stretch gap-12 md:grid-cols-12 md:gap-16">
+      <div className="grid grid-cols-1 items-stretch gap-12 lg:grid-cols-12 lg:gap-16">
         {/* LEFT — vertical 9:16 3D slot */}
-        <div className="md:col-span-4">
-          <div className="md:sticky md:top-[120px]">
+        <div className="lg:col-span-4">
+          <div className="lg:sticky lg:top-[120px]">
             <div style={{ width: '100%', aspectRatio: '9 / 16' }}>
               <SplineViewer
                 url="https://prod.spline.design/8M4AUjTdmnH8plii/scene.splinecode"
@@ -22,14 +22,14 @@ export default function Bio() {
         </div>
 
         {/* RIGHT — paragraphs + (kicker / pills / slab moved to the bottom) */}
-        <div className="md:col-span-8 flex flex-col">
+        <div className="lg:col-span-8 flex flex-col">
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             style={{
-              fontFamily: '"Space Grotesk", sans-serif',
+              fontFamily: 'var(--font-label)',
               color: 'var(--fg-soft)',
               fontSize: 18,
               lineHeight: 1.7,
@@ -48,7 +48,7 @@ export default function Bio() {
             style={{
               transformOrigin: 'left center',
               height: 2,
-              background: '#FF0871',
+              background: 'var(--bloom)',
               margin: '40px 0',
               width: '40%',
             }}
@@ -100,7 +100,7 @@ export default function Bio() {
               </div>
               <span
                 aria-hidden
-                style={{ width: 36, height: 36, background: '#FF0871' }}
+                style={{ width: 36, height: 36, background: 'var(--bloom)' }}
               />
             </div>
           </div>

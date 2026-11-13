@@ -1,17 +1,15 @@
 import Hero from '../sections/Hero.jsx'
-import DisciplinesStrip from '../sections/DisciplinesStrip.jsx'
 import Bio from '../sections/Bio.jsx'
-import FeaturedProjects from '../sections/FeaturedProjects.jsx'
-import FollowMe from '../sections/FollowMe.jsx'
+import Herbarium from '../sections/Herbarium.jsx'
+import { PlushProvider } from '../components/plush/PlushProvider.jsx'
 
+/* REDESIGN §5 Home: hero, mini bio, Herbario. */
 export default function Home() {
   return (
-    <>
+    <PlushProvider>
       <Hero />
-      <DisciplinesStrip />
       <Bio />
-      <FeaturedProjects />
-      <FollowMe />
-    </>
+      <Herbarium />
+    </PlushProvider>
   )
 }
