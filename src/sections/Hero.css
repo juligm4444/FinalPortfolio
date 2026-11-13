@@ -1,0 +1,84 @@
+/* Hero (REDESIGN §5 Home.1) — poster at rest, the R3F scene when the budget allows. */
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: calc(100dvh - var(--dock-h));
+  overflow: hidden;
+}
+.hero__poster,
+.hero__live {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.hero__poster {
+  /* The poster is the scene's own rest frame on a transparent ground: contain,
+     so it never crops the bust, and the route background shows through. */
+  object-fit: contain;
+  object-position: 74% 50%;
+  padding: 6% 0;
+  box-sizing: border-box;
+  display: block;
+  transition: opacity 500ms ease;
+}
+@media (max-width: 719px) {
+  .hero__poster {
+    object-position: 50% 28%;
+    padding: 8% 0 34%;
+  }
+}
+.hero--live .hero__poster {
+  opacity: 0;
+}
+.hero__live canvas {
+  display: block;
+  touch-action: pan-y;
+}
+/* Static text, laid over the poster. Hidden when the scene carries the text. */
+.hero__static {
+  position: absolute;
+  left: 8%;
+  top: 30%;
+  max-width: 34ch;
+}
+@media (max-width: 719px) {
+  .hero__static {
+    left: 50%;
+    top: auto;
+    bottom: 10%;
+    transform: translateX(-50%);
+    text-align: center;
+    width: max-content;
+    max-width: 90%;
+  }
+}
+.hero-text {
+  pointer-events: none;
+  user-select: none;
+  width: max-content;
+  max-width: 34ch;
+}
+.hero-text--narrow {
+  text-align: center;
+}
+.hero-text__name,
+.hero__static h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-h1);
+  line-height: var(--leading-h1);
+  letter-spacing: var(--tracking-h1);
+  color: var(--text);
+}
+.hero-text__role,
+.hero__static p {
+  margin: var(--space-3) 0 0;
+  font-family: var(--font-label);
+  font-size: var(--text-label);
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}

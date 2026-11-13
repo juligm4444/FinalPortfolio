@@ -60,10 +60,8 @@ const translations = {
       emailCopied: 'Copied',
     },
     hero: {
-      first: 'julián',
-      middle: 'galindo',
-      last: 'mora',
-      tagline: 'Designer & Developer ',
+      name: 'Julián Galindo',
+      tagline: 'Designer & Developer',
       profileAlt: 'Julián Galindo Mora',
     },
     home: {
@@ -1052,10 +1050,8 @@ const translations = {
       emailCopied: 'Copiado',
     },
     hero: {
-      first: 'julián',
-      middle: 'galindo',
-      last: 'mora',
-      tagline: 'Diseñador & Desarrollador ',
+      name: 'Julián Galindo',
+      tagline: 'Diseñador y Desarrollador',
       profileAlt: 'Julián Galindo Mora',
     },
     home: {

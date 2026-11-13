@@ -5,7 +5,7 @@ import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 
 export default [
-  { ignores: ['dist', 'dist-ssr', 'node_modules', 'vendor', 'graphify-out'] },
+  { ignores: ['dist', 'dist-ssr', 'node_modules', 'vendor', 'graphify-out', 'public'] },
   js.configs.recommended,
   {
     files: ['**/*.{js,jsx,mjs}'],
