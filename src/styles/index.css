@@ -150,7 +150,6 @@
   --filter-active-to: var(--concrete-900);
   --filter-active-fg: var(--mist);
   --filter-fg: var(--text);
-  --accent-bloom: #b03560;
   --glass-panel: rgb(221 242 235 / 0.42);
   --glass-panel-hover: rgb(221 242 235 / 0.62);
   --glass-panel-edge: rgb(221 242 235 / 0.55);

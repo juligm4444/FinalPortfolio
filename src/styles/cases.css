@@ -94,3 +94,11 @@
   --case-accent-soft: #b08566;
   --case-on-accent: var(--mist);
 }
+
+/* ---------- Bloom (BeBloomers): ciruela y rosa de la plataforma ---------- */
+.case[data-case='bloom'] {
+  --case-accent: #b03560;
+  --case-accent-soft: #d0668a;
+  --case-on-accent: var(--mist);
+  --case-screen: #f7f6f2; /* the phone screen in the wireframe mock-ups */
+}

@@ -21,7 +21,7 @@ import articleExplore from '../../assets/images/bloom/wireframes/article-explore
  * it and scroll by hand at any point.
  */
 
-const ACCENT = 'var(--accent-bloom)'
+const ACCENT = 'var(--case-accent)'
 const FRAME_W = 390
 
 // Heights in design pixels, so the scroll length can be stated honestly.
@@ -190,7 +190,7 @@ function Phone({ src, alt }) {
         tabIndex={0}
         aria-label={alt}
         className="bloom-phone-scroll overflow-y-auto"
-        style={{ aspectRatio: '390 / 844', borderRadius: 34, background: '#F7F6F2', overscrollBehavior: 'contain' }}
+        style={{ aspectRatio: '390 / 844', borderRadius: 34, background: 'var(--case-screen)', overscrollBehavior: 'contain' }}
       >
         <img src={src} alt={alt} loading="lazy" decoding="async" draggable="false" className="block w-full" />
       </div>
@@ -215,7 +215,7 @@ export function WireframeFlow({ b }) {
               aspectRatio: '390 / 844',
               borderRadius: 18,
               border: '1px solid color-mix(in srgb, var(--fg) 14%, transparent)',
-              background: '#F7F6F2',
+              background: 'var(--case-screen)',
             }}
           >
             <img src={src} alt={steps[i]} loading="lazy" decoding="async" draggable="false" className="block h-full w-full object-cover object-top" />
