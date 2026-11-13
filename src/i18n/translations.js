@@ -2,6 +2,11 @@ export const LOCALES = ['en', 'es']
 
 const translations = {
   en: {
+    keyscape: {
+      label: 'A bed of concrete keys, one technology on each, with the site logo on the central key and moss in the slots.',
+      caption: 'Tools',
+      items: ['Figma', 'React', 'Next.js', 'Python', 'Django', 'Supabase', 'Tailwind', 'Three.js', 'Blender', 'Unity', 'Git', 'SQL'],
+    },
     lab: {
       title: 'Lab',
       lead: 'Component bench for the redesign. Each OriginKit port lands here first, alone, before it goes into a page.',
@@ -10,6 +15,7 @@ const translations = {
       webglCaps: 'Device verdict',
       fps: 'Frames per second',
       botanicalVariants: 'Botanical Text — language variants',
+      keyscapeVariants: 'Citron Keyscape — language variants',
       plushVariants: 'Plush Tile — language variants',
       plushDock: 'Dock (moss)',
       plushHerbarium: 'Herbarium (grass round the slab)',
@@ -988,6 +994,11 @@ const translations = {
   },
 
   es: {
+    keyscape: {
+      label: 'Un lecho de teclas de concreto, una tecnología en cada una, con el logo del sitio en la tecla central y musgo en las ranuras.',
+      caption: 'Herramientas',
+      items: ['Figma', 'React', 'Next.js', 'Python', 'Django', 'Supabase', 'Tailwind', 'Three.js', 'Blender', 'Unity', 'Git', 'SQL'],
+    },
     lab: {
       title: 'Laboratorio',
       lead: 'Banco de componentes del rediseño. Cada porte de OriginKit aterriza aquí primero, solo, antes de entrar a una página.',
@@ -996,6 +1007,7 @@ const translations = {
       webglCaps: 'Veredicto del dispositivo',
       fps: 'Cuadros por segundo',
       botanicalVariants: 'Botanical Text — variantes de idioma',
+      keyscapeVariants: 'Citron Keyscape — variantes de idioma',
       plushVariants: 'Plush Tile — variantes de idioma',
       plushDock: 'Dock (musgo)',
       plushHerbarium: 'Herbario (pasto alrededor de la losa)',

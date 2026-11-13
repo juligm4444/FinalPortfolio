@@ -5,6 +5,7 @@ import { useWebGLRegistry, getCapabilities } from '../webgl/index.js'
 import BotanicalText from '../components/BotanicalText.jsx'
 import MoonlitPetals from '../components/MoonlitPetals.jsx'
 import VelourBolster from '../components/VelourBolster.jsx'
+import CitronKeyscape from '../components/CitronKeyscape.jsx'
 import { PlushProvider } from '../components/plush/PlushProvider.jsx'
 import PlushTile from '../components/plush/PlushTile.jsx'
 import { InstagramIcon, LinkedInIcon, CvIcon, GitHubIcon, BehanceIcon, MailIcon } from '../components/shell/icons.jsx'
@@ -82,6 +83,11 @@ export default function Lab() {
       <div className="mt-6 flex flex-wrap items-center gap-x-12 gap-y-10">
         <VelourBolster label={translations.es.lab.velourLabel} lang="es" to="/projects" />
         <VelourBolster label={translations.en.lab.velourLabel} lang="en" onClick={() => {}} />
+      </div>
+
+      <h2 className="mt-12 font-display text-h3">{t('lab.keyscapeVariants')}</h2>
+      <div className="mt-4">
+        <CitronKeyscape />
       </div>
 
       <h2 className="mt-12 font-display text-h3">{t('lab.plushVariants')}</h2>
