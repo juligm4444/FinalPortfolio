@@ -85,114 +85,41 @@ const translations = {
       herbCta: 'All projects',
     },
     about: {
-      title: 'About',
-      lead:
-        'I design and build interfaces that feel intentional. I move between the editorial calm of typography and the energy of motion, between the rigor of backend logic and the warmth of brand.',
-
-      infoKicker: 'Information',
-      infoTitle: 'A designer who codes — a developer who designs',
-      infoPara1:
-        'I\'m Julián Galindo, a Design student at Universidad de los Andes, focused on video games, interfaces and digital experiences. I\'m graduating in 2028, and I enjoy anything that involves creating, exploring and understanding how people interact with what they use.',
-      infoPara2:
-        'I like observing, questioning and analyzing why something works the way it does. I think in systems — how things connect, and how good design can make an experience clearer, more pleasant and more human. I\'m a mix of the technical and the sensitive: structure and aesthetics, logic and emotion.',
-      infoPara3:
-        'Films, video games and music shape the way I see design — as a way to tell something, build atmospheres and create moments that feel genuine.',
-      infoMediaCaption: 'Snapshot · 2025',
-
-      educationKicker: 'Education',
-      educationTitle: 'Where I learned to think in systems',
-      educationItems: [
-        {
-          period: '2025-2 — 2028 (expected)',
-          title: 'Bachelor\'s in Design',
-          subtitle: 'Universidad de los Andes · Bogotá',
-          detail:
-            'The career change, told straight: I design and build on top of the engineering foundation. Expected graduation: 2028.',
-        },
-        {
-          period: '2021-1 — 2025-1',
-          title: 'Systems & Computer Engineering',
-          subtitle: 'Universidad de los Andes · Bogotá',
-          detail:
-            'Nine semesters: algorithms, data structures, software architecture, and mobile + web development. Option in Visual Computing: completed.',
-        },
-        {
-          period: '2015 — 2020',
-          title: 'High School Diploma',
-          subtitle: 'Cambridge International School · La Calera',
-          detail: 'IB Programme · Best Graduate, Class of 2020.',
-        },
+      label: 'About',
+      title: 'About me',
+      subtitle: 'From Systems to Design',
+      story: [
+        "I started Systems Engineering in 2021 because I wanted to be a programmer. I liked coding and I liked digital products, and for a good while that was enough. What started to bother me was something else: in one class I had to build a digital product and I couldn't give it the creative touch I had in my head. It wasn't a code problem. I knew how to make it work, but I had no room to decide how it should look and feel. That sense of having my hands tied when it came to creative direction came back later and never really left.",
+        "It took me almost two years to make the decision. During that time generative AI arrived. I didn't run from it, I actually made it part of how I work, but it made me see that just programming was no longer enough for me. In 2025, after nine semesters, I left Systems and started Design at the same university. It was very hard. I felt I had lost a part of my life and that I wouldn't be able to do anything with it. At home it wasn't easy at first either, although they ended up supporting me.",
+        "With time I understood those years weren't lost. Engineering laid the foundation for how I understand and solve problems, and that gives me a different perspective from my classmates in Design. I no longer code line by line the way I used to: I define the architecture, direct the AI, and then check for myself that what it generates does what I need and makes technical sense. That's why I work with tools, frameworks and databases that I know and can run on my own. It's also why this portfolio looks the way it does: concrete with plants growing over it. The concrete is what engineering left me, and it's still holding things up. What grows is what I'm learning now.",
+        "Today what I enjoy most is structuring a product and building its whole aesthetic and functional side: identity, components, functionality and feel. I work mostly with Figma, Procreate, VS Code and AI tools like Claude and Higgsfield. I can use the Adobe suite, but it's not what I prefer. I'm interested in freelance and product work.",
       ],
-      educationMediaCaption: 'Universidad de los Andes',
-
-      experienceKicker: 'Experience',
-      experienceTitle: 'Where I\'ve been building',
-      experienceItems: [
-        {
-          period: 'Aug 2026 — Present',
-          role: 'Teaching assistant (monitor) · Algorithmic Thinking',
-          company: 'Universidad de los Andes',
-          bullets: [
-            'Supporting 23 students in a creative-coding course with p5.js: grading submissions with feedback, answering technical questions and guiding the creative approach of their projects.',
-          ],
-        },
-        {
-          period: 'Jun 2026',
-          role: 'Freelance · UX research, information architecture, wireframing',
-          company: 'Bloom / BeBloomers',
-          bullets: [
-            'UX research, information architecture and wireframing.',
-          ],
-        },
-        {
-          period: 'Oct 2025 — Present',
-          role: 'Brand & website · research hub (semillero)',
-          company: 'Candelaria · university solar vehicle team',
-          bullets: [
-            'Brand identity and website for the Candelaria research hub (semillero).',
-          ],
-        },
-        {
-          period: 'Jun 2025 — Jan 2026',
-          role: 'Latam CoderAI Trainer (LLM & code review)',
-          company: 'Outlier',
-          bullets: [
-            'Reviewing and correcting AI-generated code responses to improve training data.',
-            'Building 2D/3D animations and scenes with Python and JavaScript (Pygame, p5.js, WebGL).',
-            'Crafting and refining prompts for user-defined functional requirements.',
-          ],
-        },
+      timelineKicker: 'Path',
+      timelineTitle: 'Timeline',
+      timeline: [
+        { date: '2015 – 2020', title: 'Cambridge International School', text: 'High school, IB programme. Best graduate, class of 2020.' },
+        { date: '2021-1', title: 'Systems and Computing Engineering', text: 'Universidad de los Andes. I came in wanting to be a programmer.' },
+        { date: '2025-1', title: 'Last semester in Systems', text: 'Nine semesters completed and the Visual Computing option finished.' },
+        { date: 'Jun 2025 – Jan 2026', title: 'Outlier', text: 'Latam CoderAI Trainer. I reviewed and corrected code generated by AI models and built 2D and 3D scenes with Python, Pygame, p5.js and WebGL.' },
+        { date: '2025-2', title: 'Design', text: 'Universidad de los Andes. Starting over, with what I already had.', bloom: true },
+        { date: 'Oct 2025 – present', title: 'Candelaria Solar Car', text: 'Research group. I lead a design team of five: brand, design system, 3D and website.' },
+        { date: 'Jun 2026', title: 'Bloom (BeBloomers)', text: "Freelance project with another designer. UX research, information architecture and wireframes for a women's health platform." },
+        { date: 'Aug 2026 – present', title: 'Teaching assistant, Algorithmic Thinking', text: 'Universidad de los Andes. I support 23 students in a creative coding course with p5.js.' },
+        { date: '2028', title: 'Expected graduation', text: 'Design, Universidad de los Andes.' },
       ],
-
-      focusKicker: 'Focus',
-      focusTitle: 'Game-inspired interfaces, structurally solid',
-      focusPara1:
-        'I specialize in crafting intuitive, game-inspired interfaces with modern frontend technologies like React. My background in systems engineering and mobile development lets me build experiences that are visually engaging and structurally solid.',
-      focusPara2:
-        'I\'m passionate about blending creativity with logic — from playful prototypes in Figma to dynamic functionality with backend tools. Always learning, I thrive at the intersection of design and code, building digital experiences that connect with people.',
-      focusMediaCaption: 'Selected motion frame',
-
-      stackKicker: 'Skills',
-      stackTitle: 'Tech Stack',
-      filters: {
-        all: 'All',
-        design: 'Design',
-        development: 'Development',
-        tools: 'Tools',
-      },
-
+      ocoboLabel: 'An ocobo tree in pink bloom under an overcast sky, petals drifting down.',
       certKicker: 'Credentials',
-      certTitle: 'Certifications & badges',
-      certLead:
-        'A growing collection of digital badges and professional certificates. New ones from Google, Adobe and Epic Games on the way.',
+      certLead: 'Eight verifiable badges from IBM and Cisco.',
       certVerify: 'Verify',
-      certUpcoming: 'Coming soon',
-      certUpcomingLabel: 'In progress',
-      certUpcomingItems: [
-        { title: 'Google UX Design', issuer: 'Google · Coursera' },
-        { title: 'Adobe Certified Professional', issuer: 'Adobe · Coursera' },
-        { title: 'Unreal Engine Fundamentals', issuer: 'Epic Games · Coursera' },
-        { title: 'Scrum Master Certification', issuer: 'Scrum.org' },
+      certItems: [
+        'User Experience Design Fundamentals',
+        'Enterprise Design Thinking Practitioner',
+        'Agile Explorer',
+        'Project Management Fundamentals',
+        'Python Essentials 1',
+        'Python Essentials 2',
+        'JavaScript Essentials 1',
+        'JavaScript Essentials 2',
       ],
     },
     projects: {
@@ -1079,114 +1006,41 @@ const translations = {
       herbCta: 'Todos los proyectos',
     },
     about: {
+      label: 'About',
       title: 'Sobre mí',
-      lead:
-        'Diseño y construyo interfaces con intención. Me muevo entre la calma editorial de la tipografía y la energía del movimiento, entre el rigor del backend y la calidez del branding.',
-
-      infoKicker: 'Información',
-      infoTitle: 'Diseñador que programa — desarrollador que diseña',
-      infoPara1:
-        'Soy Julián Galindo, estudiante de Diseño en la Universidad de los Andes, enfocado en videojuegos, interfaces y experiencias digitales. Me gradúo en 2028 y disfruto cualquier cosa que implique crear, explorar y entender cómo la gente interactúa con lo que usa.',
-      infoPara2:
-        'Me gusta observar, cuestionar y analizar por qué algo funciona como funciona. Pienso en sistemas — cómo las cosas se conectan y cómo un buen diseño puede hacer una experiencia más clara, agradable y humana. Soy una mezcla de lo técnico y lo sensible: estructura y estética, lógica y emoción.',
-      infoPara3:
-        'Las películas, los videojuegos y la música moldean cómo veo el diseño — como una forma de contar algo, construir atmósferas y crear momentos que se sientan genuinos.',
-      infoMediaCaption: 'Snapshot · 2025',
-
-      educationKicker: 'Educación',
-      educationTitle: 'Donde aprendí a pensar en sistemas',
-      educationItems: [
-        {
-          period: '2025-2 — 2028 (previsto)',
-          title: 'Pregrado en Diseño',
-          subtitle: 'Universidad de los Andes · Bogotá',
-          detail:
-            'El cambio de carrera, contado de frente: diseño y construyo sobre la base de la ingeniería. Grado previsto: 2028.',
-        },
-        {
-          period: '2021-1 — 2025-1',
-          title: 'Ingeniería de Sistemas y Computación',
-          subtitle: 'Universidad de los Andes · Bogotá',
-          detail:
-            'Nueve semestres: algoritmos, estructuras de datos, arquitectura de software y desarrollo móvil y web. Opción en Computación Visual: terminada.',
-        },
-        {
-          period: '2015 — 2020',
-          title: 'Bachillerato',
-          subtitle: 'Cambridge International School · La Calera',
-          detail: 'Programa IB · Mejor egresado, generación 2020.',
-        },
+      subtitle: 'De Sistemas a Diseño',
+      story: [
+        'Entré a Ingeniería de Sistemas en 2021 porque quería ser programador. Me gustaba programar y me gustaban los productos digitales, y durante un buen tiempo eso fue suficiente. Lo que empezó a incomodarme fue otra cosa: en una clase tenía que construir un producto digital y no logré darle el toque creativo que tenía en la cabeza. No era un problema de código. Sabía cómo hacerlo funcionar, pero no tenía espacio para decidir cómo debía verse y sentirse. Esa sensación de tener las manos atadas en la dirección creativa se repitió después y no se fue.',
+        'Tardé casi dos años en tomar la decisión. En ese tiempo llegó la inteligencia artificial generativa. No huí de ella, de hecho la incorporé a mi forma de trabajar, pero me hizo ver que solo programar ya no me era suficiente. En 2025, después de nueve semestres, dejé Sistemas y empecé Diseño en la misma universidad. Costó mucho. Sentí que había perdido una parte de mi vida y que no iba a poder hacer nada con ella. En mi casa al principio tampoco fue fácil, aunque terminaron apoyándome.',
+        'Con el tiempo entendí que esos años no se perdieron. La ingeniería cimentó la forma en que entiendo y resuelvo los problemas, y eso me da una perspectiva distinta a la de mis compañeros en Diseño. Ya no programo línea por línea como antes: defino la arquitectura, dirijo a la IA y después reviso yo mismo que lo que genera cumpla lo que necesito y tenga sentido técnico. Por eso trabajo con herramientas, frameworks y bases de datos que conozco y que puedo operar por mi cuenta. Este portafolio se ve como se ve por esa razón: concreto con plantas creciendo encima. El concreto es lo que me dejó la ingeniería y sigue sosteniendo. Lo que crece es lo que estoy aprendiendo ahora.',
+        'Hoy lo que más disfruto es estructurar un producto y construir todo su apartado estético y funcional: identidad, componentes, funcionalidad y sensación. Trabajo sobre todo con Figma, Procreate, VS Code y herramientas de IA como Claude y Higgsfield. Puedo usar la suite de Adobe, pero no es lo que prefiero. Me interesa el trabajo freelance y de producto.',
       ],
-      educationMediaCaption: 'Universidad de los Andes',
-
-      experienceKicker: 'Experiencia',
-      experienceTitle: 'Dónde he construido',
-      experienceItems: [
-        {
-          period: 'Ago 2026 — Presente',
-          role: 'Monitor · Pensamiento Algorítmico',
-          company: 'Universidad de los Andes',
-          bullets: [
-            'Acompaño a 23 estudiantes en un curso de programación creativa con p5.js: califico entregas con retroalimentación, resuelvo dudas técnicas y oriento el enfoque creativo de sus proyectos.',
-          ],
-        },
-        {
-          period: 'Jun 2026',
-          role: 'Freelance · investigación UX, arquitectura de información, wireframing',
-          company: 'Bloom / BeBloomers',
-          bullets: [
-            'Investigación UX, arquitectura de información y wireframing.',
-          ],
-        },
-        {
-          period: 'Oct 2025 — Presente',
-          role: 'Marca y sitio web · semillero de investigación',
-          company: 'Candelaria · equipo universitario de vehículo solar',
-          bullets: [
-            'Identidad de marca y sitio web del semillero de investigación Candelaria.',
-          ],
-        },
-        {
-          period: 'Jun 2025 — Ene 2026',
-          role: 'Latam CoderAI Trainer (LLM & code review)',
-          company: 'Outlier',
-          bullets: [
-            'Reviso y corrijo respuestas de código generadas por IA para mejorar los datos de entrenamiento.',
-            'Construyo animaciones y escenas 2D/3D con Python y JavaScript (Pygame, p5.js, WebGL).',
-            'Diseño y refino prompts a partir de requerimientos funcionales del usuario.',
-          ],
-        },
+      timelineKicker: 'Trayecto',
+      timelineTitle: 'Línea de tiempo',
+      timeline: [
+        { date: '2015 – 2020', title: 'Cambridge International School', text: 'Bachillerato, programa IB. Mejor egresado de la generación 2020.' },
+        { date: '2021-1', title: 'Ingeniería de Sistemas y Computación', text: 'Universidad de los Andes. Entré queriendo ser programador.' },
+        { date: '2025-1', title: 'Último semestre en Sistemas', text: 'Nueve semestres cursados y la Opción en Computación Visual terminada.' },
+        { date: 'Jun 2025 – Ene 2026', title: 'Outlier', text: 'Entrenador Latam CoderAI. Revisé y corregí código generado por modelos de IA y desarrollé escenas 2D y 3D con Python, Pygame, p5.js y WebGL.' },
+        { date: '2025-2', title: 'Diseño', text: 'Universidad de los Andes. Empiezo de nuevo, con lo que ya traía.', bloom: true },
+        { date: 'Oct 2025 – presente', title: 'Candelaria Solar Car', text: 'Semillero de investigación. Lidero un equipo de diseño de cinco personas: marca, sistema de diseño, 3D y sitio web.' },
+        { date: 'Jun 2026', title: 'Bloom (BeBloomers)', text: 'Proyecto freelance con otro diseñador. Investigación UX, arquitectura de información y wireframes para una plataforma de salud femenina.' },
+        { date: 'Ago 2026 – presente', title: 'Monitor, Pensamiento Algorítmico', text: 'Universidad de los Andes. Acompaño a 23 estudiantes en un curso de programación creativa con p5.js.' },
+        { date: '2028', title: 'Grado previsto', text: 'Diseño, Universidad de los Andes.' },
       ],
-
-      focusKicker: 'Enfoque',
-      focusTitle: 'Interfaces inspiradas en videojuegos, sólidas en estructura',
-      focusPara1:
-        'Me especializo en construir interfaces intuitivas e inspiradas en videojuegos con tecnologías frontend modernas como React. Mi base en ingeniería de sistemas y desarrollo móvil me permite construir experiencias visualmente atractivas y estructuralmente sólidas.',
-      focusPara2:
-        'Me apasiona mezclar creatividad y lógica — desde prototipos divertidos en Figma hasta funcionalidad dinámica con herramientas de backend. Siempre aprendiendo, vivo en la intersección entre diseño y código, construyendo experiencias digitales que conectan con la gente.',
-      focusMediaCaption: 'Frame de motion seleccionado',
-
-      stackKicker: 'Habilidades',
-      stackTitle: 'Tech Stack',
-      filters: {
-        all: 'Todo',
-        design: 'Diseño',
-        development: 'Desarrollo',
-        tools: 'Herramientas',
-      },
-
+      ocoboLabel: 'Un árbol de ocobo en flor rosada bajo un cielo nublado, con pétalos que caen.',
       certKicker: 'Credenciales',
-      certTitle: 'Certificaciones y badges',
-      certLead:
-        'Una colección creciente de badges digitales y certificados profesionales. En camino: Google, Adobe y Epic Games.',
+      certLead: 'Ocho insignias verificables de IBM y Cisco.',
       certVerify: 'Verificar',
-      certUpcoming: 'Próximamente',
-      certUpcomingLabel: 'En curso',
-      certUpcomingItems: [
-        { title: 'Google UX Design', issuer: 'Google · Coursera' },
-        { title: 'Adobe Certified Professional', issuer: 'Adobe · Coursera' },
-        { title: 'Unreal Engine Fundamentals', issuer: 'Epic Games · Coursera' },
-        { title: 'Certificación Scrum Master', issuer: 'Scrum.org' },
+      certItems: [
+        'Fundamentos de UX Design',
+        'Enterprise Design Thinking Practitioner',
+        'Agile Explorer',
+        'Fundamentos de Project Management',
+        'Python Essentials 1',
+        'Python Essentials 2',
+        'JavaScript Essentials 1',
+        'JavaScript Essentials 2',
       ],
     },
     projects: {
