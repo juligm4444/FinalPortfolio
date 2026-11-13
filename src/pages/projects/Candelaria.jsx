@@ -26,35 +26,35 @@ import condorLOG from '../../assets/images/candelaria/condor-LOG.webp';
 import condorRRHH from '../../assets/images/candelaria/condor-RRHH.webp';
 
 /* ─────────────────────────────────────────
-   DESIGN TOKENS — dark aubergine / light off-white
+   DESIGN TOKENS — read from the route's palette (cases.css)
    Sourced from the live site + brand manual.
    ───────────────────────────────────────── */
 
 const C_LIGHT = {
-  bg:           '#EFEEEA',
-  surface:      '#E6E4DC',
-  card:         '#DDDBD1',
-  gold:         '#BC8215',
-  goldDeep:     '#A66E12',
-  violet:       '#6D28A8',
-  violetSoft:   '#8B3FD0',
-  lavender:     '#7C4DB8',
-  text:         '#1E0A29',
-  textSoft:     'rgba(30,10,41,0.66)',
-  textMuted:    'rgba(30,10,41,0.42)',
-  border:       'rgba(30,10,41,0.10)',
-  borderAccent: 'rgba(109,40,168,0.22)',
-  glow:         'rgba(109,40,168,0.22)',
-  glowSoft:     'rgba(139,63,208,0.08)',
-  btnText:      '#EFEEEA',
+  bg:           'var(--case-bg)',
+  surface:      'var(--case-surface)',
+  card:         'var(--case-card)',
+  gold:         'var(--case-warm)',
+  goldDeep:     'var(--case-warm-deep)',
+  violet:       'var(--case-accent)',
+  violetSoft:   'var(--case-accent-soft)',
+  lavender:     'var(--case-accent-2)',
+  text:         'var(--case-ink)',
+  textSoft:     'var(--case-ink-soft)',
+  textMuted:    'var(--case-ink-muted)',
+  border:       'var(--case-border)',
+  borderAccent: 'var(--case-border-accent)',
+  glow:         'var(--case-glow)',
+  glowSoft:     'var(--case-glow-soft)',
+  btnText:      'var(--case-on-accent)',
 };
 
-/* Type follows the portfolio, not the brand manual: the page is one of many
-   case studies and should read as part of the same site. Colour and layout
-   are what carry Candelaria's own identity here. */
-const DISPLAY = '"Libre Baskerville", serif';
-const BODY = '"Roboto Mono", monospace';
-const LABEL = '"Space Grotesk", sans-serif';
+/* Body and labels are the site's (fixed across cases). Display is the site's
+   too, except on the brand route, where cases.css sets --case-display to the
+   brand manual's Sansation. */
+const DISPLAY = 'var(--case-display)';
+const BODY = 'var(--font-body)';
+const LABEL = 'var(--font-label)';
 const EASE = [0.16, 1, 0.3, 1];
 
 const BRAND_PALETTE = [
@@ -257,8 +257,9 @@ function Hero() {
       <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: `radial-gradient(ellipse 70% 60% at 70% 20%, ${c.glowSoft} 0%, transparent 60%)` }} />
       {/* metallic condor mark */}
       <motion.img
+        className="case-condor"
         src={condorMain} alt="" aria-hidden
-        style={{ position: 'absolute', top: '6%', right: 'clamp(-80px, -2vw, 40px)', width: 'clamp(220px, 34vw, 520px)', opacity: 0.9, y: condorY, rotate: condorRotate, pointerEvents: 'none', filter: 'drop-shadow(0 20px 60px rgba(0,0,0,0.4))' }}
+        style={{ position: 'absolute', top: '6%', right: 'clamp(-80px, -2vw, 40px)', width: 'clamp(220px, 34vw, 520px)', opacity: 0.9, y: condorY, rotate: condorRotate, pointerEvents: 'none', filter: 'drop-shadow(0 20px 60px color-mix(in srgb, var(--concrete-900) 40%, transparent))' }}
       />
 
       <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative', zIndex: 2 }}>

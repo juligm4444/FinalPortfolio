@@ -127,3 +127,35 @@
   --case-chip-a: #8b9de8; /* Chill Chip glow */
   --case-chip-b: #b8a6f0; /* Complex Chip glow */
 }
+
+/* ---------- Candelaria (marca y sitio): berenjena, violeta y oro del manual ---------- */
+.case[data-case='candelaria'],
+.case[data-case='candelaria-website'] {
+  --case-bg: #efeeea;
+  --case-surface: #e6e4dc;
+  --case-card: #dddbd1;
+  --case-accent: #6d28a8;
+  --case-accent-soft: #8b3fd0;
+  --case-accent-2: #7c4db8;
+  --case-warm: #bc8215;
+  --case-warm-deep: #a66e12;
+  --case-ink: #1e0a29;
+  --case-ink-soft: rgb(30 10 41 / 0.66);
+  --case-ink-muted: rgb(30 10 41 / 0.42);
+  --case-border: rgb(30 10 41 / 0.1);
+  --case-border-accent: rgb(109 40 168 / 0.22);
+  --case-glow: rgb(109 40 168 / 0.22);
+  --case-glow-soft: rgb(139 63 208 / 0.08);
+  --case-on-accent: #efeeea;
+}
+/* Proyecto de marca: display propio, el del manual (Sansation). */
+.case[data-case='candelaria'] {
+  --case-display: 'Sansation', var(--font-label);
+}
+
+/* El cóndor decorativo no debe pisar el título en pantallas estrechas. */
+@media (max-width: 639px) {
+  .case-condor {
+    opacity: 0.16 !important;
+  }
+}
