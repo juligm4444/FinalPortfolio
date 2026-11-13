@@ -109,3 +109,21 @@
   --case-accent-soft: #c0485a;
   --case-on-accent: var(--mist);
 }
+
+/* ---------- SenseWave: lavanda fría y azul de neurotecnología ---------- */
+.case[data-case='sensewave'] {
+  --case-bg: #f2f2fa;
+  --case-surface: #e6e6f2;
+  --case-card: #dadadf;
+  --case-accent: #3d50b8;
+  --case-accent-2: #6650a8;
+  --case-ink: #08081a;
+  --case-ink-soft: rgb(8 8 26 / 0.68);
+  --case-ink-muted: rgb(8 8 26 / 0.4);
+  --case-border: rgb(8 8 26 / 0.09);
+  --case-border-accent: rgb(61 80 184 / 0.22);
+  --case-glow: rgb(61 80 184 / 0.07);
+  --case-on-accent: #f2f2fa;
+  --case-chip-a: #8b9de8; /* Chill Chip glow */
+  --case-chip-b: #b8a6f0; /* Complex Chip glow */
+}
