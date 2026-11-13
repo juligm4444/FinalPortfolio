@@ -34,7 +34,7 @@ import protoThroughGlass from '../../assets/images/umbral/proto-through-glass.we
 
 // Theme-aware: the wood tone that carries label text needs a different
 // lightness on each ground to stay legible. Values live in index.css.
-const ACCENT = 'var(--accent-umbral)'
+const ACCENT = 'var(--case-accent)'
 
 export default function Umbral() {
   const { t } = useLocale()

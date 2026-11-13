@@ -87,3 +87,10 @@
     display: none;
   }
 }
+
+/* ---------- El Umbral: madera clara y grabado, marrón cálido ---------- */
+.case[data-case='umbral'] {
+  --case-accent: #8c6244;
+  --case-accent-soft: #b08566;
+  --case-on-accent: var(--mist);
+}
