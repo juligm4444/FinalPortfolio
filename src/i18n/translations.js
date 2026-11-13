@@ -4,9 +4,9 @@ const translations = {
   en: {
     herbarium: {
       items: {
-        'candelaria-website': { genus: 'Web · Full-stack', year: 'Oct 2025 — present', role: 'Design lead, product engineering' },
+        candelariaWebsite: { genus: 'Web · Full-stack', year: 'Oct 2025 — present', role: 'Design lead, product engineering' },
         bloom: { genus: 'Digital · UX', year: 'Jun 2026', role: 'UX research, information architecture' },
-        sensewave: { genus: 'Object · Speculative brand', year: '2025', role: 'Brand and product design' },
+        sensewaveProduct: { genus: 'Object · Speculative brand', year: '2025', role: 'Brand and product design' },
       },
     },
     keyscape: {
@@ -123,44 +123,25 @@ const translations = {
       ],
     },
     projects: {
+      label: 'Work',
       title: 'Projects',
-      placeholder: 'Case study coming soon.',
-      caseStudy: 'Student Research Group · Academic project →',
-      caseStudyShort: 'View case study →',
+      lead: 'Four groups: engineering underneath, design on top. Every case opens a study.',
+      groups: {
+        web: 'Web',
+        digital: 'Digital',
+        objeto: 'Object',
+        marca: 'Brand',
+      },
+      status: { 'in-progress': 'In progress' },
+      openCase: 'Open case study',
       visitSite: 'Visit website',
       viewCode: 'GitHub repository',
-      category: {
-        desarrollo: 'Development',
-        marcaux: 'Brand & UX',
-        producto: 'Product',
-      },
-    },
-    // Discipline labels for the showcase panels. Proper nouns and universally
-    // borrowed terms (React, 3D, Branding) stay identical across locales â
-    // translating them would make them harder to recognise, not easier.
-    tags: {
-      js: 'Js',
-      react: 'React',
-      django: 'Django',
-      fullstack: 'Full-stack Development',
-      android: 'Android',
-      java: 'Java',
-      ocr: 'OCR',
-      mobile: 'Mobile',
-      uxResearch: 'UX Research',
-      ia: 'Information Architecture',
-      wireframing: 'Wireframing',
-      threeD: '3D',
-      furniture: 'Furniture',
-      productDesign: 'Product Design',
-      wearable: 'Wearable',
-      concept: 'Concept Development',
-      brandDesign: 'Brand Design',
-      visualIdentity: 'Visual Identity',
-      artDirection: 'Art Direction',
-      brandIdentity: 'Brand Identity',
-      speculative: 'Speculative Design',
-      motion: 'Motion',
+      deckLabel: 'Websites, one card at a time',
+      deckHint: 'Scroll, drag, click or use the arrow keys to flip through them.',
+      deckListTitle: 'All websites',
+      explodedHint: 'Hover or focus to see it apart',
+      toolsKicker: 'Tools',
+      toolsTitle: 'What I build with',
     },
     works: {
       candelariaWebsite: {
@@ -187,6 +168,11 @@ const translations = {
         kicker: 'Wearable · Speculative',
         title: 'SenseWave',
         desc: 'Sense Eco glasses and a two-chip system that turns a donated sensation into neural signal.',
+      },
+      portfolio: {
+        kicker: 'Web · Design & development',
+        title: 'juligm4.com',
+        desc: 'This portfolio: concrete overgrown with moss, built in React with a shared WebGL budget.',
       },
       candelariaBrand: {
         kicker: 'Identity · Research Group',
@@ -925,9 +911,9 @@ const translations = {
   es: {
     herbarium: {
       items: {
-        'candelaria-website': { genus: 'Web · Full-stack', year: 'Oct 2025 — presente', role: 'Diseño e ingeniería de producto' },
+        candelariaWebsite: { genus: 'Web · Full-stack', year: 'Oct 2025 — presente', role: 'Diseño e ingeniería de producto' },
         bloom: { genus: 'Digital · UX', year: 'Jun 2026', role: 'Investigación UX, arquitectura de información' },
-        sensewave: { genus: 'Objeto · Marca especulativa', year: '2025', role: 'Diseño de marca y producto' },
+        sensewaveProduct: { genus: 'Objeto · Marca especulativa', year: '2025', role: 'Diseño de marca y producto' },
       },
     },
     keyscape: {
@@ -1044,44 +1030,25 @@ const translations = {
       ],
     },
     projects: {
+      label: 'Trabajo',
       title: 'Proyectos',
-      placeholder: 'Caso de estudio próximamente.',
-      caseStudy: 'Semillero · Proyecto Académico →',
-      caseStudyShort: 'Ver caso de estudio →',
-      visitSite: 'Visitar el sitio',
-      viewCode: 'Repositorio GitHub',
-      category: {
-        desarrollo: 'Desarrollo',
-        marcaux: 'Marca y UX',
-        producto: 'Producto',
+      lead: 'Cuatro grupos, la ingeniería debajo y el diseño encima. Cada caso abre un estudio.',
+      groups: {
+        web: 'Web',
+        digital: 'Digital',
+        objeto: 'Objeto',
+        marca: 'Marca',
       },
-    },
-    // Etiquetas de disciplina de los paneles. Los nombres propios y los
-    // términos prestados (React, 3D, Branding) no se traducen: hacerlo los
-    // volvería más difíciles de reconocer, no más claros.
-    tags: {
-      js: 'Js',
-      react: 'React',
-      django: 'Django',
-      fullstack: 'Desarrollo FullStack',
-      android: 'Android',
-      java: 'Java',
-      ocr: 'OCR',
-      mobile: 'Móvil',
-      uxResearch: 'Investigación UX',
-      ia: 'Arquitectura de Información',
-      wireframing: 'Wireframing',
-      threeD: '3D',
-      furniture: 'Mobiliario',
-      productDesign: 'Diseño de Producto',
-      wearable: 'Wearable',
-      concept: 'Desarrollo de Concepto',
-      brandDesign: 'Diseño de Marca',
-      visualIdentity: 'Identidad Visual',
-      artDirection: 'Dirección de Arte',
-      brandIdentity: 'Identidad de Marca',
-      speculative: 'Diseño Especulativo',
-      motion: 'Motion',
+      status: { 'in-progress': 'En curso' },
+      openCase: 'Abrir caso de estudio',
+      visitSite: 'Visitar el sitio',
+      viewCode: 'Repositorio en GitHub',
+      deckLabel: 'Sitios web, una tarjeta a la vez',
+      deckHint: 'Desplaza, arrastra, haz clic o usa las flechas para pasarlas.',
+      deckListTitle: 'Todos los sitios',
+      explodedHint: 'Pasa el puntero o enfoca para verlo desarmado',
+      toolsKicker: 'Herramientas',
+      toolsTitle: 'Con qué construyo',
     },
     works: {
       candelariaWebsite: {
@@ -1108,6 +1075,11 @@ const translations = {
         kicker: 'Wearable · Especulativo',
         title: 'SenseWave',
         desc: 'Gafas Sense Eco y un sistema de dos chips que convierte una sensación donada en señal neural.',
+      },
+      portfolio: {
+        kicker: 'Web · Diseño y desarrollo',
+        title: 'juligm4.com',
+        desc: 'Este portafolio: concreto invadido de musgo, hecho en React con un presupuesto WebGL compartido.',
       },
       candelariaBrand: {
         kicker: 'Identidad · Semillero',

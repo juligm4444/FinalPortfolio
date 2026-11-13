@@ -6,10 +6,10 @@ import Dock from './Dock.jsx'
 /* REDESIGN §5 — the shell every route shares: background, side nav, dock.
    Pages render inside <main>; the shell owns the offsets so pages never
    compute them. */
-export default function AppShell({ children, locked = false }) {
+export default function AppShell({ children }) {
   const { t } = useLocale()
   return (
-    <div className={`shell ${locked ? 'shell--locked' : ''}`}>
+    <div className="shell">
       <a href="#main" className="skip-link">
         {t('nav.skip')}
       </a>

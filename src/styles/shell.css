@@ -55,14 +55,6 @@
   padding-bottom: calc(var(--dock-h) + var(--space-8));
   outline: none;
 }
-.shell--locked {
-  height: 100dvh;
-  min-height: 0;
-}
-.shell--locked .shell__main {
-  padding-bottom: var(--dock-h);
-  overflow: hidden;
-}
 
 /* ---------- route background ---------- */
 .route-bg {

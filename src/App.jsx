@@ -39,25 +39,12 @@ function NotFound() {
 /* Everything under /:lang. Validates the prefix, owns the locale and the shell. */
 function LangLayout() {
   const { lang } = useParams()
-  const { pathname } = useLocation()
-  const { path } = splitLocale(pathname)
-  // The showcase is sized to the viewport and must not scroll. Flagging it on
-  // <html> lets the stylesheet lock the page in one place.
-  const isShowcase = path === '/projects'
-
-  useEffect(() => {
-    const root = document.documentElement
-    if (isShowcase) root.setAttribute('data-locked', 'true')
-    else root.removeAttribute('data-locked')
-    return () => root.removeAttribute('data-locked')
-  }, [isShowcase])
-
   if (!isLocale(lang)) return <LocaleRedirect />
 
   return (
     <LocaleProvider locale={lang}>
       <Seo />
-      <AppShell locked={isShowcase}>
+      <AppShell>
         <ScrollToTop />
         <Outlet />
       </AppShell>

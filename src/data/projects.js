@@ -6,105 +6,102 @@ import bloomLogo from '../assets/images/bloom/bloom_logo.webp'
 // Authored here rather than supplied — see the note in the file itself.
 import licorimetroLogo from '../assets/images/licorimetro/licorimetro_logo.svg'
 
+import sensewaveGlasses from '../assets/images/sensewave/a3-glasses.webp'
+import sensewaveChips from '../assets/images/sensewave/a13-chip-system.webp'
+import umbralExploded from '../assets/images/umbral/exploded.webp'
+import umbralTop from '../assets/images/umbral/view-top.webp'
+import umbralSide from '../assets/images/umbral/view-side.webp'
+import umbralIso from '../assets/images/umbral/view-iso.webp'
+import portfolioShot from '../assets/images/portfolio/home.webp'
+
 /**
- * The showcase lists WORKS, not projects.
+ * Every work, in the four groups of REDESIGN §5. A work belongs to exactly one
+ * group (`group` is a single value, not a list). Where one project produced
+ * genuinely different jobs — the Candelaria brand and the Candelaria site —
+ * those are separate works with separate names.
  *
- * One project can be several pieces of work with nothing in common but a
- * client: the Candelaria brand and the Candelaria website were different
- * jobs, done with different skills, and collapsing them into one card hid
- * half the effort. So each entry here is a single body of work that belongs
- * to exactly one panel, carries its own copy, tags and artwork, and links to
- * whichever case study documents it.
+ * `id`     — key into translations `works.<id>` (title, kicker, desc)
+ * `status` — 'live' | 'delivered' | 'academic' | 'in-progress'; in-progress
+ *            shows the "in progress" label
+ * `href`   — the case study, or null when there is none yet
+ * `site`   — an external URL to fall back on when there is no case study
+ * `media`  — what each group's layout needs: a screenshot (web), a logo
+ *            (digital, brand), a render + exploded view (object)
  *
- * `panel`   — which of the three columns it lives in.
- * `href`    — the case study. Several works may point at the same page.
- * `tagKeys` — indices into translations.<locale>.tags, so a tag reads
- *             "Furniture" or "Mobiliario" without duplicating the list here.
+ * Pending (to be added when the screenshots arrive): the current freelance
+ * site and adidas × Milo J, both in the web group.
  */
-
-// Left to right. No work appears twice: a reader who meets the same card in
-// two columns learns that the columns do not mean anything. Where one project
-// produced genuinely different jobs — the Candelaria brand and the Candelaria
-// site — those are separate entries with separate names, which is not the
-// same thing as listing one work twice.
-export const PANELS = ['desarrollo', 'marcaux', 'producto']
-
-/** Extremes travel down, centre travels up — the three never move as a block. */
-export const PANEL_DIRECTION = {
-  desarrollo: 1,
-  marcaux: -1,
-  producto: 1,
-}
+export const GROUPS = ['web', 'digital', 'objeto', 'marca']
 
 const works = [
-  // ── DESARROLLO ────────────────────────────────────────────────────────
+  // ── WEB ──────────────────────────────────────────────────────────────
   {
-    id: 'candelaria-website',
-    panel: 'desarrollo',
-    titleI18n: 'works.candelariaWebsite.title',
-    kickerI18n: 'works.candelariaWebsite.kicker',
-    descI18n: 'works.candelariaWebsite.desc',
-    tagKeys: ['js', 'react', 'django', 'fullstack'],
+    id: 'candelariaWebsite',
+    group: 'web',
+    status: 'live',
     href: '/projects/candelaria-website',
-    image: candelariaSite,
-    fit: 'cover',
+    site: 'https://www.candelaria.website/',
+    media: { screenshot: candelariaSite },
   },
   {
+    id: 'portfolio',
+    group: 'web',
+    status: 'in-progress',
+    href: null,
+    site: 'https://www.juligm4.com/',
+    media: { screenshot: portfolioShot },
+  },
+
+  // ── DIGITAL ──────────────────────────────────────────────────────────
+  {
     id: 'licorimetro',
-    panel: 'desarrollo',
-    titleI18n: 'works.licorimetro.title',
-    kickerI18n: 'works.licorimetro.kicker',
-    descI18n: 'works.licorimetro.desc',
-    tagKeys: ['android', 'java', 'ocr', 'mobile'],
+    group: 'digital',
+    status: 'academic',
     href: '/projects/licorimetro',
-    image: licorimetroLogo,
+    site: null,
+    media: { logo: licorimetroLogo },
   },
   {
     id: 'bloom',
-    panel: 'marcaux',
-    titleI18n: 'works.bloom.title',
-    kickerI18n: 'works.bloom.kicker',
-    descI18n: 'works.bloom.desc',
-    tagKeys: ['uxResearch', 'ia', 'wireframing'],
+    group: 'digital',
+    status: 'delivered',
     href: '/projects/bloom',
-    image: bloomLogo,
+    site: 'https://bebloomers.com/',
+    media: { logo: bloomLogo },
   },
 
-  // ── PRODUCTO ──────────────────────────────────────────────────────────
+  // ── OBJETO ───────────────────────────────────────────────────────────
   {
     id: 'umbral',
-    year: 2026,
-    panel: 'producto',
-    titleI18n: 'works.umbral.title',
-    kickerI18n: 'works.umbral.kicker',
-    descI18n: 'works.umbral.desc',
-    tagKeys: ['threeD', 'furniture', 'productDesign'],
+    group: 'objeto',
+    status: 'academic',
     href: '/projects/umbral',
-    image: umbralRender,
+    site: null,
+    media: { render: umbralRender, exploded: umbralExploded, views: [umbralTop, umbralSide, umbralIso] },
   },
   {
-    id: 'sensewave',
-    panel: 'producto',
-    titleI18n: 'works.sensewaveProduct.title',
-    kickerI18n: 'works.sensewaveProduct.kicker',
-    descI18n: 'works.sensewaveProduct.desc',
-    tagKeys: ['productDesign', 'wearable', 'threeD', 'concept'],
+    id: 'sensewaveProduct',
+    group: 'objeto',
+    status: 'academic',
     href: '/projects/sensewave',
-    image: sensewaveMark,
+    site: null,
+    media: { render: sensewaveGlasses, exploded: sensewaveChips, logo: sensewaveMark },
   },
 
-  // ── MARCA Y UX ────────────────────────────────────────────────────────
+  // ── MARCA ────────────────────────────────────────────────────────────
   {
-    id: 'candelaria-brand',
-    panel: 'marcaux',
-    titleI18n: 'works.candelariaBrand.title',
-    kickerI18n: 'works.candelariaBrand.kicker',
-    descI18n: 'works.candelariaBrand.desc',
-    tagKeys: ['brandDesign', 'visualIdentity', 'artDirection'],
+    id: 'candelariaBrand',
+    group: 'marca',
+    status: 'live',
     href: '/projects/candelaria',
-    image: candelariaLogo,
+    site: null,
+    media: { logo: candelariaLogo },
   },
 ]
+
+export function worksByGroup(group) {
+  return works.filter((w) => w.group === group)
+}
 
 /**
  * Case-study metadata, keyed by route slug.
@@ -144,15 +141,11 @@ export const caseStudies = {
   },
 }
 
-export function worksByPanel(panel) {
-  return works.filter((w) => w.panel === panel)
-}
-
 /**
  * The three the Herbario on the homepage presses: web, digital, object —
  * one per group, so the range is obvious before anyone clicks through.
  */
-export const homeFeatured = ['candelaria-website', 'bloom', 'sensewave']
+export const homeFeatured = ['candelariaWebsite', 'bloom', 'sensewaveProduct']
   .map((id) => works.find((w) => w.id === id))
   .filter(Boolean)
 

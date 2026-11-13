@@ -35,11 +35,11 @@ function Slab({ work, index }) {
         onBlur={() => host.setFocus(null)}
       >
         <span className="herb__specimen" aria-hidden="true">
-          <img src={work.image} alt="" loading="lazy" decoding="async" />
+          <img src={work.media.logo || work.media.screenshot || work.media.render} alt="" loading="lazy" decoding="async" />
         </span>
         <span className="herb__label">
           <span className="herb__genus">{label.genus}</span>
-          <span className="herb__species">{t(work.titleI18n)}</span>
+          <span className="herb__species">{t(`works.${work.id}.title`)}</span>
           <span className="herb__meta">
             <span>{label.year}</span>
             <span>{label.role}</span>

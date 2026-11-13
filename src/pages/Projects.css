@@ -1,0 +1,236 @@
+.proj {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--space-12) var(--space-4) var(--space-12);
+}
+@media (min-width: 768px) {
+  .proj {
+    padding-left: var(--space-8);
+    padding-right: var(--space-8);
+  }
+}
+.proj__kicker,
+.work__kicker {
+  margin: 0;
+  font-family: var(--font-label);
+  font-size: var(--text-label-sm);
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.proj__lead {
+  max-width: 60ch;
+  margin: var(--space-2) 0 0;
+  font-family: var(--font-body);
+  color: var(--text-muted);
+}
+.proj__group {
+  margin-top: var(--space-16);
+}
+.proj__group-title {
+  margin: 0 0 var(--space-6);
+  font-family: var(--font-display);
+  font-size: var(--text-h2);
+  line-height: var(--leading-h2);
+  color: var(--text);
+}
+.work__title {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-h3);
+  line-height: var(--leading-h3);
+  color: var(--text);
+}
+.work__desc {
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  line-height: var(--leading-body);
+  color: var(--text-muted);
+}
+.work__status {
+  display: inline-block;
+  padding: 2px var(--space-2);
+  font-family: var(--font-label);
+  font-size: var(--text-label-sm);
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--moss-700);
+  border: 1px solid var(--moss-700);
+  border-radius: var(--radius-pill);
+  background: var(--mist);
+}
+
+/* Web */
+.proj__deck-caption {
+  margin-top: var(--space-4);
+  text-align: center;
+}
+.proj__list-title {
+  margin: var(--space-8) 0 var(--space-3);
+  font-family: var(--font-label);
+  font-size: var(--text-label-sm);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.proj__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--border);
+}
+.proj__list-link {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-4);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  text-decoration: none;
+}
+.proj__list-link .work__title {
+  font-size: var(--text-body);
+}
+a.proj__list-link:hover .work__title {
+  color: var(--moss-700);
+}
+
+/* Slabs (digital, brand) */
+.proj__slabs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+  gap: var(--space-6);
+}
+.work-slab {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  color: var(--text);
+  text-decoration: none;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-slab);
+  box-shadow: var(--slab-shadow);
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease;
+}
+a.work-slab:active {
+  transform: translateY(2px);
+  box-shadow: var(--slab-shadow-pressed);
+}
+.work-slab__media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 16 / 9;
+  padding: var(--space-6);
+  border-bottom: 1px solid var(--border);
+}
+.work-slab__media img {
+  max-width: 60%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.work-slab__body {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-4);
+}
+
+/* Object: pedestals */
+.proj__pedestals {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 380px), 1fr));
+  gap: var(--space-12) var(--space-8);
+}
+.pedestal__link {
+  display: block;
+  color: var(--text);
+  text-decoration: none;
+}
+.pedestal__stage {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 3;
+}
+.pedestal__piece {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition:
+    opacity 360ms ease,
+    transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.pedestal__piece--exploded {
+  opacity: 0;
+  transform: scale(0.96);
+}
+.pedestal__link:hover .pedestal__piece:not(.pedestal__piece--exploded),
+.pedestal__link:focus-visible .pedestal__piece:not(.pedestal__piece--exploded) {
+  opacity: 0;
+}
+.pedestal__link:hover .pedestal__piece--exploded,
+.pedestal__link:focus-visible .pedestal__piece--exploded {
+  opacity: 1;
+  transform: none;
+}
+/* The plinth: a slab of concrete under the piece. */
+.pedestal__plinth {
+  display: block;
+  height: 28px;
+  margin: 0 8%;
+  background: linear-gradient(to bottom, var(--concrete-100), var(--concrete-300));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-slab);
+  box-shadow: var(--slab-shadow);
+}
+.pedestal__label {
+  display: grid;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+.pedestal__hint {
+  font-family: var(--font-label);
+  font-size: var(--text-label-sm);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.pedestal__views {
+  list-style: none;
+  margin: var(--space-4) 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-2);
+}
+.pedestal__views img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-slab);
+}
+@media (prefers-reduced-motion: reduce) {
+  .pedestal__piece,
+  .work-slab {
+    transition: none;
+  }
+}
