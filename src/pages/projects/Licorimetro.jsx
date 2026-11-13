@@ -10,19 +10,19 @@ import licorimetroEvolutionImg from '../../assets/images/licorimetro/evolution.w
 import licorimetroReflectionsImg from '../../assets/images/licorimetro/reflections.webp';
 import licorimetroScanVideo from '../../assets/images/licorimetro/summary-scan.mp4';
 
-const ACCENT = 'var(--pink-brand)';
+const ACCENT = 'var(--case-accent)';
 const EASE = [0.16, 1, 0.3, 1];
 
 const slabStyle = {
   background: ACCENT,
-  color: '#EDEDE8',
+  color: 'var(--case-on-accent)',
   display: 'inline-block',
   padding: '8px 14px',
   fontSize: 12,
   letterSpacing: '0.22em',
   fontWeight: 700,
   textTransform: 'uppercase',
-  fontFamily: '"Space Grotesk", sans-serif',
+  fontFamily: 'var(--font-label)',
 };
 
 /* ======================== Feature icons (7) ======================== */
@@ -514,7 +514,7 @@ function FlowStepCard({ step, icon, mobile = false }) {
     >
       <span
         style={{
-          fontFamily: '"Space Grotesk", sans-serif',
+          fontFamily: 'var(--font-label)',
           fontSize: 10,
           letterSpacing: '0.18em',
           color: ACCENT,
@@ -605,7 +605,7 @@ function ArchitectureDiagram() {
             >
               <p
                 style={{
-                  fontFamily: '"Space Grotesk", sans-serif',
+                  fontFamily: 'var(--font-label)',
                   fontSize: 9,
                   letterSpacing: '0.22em',
                   textTransform: 'uppercase',
@@ -709,7 +709,7 @@ function OCRScanVisual() {
       {/* Content */}
       <div
         style={{
-          fontFamily: '"Roboto Mono", monospace',
+          fontFamily: 'var(--font-body)',
           display: 'flex',
           flexDirection: 'column',
           gap: 14,
@@ -1067,7 +1067,7 @@ function BrutalistTable({ header, rows }) {
     <div className="mt-8 overflow-x-auto">
       <table
         className="w-full"
-        style={{ borderCollapse: 'collapse', fontFamily: '"Roboto Mono", monospace' }}
+        style={{ borderCollapse: 'collapse', fontFamily: 'var(--font-body)' }}
       >
         <thead>
           <tr>

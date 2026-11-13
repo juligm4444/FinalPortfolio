@@ -102,3 +102,10 @@
   --case-on-accent: var(--mist);
   --case-screen: #f7f6f2; /* the phone screen in the wireframe mock-ups */
 }
+
+/* ---------- Licorímetro: el vino de su logotipo ---------- */
+.case[data-case='licorimetro'] {
+  --case-accent: #9b2335;
+  --case-accent-soft: #c0485a;
+  --case-on-accent: var(--mist);
+}
