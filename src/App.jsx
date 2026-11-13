@@ -8,6 +8,7 @@ import Home from './pages/Home.jsx'
 import About from './pages/About.jsx'
 import Projects from './pages/Projects.jsx'
 import Lab from './pages/Lab.jsx'
+import CaseCrack from './components/CaseCrack.jsx'
 import Candelaria, { CandelariaWebsite } from './pages/projects/Candelaria.jsx'
 import Licorimetro from './pages/projects/Licorimetro.jsx'
 import Sensewave from './pages/projects/Sensewave.jsx'
@@ -36,6 +37,19 @@ function NotFound() {
   return <Navigate to={localePath(isLocale(lang) ? lang : 'es', '/')} replace />
 }
 
+/* Case studies: the route sets the project's palette (cases.css, [data-case])
+   and plays the crack entrance. Keyed by slug so moving between two cases replays it. */
+function CaseLayout() {
+  const { pathname } = useLocation()
+  const slug = splitLocale(pathname).path.split('/')[2] ?? ''
+  return (
+    <div className="case" data-case={slug} key={slug}>
+      <CaseCrack />
+      <Outlet />
+    </div>
+  )
+}
+
 /* Everything under /:lang. Validates the prefix, owns the locale and the shell. */
 function LangLayout() {
   const { lang } = useParams()
@@ -59,12 +73,14 @@ export default function App() {
         <Route index element={<Home />} />
         <Route path="about" element={<About />} />
         <Route path="projects" element={<Projects />} />
-        <Route path="projects/candelaria" element={<Candelaria />} />
-        <Route path="projects/candelaria-website" element={<CandelariaWebsite />} />
-        <Route path="projects/licorimetro" element={<Licorimetro />} />
-        <Route path="projects/sensewave" element={<Sensewave />} />
-        <Route path="projects/umbral" element={<Umbral />} />
-        <Route path="projects/bloom" element={<Bloom />} />
+        <Route element={<CaseLayout />}>
+          <Route path="projects/candelaria" element={<Candelaria />} />
+          <Route path="projects/candelaria-website" element={<CandelariaWebsite />} />
+          <Route path="projects/licorimetro" element={<Licorimetro />} />
+          <Route path="projects/sensewave" element={<Sensewave />} />
+          <Route path="projects/umbral" element={<Umbral />} />
+          <Route path="projects/bloom" element={<Bloom />} />
+        </Route>
         <Route path="lab" element={<Lab />} />
         <Route path="*" element={<NotFound />} />
       </Route>

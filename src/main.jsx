@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import App from './App.jsx'
 import './styles/index.css'
 import './styles/shell.css'
+import './styles/cases.css'
 
 const container = document.getElementById('root')
 const tree = (
