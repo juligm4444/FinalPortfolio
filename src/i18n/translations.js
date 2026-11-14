@@ -4,6 +4,8 @@ const translations = {
   en: {
     case: {
       tools: 'Tools',
+      period: 'Dates',
+      sections: { problem: 'Problem', process: 'Process', decisions: 'Decisions', result: 'Result' },
       next: 'Next case',
       visit: 'Visit the site',
       code: 'Repository',
@@ -940,6 +942,8 @@ const translations = {
   es: {
     case: {
       tools: 'Herramientas',
+      period: 'Fechas',
+      sections: { problem: 'Problema', process: 'Proceso', decisions: 'Decisiones', result: 'Resultado' },
       next: 'Siguiente caso',
       visit: 'Visitar el sitio',
       code: 'Repositorio',

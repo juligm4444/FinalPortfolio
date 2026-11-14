@@ -53,7 +53,7 @@ export default function TaxonomyExplorer({ b }) {
                 setVersionKey(v.key)
                 setFocus(null)
               }}
-              className="relative flex flex-col items-start gap-1 px-1 pb-4 pt-2 text-left md:px-2"
+              className="relative flex min-w-0 flex-col items-start gap-1 px-1 pb-4 pt-2 text-left md:px-2"
               style={{ color: on ? 'var(--text)' : 'var(--text-muted)', transition: 'color 200ms ease' }}
             >
               <span className="flex items-center gap-2">
@@ -79,8 +79,8 @@ export default function TaxonomyExplorer({ b }) {
                 ) : null}
               </span>
               <span
-                className="font-nav uppercase"
-                style={{ fontSize: '12px', letterSpacing: '0.18em', fontWeight: 600 }}
+                className="min-w-0 font-nav uppercase tracking-[0.04em] md:tracking-[0.18em]"
+                style={{ fontSize: '12px', fontWeight: 600, overflowWrap: 'anywhere' }}
               >
                 {b(`${v.key}Title`)}
               </span>

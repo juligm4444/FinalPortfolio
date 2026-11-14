@@ -10,7 +10,7 @@ export const CATEGORY_KEYS = ['cuerpo', 'mente', 'relaciones', 'sexo', 'cultura'
 
 // Category markers, in site tokens (ACABADO §2).
 export const CATEGORY_COLORS = {
-  cuerpo: 'var(--bloom-ink)',
+  cuerpo: 'var(--concrete-300)',
   mente: 'var(--concrete-900)',
   relaciones: 'var(--moss-400)',
   sexo: 'var(--concrete-500)',

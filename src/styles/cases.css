@@ -27,13 +27,22 @@
   --case-chip-b: var(--concrete-300);
 }
 
+/* La superficie del caso llega de borde a borde: también bajo la columna del nav (§4),
+   sin franja de foto a la izquierda. */
+@media (min-width: 768px) {
+  .case {
+    margin-left: calc(-1 * var(--nav-offset));
+    padding-left: var(--nav-offset);
+  }
+}
+
 /* ---------- La grieta de entrada ----------
    Una pared (concreto) cubre el caso; se abre por una grieta irregular y deja ver
    el color del proyecto, que inunda y luego se retira. Solo CSS; se monta en
    cliente y no existe con reduced-motion. */
 .crack {
   position: fixed;
-  inset: 0 0 0 var(--nav-offset);
+  inset: 0;
   z-index: 5;
   pointer-events: none;
   overflow: hidden;

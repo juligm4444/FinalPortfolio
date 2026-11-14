@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { useLocale } from '../i18n/LocaleProvider.jsx'
 import LocaleLink from './LocaleLink.jsx'
 import { caseStudies } from '../data/projects.js'
+import './CaseStudy.css'
 
 /**
  * Shared scaffolding for case-study pages.
@@ -396,5 +397,122 @@ export function CaseFooter({ label, quote, paragraphs, tags, accent }) {
         </ul>
       </Reveal>
     </CaseSection>
+  )
+}
+
+/* ---------------------------------------------------------------------------
+   The template (ACABADO §7). A case is data:
+     hero      kicker, title [h1, h2?], summary, tags, media, meta (the ficha)
+     sections  four numbered sections — problem, process, decisions, result — each a
+               list of blocks:
+       { type:'text',  kicker?, heading?, sub?, paras[] }   heading → two columns
+       { type:'quote', text }
+       { type:'stat',  value, label }
+       { type:'figure', src, alt, caption? }                image on a slab
+       { type:'node',  node }                               interactive piece on a slab
+       { type:'tags',  items[] }
+       { type:'split', left: block, right: block }
+   then the link to the next case. Order, type, colour and spacing are fixed here. */
+const SECTION_KEYS = ['problem', 'process', 'decisions', 'result']
+
+function Block({ b }) {
+  if (!b) return null
+  switch (b.type) {
+    case 'text': {
+      const body = (
+        <div className="cs__stack">
+          {b.sub ? <h3 className="cs__h3">{b.sub}</h3> : null}
+          {b.paras?.filter(Boolean).map((p, i) => (
+            <p key={i} className="cs__p">
+              {p}
+            </p>
+          ))}
+        </div>
+      )
+      if (!b.heading) return <Reveal>{b.kicker ? <p className="cs__kicker">{b.kicker}</p> : null}{body}</Reveal>
+      return (
+        <Reveal className="cs__text cs__text--cols">
+          <div>
+            {b.kicker ? <p className="cs__kicker">{b.kicker}</p> : null}
+            <h2 className="cs__h">{b.heading}</h2>
+          </div>
+          {body}
+        </Reveal>
+      )
+    }
+    case 'quote':
+      return (
+        <Reveal>
+          <blockquote className="cs__quote">{b.text}</blockquote>
+        </Reveal>
+      )
+    case 'stat':
+      return (
+        <Reveal className="cs__stat">
+          <p className="cs__stat-v">{b.value}</p>
+          <p className="cs__stat-l">{b.label}</p>
+        </Reveal>
+      )
+    case 'figure':
+      return (
+        <Reveal>
+          <figure className="cs__fig cs__slab">
+            <img src={b.src} alt={b.alt ?? ''} loading="lazy" decoding="async" draggable="false" />
+            {b.caption ? <figcaption>{b.caption}</figcaption> : null}
+          </figure>
+        </Reveal>
+      )
+    case 'node':
+      return (
+        <Reveal>
+          <div className="cs__slab">{b.node}</div>
+        </Reveal>
+      )
+    case 'tags':
+      return (
+        <Reveal>
+          <ul className="cs__tags">
+            {b.items.map((x) => (
+              <li key={x}>{x}</li>
+            ))}
+          </ul>
+        </Reveal>
+      )
+    case 'split':
+      return (
+        <div className="cs__split">
+          <Block b={b.left} />
+          <Block b={b.right} />
+        </div>
+      )
+    default:
+      return null
+  }
+}
+
+export default function CaseStudy({ slug, hero, sections }) {
+  const { t } = useLocale()
+  const [h1, h2] = hero.title
+  return (
+    <>
+      <CaseHero slug={slug} kicker={hero.kicker} h1={h1} h2={h2} sub={hero.summary} tags={hero.tags} meta={hero.meta} media={hero.media} mediaAlt={hero.mediaAlt} />
+      {sections.map((blocks, i) => (
+        <section key={SECTION_KEYS[i]} className="cs__sec" aria-labelledby={`cs-${SECTION_KEYS[i]}`}>
+          <div className="cs__tag">
+            <span className="cs__num">{String(i + 1).padStart(2, '0')}</span>
+            <span aria-hidden className="cs__rule" />
+            <h2 id={`cs-${SECTION_KEYS[i]}`} className="cs__sec-label">
+              {t(`case.sections.${SECTION_KEYS[i]}`)}
+            </h2>
+          </div>
+          <div className="cs__blocks">
+            {blocks.map((b, j) => (
+              <Block key={j} b={b} />
+            ))}
+          </div>
+        </section>
+      ))}
+      <NextCase slug={slug} />
+    </>
   )
 }
