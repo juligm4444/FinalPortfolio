@@ -2,23 +2,73 @@ export const LOCALES = ['en', 'es']
 
 const translations = {
   en: {
+    herbarium: {
+      items: {
+        candelariaWebsite: { genus: 'Web · Full-stack', year: 'Oct 2025 — present', role: 'Design lead, product engineering' },
+        bloom: { genus: 'Digital · UX', year: 'Jun 2026', role: 'UX research, information architecture' },
+        sensewaveProduct: { genus: 'Object · Speculative brand', year: '2025', role: 'Brand and product design' },
+      },
+    },
+    keyscape: {
+      label: 'A bed of concrete keys, one technology on each, with the site logo on the central key and moss in the slots.',
+      caption: 'Tools',
+      items: ['Figma', 'React', 'Next.js', 'Python', 'Django', 'Supabase', 'Tailwind', 'Three.js', 'Blender', 'Unity', 'Git', 'SQL'],
+    },
+    lab: {
+      title: 'Lab',
+      lead: 'Component bench for the redesign. Each OriginKit port lands here first, alone, before it goes into a page.',
+      webglActive: 'WebGL contexts live',
+      webglWaiting: 'Waiting for a slot',
+      webglCaps: 'Device verdict',
+      fps: 'Frames per second',
+      botanicalVariants: 'Botanical Text — language variants',
+      keyscapeVariants: 'Citron Keyscape — language variants',
+      plushVariants: 'Plush Tile — language variants',
+      plushDock: 'Dock (moss)',
+      plushHerbarium: 'Herbarium (grass round the slab)',
+      velourVariants: 'Velour Bolster — language variants',
+      velourLabel: 'Explore',
+      moonlitVariants: 'Moonlit Petals — language variants',
+      moonlitCaption: 'Ocobo in overcast daylight',
+      moonlitLabel: 'A tree in pink ocobo bloom under an overcast sky, petals drifting down. Moving across it stirs the blossoms.',
+    },
+    meta: {
+      siteName: 'Julián Galindo — Designer & Developer',
+      home: {
+        title: 'Julián Galindo — Designer & Developer',
+        description: 'Portfolio of Julián Galindo: product design and full-stack development, from the structure underneath to what grows on top.',
+      },
+      about: { title: 'About', description: 'Systems engineering as the base, design as what grows on it. Education, experience and the career change, told straight.' },
+      projects: { title: 'Projects', description: 'Web, digital, object and brand work: Candelaria, Licorímetro, Bloom, El Umbral and SenseWave.' },
+      lab: { title: 'Lab', description: 'Component bench. Nothing to see here yet.' },
+    },
     nav: {
+      label: 'Main navigation',
+      skip: 'Skip to content',
+      homeAria: 'juligm4 — home',
       home: 'Home',
       about: 'About',
       projects: 'Projects',
-      contact: 'Contact',
       cv: 'Cv',
       lang: 'EN',
-      themeLight: 'Light theme',
-      themeDark: 'Dark theme',
-      menuOpen: 'Open menu',
-      menuClose: 'Close menu',
+      langShort: { en: 'EN', es: 'ES' },
+      langSwitch: { en: 'Switch to English', es: 'Cambiar a español' },
+    },
+    dock: {
+      label: 'Links and contact',
+      instagram: 'Instagram',
+      linkedin: 'LinkedIn',
+      cv: 'CV',
+      cvAria: 'Download CV (PDF, English)',
+      github: 'GitHub',
+      behance: 'Behance',
+      email: 'Email',
+      emailCopy: 'Copy email address',
+      emailCopied: 'Copied',
     },
     hero: {
-      first: 'julián',
-      middle: 'galindo',
-      last: 'mora',
-      tagline: 'Designer & Developer ',
+      name: 'Julián Galindo',
+      tagline: 'Designer & Developer',
       profileAlt: 'Julián Galindo Mora',
     },
     home: {
@@ -30,171 +80,68 @@ const translations = {
       bioPill1: 'Structure',
       bioPill2: 'Aesthetics',
       bioPill3: 'Human-centered',
-      featuredKicker: 'Selected work',
-      featuredTitle: 'Featured projects',
-      featuredCta: 'See all projects',
-      followKicker: 'Stay connected',
-      followTitle: 'Follow me on social',
-      followLead: 'Process, work-in-progress and quieter notes — wherever you hang out.',
-      featuredItems: [
-        {
-          title: 'Licorímetro',
-          description: 'A social mobile app for discovering and reviewing alcoholic beverages with OCR recognition.',
-          tag: 'Mobile · OCR',
-        },
-        {
-          title: 'Web Portfolio',
-          description: 'Personal portfolio with React, Tailwind and 3D — accessible and responsive.',
-          tag: 'Frontend · Design',
-        },
-        {
-          title: 'Atelier OS',
-          description: 'Design system and frontend for a creative studio.',
-          tag: 'Design System',
-        },
-        {
-          title: 'Hidden Routes',
-          description: 'Bilingual editorial platform with custom CMS.',
-          tag: 'Full-stack · Editorial',
-        },
-      ],
+      herbKicker: 'Herbarium',
+      herbTitle: 'Specimens from the last two years',
+      herbCta: 'All projects',
     },
     about: {
-      title: 'About',
-      lead:
-        'I design and build interfaces that feel intentional. I move between the editorial calm of typography and the energy of motion, between the rigor of backend logic and the warmth of brand.',
-
-      infoKicker: 'Information',
-      infoTitle: 'A designer who codes — a developer who designs',
-      infoPara1:
-        'I\'m Julián Galindo, a Design student at Universidad de los Andes, focused on video games, interfaces and digital experiences. I\'m graduating in 2028, and I enjoy anything that involves creating, exploring and understanding how people interact with what they use.',
-      infoPara2:
-        'I like observing, questioning and analyzing why something works the way it does. I think in systems — how things connect, and how good design can make an experience clearer, more pleasant and more human. I\'m a mix of the technical and the sensitive: structure and aesthetics, logic and emotion.',
-      infoPara3:
-        'Films, video games and music shape the way I see design — as a way to tell something, build atmospheres and create moments that feel genuine.',
-      infoMediaCaption: 'Snapshot · 2025',
-
-      educationKicker: 'Education',
-      educationTitle: 'Where I learned to think in systems',
-      educationItems: [
-        {
-          period: '2021 — 2028',
-          title: 'Bachelor\'s in Design',
-          subtitle: 'Universidad de los Andes · Bogotá',
-          detail:
-            'Undergraduate thesis · Minor in Visual Computation, built on engineering coursework.',
-        },
-        {
-          period: '2021 — 2023',
-          title: 'Systems & Computer Engineering — coursework',
-          subtitle: 'Universidad de los Andes · Bogotá',
-          detail:
-            'Foundations in algorithms, data structures, software architecture, and mobile + web development. Transitioned to Design; credits applied toward the Minor in Visual Computation.',
-        },
-        {
-          period: '2015 — 2020',
-          title: 'High School Diploma',
-          subtitle: 'Cambridge International School · La Calera',
-          detail: 'IB Programme · Best Graduate, Class of 2020.',
-        },
+      label: 'About',
+      title: 'About me',
+      subtitle: 'From Systems to Design',
+      story: [
+        "I started Systems Engineering in 2021 because I wanted to be a programmer. I liked coding and I liked digital products, and for a good while that was enough. What started to bother me was something else: in one class I had to build a digital product and I couldn't give it the creative touch I had in my head. It wasn't a code problem. I knew how to make it work, but I had no room to decide how it should look and feel. That sense of having my hands tied when it came to creative direction came back later and never really left.",
+        "It took me almost two years to make the decision. During that time generative AI arrived. I didn't run from it, I actually made it part of how I work, but it made me see that just programming was no longer enough for me. In 2025, after nine semesters, I left Systems and started Design at the same university. It was very hard. I felt I had lost a part of my life and that I wouldn't be able to do anything with it. At home it wasn't easy at first either, although they ended up supporting me.",
+        "With time I understood those years weren't lost. Engineering laid the foundation for how I understand and solve problems, and that gives me a different perspective from my classmates in Design. I no longer code line by line the way I used to: I define the architecture, direct the AI, and then check for myself that what it generates does what I need and makes technical sense. That's why I work with tools, frameworks and databases that I know and can run on my own. It's also why this portfolio looks the way it does: concrete with plants growing over it. The concrete is what engineering left me, and it's still holding things up. What grows is what I'm learning now.",
+        "Today what I enjoy most is structuring a product and building its whole aesthetic and functional side: identity, components, functionality and feel. I work mostly with Figma, Procreate, VS Code and AI tools like Claude and Higgsfield. I can use the Adobe suite, but it's not what I prefer. I'm interested in freelance and product work.",
       ],
-      educationMediaCaption: 'Universidad de los Andes',
-
-      experienceKicker: 'Experience',
-      experienceTitle: 'Where I\'ve been building',
-      experienceItems: [
-        {
-          period: 'Jun 2025 — Present',
-          role: 'Latam CoderAI Trainer (LLM & code review)',
-          company: 'Outlier',
-          bullets: [
-            'Reviewing and correcting AI-generated code responses to improve training data.',
-            'Building 2D/3D animations and scenes with Python and JavaScript (Pygame, p5.js, WebGL).',
-            'Crafting and refining prompts for user-defined functional requirements.',
-          ],
-        },
-        {
-          period: 'Jan 2023 — May 2023',
-          role: 'Design & Mobile Developer · Licorímetro',
-          company: 'University Project',
-          bullets: [
-            'Engineered a mobile app for alcoholic beverage recognition using OCR.',
-            'Designed UI in Figma and architected an OOP solution to accelerate development.',
-            'Launched a beta in Android Studio with Firebase and third-party APIs.',
-          ],
-        },
+      timelineKicker: 'Path',
+      timelineTitle: 'Timeline',
+      timeline: [
+        { date: '2015 – 2020', title: 'Cambridge International School', text: 'High school, IB programme. Best graduate, class of 2020.' },
+        { date: '2021-1', title: 'Systems and Computing Engineering', text: 'Universidad de los Andes. I came in wanting to be a programmer.' },
+        { date: '2025-1', title: 'Last semester in Systems', text: 'Nine semesters completed and the Visual Computing option finished.' },
+        { date: 'Jun 2025 – Jan 2026', title: 'Outlier', text: 'Latam CoderAI Trainer. I reviewed and corrected code generated by AI models and built 2D and 3D scenes with Python, Pygame, p5.js and WebGL.' },
+        { date: '2025-2', title: 'Design', text: 'Universidad de los Andes. Starting over, with what I already had.', bloom: true },
+        { date: 'Oct 2025 – present', title: 'Candelaria Solar Car', text: 'Research group. I lead a design team of five: brand, design system, 3D and website.' },
+        { date: 'Jun 2026', title: 'Bloom (BeBloomers)', text: "Freelance project with another designer. UX research, information architecture and wireframes for a women's health platform." },
+        { date: 'Aug 2026 – present', title: 'Teaching assistant, Algorithmic Thinking', text: 'Universidad de los Andes. I support 23 students in a creative coding course with p5.js.' },
+        { date: '2028', title: 'Expected graduation', text: 'Design, Universidad de los Andes.' },
       ],
-
-      focusKicker: 'Focus',
-      focusTitle: 'Game-inspired interfaces, structurally solid',
-      focusPara1:
-        'I specialize in crafting intuitive, game-inspired interfaces with modern frontend technologies like React. My background in systems engineering and mobile development lets me build experiences that are visually engaging and structurally solid.',
-      focusPara2:
-        'I\'m passionate about blending creativity with logic — from playful prototypes in Figma to dynamic functionality with backend tools. Always learning, I thrive at the intersection of design and code, building digital experiences that connect with people.',
-      focusMediaCaption: 'Selected motion frame',
-
-      stackKicker: 'Skills',
-      stackTitle: 'Tech Stack',
-      filters: {
-        all: 'All',
-        design: 'Design',
-        development: 'Development',
-        tools: 'Tools',
-      },
-
+      ocoboLabel: 'An ocobo tree in pink bloom under an overcast sky, petals drifting down.',
       certKicker: 'Credentials',
-      certTitle: 'Certifications & badges',
-      certLead:
-        'A growing collection of digital badges and professional certificates. New ones from Google, Adobe and Epic Games on the way.',
+      certLead: 'Eight verifiable badges from IBM and Cisco.',
       certVerify: 'Verify',
-      certUpcoming: 'Coming soon',
-      certUpcomingLabel: 'In progress',
-      certUpcomingItems: [
-        { title: 'Google UX Design', issuer: 'Google · Coursera' },
-        { title: 'Adobe Certified Professional', issuer: 'Adobe · Coursera' },
-        { title: 'Unreal Engine Fundamentals', issuer: 'Epic Games · Coursera' },
-        { title: 'Scrum Master Certification', issuer: 'Scrum.org' },
+      certItems: [
+        'User Experience Design Fundamentals',
+        'Enterprise Design Thinking Practitioner',
+        'Agile Explorer',
+        'Project Management Fundamentals',
+        'Python Essentials 1',
+        'Python Essentials 2',
+        'JavaScript Essentials 1',
+        'JavaScript Essentials 2',
       ],
     },
     projects: {
+      label: 'Work',
       title: 'Projects',
-      placeholder: 'Case study coming soon.',
-      caseStudy: 'Student Research Group · Academic project →',
-      caseStudyShort: 'View case study →',
+      lead: 'Four groups: engineering underneath, design on top. Every case opens a study.',
+      groups: {
+        web: 'Web',
+        digital: 'Digital',
+        objeto: 'Object',
+        marca: 'Brand',
+      },
+      status: { 'in-progress': 'In progress' },
+      openCase: 'Open case study',
       visitSite: 'Visit website',
       viewCode: 'GitHub repository',
-      category: {
-        desarrollo: 'Development',
-        marcaux: 'Brand & UX',
-        producto: 'Product',
-      },
-    },
-    // Discipline labels for the showcase panels. Proper nouns and universally
-    // borrowed terms (React, 3D, Branding) stay identical across locales â
-    // translating them would make them harder to recognise, not easier.
-    tags: {
-      js: 'Js',
-      react: 'React',
-      django: 'Django',
-      fullstack: 'Full-stack Development',
-      android: 'Android',
-      java: 'Java',
-      ocr: 'OCR',
-      mobile: 'Mobile',
-      uxResearch: 'UX Research',
-      ia: 'Information Architecture',
-      wireframing: 'Wireframing',
-      threeD: '3D',
-      furniture: 'Furniture',
-      productDesign: 'Product Design',
-      wearable: 'Wearable',
-      concept: 'Concept Development',
-      brandDesign: 'Brand Design',
-      visualIdentity: 'Visual Identity',
-      artDirection: 'Art Direction',
-      brandIdentity: 'Brand Identity',
-      speculative: 'Speculative Design',
-      motion: 'Motion',
+      deckLabel: 'Websites, one card at a time',
+      deckHint: 'Scroll, drag, click or use the arrow keys to flip through them.',
+      deckListTitle: 'All websites',
+      explodedHint: 'Hover or focus to see it apart',
+      toolsKicker: 'Tools',
+      toolsTitle: 'What I build with',
     },
     works: {
       candelariaWebsite: {
@@ -212,15 +159,20 @@ const translations = {
         title: 'Bloom',
         desc: 'Wireframes and a rebuilt content taxonomy for a women’s health platform: 75 tags down to 28.',
       },
-      humbral: {
+      umbral: {
         kicker: 'Furniture · Modular',
-        title: 'El Humbral',
+        title: 'El Umbral',
         desc: 'Coffee table of two interchangeable modules, drawn from pre-Columbian engraving and geometry.',
       },
       sensewaveProduct: {
         kicker: 'Wearable · Speculative',
         title: 'SenseWave',
         desc: 'Sense Eco glasses and a two-chip system that turns a donated sensation into neural signal.',
+      },
+      portfolio: {
+        kicker: 'Web · Design & development',
+        title: 'juligm4.com',
+        desc: 'This portfolio: concrete overgrown with moss, built in React with a shared WebGL budget.',
       },
       candelariaBrand: {
         kicker: 'Identity · Research Group',
@@ -409,7 +361,7 @@ const translations = {
       faceDigital: 'A React and Django site built end to end — the team\'s public face, its sponsor pitch and its archive in one system.',
       faceVisual: 'The visual identity underneath it: condor mark, division system and the rules that keep eight sub-teams looking like one.',
       role: 'Design Lead · Product Engineering · Full-stack',
-      period: '2025 – 2026',
+      period: 'Oct 2025 – Present',
       status: 'In development',
       sectionRoleLabel: 'Role',
       sectionTimelineLabel: 'Timeline & Status',
@@ -633,7 +585,7 @@ const translations = {
       faceDigital: 'The interface layer that curates a donated sensory library and hands the recipient control over what they feel, and when.',
       faceVisual: 'A brand system built on empathy rather than spectacle — identity, language and motion for technology that has to feel trustworthy.',
 
-      heroPeriod: 'Sensewave · Speculative Design · 2024',
+      heroPeriod: 'Sensewave · Speculative Design · 2025',
       heroH1: 'What if memories',
       heroH2: 'could be felt',
       heroHAccent: 'again?',
@@ -647,7 +599,6 @@ const translations = {
       s6: 'Digital Experience',
       s7: 'Physical Product',
       s8: 'Design Process',
-      s9: 'Exhibition & Recognition',
 
       problemQuote: 'Every day, thousands of people live with the memory of sensations they can no longer feel.',
       problemP1: 'Not the event. The feeling. The cold rush of a mountain descent. The weightlessness of open water. The rhythm of a run through morning fog.',
@@ -708,20 +659,15 @@ const translations = {
         { phase: '05', title: 'Exhibition Preparation', desc: 'Adapting the narrative for academic and design audiences. Physical artifacts and presentation materials.' },
       ],
 
-      exhibPeriod: 'Universidad de los Andes · 2024',
-      exhibTitle: 'Selected for the Annual Design Exhibition',
-      exhibP: 'SenseWave was selected among the cohort\'s standout projects for visual consistency, emotional clarity, and the strength of its speculative design framework.',
-      exhibTags: ['Visual Consistency', 'Branding Cohesion', 'Speculative Design'],
-
       reflLabel: 'Final Reflection',
       reflQuote: 'The most powerful technology is the one that makes you forget it\'s there.',
       reflP1: 'SenseWave taught me that speculative design is most powerful when it asks human questions, not technological ones. The brand is not about what the technology can do: it\'s about what it means to someone who has been waiting to feel alive again.',
       reflP2: 'This project reshaped how I think about emotional design: that the interface should serve the moment of connection, not interrupt it.',
       reflTags: ['Emotional Design', 'Speculative Futures', 'Branding Systems', 'Experiential Interfaces', 'Human-Centered Technology'],
     },
-    humbral: {
+    umbral: {
       tag: 'Academic Project · Furniture',
-      title: 'El Humbral',
+      title: 'El Umbral',
       subtitle:
         'A modular coffee table built from two interchangeable modules, where the user decides which face is the top.',
       faceProduct: 'Two identical structures, two different surfaces. Swap which one sits on top and the table changes character — no tools, no hardware.',
@@ -737,7 +683,7 @@ const translations = {
       status: '1:5 prototype',
       course: 'Design memoir · 2026-408',
 
-      heroKicker: 'El Humbral · Modular coffee table · 2026',
+      heroKicker: 'El Umbral · Modular coffee table · 2026',
       heroH1: 'There is no',
       heroH2: 'correct side.',
       heroSub: 'A coffee table that starts from a simple idea: the piece changes depending on which face you choose to show.',
@@ -752,7 +698,7 @@ const translations = {
       s7: 'Physical Prototype',
 
       conceptQuote: 'There is no correct configuration. The table changes depending on which face you want to bring forward.',
-      conceptP1: 'El Humbral is a modular coffee table made of two modules that can swap places. Both share the same structure, but each presents a different surface: one carries a pattern engraved into the wood, the other a circular opening filled with glass.',
+      conceptP1: 'El Umbral is a modular coffee table made of two modules that can swap places. Both share the same structure, but each presents a different surface: one carries a pattern engraved into the wood, the other a circular opening filled with glass.',
       conceptP2: 'The intent was to work with reversibility. Rather than fixing one correct way to use the table, the two modules can be exchanged to produce two configurations — which element ends up on top is the user\'s decision.',
       conceptP3: 'The project was developed as a 1:5 scale model in MDF, laser cut and engraved, from a 3D model where dimensions, joints and contact points were verified before fabrication.',
 
@@ -771,7 +717,7 @@ const translations = {
 
       patternTitle: 'Reference to Antonio Grass',
       patternP1: 'The pattern on the wooden face comes from exploring geometries associated with pre-Columbian graphics and with Antonio Grass\'s work. He studied and reinterpreted forms present in pre-Columbian iconography, carrying them into contemporary geometric compositions.',
-      patternP2: 'No specific piece was copied for El Humbral. The intent was to study resources — lines, modules, repetitions, steps and geometries — in order to build an original pattern.',
+      patternP2: 'No specific piece was copied for El Umbral. The intent was to study resources — lines, modules, repetitions, steps and geometries — in order to build an original pattern.',
       patternP3: 'That study produced three engravings. The first two were tested directly on MDF: one orthogonal, one radial. The third, refined, is the one that stayed on the final piece.',
       patternP4: 'The radial version had a more direct relationship to some pre-Columbian forms, but was discarded because it did not speak to the orthogonal structure of the table.',
 
@@ -865,7 +811,7 @@ const translations = {
       metaClient: 'Client',
       metaTeam: 'Team',
       role: 'UX Research · Information Architecture · Wireframing',
-      period: '2025',
+      period: 'Jun 2026',
       status: 'Delivered',
       client: 'Bloom / BeBloomers',
       collaboration: 'In collaboration with another designer',
@@ -960,36 +906,76 @@ const translations = {
       reflP2: 'It also taught me that information architecture is design work with the highest leverage and the lowest visibility. Nobody will ever compliment a tag list. But every recommendation the platform makes runs through it.',
       reflTags: ['Information Architecture', 'Taxonomy Design', 'Client Communication', 'Mobile-First Constraints'],
     },
-    contact: {
-      title: 'Contact',
-      lead: 'Let\'s build something that lasts. I read every message.',
-      cta: 'julian_gm4@hotmail.com',
-    },
-    footer: {
-      copyright: '© 2026 juligm4.com. All rights reserved.',
-      backToTop: 'Back to top',
-      navTitle: 'Navigate',
-    },
   },
 
   es: {
+    herbarium: {
+      items: {
+        candelariaWebsite: { genus: 'Web · Full-stack', year: 'Oct 2025 — presente', role: 'Diseño e ingeniería de producto' },
+        bloom: { genus: 'Digital · UX', year: 'Jun 2026', role: 'Investigación UX, arquitectura de información' },
+        sensewaveProduct: { genus: 'Objeto · Marca especulativa', year: '2025', role: 'Diseño de marca y producto' },
+      },
+    },
+    keyscape: {
+      label: 'Un lecho de teclas de concreto, una tecnología en cada una, con el logo del sitio en la tecla central y musgo en las ranuras.',
+      caption: 'Herramientas',
+      items: ['Figma', 'React', 'Next.js', 'Python', 'Django', 'Supabase', 'Tailwind', 'Three.js', 'Blender', 'Unity', 'Git', 'SQL'],
+    },
+    lab: {
+      title: 'Laboratorio',
+      lead: 'Banco de componentes del rediseño. Cada porte de OriginKit aterriza aquí primero, solo, antes de entrar a una página.',
+      webglActive: 'Contextos WebGL vivos',
+      webglWaiting: 'En espera de cupo',
+      webglCaps: 'Veredicto del dispositivo',
+      fps: 'Cuadros por segundo',
+      botanicalVariants: 'Botanical Text — variantes de idioma',
+      keyscapeVariants: 'Citron Keyscape — variantes de idioma',
+      plushVariants: 'Plush Tile — variantes de idioma',
+      plushDock: 'Dock (musgo)',
+      plushHerbarium: 'Herbario (pasto alrededor de la losa)',
+      velourVariants: 'Velour Bolster — variantes de idioma',
+      velourLabel: 'Explorar',
+      moonlitVariants: 'Moonlit Petals — variantes de idioma',
+      moonlitCaption: 'Ocobo a la luz de un día nublado',
+      moonlitLabel: 'Un árbol de ocobo en flor rosada bajo un cielo nublado, con pétalos que caen. Al pasar el puntero por encima se agitan las flores.',
+    },
+    meta: {
+      siteName: 'Julián Galindo — Diseñador y Desarrollador',
+      home: {
+        title: 'Julián Galindo — Diseñador y Desarrollador',
+        description: 'Portafolio de Julián Galindo: diseño de producto y desarrollo full-stack, desde la estructura que sostiene hasta lo que crece encima.',
+      },
+      about: { title: 'Sobre mí', description: 'Ingeniería de sistemas como base, diseño como lo que crece encima. Educación, experiencia y el cambio de carrera, contado de frente.' },
+      projects: { title: 'Proyectos', description: 'Trabajo web, digital, de objeto y de marca: Candelaria, Licorímetro, Bloom, El Umbral y SenseWave.' },
+      lab: { title: 'Laboratorio', description: 'Banco de componentes. Todavía no hay nada que ver.' },
+    },
     nav: {
+      label: 'Navegación principal',
+      skip: 'Saltar al contenido',
+      homeAria: 'juligm4 — inicio',
       home: 'Inicio',
       about: 'Sobre mí',
       projects: 'Proyectos',
-      contact: 'Contacto',
       cv: 'Cv',
       lang: 'ES',
-      themeLight: 'Tema claro',
-      themeDark: 'Tema oscuro',
-      menuOpen: 'Abrir menú',
-      menuClose: 'Cerrar menú',
+      langShort: { en: 'EN', es: 'ES' },
+      langSwitch: { en: 'Switch to English', es: 'Cambiar a español' },
+    },
+    dock: {
+      label: 'Enlaces y contacto',
+      instagram: 'Instagram',
+      linkedin: 'LinkedIn',
+      cv: 'CV',
+      cvAria: 'Descargar CV (PDF, español)',
+      github: 'GitHub',
+      behance: 'Behance',
+      email: 'Correo',
+      emailCopy: 'Copiar dirección de correo',
+      emailCopied: 'Copiado',
     },
     hero: {
-      first: 'julián',
-      middle: 'galindo',
-      last: 'mora',
-      tagline: 'Diseñador & Desarrollador ',
+      name: 'Julián Galindo',
+      tagline: 'Diseñador y Desarrollador',
       profileAlt: 'Julián Galindo Mora',
     },
     home: {
@@ -1001,171 +987,68 @@ const translations = {
       bioPill1: 'Estructura',
       bioPill2: 'Estética',
       bioPill3: 'Centrado en la persona',
-      featuredKicker: 'Trabajo seleccionado',
-      featuredTitle: 'Proyectos destacados',
-      featuredCta: 'Ver todos los proyectos',
-      followKicker: 'Sigamos en contacto',
-      followTitle: 'Sígueme en redes sociales',
-      followLead: 'Proceso, work-in-progress y notas más íntimas — donde tú prefieras.',
-      featuredItems: [
-        {
-          title: 'Licorímetro',
-          description: 'App social móvil para descubrir y reseñar bebidas alcohólicas con reconocimiento por OCR.',
-          tag: 'Mobile · OCR',
-        },
-        {
-          title: 'Portafolio Web',
-          description: 'Portafolio personal con React, Tailwind y 3D — accesible y responsivo.',
-          tag: 'Frontend · Diseño',
-        },
-        {
-          title: 'Atelier OS',
-          description: 'Sistema de diseño y frontend para un estudio creativo.',
-          tag: 'Sistema de diseño',
-        },
-        {
-          title: 'Hidden Routes',
-          description: 'Plataforma editorial bilingüe con CMS a medida.',
-          tag: 'Full-stack · Editorial',
-        },
-      ],
+      herbKicker: 'Herbario',
+      herbTitle: 'Especímenes de los últimos dos años',
+      herbCta: 'Todos los proyectos',
     },
     about: {
+      label: 'About',
       title: 'Sobre mí',
-      lead:
-        'Diseño y construyo interfaces con intención. Me muevo entre la calma editorial de la tipografía y la energía del movimiento, entre el rigor del backend y la calidez del branding.',
-
-      infoKicker: 'Información',
-      infoTitle: 'Diseñador que programa — desarrollador que diseña',
-      infoPara1:
-        'Soy Julián Galindo, estudiante de Diseño en la Universidad de los Andes, enfocado en videojuegos, interfaces y experiencias digitales. Me gradúo en 2028 y disfruto cualquier cosa que implique crear, explorar y entender cómo la gente interactúa con lo que usa.',
-      infoPara2:
-        'Me gusta observar, cuestionar y analizar por qué algo funciona como funciona. Pienso en sistemas — cómo las cosas se conectan y cómo un buen diseño puede hacer una experiencia más clara, agradable y humana. Soy una mezcla de lo técnico y lo sensible: estructura y estética, lógica y emoción.',
-      infoPara3:
-        'Las películas, los videojuegos y la música moldean cómo veo el diseño — como una forma de contar algo, construir atmósferas y crear momentos que se sientan genuinos.',
-      infoMediaCaption: 'Snapshot · 2025',
-
-      educationKicker: 'Educación',
-      educationTitle: 'Donde aprendí a pensar en sistemas',
-      educationItems: [
-        {
-          period: '2021 — 2028',
-          title: 'Pregrado en Diseño',
-          subtitle: 'Universidad de los Andes · Bogotá',
-          detail:
-            'Tesis de pregrado · Opción en Computación Visual, construida sobre los créditos de Ingeniería de Sistemas.',
-        },
-        {
-          period: '2021 — 2023',
-          title: 'Ingeniería de Sistemas y Computación — formación',
-          subtitle: 'Universidad de los Andes · Bogotá',
-          detail:
-            'Bases en algoritmos, estructuras de datos, arquitectura de software y desarrollo móvil y web. Tras esos semestres me cambié a Diseño; los créditos se aplicaron a la Opción en Computación Visual.',
-        },
-        {
-          period: '2015 — 2020',
-          title: 'Bachillerato',
-          subtitle: 'Cambridge International School · La Calera',
-          detail: 'Programa IB · Mejor egresado, generación 2020.',
-        },
+      subtitle: 'De Sistemas a Diseño',
+      story: [
+        'Entré a Ingeniería de Sistemas en 2021 porque quería ser programador. Me gustaba programar y me gustaban los productos digitales, y durante un buen tiempo eso fue suficiente. Lo que empezó a incomodarme fue otra cosa: en una clase tenía que construir un producto digital y no logré darle el toque creativo que tenía en la cabeza. No era un problema de código. Sabía cómo hacerlo funcionar, pero no tenía espacio para decidir cómo debía verse y sentirse. Esa sensación de tener las manos atadas en la dirección creativa se repitió después y no se fue.',
+        'Tardé casi dos años en tomar la decisión. En ese tiempo llegó la inteligencia artificial generativa. No huí de ella, de hecho la incorporé a mi forma de trabajar, pero me hizo ver que solo programar ya no me era suficiente. En 2025, después de nueve semestres, dejé Sistemas y empecé Diseño en la misma universidad. Costó mucho. Sentí que había perdido una parte de mi vida y que no iba a poder hacer nada con ella. En mi casa al principio tampoco fue fácil, aunque terminaron apoyándome.',
+        'Con el tiempo entendí que esos años no se perdieron. La ingeniería cimentó la forma en que entiendo y resuelvo los problemas, y eso me da una perspectiva distinta a la de mis compañeros en Diseño. Ya no programo línea por línea como antes: defino la arquitectura, dirijo a la IA y después reviso yo mismo que lo que genera cumpla lo que necesito y tenga sentido técnico. Por eso trabajo con herramientas, frameworks y bases de datos que conozco y que puedo operar por mi cuenta. Este portafolio se ve como se ve por esa razón: concreto con plantas creciendo encima. El concreto es lo que me dejó la ingeniería y sigue sosteniendo. Lo que crece es lo que estoy aprendiendo ahora.',
+        'Hoy lo que más disfruto es estructurar un producto y construir todo su apartado estético y funcional: identidad, componentes, funcionalidad y sensación. Trabajo sobre todo con Figma, Procreate, VS Code y herramientas de IA como Claude y Higgsfield. Puedo usar la suite de Adobe, pero no es lo que prefiero. Me interesa el trabajo freelance y de producto.',
       ],
-      educationMediaCaption: 'Universidad de los Andes',
-
-      experienceKicker: 'Experiencia',
-      experienceTitle: 'Dónde he construido',
-      experienceItems: [
-        {
-          period: 'Jun 2025 — Presente',
-          role: 'Latam CoderAI Trainer (LLM & code review)',
-          company: 'Outlier',
-          bullets: [
-            'Reviso y corrijo respuestas de código generadas por IA para mejorar los datos de entrenamiento.',
-            'Construyo animaciones y escenas 2D/3D con Python y JavaScript (Pygame, p5.js, WebGL).',
-            'Diseño y refino prompts a partir de requerimientos funcionales del usuario.',
-          ],
-        },
-        {
-          period: 'Ene 2023 — May 2023',
-          role: 'Diseño & Desarrollo Móvil · Licorímetro',
-          company: 'Proyecto Universitario',
-          bullets: [
-            'Construí una app móvil para reconocer bebidas alcohólicas con OCR.',
-            'Diseñé la UI en Figma y arquitecté una solución OOP para acelerar el desarrollo.',
-            'Lancé una beta en Android Studio con Firebase y APIs de terceros.',
-          ],
-        },
+      timelineKicker: 'Trayecto',
+      timelineTitle: 'Línea de tiempo',
+      timeline: [
+        { date: '2015 – 2020', title: 'Cambridge International School', text: 'Bachillerato, programa IB. Mejor egresado de la generación 2020.' },
+        { date: '2021-1', title: 'Ingeniería de Sistemas y Computación', text: 'Universidad de los Andes. Entré queriendo ser programador.' },
+        { date: '2025-1', title: 'Último semestre en Sistemas', text: 'Nueve semestres cursados y la Opción en Computación Visual terminada.' },
+        { date: 'Jun 2025 – Ene 2026', title: 'Outlier', text: 'Entrenador Latam CoderAI. Revisé y corregí código generado por modelos de IA y desarrollé escenas 2D y 3D con Python, Pygame, p5.js y WebGL.' },
+        { date: '2025-2', title: 'Diseño', text: 'Universidad de los Andes. Empiezo de nuevo, con lo que ya traía.', bloom: true },
+        { date: 'Oct 2025 – presente', title: 'Candelaria Solar Car', text: 'Semillero de investigación. Lidero un equipo de diseño de cinco personas: marca, sistema de diseño, 3D y sitio web.' },
+        { date: 'Jun 2026', title: 'Bloom (BeBloomers)', text: 'Proyecto freelance con otro diseñador. Investigación UX, arquitectura de información y wireframes para una plataforma de salud femenina.' },
+        { date: 'Ago 2026 – presente', title: 'Monitor, Pensamiento Algorítmico', text: 'Universidad de los Andes. Acompaño a 23 estudiantes en un curso de programación creativa con p5.js.' },
+        { date: '2028', title: 'Grado previsto', text: 'Diseño, Universidad de los Andes.' },
       ],
-
-      focusKicker: 'Enfoque',
-      focusTitle: 'Interfaces inspiradas en videojuegos, sólidas en estructura',
-      focusPara1:
-        'Me especializo en construir interfaces intuitivas e inspiradas en videojuegos con tecnologías frontend modernas como React. Mi base en ingeniería de sistemas y desarrollo móvil me permite construir experiencias visualmente atractivas y estructuralmente sólidas.',
-      focusPara2:
-        'Me apasiona mezclar creatividad y lógica — desde prototipos divertidos en Figma hasta funcionalidad dinámica con herramientas de backend. Siempre aprendiendo, vivo en la intersección entre diseño y código, construyendo experiencias digitales que conectan con la gente.',
-      focusMediaCaption: 'Frame de motion seleccionado',
-
-      stackKicker: 'Habilidades',
-      stackTitle: 'Tech Stack',
-      filters: {
-        all: 'Todo',
-        design: 'Diseño',
-        development: 'Desarrollo',
-        tools: 'Herramientas',
-      },
-
+      ocoboLabel: 'Un árbol de ocobo en flor rosada bajo un cielo nublado, con pétalos que caen.',
       certKicker: 'Credenciales',
-      certTitle: 'Certificaciones y badges',
-      certLead:
-        'Una colección creciente de badges digitales y certificados profesionales. En camino: Google, Adobe y Epic Games.',
+      certLead: 'Ocho insignias verificables de IBM y Cisco.',
       certVerify: 'Verificar',
-      certUpcoming: 'Próximamente',
-      certUpcomingLabel: 'En curso',
-      certUpcomingItems: [
-        { title: 'Google UX Design', issuer: 'Google · Coursera' },
-        { title: 'Adobe Certified Professional', issuer: 'Adobe · Coursera' },
-        { title: 'Unreal Engine Fundamentals', issuer: 'Epic Games · Coursera' },
-        { title: 'Certificación Scrum Master', issuer: 'Scrum.org' },
+      certItems: [
+        'Fundamentos de UX Design',
+        'Enterprise Design Thinking Practitioner',
+        'Agile Explorer',
+        'Fundamentos de Project Management',
+        'Python Essentials 1',
+        'Python Essentials 2',
+        'JavaScript Essentials 1',
+        'JavaScript Essentials 2',
       ],
     },
     projects: {
+      label: 'Trabajo',
       title: 'Proyectos',
-      placeholder: 'Caso de estudio próximamente.',
-      caseStudy: 'Semillero · Proyecto Académico →',
-      caseStudyShort: 'Ver caso de estudio →',
-      visitSite: 'Visitar el sitio',
-      viewCode: 'Repositorio GitHub',
-      category: {
-        desarrollo: 'Desarrollo',
-        marcaux: 'Marca y UX',
-        producto: 'Producto',
+      lead: 'Cuatro grupos, la ingeniería debajo y el diseño encima. Cada caso abre un estudio.',
+      groups: {
+        web: 'Web',
+        digital: 'Digital',
+        objeto: 'Objeto',
+        marca: 'Marca',
       },
-    },
-    // Etiquetas de disciplina de los paneles. Los nombres propios y los
-    // términos prestados (React, 3D, Branding) no se traducen: hacerlo los
-    // volvería más difíciles de reconocer, no más claros.
-    tags: {
-      js: 'Js',
-      react: 'React',
-      django: 'Django',
-      fullstack: 'Desarrollo FullStack',
-      android: 'Android',
-      java: 'Java',
-      ocr: 'OCR',
-      mobile: 'Móvil',
-      uxResearch: 'Investigación UX',
-      ia: 'Arquitectura de Información',
-      wireframing: 'Wireframing',
-      threeD: '3D',
-      furniture: 'Mobiliario',
-      productDesign: 'Diseño de Producto',
-      wearable: 'Wearable',
-      concept: 'Desarrollo de Concepto',
-      brandDesign: 'Diseño de Marca',
-      visualIdentity: 'Identidad Visual',
-      artDirection: 'Dirección de Arte',
-      brandIdentity: 'Identidad de Marca',
-      speculative: 'Diseño Especulativo',
-      motion: 'Motion',
+      status: { 'in-progress': 'En curso' },
+      openCase: 'Abrir caso de estudio',
+      visitSite: 'Visitar el sitio',
+      viewCode: 'Repositorio en GitHub',
+      deckLabel: 'Sitios web, una tarjeta a la vez',
+      deckHint: 'Desplaza, arrastra, haz clic o usa las flechas para pasarlas.',
+      deckListTitle: 'Todos los sitios',
+      explodedHint: 'Pasa el puntero o enfoca para verlo desarmado',
+      toolsKicker: 'Herramientas',
+      toolsTitle: 'Con qué construyo',
     },
     works: {
       candelariaWebsite: {
@@ -1183,15 +1066,20 @@ const translations = {
         title: 'Bloom',
         desc: 'Wireframes y taxonomía de contenido rehecha para una plataforma de salud femenina: de 75 tags a 28.',
       },
-      humbral: {
+      umbral: {
         kicker: 'Mobiliario · Modular',
-        title: 'El Humbral',
+        title: 'El Umbral',
         desc: 'Coffee Table compuesta de dos módulos inspirada en grabados y elementos precolombinos.',
       },
       sensewaveProduct: {
         kicker: 'Wearable · Especulativo',
         title: 'SenseWave',
         desc: 'Gafas Sense Eco y un sistema de dos chips que convierte una sensación donada en señal neural.',
+      },
+      portfolio: {
+        kicker: 'Web · Diseño y desarrollo',
+        title: 'juligm4.com',
+        desc: 'Este portafolio: concreto invadido de musgo, hecho en React con un presupuesto WebGL compartido.',
       },
       candelariaBrand: {
         kicker: 'Identidad · Semillero',
@@ -1380,7 +1268,7 @@ const translations = {
       faceDigital: 'Un sitio en React y Django construido de punta a punta — la cara pública del equipo, su pitch a patrocinadores y su archivo en un solo sistema.',
       faceVisual: 'La identidad visual que lo sostiene: marca del cóndor, sistema de divisiones y las reglas que hacen que ocho subequipos se vean como uno.',
       role: 'Líder de Diseño · Ingeniería de Producto · Full-stack',
-      period: '2025 – 2026',
+      period: 'Oct 2025 – Presente',
       status: 'En desarrollo',
       sectionRoleLabel: 'Rol',
       sectionTimelineLabel: 'Cronología y Estado',
@@ -1604,7 +1492,7 @@ const translations = {
       faceDigital: 'La capa de interfaz que cura una biblioteca sensorial donada y le da al receptor control sobre qué siente y cuándo.',
       faceVisual: 'Un sistema de marca construido sobre la empatía y no sobre el espectáculo — identidad, lenguaje y movimiento para una tecnología que debe inspirar confianza.',
 
-      heroPeriod: 'Sensewave · Diseño Especulativo · 2024',
+      heroPeriod: 'Sensewave · Diseño Especulativo · 2025',
       heroH1: '¿Y si los recuerdos',
       heroH2: 'pudieran volver a',
       heroHAccent: 'sentirse?',
@@ -1618,7 +1506,6 @@ const translations = {
       s6: 'Experiencia Digital',
       s7: 'Producto Físico',
       s8: 'Proceso de Diseño',
-      s9: 'Exhibición y Reconocimiento',
 
       problemQuote: 'Cada día, miles de personas viven con el recuerdo de sensaciones que ya no pueden sentir.',
       problemP1: 'No el evento. La sensación. El frío de un descenso en montaña. La ingravidez del agua abierta. El ritmo de una carrera entre la niebla matutina.',
@@ -1679,20 +1566,15 @@ const translations = {
         { phase: '05', title: 'Preparación para la Exhibición', desc: 'Adaptación de la narrativa para audiencias académicas y de diseño. Artefactos físicos y materiales de presentación.' },
       ],
 
-      exhibPeriod: 'Universidad de los Andes · 2024',
-      exhibTitle: 'Seleccionado para la Exhibición Anual de Diseño',
-      exhibP: 'SenseWave fue seleccionado entre los proyectos destacados de la cohorte por su consistencia visual, claridad emocional y la solidez de su marco de diseño especulativo.',
-      exhibTags: ['Consistencia Visual', 'Cohesión de Marca', 'Diseño Especulativo'],
-
       reflLabel: 'Reflexión Final',
       reflQuote: 'La tecnología más poderosa es aquella que te hace olvidar que está ahí.',
       reflP1: 'SenseWave me enseñó que el diseño especulativo es más poderoso cuando hace preguntas humanas, no tecnológicas. La marca no trata sobre lo que puede hacer la tecnología: trata sobre lo que significa para alguien que ha estado esperando volver a sentirse vivo.',
       reflP2: 'Este proyecto cambió la forma en que pienso sobre el diseño emocional: que la interfaz debe servir al momento de conexión, no interrumpirlo.',
       reflTags: ['Diseño Emocional', 'Futuros Especulativos', 'Sistemas de Marca', 'Interfaces Experienciales', 'Tecnología Centrada en el Ser Humano'],
     },
-    humbral: {
+    umbral: {
       tag: 'Proyecto Académico · Mobiliario',
-      title: 'El Humbral',
+      title: 'El Umbral',
       subtitle:
         'Una mesa de centro modular compuesta por dos módulos intercambiables, donde el usuario decide cuál cara queda arriba.',
       faceProduct: 'Dos estructuras idénticas, dos superficies distintas. Cambiar cuál queda arriba transforma el carácter de la mesa — sin herramientas ni herrajes.',
@@ -1708,7 +1590,7 @@ const translations = {
       status: 'Prototipo 1:5',
       course: 'Memoria de diseño · 2026-408',
 
-      heroKicker: 'El Humbral · Mesa de centro modular · 2026',
+      heroKicker: 'El Umbral · Mesa de centro modular · 2026',
       heroH1: 'No existe una',
       heroH2: 'cara correcta.',
       heroSub: 'Una mesa de centro que parte de una idea sencilla: la pieza cambia según qué cara elijas mostrar.',
@@ -1723,7 +1605,7 @@ const translations = {
       s7: 'Prototipo Físico',
 
       conceptQuote: 'No existe una configuración correcta. La mesa cambia dependiendo de qué cara se quiera destacar.',
-      conceptP1: 'El Humbral es una mesa de centro modular compuesta por dos módulos que pueden cambiar de posición. Ambos tienen la misma estructura, pero cada uno presenta una superficie diferente: uno incorpora un patrón grabado en madera y el otro una abertura circular con vidrio.',
+      conceptP1: 'El Umbral es una mesa de centro modular compuesta por dos módulos que pueden cambiar de posición. Ambos tienen la misma estructura, pero cada uno presenta una superficie diferente: uno incorpora un patrón grabado en madera y el otro una abertura circular con vidrio.',
       conceptP2: 'La intención principal fue trabajar con la idea de reversibilidad. En lugar de definir una única forma de usar la mesa, los dos módulos pueden intercambiarse y generar dos configuraciones diferentes: la decisión de qué elemento queda arriba es del usuario.',
       conceptP3: 'El proyecto se desarrolló como maqueta a escala 1:5 en MDF, cortada y grabada con láser, a partir de un modelo 3D en el que se verificaron dimensiones, encajes y puntos de contacto antes de fabricar.',
 
@@ -1742,7 +1624,7 @@ const translations = {
 
       patternTitle: 'Referencia a Antonio Grass',
       patternP1: 'El patrón de la cara de madera parte de una exploración de geometrías asociadas a la gráfica precolombina y al trabajo de Antonio Grass. Su obra estudió y reinterpretó formas presentes en la iconografía precolombina, llevándolas a composiciones geométricas contemporáneas.',
-      patternP2: 'Para El Humbral no se tomó una pieza específica como copia. La intención fue estudiar recursos como líneas, módulos, repeticiones, escalonados y geometrías para construir un patrón propio.',
+      patternP2: 'Para El Umbral no se tomó una pieza específica como copia. La intención fue estudiar recursos como líneas, módulos, repeticiones, escalonados y geometrías para construir un patrón propio.',
       patternP3: 'De ese estudio salieron tres grabados. Los dos primeros se probaron directamente sobre MDF: uno de trazado ortogonal y otro de composición radial. El tercero, ya depurado, es el que quedó en la pieza final.',
       patternP4: 'La versión radial tenía una relación más directa con algunas formas precolombinas, pero terminó descartándose porque no dialogaba con la estructura ortogonal de la mesa.',
 
@@ -1836,7 +1718,7 @@ const translations = {
       metaClient: 'Cliente',
       metaTeam: 'Equipo',
       role: 'Investigación UX · Arquitectura de Información · Wireframing',
-      period: '2025',
+      period: 'Jun 2026',
       status: 'Entregado',
       client: 'Bloom / BeBloomers',
       collaboration: 'En colaboración con otro diseñador',
@@ -1930,16 +1812,6 @@ const translations = {
       reflP1: 'Trabajar con un cliente real me enseñó que una recomendación solo sirve si viene con su costo adjunto. Presentar tres versiones en lugar de una convirtió la conversación de «¿te gusta?» a «¿cuál trade-off quieres?», y esa es una conversación en la que un cliente sí puede participar.',
       reflP2: 'También me enseñó que la arquitectura de información es el trabajo de diseño con más apalancamiento y menos visibilidad. Nadie va a elogiar jamás una lista de tags. Pero cada recomendación que hace la plataforma pasa por ahí.',
       reflTags: ['Arquitectura de Información', 'Diseño de Taxonomías', 'Comunicación con Cliente', 'Restricciones Mobile-First'],
-    },
-    contact: {
-      title: 'Contacto',
-      lead: 'Construyamos algo que perdure. Leo cada mensaje.',
-      cta: 'julian_gm4@hotmail.com',
-    },
-    footer: {
-      copyright: '© 2026 juligm4.com. Todos los derechos reservados.',
-      backToTop: 'Volver al inicio',
-      navTitle: 'Navegación',
     },
   },
 }

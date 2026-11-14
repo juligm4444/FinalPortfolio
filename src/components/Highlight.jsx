@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 
 /**
- * Render a string with `<<word>>` segments highlighted in pink-dark + bold weight.
+ * Render a string with `<<word>>` segments highlighted in the case accent + bold weight.
  *
  * Why a custom marker (not Markdown / HTML)? Because translations live as plain
  * strings — markers stay readable and translator-friendly while we keep full
@@ -9,7 +9,7 @@ import { Fragment } from 'react'
  */
 const RE = /<<([^>]+)>>/g
 
-export default function Highlight({ text, color = '#FF0066', weight = 700 }) {
+export default function Highlight({ text, color = 'var(--case-accent, var(--bloom-ink))', weight = 700 }) {
   if (typeof text !== 'string' || !text.includes('<<')) return text
 
   const out = []

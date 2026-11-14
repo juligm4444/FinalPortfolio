@@ -4,46 +4,79 @@ export default {
   theme: {
     extend: {
       colors: {
-        black: {
-          light: '#1F2624',
-          DEFAULT: '#141A18',
-          dark: '#0B0E0D',
+        mist: 'var(--mist)',
+        concrete: {
+          100: 'var(--concrete-100)',
+          300: 'var(--concrete-300)',
+          500: 'var(--concrete-500)',
+          900: 'var(--concrete-900)',
         },
-        pink: {
-          light: '#FF85B6',
-          DEFAULT: '#FF3D90',
-          dark: '#FF0066',
+        moss: {
+          400: 'var(--moss-400)',
+          700: 'var(--moss-700)',
         },
-        gray: {
-          light: '#535C61',
-          DEFAULT: '#3F4548',
-          dark: '#2F3335',
+        bloom: {
+          DEFAULT: 'var(--bloom)',
+          deep: 'var(--bloom-deep)',
+          ink: 'var(--bloom-ink)',
         },
-        white: {
-          light: '#EDEDE8',
-          DEFAULT: '#E1E0DC',
-          dark: '#D3D2CF',
+        // Semantic
+        bg: 'var(--bg)',
+        surface: 'var(--surface)',
+        border: 'var(--border)',
+        text: {
+          DEFAULT: 'var(--text)',
+          muted: 'var(--text-muted)',
         },
+        cta: {
+          DEFAULT: 'var(--cta-bg)',
+          text: 'var(--cta-text)',
+        },
+        // Legacy names used by pages pending rewrite (Fases 5–8). Do not add uses.
+        black: { light: 'var(--concrete-500)', DEFAULT: 'var(--concrete-900)', dark: 'var(--concrete-900)' },
+        pink: { light: 'var(--bloom)', DEFAULT: 'var(--bloom)', dark: 'var(--bloom-deep)' },
+        gray: { light: 'var(--concrete-500)', DEFAULT: 'var(--concrete-500)', dark: 'var(--concrete-900)' },
+        white: { light: 'var(--mist)', DEFAULT: 'var(--concrete-100)', dark: 'var(--concrete-300)' },
       },
       fontFamily: {
-        display: ['"Libre Baskerville"', 'serif'],
-        body: ['"Roboto Mono"', 'monospace'],
-        nav: ['"Space Grotesk"', 'sans-serif'],
-        mono: ['"JetBrains Mono"', 'monospace'],
+        display: ['"Libre Baskerville"', 'Georgia', 'serif'],
+        body: ['"Roboto Mono"', 'ui-monospace', 'monospace'],
+        label: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+        nav: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+        mono: ['"Roboto Mono"', 'ui-monospace', 'monospace'],
       },
       fontSize: {
-        h1: ['56px', { lineHeight: '1.1', fontWeight: '700' }],
-        h2: ['44px', { lineHeight: '1.15', fontWeight: '700' }],
-        h3: ['34px', { lineHeight: '1.2', fontWeight: '700' }],
+        h1: ['var(--text-h1)', { lineHeight: 'var(--leading-h1)', letterSpacing: 'var(--tracking-h1)', fontWeight: '700' }],
+        h2: ['var(--text-h2)', { lineHeight: 'var(--leading-h2)', fontWeight: '700' }],
+        h3: ['var(--text-h3)', { lineHeight: 'var(--leading-h3)', fontWeight: '700' }],
+        species: ['var(--text-species)', { lineHeight: 'var(--leading-h3)', fontStyle: 'italic' }],
+        body: ['var(--text-body)', { lineHeight: 'var(--leading-body)' }],
+        small: ['var(--text-small)', { lineHeight: 'var(--leading-body)' }],
+        label: ['var(--text-label)', { lineHeight: '1.3', letterSpacing: 'var(--tracking-label)', fontWeight: '500' }],
+        'label-sm': ['var(--text-label-sm)', { lineHeight: '1.3', letterSpacing: 'var(--tracking-label)', fontWeight: '500' }],
+        // Legacy sizes still referenced by old pages.
         h4: ['26px', { lineHeight: '1.3', fontWeight: '500' }],
         h5: ['20px', { lineHeight: '1.4', fontWeight: '500' }],
         h6: ['16px', { lineHeight: '1.5', fontWeight: '500' }],
         p: ['16px', { lineHeight: '1.6', fontWeight: '400' }],
-        small: ['14px', { lineHeight: '1.5', fontWeight: '400' }],
         caption: ['12px', { lineHeight: '1.4', fontWeight: '400' }],
-        label: ['12px', { lineHeight: '1.3', fontWeight: '500' }],
         navbar: ['24px', { lineHeight: '1.45', fontWeight: '400' }],
         'navbar-selected': ['24px', { lineHeight: '1.45', fontWeight: '700' }],
+      },
+      spacing: {
+        'nav-offset': 'var(--nav-offset)',
+      },
+      maxWidth: {
+        content: 'var(--content-max)',
+      },
+      borderRadius: {
+        slab: 'var(--radius-slab)',
+        pill: 'var(--radius-pill)',
+      },
+      boxShadow: {
+        slab: 'var(--slab-shadow)',
+        'slab-pressed': 'var(--slab-shadow-pressed)',
+        cta: 'var(--cta-shadow)',
       },
     },
   },

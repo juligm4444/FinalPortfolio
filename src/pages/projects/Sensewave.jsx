@@ -1,7 +1,6 @@
 import { createContext, useContext, useRef, useMemo } from 'react';
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { useLocale } from '../../i18n/LocaleProvider.jsx';
-import { useTheme } from '../../theme/ThemeProvider.jsx';
 import a1HeroVideo from '../../assets/images/sensewave/a1-hero.mp4';
 import a2Problem from '../../assets/images/sensewave/a2-problem.webp';
 import a3Glasses from '../../assets/images/sensewave/a3-glasses.webp';
@@ -15,34 +14,21 @@ import a8ChipLabel from '../../assets/images/sensewave/a8-chip-label.webp';
 import a9AccessCard from '../../assets/images/sensewave/a9-access-card.webp';
 
 /* ─────────────────────────────────────────
-   DESIGN TOKENS — two sets for light / dark
+   DESIGN TOKENS — read from the route's palette (cases.css)
    ───────────────────────────────────────── */
-const SW_DARK = {
-  bg:           '#02020A',
-  surface:      '#070710',
-  card:         '#0D0D1A',
-  accent:       '#8B9DE8',
-  violet:       '#B8A6F0',
-  text:         '#EEEEF5',
-  textSoft:     'rgba(238,238,245,0.62)',
-  textMuted:    'rgba(238,238,245,0.34)',
-  border:       'rgba(238,238,245,0.07)',
-  borderAccent: 'rgba(139,157,232,0.20)',
-  glow:         'rgba(139,157,232,0.06)',
-};
 
 const SW_LIGHT = {
-  bg:           '#F2F2FA',
-  surface:      '#E6E6F2',
-  card:         '#DADADF',
-  accent:       '#3D50B8',
-  violet:       '#6650A8',
-  text:         '#08081A',
-  textSoft:     'rgba(8,8,26,0.68)',
-  textMuted:    'rgba(8,8,26,0.40)',
-  border:       'rgba(8,8,26,0.09)',
-  borderAccent: 'rgba(61,80,184,0.22)',
-  glow:         'rgba(61,80,184,0.07)',
+  bg:           'var(--case-bg)',
+  surface:      'var(--case-surface)',
+  card:         'var(--case-card)',
+  accent:       'var(--case-accent)',
+  violet:       'var(--case-accent-2)',
+  text:         'var(--case-ink)',
+  textSoft:     'var(--case-ink-soft)',
+  textMuted:    'var(--case-ink-muted)',
+  border:       'var(--case-border)',
+  borderAccent: 'var(--case-border-accent)',
+  glow:         'var(--case-glow)',
 };
 
 const EASE = [0.16, 1, 0.3, 1];
@@ -85,11 +71,11 @@ function SectionTag({ number, label }) {
   return (
     <Reveal>
       <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginBottom: 72 }}>
-        <span style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: 10, letterSpacing: '0.28em', color: sw.accent, textTransform: 'uppercase' }}>
+        <span style={{ fontFamily: 'var(--font-label)', fontSize: 10, letterSpacing: '0.28em', color: sw.accent, textTransform: 'uppercase' }}>
           {String(number).padStart(2, '0')}
         </span>
         <div style={{ flex: 1, height: 1, background: sw.borderAccent }} />
-        <span style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: 10, letterSpacing: '0.22em', color: sw.textMuted, textTransform: 'uppercase' }}>
+        <span style={{ fontFamily: 'var(--font-label)', fontSize: 10, letterSpacing: '0.22em', color: sw.textMuted, textTransform: 'uppercase' }}>
           {label}
         </span>
       </div>
@@ -142,14 +128,14 @@ function SWAsset({ id, label, description, ratio = '16/9', className = '' }) {
         }} />
       ))}
       <div style={{ position: 'relative', zIndex: 1, textAlign: 'center', padding: '20px 28px' }}>
-        <p style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: 9, letterSpacing: '0.26em', color: sw.accent, textTransform: 'uppercase', marginBottom: 10 }}>
+        <p style={{ fontFamily: 'var(--font-label)', fontSize: 9, letterSpacing: '0.26em', color: sw.accent, textTransform: 'uppercase', marginBottom: 10 }}>
           ASSET {id} · PENDING
         </p>
-        <p style={{ fontFamily: '"Libre Baskerville", serif', fontSize: 13, color: sw.text, lineHeight: 1.4, marginBottom: 8, fontWeight: 600 }}>
+        <p style={{ fontFamily: 'var(--font-display)', fontSize: 13, color: sw.text, lineHeight: 1.4, marginBottom: 8, fontWeight: 600 }}>
           {label}
         </p>
         {description && (
-          <p style={{ fontFamily: '"Roboto Mono", monospace', fontSize: 10, color: sw.textMuted, lineHeight: 1.65, maxWidth: '36ch' }}>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: 10, color: sw.textMuted, lineHeight: 1.65, maxWidth: '36ch' }}>
             {description}
           </p>
         )}
@@ -210,7 +196,7 @@ function HeroSection() {
     }}>
       <div aria-hidden style={{
         position: 'absolute', inset: 0, pointerEvents: 'none',
-        background: `radial-gradient(ellipse 70% 55% at 50% 38%, ${sw.glow.replace('0.06', '0.07')} 0%, transparent 65%)`,
+        background: `radial-gradient(ellipse 70% 55% at 50% 38%, ${sw.glow} 0%, transparent 65%)`,
       }} />
       <AmbientDots />
 
@@ -224,24 +210,24 @@ function HeroSection() {
       </motion.div>
 
       <motion.div style={{ opacity: textOpacity, position: 'relative', zIndex: 2, textAlign: 'center', maxWidth: 800 }}>
-        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.4, delay: 0.3 }} style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: 10, letterSpacing: '0.28em', color: sw.accent, textTransform: 'uppercase', marginBottom: 28 }}>
+        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.4, delay: 0.3 }} style={{ fontFamily: 'var(--font-label)', fontSize: 10, letterSpacing: '0.28em', color: sw.accent, textTransform: 'uppercase', marginBottom: 28 }}>
           {t('sensewave.heroPeriod')}
         </motion.p>
 
-        <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, delay: 0.55, ease: EASE }} style={{ fontFamily: '"Libre Baskerville", serif', fontSize: 'clamp(40px, 6.5vw, 96px)', fontWeight: 700, lineHeight: 1.07, color: sw.text, letterSpacing: '-0.025em', marginBottom: 24 }}>
+        <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, delay: 0.55, ease: EASE }} style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(40px, 6.5vw, 96px)', fontWeight: 700, lineHeight: 1.07, color: sw.text, letterSpacing: '-0.025em', marginBottom: 24 }}>
           {t('sensewave.heroH1')}
           <br />
           {t('sensewave.heroH2')}{' '}
           <em style={{ fontStyle: 'italic', color: sw.accent }}>{t('sensewave.heroHAccent')}</em>
         </motion.h1>
 
-        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2, delay: 0.9 }} style={{ fontFamily: '"Roboto Mono", monospace', fontSize: 'clamp(13px, 1.4vw, 16px)', color: sw.textSoft, lineHeight: 1.85, maxWidth: '58ch', margin: '0 auto' }}>
+        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2, delay: 0.9 }} style={{ fontFamily: 'var(--font-body)', fontSize: 'clamp(13px, 1.4vw, 16px)', color: sw.textSoft, lineHeight: 1.85, maxWidth: '58ch', margin: '0 auto' }}>
           {t('sensewave.heroSub')}
         </motion.p>
 
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.0, delay: 1.2 }} style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '8px 20px', marginTop: 44 }}>
           {t('sensewave.heroTags').map((tag) => (
-            <span key={tag} style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: 10, letterSpacing: '0.18em', color: sw.textMuted, textTransform: 'uppercase', padding: '6px 14px', border: `1px solid ${sw.border}` }}>
+            <span key={tag} style={{ fontFamily: 'var(--font-label)', fontSize: 10, letterSpacing: '0.18em', color: sw.textMuted, textTransform: 'uppercase', padding: '6px 14px', border: `1px solid ${sw.border}` }}>
               {tag}
             </span>
           ))}
@@ -264,16 +250,16 @@ function HumanProblemSection() {
       <div className="grid grid-cols-1 gap-16 md:grid-cols-2 md:gap-20 items-start">
         <div>
           <Reveal duration={1.1}>
-            <blockquote style={{ fontFamily: '"Libre Baskerville", serif', fontSize: 'clamp(26px, 3.8vw, 48px)', fontWeight: 700, lineHeight: 1.15, color: sw.text, letterSpacing: '-0.02em', margin: 0, borderLeft: `1.5px solid ${sw.accent}`, paddingLeft: 28 }}>
+            <blockquote style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(26px, 3.8vw, 48px)', fontWeight: 700, lineHeight: 1.15, color: sw.text, letterSpacing: '-0.02em', margin: 0, borderLeft: `1.5px solid ${sw.accent}`, paddingLeft: 28 }}>
               "{t('sensewave.problemQuote')}"
             </blockquote>
           </Reveal>
           <Reveal delay={0.15} duration={1.0}>
             <div style={{ paddingLeft: 31, marginTop: 40 }}>
-              <p style={{ fontFamily: '"Roboto Mono", monospace', fontSize: 15, lineHeight: 1.85, color: sw.textSoft, maxWidth: '52ch' }}>
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.85, color: sw.textSoft, maxWidth: '52ch' }}>
                 {t('sensewave.problemP1')}
               </p>
-              <p style={{ fontFamily: '"Roboto Mono", monospace', fontSize: 15, lineHeight: 1.85, color: sw.textSoft, maxWidth: '52ch', marginTop: 20 }}>
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.85, color: sw.textSoft, maxWidth: '52ch', marginTop: 20 }}>
                 {t('sensewave.problemP2')}
               </p>
             </div>
@@ -282,8 +268,8 @@ function HumanProblemSection() {
             <div className="flex gap-10 flex-wrap" style={{ marginTop: 52, paddingLeft: 31 }}>
               {[t('sensewave.statA'), t('sensewave.statB')].map((s) => (
                 <div key={s.value}>
-                  <div style={{ fontFamily: '"Libre Baskerville", serif', fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 700, color: sw.accent, lineHeight: 1 }}>{s.value}</div>
-                  <div style={{ fontFamily: '"Roboto Mono", monospace', fontSize: 11, color: sw.textMuted, lineHeight: 1.6, maxWidth: '18ch', marginTop: 8 }}>{s.label}</div>
+                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 700, color: sw.accent, lineHeight: 1 }}>{s.value}</div>
+                  <div style={{ fontFamily: 'var(--font-body)', fontSize: 11, color: sw.textMuted, lineHeight: 1.6, maxWidth: '18ch', marginTop: 8 }}>{s.label}</div>
                 </div>
               ))}
             </div>
@@ -310,7 +296,7 @@ function TechnologySection() {
       <div className="grid grid-cols-1 gap-16 md:grid-cols-2 md:gap-20 items-start">
         <div>
           <Reveal duration={1.1}>
-            <h2 style={{ fontFamily: '"Libre Baskerville", serif', fontSize: 'clamp(30px, 4.5vw, 56px)', fontWeight: 700, lineHeight: 1.1, color: sw.text, letterSpacing: '-0.02em' }}>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(30px, 4.5vw, 56px)', fontWeight: 700, lineHeight: 1.1, color: sw.text, letterSpacing: '-0.02em' }}>
               {t('sensewave.techH1')}
               <br />
               <span style={{ color: sw.accent }}>{t('sensewave.techHAccent')}</span>
@@ -319,7 +305,7 @@ function TechnologySection() {
             </h2>
           </Reveal>
           <Reveal delay={0.15} duration={1.0}>
-            <p style={{ fontFamily: '"Roboto Mono", monospace', fontSize: 15, lineHeight: 1.85, color: sw.textSoft, maxWidth: '48ch', marginTop: 24 }}>
+            <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.85, color: sw.textSoft, maxWidth: '48ch', marginTop: 24 }}>
               {t('sensewave.techP')}
             </p>
           </Reveal>
@@ -333,9 +319,9 @@ function TechnologySection() {
               <div style={{ background: sw.card, border: `1px solid ${sw.borderAccent}`, padding: 28 }}>
                 <img src={chipImages[i]} alt={`${chip.name} chip render`} style={{ width: '100%', aspectRatio: '16/9', objectFit: 'cover', display: 'block' }} />
                 <div style={{ marginTop: 22 }}>
-                  <p style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: 9, letterSpacing: '0.22em', color: sw.accent, textTransform: 'uppercase', marginBottom: 8 }}>{chip.tagline}</p>
-                  <h3 style={{ fontFamily: '"Libre Baskerville", serif', fontSize: 20, fontWeight: 700, color: sw.text, marginBottom: 10 }}>{chip.name}</h3>
-                  <p style={{ fontFamily: '"Roboto Mono", monospace', fontSize: 13, lineHeight: 1.75, color: sw.textSoft }}>{chip.desc}</p>
+                  <p style={{ fontFamily: 'var(--font-label)', fontSize: 9, letterSpacing: '0.22em', color: sw.accent, textTransform: 'uppercase', marginBottom: 8 }}>{chip.tagline}</p>
+                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 20, fontWeight: 700, color: sw.text, marginBottom: 10 }}>{chip.name}</h3>
+                  <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, lineHeight: 1.75, color: sw.textSoft }}>{chip.desc}</p>
                 </div>
               </div>
             </Reveal>
@@ -355,17 +341,17 @@ function DonorCircles() {
   return (
     <div className="flex flex-col md:flex-row items-center justify-center gap-0" style={{ paddingBlock: 48 }}>
       <motion.div
-        animate={reduce ? {} : { boxShadow: [`0 0 0px rgba(139,157,232,0.15)`, `0 0 48px rgba(139,157,232,0.35)`, `0 0 0px rgba(139,157,232,0.15)`] }}
+        animate={reduce ? {} : { boxShadow: [`0 0 0px color-mix(in srgb, var(--case-chip-a) 15%, transparent)`, `0 0 48px color-mix(in srgb, var(--case-chip-a) 35%, transparent)`, `0 0 0px color-mix(in srgb, var(--case-chip-a) 15%, transparent)`] }}
         transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
-        style={{ width: 120, height: 120, borderRadius: '50%', border: `2px solid ${sw.accent}`, background: `radial-gradient(circle, rgba(139,157,232,0.12) 0%, transparent 70%)`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}
+        style={{ width: 120, height: 120, borderRadius: '50%', border: `2px solid ${sw.accent}`, background: `radial-gradient(circle, color-mix(in srgb, var(--case-chip-a) 12%, transparent) 0%, transparent 70%)`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}
       >
-        <span style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: 9, letterSpacing: '0.2em', color: sw.accent, textTransform: 'uppercase' }}>{t('sensewave.donorLabel')}</span>
+        <span style={{ fontFamily: 'var(--font-label)', fontSize: 9, letterSpacing: '0.2em', color: sw.accent, textTransform: 'uppercase' }}>{t('sensewave.donorLabel')}</span>
       </motion.div>
 
       <div className="hidden md:block" style={{ flex: 1, maxWidth: 320, position: 'relative', height: 2, marginInline: 8 }}>
         <div style={{ height: 1, background: sw.borderAccent }} />
         <motion.div animate={reduce ? {} : { x: ['-10%', '110%'] }} transition={{ duration: 2.8, repeat: Infinity, ease: 'easeInOut' }} aria-hidden style={{ position: 'absolute', top: -4, width: 56, height: 9, background: `linear-gradient(90deg, transparent, ${sw.accent}, transparent)`, borderRadius: 4 }} />
-        <div style={{ position: 'absolute', top: -18, left: '50%', transform: 'translateX(-50%)', fontFamily: '"Space Grotesk", sans-serif', fontSize: 9, letterSpacing: '0.2em', color: sw.textMuted, textTransform: 'uppercase', whiteSpace: 'nowrap' }}>
+        <div style={{ position: 'absolute', top: -18, left: '50%', transform: 'translateX(-50%)', fontFamily: 'var(--font-label)', fontSize: 9, letterSpacing: '0.2em', color: sw.textMuted, textTransform: 'uppercase', whiteSpace: 'nowrap' }}>
           {t('sensewave.donorTransfer')}
         </div>
       </div>
@@ -373,11 +359,11 @@ function DonorCircles() {
       <div className="block md:hidden" style={{ width: 1, height: 48, background: sw.borderAccent, margin: '8px 0' }} />
 
       <motion.div
-        animate={reduce ? {} : { boxShadow: [`0 0 0px rgba(184,166,240,0.15)`, `0 0 48px rgba(184,166,240,0.35)`, `0 0 0px rgba(184,166,240,0.15)`] }}
+        animate={reduce ? {} : { boxShadow: [`0 0 0px color-mix(in srgb, var(--case-chip-b) 15%, transparent)`, `0 0 48px color-mix(in srgb, var(--case-chip-b) 35%, transparent)`, `0 0 0px color-mix(in srgb, var(--case-chip-b) 15%, transparent)`] }}
         transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut', delay: 1.75 }}
-        style={{ width: 120, height: 120, borderRadius: '50%', border: `2px solid ${sw.violet}`, background: `radial-gradient(circle, rgba(184,166,240,0.12) 0%, transparent 70%)`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}
+        style={{ width: 120, height: 120, borderRadius: '50%', border: `2px solid ${sw.violet}`, background: `radial-gradient(circle, color-mix(in srgb, var(--case-chip-b) 12%, transparent) 0%, transparent 70%)`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}
       >
-        <span style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: 9, letterSpacing: '0.2em', color: sw.violet, textTransform: 'uppercase' }}>{t('sensewave.recipientLabel')}</span>
+        <span style={{ fontFamily: 'var(--font-label)', fontSize: 9, letterSpacing: '0.2em', color: sw.violet, textTransform: 'uppercase' }}>{t('sensewave.recipientLabel')}</span>
       </motion.div>
     </div>
   );
@@ -391,14 +377,14 @@ function DonorSection() {
       <SectionTag number={4} label={t('sensewave.s4')} />
       <div style={{ textAlign: 'center', maxWidth: 640, margin: '0 auto', marginBottom: 72 }}>
         <Reveal duration={1.1}>
-          <h2 style={{ fontFamily: '"Libre Baskerville", serif', fontSize: 'clamp(30px, 4.5vw, 52px)', fontWeight: 700, lineHeight: 1.1, color: sw.text, letterSpacing: '-0.02em' }}>
+          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(30px, 4.5vw, 52px)', fontWeight: 700, lineHeight: 1.1, color: sw.text, letterSpacing: '-0.02em' }}>
             {t('sensewave.donorH1')}
             <br />
             <span style={{ color: sw.accent }}>{t('sensewave.donorHAccent')}</span>
           </h2>
         </Reveal>
         <Reveal delay={0.15} duration={1.0}>
-          <p style={{ fontFamily: '"Roboto Mono", monospace', fontSize: 15, lineHeight: 1.85, color: sw.textSoft, marginTop: 24 }}>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.85, color: sw.textSoft, marginTop: 24 }}>
             {t('sensewave.donorP')}
           </p>
         </Reveal>
@@ -408,9 +394,9 @@ function DonorSection() {
         {cards.map((item, i) => (
           <Reveal key={item.title} delay={i * 0.1} duration={0.9}>
             <div style={{ padding: 28, border: `1px solid ${sw.border}`, height: '100%' }}>
-              <div style={{ fontFamily: '"Libre Baskerville", serif', fontSize: 28, color: sw.accent, marginBottom: 18 }}>{item.symbol}</div>
-              <h3 style={{ fontFamily: '"Libre Baskerville", serif', fontSize: 18, fontWeight: 700, color: sw.text, marginBottom: 10 }}>{item.title}</h3>
-              <p style={{ fontFamily: '"Roboto Mono", monospace', fontSize: 13, lineHeight: 1.75, color: sw.textSoft }}>{item.desc}</p>
+              <div style={{ fontFamily: 'var(--font-display)', fontSize: 28, color: sw.accent, marginBottom: 18 }}>{item.symbol}</div>
+              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 18, fontWeight: 700, color: sw.text, marginBottom: 10 }}>{item.title}</h3>
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, lineHeight: 1.75, color: sw.textSoft }}>{item.desc}</p>
             </div>
           </Reveal>
         ))}
@@ -437,7 +423,7 @@ function BrandSection() {
       <SectionTag number={5} label={t('sensewave.s5')} />
       <div style={{ maxWidth: 640, marginBottom: 72 }}>
         <Reveal duration={1.1}>
-          <h2 style={{ fontFamily: '"Libre Baskerville", serif', fontSize: 'clamp(30px, 4.5vw, 52px)', fontWeight: 700, lineHeight: 1.1, color: sw.text, letterSpacing: '-0.02em' }}>
+          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(30px, 4.5vw, 52px)', fontWeight: 700, lineHeight: 1.1, color: sw.text, letterSpacing: '-0.02em' }}>
             {t('sensewave.brandH1')}
             <br />
             {t('sensewave.brandHPre')}{' '}
@@ -445,7 +431,7 @@ function BrandSection() {
           </h2>
         </Reveal>
         <Reveal delay={0.15}>
-          <p style={{ fontFamily: '"Roboto Mono", monospace', fontSize: 14, lineHeight: 1.85, color: sw.textSoft, marginTop: 24, maxWidth: '48ch' }}>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, lineHeight: 1.85, color: sw.textSoft, marginTop: 24, maxWidth: '48ch' }}>
             {t('sensewave.brandP')}
           </p>
         </Reveal>
@@ -453,13 +439,13 @@ function BrandSection() {
 
       <Reveal delay={0.1}>
         <div style={{ marginBottom: 56 }}>
-          <p style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: 10, letterSpacing: '0.22em', color: sw.textMuted, textTransform: 'uppercase', marginBottom: 20 }}>
+          <p style={{ fontFamily: 'var(--font-label)', fontSize: 10, letterSpacing: '0.22em', color: sw.textMuted, textTransform: 'uppercase', marginBottom: 20 }}>
             {t('sensewave.colorLabel')}
           </p>
           <div style={{ display: 'flex', height: 72, overflow: 'hidden', gap: 3 }}>
             {palette.map((p) => (
               <div key={p.name} title={p.name} style={{ flex: 1, background: p.hex, border: p.name === 'Cool White' ? `1px solid ${sw.border}` : undefined, position: 'relative' }}>
-                <div style={{ position: 'absolute', bottom: 8, left: 8, fontFamily: '"Roboto Mono", monospace', fontSize: 8, letterSpacing: '0.1em', color: 'rgba(238,238,245,0.35)' }}>{p.label}</div>
+                <div style={{ position: 'absolute', bottom: 8, left: 8, fontFamily: 'var(--font-body)', fontSize: 8, letterSpacing: '0.1em', color: 'rgba(238,238,245,0.35)' }}>{p.label}</div>
               </div>
             ))}
           </div>
@@ -468,20 +454,20 @@ function BrandSection() {
 
       <Reveal delay={0.15}>
         <div style={{ background: sw.card, border: `1px solid ${sw.border}`, padding: 'clamp(28px, 4vw, 48px)', marginBottom: 40 }}>
-          <p style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: 10, letterSpacing: '0.22em', color: sw.textMuted, textTransform: 'uppercase', marginBottom: 24 }}>
+          <p style={{ fontFamily: 'var(--font-label)', fontSize: 10, letterSpacing: '0.22em', color: sw.textMuted, textTransform: 'uppercase', marginBottom: 24 }}>
             {t('sensewave.typoLabel')}
           </p>
-          <p style={{ fontFamily: '"Libre Baskerville", serif', fontSize: 'clamp(28px, 5vw, 64px)', fontWeight: 700, lineHeight: 1.05, color: sw.text, letterSpacing: '-0.03em' }}>
+          <p style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px, 5vw, 64px)', fontWeight: 700, lineHeight: 1.05, color: sw.text, letterSpacing: '-0.03em' }}>
             {t('sensewave.typoDisplay')}
           </p>
-          <p style={{ fontFamily: '"Libre Baskerville", serif', fontSize: 'clamp(18px, 2.8vw, 32px)', fontWeight: 400, lineHeight: 1.2, color: sw.textSoft, fontStyle: 'italic', letterSpacing: '-0.01em', marginTop: 10 }}>
+          <p style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(18px, 2.8vw, 32px)', fontWeight: 400, lineHeight: 1.2, color: sw.textSoft, fontStyle: 'italic', letterSpacing: '-0.01em', marginTop: 10 }}>
             {t('sensewave.typoSub')}
           </p>
           <div className="flex gap-8 flex-wrap mt-6">
             {roles.map((f) => (
               <div key={f.role}>
-                <p style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: 9, letterSpacing: '0.18em', color: sw.textMuted, textTransform: 'uppercase', marginBottom: 6 }}>{f.role}</p>
-                <p style={{ fontFamily: '"Roboto Mono", monospace', fontSize: 14, color: sw.text }}>{f.name}</p>
+                <p style={{ fontFamily: 'var(--font-label)', fontSize: 9, letterSpacing: '0.18em', color: sw.textMuted, textTransform: 'uppercase', marginBottom: 6 }}>{f.role}</p>
+                <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, color: sw.text }}>{f.name}</p>
               </div>
             ))}
           </div>
@@ -511,14 +497,14 @@ function DigitalSection() {
       <div className="grid grid-cols-1 gap-16 md:grid-cols-2 md:gap-20 items-start">
         <Reveal duration={1.1}>
           <div>
-            <h2 style={{ fontFamily: '"Libre Baskerville", serif', fontSize: 'clamp(30px, 4.5vw, 52px)', fontWeight: 700, lineHeight: 1.1, color: sw.text, letterSpacing: '-0.02em' }}>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(30px, 4.5vw, 52px)', fontWeight: 700, lineHeight: 1.1, color: sw.text, letterSpacing: '-0.02em' }}>
               {t('sensewave.digitalH1')}
               <br />
               <span style={{ color: sw.accent }}>{t('sensewave.digitalHAccent')}</span>
               <br />
               {t('sensewave.digitalH2')}
             </h2>
-            <p style={{ fontFamily: '"Roboto Mono", monospace', fontSize: 14, lineHeight: 1.85, color: sw.textSoft, marginTop: 24, maxWidth: '48ch' }}>
+            <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, lineHeight: 1.85, color: sw.textSoft, marginTop: 24, maxWidth: '48ch' }}>
               {t('sensewave.digitalP')}
             </p>
           </div>
@@ -545,7 +531,7 @@ function PhysicalSection() {
     <CinematicSection py={140}>
       <SectionTag number={7} label={t('sensewave.s7')} />
       <Reveal duration={1.1}>
-        <h2 style={{ fontFamily: '"Libre Baskerville", serif', fontSize: 'clamp(30px, 4.5vw, 52px)', fontWeight: 700, lineHeight: 1.1, color: sw.text, letterSpacing: '-0.02em', marginBottom: 56 }}>
+        <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(30px, 4.5vw, 52px)', fontWeight: 700, lineHeight: 1.1, color: sw.text, letterSpacing: '-0.02em', marginBottom: 56 }}>
           {t('sensewave.physicalH1')}
           <br />
           <em style={{ fontStyle: 'italic', color: sw.accent }}>{t('sensewave.physicalHAccent')}</em>
@@ -575,7 +561,7 @@ function ProcessSection() {
     <CinematicSection py={140} useSurface>
       <SectionTag number={8} label={t('sensewave.s8')} />
       <Reveal duration={1.1}>
-        <h2 style={{ fontFamily: '"Libre Baskerville", serif', fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 700, lineHeight: 1.12, color: sw.text, letterSpacing: '-0.02em', marginBottom: 56 }}>
+        <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 700, lineHeight: 1.12, color: sw.text, letterSpacing: '-0.02em', marginBottom: 56 }}>
           {t('sensewave.processH1')}
           <br />
           {t('sensewave.processHPre')}{' '}
@@ -586,51 +572,16 @@ function ProcessSection() {
         {steps.map((step, i) => (
           <Reveal key={step.phase} delay={i * 0.08} duration={0.9}>
             <div style={{ padding: '26px 0', borderBottom: `1px solid ${sw.border}`, display: 'grid', gridTemplateColumns: 'auto 1fr', gap: 24 }}>
-              <span style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: 10, letterSpacing: '0.22em', color: step.highlight ? sw.accent : sw.textMuted, textTransform: 'uppercase', paddingTop: 3 }}>
+              <span style={{ fontFamily: 'var(--font-label)', fontSize: 10, letterSpacing: '0.22em', color: step.highlight ? sw.accent : sw.textMuted, textTransform: 'uppercase', paddingTop: 3 }}>
                 {step.phase}
               </span>
               <div>
-                <h3 style={{ fontFamily: '"Libre Baskerville", serif', fontSize: 17, fontWeight: 700, color: sw.text, marginBottom: 8 }}>{step.title}</h3>
-                <p style={{ fontFamily: '"Roboto Mono", monospace', fontSize: 13, lineHeight: 1.75, color: sw.textSoft }}>{step.desc}</p>
+                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 17, fontWeight: 700, color: sw.text, marginBottom: 8 }}>{step.title}</h3>
+                <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, lineHeight: 1.75, color: sw.textSoft }}>{step.desc}</p>
               </div>
             </div>
           </Reveal>
         ))}
-      </div>
-    </CinematicSection>
-  );
-}
-
-/* ─────────────────────────────────────────
-   SECTION 9 — EXHIBITION & RECOGNITION
-   ───────────────────────────────────────── */
-function ExhibitionSection() {
-  const { sw, t } = useSW();
-  const tags = t('sensewave.exhibTags');
-  return (
-    <CinematicSection py={120}>
-      <SectionTag number={9} label={t('sensewave.s9')} />
-      <div style={{ maxWidth: 720, margin: '0 auto', textAlign: 'center' }}>
-        <Reveal duration={1.2}>
-          <div style={{ border: `1px solid ${sw.borderAccent}`, padding: 'clamp(32px, 5vw, 64px)', background: `radial-gradient(ellipse 100% 60% at 50% 0%, ${sw.glow} 0%, transparent 60%)` }}>
-            <p style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: 9, letterSpacing: '0.28em', color: sw.accent, textTransform: 'uppercase', marginBottom: 24 }}>
-              {t('sensewave.exhibPeriod')}
-            </p>
-            <h2 style={{ fontFamily: '"Libre Baskerville", serif', fontSize: 'clamp(22px, 3.5vw, 36px)', fontWeight: 700, lineHeight: 1.2, color: sw.text, letterSpacing: '-0.015em', marginBottom: 20 }}>
-              {t('sensewave.exhibTitle')}
-            </h2>
-            <p style={{ fontFamily: '"Roboto Mono", monospace', fontSize: 14, lineHeight: 1.85, color: sw.textSoft, maxWidth: '44ch', margin: '0 auto' }}>
-              {t('sensewave.exhibP')}
-            </p>
-            <div className="flex justify-center flex-wrap gap-3" style={{ marginTop: 36 }}>
-              {tags.map((tag) => (
-                <span key={tag} style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: 9, letterSpacing: '0.18em', color: sw.textMuted, textTransform: 'uppercase', padding: '7px 14px', border: `1px solid ${sw.border}` }}>
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-        </Reveal>
       </div>
     </CinematicSection>
   );
@@ -647,25 +598,25 @@ function ReflectionSection() {
       <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: `radial-gradient(ellipse 80% 60% at 50% 100%, ${sw.glow} 0%, transparent 60%)` }} />
       <div style={{ maxWidth: 800, margin: '0 auto', textAlign: 'center' }}>
         <Reveal duration={1.3}>
-          <p style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: 9, letterSpacing: '0.28em', color: sw.accent, textTransform: 'uppercase', marginBottom: 32 }}>
+          <p style={{ fontFamily: 'var(--font-label)', fontSize: 9, letterSpacing: '0.28em', color: sw.accent, textTransform: 'uppercase', marginBottom: 32 }}>
             {t('sensewave.reflLabel')}
           </p>
-          <blockquote style={{ fontFamily: '"Libre Baskerville", serif', fontSize: 'clamp(22px, 3.8vw, 40px)', fontWeight: 700, lineHeight: 1.18, color: sw.text, letterSpacing: '-0.02em', fontStyle: 'italic', margin: 0 }}>
+          <blockquote style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(22px, 3.8vw, 40px)', fontWeight: 700, lineHeight: 1.18, color: sw.text, letterSpacing: '-0.02em', fontStyle: 'italic', margin: 0 }}>
             "{t('sensewave.reflQuote')}"
           </blockquote>
         </Reveal>
         <Reveal delay={0.2} duration={1.2}>
-          <p style={{ fontFamily: '"Roboto Mono", monospace', fontSize: 14, lineHeight: 1.9, color: sw.textSoft, maxWidth: '52ch', margin: '40px auto 0' }}>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, lineHeight: 1.9, color: sw.textSoft, maxWidth: '52ch', margin: '40px auto 0' }}>
             {t('sensewave.reflP1')}
           </p>
-          <p style={{ fontFamily: '"Roboto Mono", monospace', fontSize: 14, lineHeight: 1.9, color: sw.textSoft, maxWidth: '52ch', margin: '20px auto 0' }}>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, lineHeight: 1.9, color: sw.textSoft, maxWidth: '52ch', margin: '20px auto 0' }}>
             {t('sensewave.reflP2')}
           </p>
         </Reveal>
         <Reveal delay={0.35} duration={1.1}>
           <div className="flex justify-center flex-wrap gap-3" style={{ marginTop: 52 }}>
             {tags.map((tag, i) => (
-              <span key={tag} style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: 9, letterSpacing: '0.16em', color: i === 0 ? sw.accent : sw.textMuted, textTransform: 'uppercase', padding: '6px 14px', border: `1px solid ${i === 0 ? sw.borderAccent : sw.border}` }}>
+              <span key={tag} style={{ fontFamily: 'var(--font-label)', fontSize: 9, letterSpacing: '0.16em', color: i === 0 ? sw.accent : sw.textMuted, textTransform: 'uppercase', padding: '6px 14px', border: `1px solid ${i === 0 ? sw.borderAccent : sw.border}` }}>
                 {tag}
               </span>
             ))}
@@ -680,9 +631,8 @@ function ReflectionSection() {
    MAIN EXPORT
    ───────────────────────────────────────── */
 export default function Sensewave() {
-  const { theme } = useTheme();
   const { t } = useLocale();
-  const sw = theme === 'dark' ? SW_DARK : SW_LIGHT;
+  const sw = SW_LIGHT;
 
   return (
     <SWCtx.Provider value={{ sw, t }}>
@@ -695,7 +645,6 @@ export default function Sensewave() {
         <DigitalSection />
         <PhysicalSection />
         <ProcessSection />
-        <ExhibitionSection />
         <ReflectionSection />
       </article>
     </SWCtx.Provider>

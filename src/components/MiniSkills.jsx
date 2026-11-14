@@ -49,14 +49,13 @@ function MiniSkillBadge({ name, size }) {
       onBlur={() => setHover(false)}
       tabIndex={0}
       title={name}
-      className="relative shrink-0"
+      className="relative shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4"
       style={{
         width: size,
         height: size * 1.155,
         transition: 'transform 220ms cubic-bezier(0.22, 1, 0.36, 1)',
         transform: hover ? 'scale(1.14)' : 'scale(1)',
         zIndex: hover ? 10 : 1,
-        outline: 'none',
       }}
     >
       <img

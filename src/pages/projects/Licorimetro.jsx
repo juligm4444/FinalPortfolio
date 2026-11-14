@@ -10,60 +10,60 @@ import licorimetroEvolutionImg from '../../assets/images/licorimetro/evolution.w
 import licorimetroReflectionsImg from '../../assets/images/licorimetro/reflections.webp';
 import licorimetroScanVideo from '../../assets/images/licorimetro/summary-scan.mp4';
 
-const ACCENT = 'var(--pink-brand)';
+const ACCENT = 'var(--case-accent)';
 const EASE = [0.16, 1, 0.3, 1];
 
 const slabStyle = {
   background: ACCENT,
-  color: '#EDEDE8',
+  color: 'var(--case-on-accent)',
   display: 'inline-block',
   padding: '8px 14px',
   fontSize: 12,
   letterSpacing: '0.22em',
   fontWeight: 700,
   textTransform: 'uppercase',
-  fontFamily: '"Space Grotesk", sans-serif',
+  fontFamily: 'var(--font-label)',
 };
 
 /* ======================== Feature icons (7) ======================== */
 const FEATURE_ICONS = [
   /* 0  OCR Scanner */
-  <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+  <svg key="icon-1" width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
     <rect x="7" y="5" width="12" height="16" rx="1" stroke="currentColor" strokeWidth="1.5" />
     <line x1="10" y1="11" x2="16" y2="11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
     <line x1="10" y1="15" x2="16" y2="15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
     <path d="M3 8V5h3M23 8V5h-3M3 18v3h3M23 18v3h-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
   </svg>,
   /* 1  Community Reviews */
-  <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+  <svg key="icon-2" width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
     <path d="M13 4 16 10 22 11 17 16 18.5 22 13 19 7.5 22 9 16 4 11 10 10Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
   </svg>,
   /* 2  Your Cellar */
-  <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+  <svg key="icon-3" width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
     <path d="M9 4h8L15 12a3.6 3.6 0 01-2 1.5A3.6 3.6 0 0111 12L9 4z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
     <line x1="13" y1="14" x2="13" y2="21" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
     <line x1="9.5" y1="21" x2="16.5" y2="21" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
   </svg>,
   /* 3  Badge System */
-  <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+  <svg key="icon-4" width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
     <path d="M13 3 20.5 5.8v7A7.5 7.5 0 0113 22a7.5 7.5 0 01-7.5-9.2V5.8Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
     <path d="M9.5 13l2.5 2.5L17 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
   </svg>,
   /* 4  Social Playlists */
-  <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+  <svg key="icon-5" width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
     <line x1="4" y1="9" x2="16" y2="9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
     <line x1="4" y1="13" x2="16" y2="13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
     <line x1="4" y1="17" x2="11" y2="17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
     <path d="M19 11l6 3-6 3V11z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" fill="currentColor" fillOpacity="0.12" />
   </svg>,
   /* 5  Smart Recommendations */
-  <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+  <svg key="icon-6" width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
     <path d="M13 3v3M13 20v3M3 13h3M20 13h3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
     <path d="M6.5 6.5l2 2M17.5 17.5l2 2M6.5 19.5l2-2M17.5 8.5l2-2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
     <circle cx="13" cy="13" r="3.5" stroke="currentColor" strokeWidth="1.5" />
   </svg>,
   /* 6  Community Pricing */
-  <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+  <svg key="icon-7" width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
     <path d="M5 5h9l9 9-9 9-9-9V5z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
     <circle cx="11" cy="11" r="1.8" fill="currentColor" />
     <line x1="16" y1="7" x2="21" y2="4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" opacity="0.4" />
@@ -73,24 +73,24 @@ const FEATURE_ICONS = [
 /* ======================== User-flow step icons ======================== */
 const FLOW_ICONS = [
   /* Scan */
-  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+  <svg key="flow-1" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
     <rect x="2" y="5" width="16" height="11" rx="1.5" stroke="currentColor" strokeWidth="1.4" />
     <circle cx="10" cy="10.5" r="2.5" stroke="currentColor" strokeWidth="1.4" />
     <path d="M7 5l1-2h4l1 2" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
   </svg>,
   /* Learn */
-  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+  <svg key="flow-2" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
     <rect x="3" y="4" width="14" height="13" rx="1" stroke="currentColor" strokeWidth="1.4" />
     <line x1="3" y1="8" x2="17" y2="8" stroke="currentColor" strokeWidth="1.4" />
     <line x1="6" y1="12" x2="14" y2="12" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
   </svg>,
   /* Share */
-  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+  <svg key="flow-3" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
     <path d="M10 2v10M6 6l4-4 4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
     <path d="M4 14v4h12v-4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
   </svg>,
   /* Earn */
-  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+  <svg key="flow-4" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
     <path d="M6 3h8v5a4 4 0 01-8 0V3z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
     <path d="M3 5H6M14 5h3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
     <path d="M2 7c0 2 1.5 3.5 4 4M18 7c0 2-1.5 3.5-4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
@@ -514,7 +514,7 @@ function FlowStepCard({ step, icon, mobile = false }) {
     >
       <span
         style={{
-          fontFamily: '"Space Grotesk", sans-serif',
+          fontFamily: 'var(--font-label)',
           fontSize: 10,
           letterSpacing: '0.18em',
           color: ACCENT,
@@ -542,7 +542,7 @@ function FlowStepCard({ step, icon, mobile = false }) {
         {icon}
       </div>
 
-      <h4
+      <h3
         className="font-display"
         style={{
           fontSize: 16,
@@ -553,7 +553,7 @@ function FlowStepCard({ step, icon, mobile = false }) {
         }}
       >
         {step.title}
-      </h4>
+      </h3>
 
       <p
         className="font-body"
@@ -605,11 +605,11 @@ function ArchitectureDiagram() {
             >
               <p
                 style={{
-                  fontFamily: '"Space Grotesk", sans-serif',
+                  fontFamily: 'var(--font-label)',
                   fontSize: 9,
                   letterSpacing: '0.22em',
                   textTransform: 'uppercase',
-                  color: layer.highlight ? ACCENT : 'var(--fg-muted)',
+                  color: layer.highlight ? ACCENT : 'var(--fg-soft)',
                   marginBottom: 14,
                 }}
               >
@@ -709,7 +709,7 @@ function OCRScanVisual() {
       {/* Content */}
       <div
         style={{
-          fontFamily: '"Roboto Mono", monospace',
+          fontFamily: 'var(--font-body)',
           display: 'flex',
           flexDirection: 'column',
           gap: 14,
@@ -725,7 +725,7 @@ function OCRScanVisual() {
             background: `color-mix(in srgb, ${ACCENT} 6%, transparent)`,
           }}
         >
-          <span style={{ color: 'var(--fg-muted)', fontSize: 11, letterSpacing: '0.1em', opacity: 0.7 }}>
+          <span style={{ color: 'var(--fg-soft)', fontSize: 11, letterSpacing: '0.1em' }}>
             ANALYSING BITMAP...
           </span>
           <span
@@ -753,11 +753,11 @@ function OCRScanVisual() {
           <div key={row.label} style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
             <span
               style={{
-                color: row.active ? ACCENT : 'var(--fg-muted)',
+                color: row.active ? ACCENT : 'var(--fg-soft)',
                 fontSize: 10,
                 fontWeight: 700,
                 letterSpacing: '0.12em',
-                opacity: row.active ? 1 : 0.45,
+                opacity: 1,
               }}
             >
               {row.label}
@@ -769,7 +769,7 @@ function OCRScanVisual() {
                 background: `color-mix(in srgb, var(--fg) ${row.active ? 18 : 10}%, transparent)`,
               }}
             />
-            <span style={{ color: row.active ? 'var(--fg)' : 'var(--fg-muted)', fontSize: 10, opacity: row.active ? 1 : 0.45 }}>
+            <span style={{ color: row.active ? 'var(--fg)' : 'var(--fg-soft)', fontSize: 10 }}>
               {row.confidence}
             </span>
           </div>
@@ -786,14 +786,14 @@ function OCRScanVisual() {
           <p style={{ color: 'var(--fg)', fontSize: 12, fontWeight: 700, letterSpacing: '0.06em' }}>
             BEVERAGE IDENTIFIED
           </p>
-          <p style={{ color: 'var(--fg-muted)', fontSize: 10, marginTop: 4 }}>confidence: 87.4%</p>
+          <p style={{ color: 'var(--fg-soft)', fontSize: 10, marginTop: 4 }}>confidence: 87.4%</p>
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 3, marginTop: 2 }}>
-          <span style={{ color: 'var(--fg-muted)', fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
+          <span style={{ color: 'var(--fg-soft)', fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
             BITMAP ANALYSIS · MANUAL OCR
           </span>
-          <span style={{ color: 'var(--fg-muted)', fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', opacity: 0.5 }}>
+          <span style={{ color: 'var(--fg-soft)', fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
             NO ML FRAMEWORK · HAND-BUILT
           </span>
         </div>
@@ -1067,7 +1067,7 @@ function BrutalistTable({ header, rows }) {
     <div className="mt-8 overflow-x-auto">
       <table
         className="w-full"
-        style={{ borderCollapse: 'collapse', fontFamily: '"Roboto Mono", monospace' }}
+        style={{ borderCollapse: 'collapse', fontFamily: 'var(--font-body)' }}
       >
         <thead>
           <tr>

@@ -1,14 +1,21 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import { createContext, useCallback, useContext, useEffect, useMemo } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import translations, { LOCALES } from './translations.js'
+import { localePath, splitLocale } from './routes.js'
 
 const LocaleContext = createContext(null)
 
-const STORAGE_KEY = 'juligm4.locale'
+export const STORAGE_KEY = 'juligm4.locale'
 
-const detectInitial = () => {
+/** The language a visitor would like, used only to pick where `/` sends them. */
+export function preferredLocale() {
   if (typeof window === 'undefined') return 'es'
-  const stored = window.localStorage.getItem(STORAGE_KEY)
-  if (stored && LOCALES.includes(stored)) return stored
+  try {
+    const stored = window.localStorage.getItem(STORAGE_KEY)
+    if (stored && LOCALES.includes(stored)) return stored
+  } catch {
+    /* storage unavailable */
+  }
   const nav = (navigator.language || 'es').toLowerCase()
   return nav.startsWith('en') ? 'en' : 'es'
 }
@@ -23,17 +30,33 @@ const get = (obj, path) => {
   return cur
 }
 
-export function LocaleProvider({ children }) {
-  const [locale, setLocale] = useState(detectInitial)
+/**
+ * `locale` comes from the route (`/:lang`). The provider never guesses it;
+ * switching language is a navigation to the same page under the other prefix.
+ */
+export function LocaleProvider({ locale, children }) {
+  const navigate = useNavigate()
+  const { pathname, search, hash } = useLocation()
 
   useEffect(() => {
-    document.documentElement.lang = locale === 'es' ? 'es' : 'en'
-    window.localStorage.setItem(STORAGE_KEY, locale)
+    document.documentElement.lang = locale
+    try {
+      window.localStorage.setItem(STORAGE_KEY, locale)
+    } catch {
+      /* storage unavailable */
+    }
   }, [locale])
 
-  const toggle = useCallback(() => {
-    setLocale((l) => (l === 'es' ? 'en' : 'es'))
-  }, [])
+  const setLocale = useCallback(
+    (next) => {
+      if (!LOCALES.includes(next) || next === locale) return
+      const { path } = splitLocale(pathname)
+      navigate(localePath(next, path) + search + hash)
+    },
+    [locale, pathname, search, hash, navigate]
+  )
+
+  const toggle = useCallback(() => setLocale(locale === 'es' ? 'en' : 'es'), [locale, setLocale])
 
   const t = useCallback(
     (path, fallback) => {
@@ -45,7 +68,7 @@ export function LocaleProvider({ children }) {
     [locale]
   )
 
-  const value = useMemo(() => ({ locale, setLocale, toggle, t }), [locale, toggle, t])
+  const value = useMemo(() => ({ locale, setLocale, toggle, t }), [locale, setLocale, toggle, t])
 
   return <LocaleContext.Provider value={value}>{children}</LocaleContext.Provider>
 }

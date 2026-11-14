@@ -19,7 +19,7 @@ import {
  */
 
 const EASE = [0.16, 1, 0.3, 1]
-const ACCENT = 'var(--accent-bloom)'
+const ACCENT = 'var(--case-accent)'
 
 export default function TaxonomyExplorer({ b }) {
   const reduce = useReducedMotion()
@@ -221,7 +221,7 @@ const Chip = forwardRef(function Chip({ tag, cats = [], focus, setFocus, reduce,
           lineHeight: 1.2,
           padding: '6px 10px',
           color: lit ? 'var(--bg)' : 'var(--fg)',
-          background: lit ? ACCENT : shared ? 'color-mix(in srgb, var(--accent-bloom) 9%, transparent)' : 'transparent',
+          background: lit ? ACCENT : shared ? 'color-mix(in srgb, var(--case-accent) 9%, transparent)' : 'transparent',
           border: `1px solid ${lit || shared ? ACCENT : 'color-mix(in srgb, var(--fg) 20%, transparent)'}`,
           transition: 'background 180ms ease, color 180ms ease, border-color 180ms ease',
         }}
@@ -304,7 +304,7 @@ export function SystemInUse({ b }) {
                           fontSize: 12,
                           padding: '5px 9px',
                           color: lit ? 'var(--bg)' : 'var(--fg)',
-                          background: lit ? ACCENT : shared ? 'color-mix(in srgb, var(--accent-bloom) 9%, transparent)' : 'transparent',
+                          background: lit ? ACCENT : shared ? 'color-mix(in srgb, var(--case-accent) 9%, transparent)' : 'transparent',
                           border: `1px solid ${lit || shared ? ACCENT : 'color-mix(in srgb, var(--fg) 20%, transparent)'}`,
                           transition: 'background 180ms ease, color 180ms ease',
                         }}

@@ -1,5 +1,7 @@
 # FinalPortfolio — juligm4.com
 
+> Redesign in progress: **`docs/REDESIGN.md` is the source of truth and wins over this file if they contradict.**
+
 Personal portfolio for Julián Galindo Mora. React + Vite SPA deployed on Vercel.
 
 ## Stack
@@ -51,7 +53,7 @@ src/
 | `/projects/candelaria` | `pages/projects/Candelaria.jsx` (brand, default export) |
 | `/projects/candelaria-website` | `pages/projects/Candelaria.jsx` (`CandelariaWebsite`) |
 | `/projects/sensewave` | `pages/projects/Sensewave.jsx` |
-| `/projects/humbral` | `pages/projects/Humbral.jsx` |
+| `/projects/umbral` | `pages/projects/Umbral.jsx` |
 | `/projects/bloom` | `pages/projects/Bloom.jsx` |
 | `/contact` | `pages/Contact.jsx` |
 
@@ -79,9 +81,11 @@ npm run lint     # ESLint
 | Slug | Status | Description |
 |---|---|---|
 | `licorimetro` | Academic (2023) | Android mobile app with OCR for beverage discovery |
-| `sensewave` | Academic (2024) | Speculative neurotechnology brand — design-only case study |
-| `candelaria` | In development (2025–2026) | Full-stack site for a university solar vehicle team |
+| `sensewave` | Academic (2025) | Speculative neurotechnology brand — design-only case study |
+| `candelaria` | In development (Oct 2025–present) | Brand + full-stack site for the university solar vehicle research hub (semillero) |
+| `bloom` | Freelance (Jun 2026) | UX research, information architecture and wireframing for Bloom / BeBloomers |
+| `umbral` | Academic (2026) | Object project (El Umbral) — modular coffee table |
 
 ## Owner
 
-Julián Galindo Mora — Design student, Universidad de los Andes, graduating 2028. Designer + developer. Contact: julian_gm4@hotmail.com
+Julián Galindo Mora — Design student, Universidad de los Andes (since 2025-2, expected graduation 2028). Previously Systems & Computer Engineering at the same university, 2021-1 to 2025-1 (9 semesters; Visual Computing option completed). Designer + developer. Contact: julian_gm4@hotmail.com

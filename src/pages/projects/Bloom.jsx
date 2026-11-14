@@ -14,8 +14,8 @@ import {
 import TaxonomyExplorer, { SystemInUse } from '../../components/bloom/TaxonomyExplorer.jsx'
 import WireframeViewer, { WireframeFlow } from '../../components/bloom/WireframeViewer.jsx'
 
-// Theme-aware — see --accent-bloom in index.css.
-const ACCENT = 'var(--accent-bloom)'
+// Per-route palette — see [data-case='bloom'] in cases.css.
+const ACCENT = 'var(--case-accent)'
 
 export default function Bloom() {
   const { t } = useLocale()

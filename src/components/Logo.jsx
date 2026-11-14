@@ -1,18 +1,10 @@
-import { useTheme } from '../theme/ThemeProvider.jsx'
-import lightLogo from '../assets/identity/LightIcon.webp'
-import darkLogo from '../assets/identity/DarkIcon.webp'
+import logo from '../assets/identity/LightIcon.webp'
 
-/**
- * Brand mark — swaps automatically with the active theme.
- *  - light theme → LightIcon (drawn in dark color, contrasts on light bg)
- *  - dark theme  → DarkIcon  (drawn in light color, contrasts on dark bg)
- */
+/** Brand mark. Single palette: the dark-ink icon on the mist ground. */
 export default function Logo({ size = 44, className = '' }) {
-  const { theme } = useTheme()
-  const src = theme === 'dark' ? darkLogo : lightLogo
   return (
     <img
-      src={src}
+      src={logo}
       alt="juligm4"
       width={size}
       height={size}
