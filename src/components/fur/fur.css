@@ -1,0 +1,58 @@
+/* Fur pieces (V3 §B, §C): Plush Tile, Mohair Capsule, Velour Bolster.
+   The control is the box; the rest image and the live canvas hang around it. */
+
+/* ---------- Plush Tile ---------- */
+.plush {
+  position: relative;
+  display: inline-block;
+  flex: none;
+  width: var(--pt, 44px);
+  height: var(--pt, 44px);
+  padding: 0;
+  border: 0;
+  background: none;
+  border-radius: 23%;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+.plush__rest,
+.plush__live {
+  position: absolute;
+  /* the canvas is --pt-bleed × the tile, centred on it */
+  inset: calc(var(--pt) * (1 - var(--pt-bleed, 1.5)) / 2);
+  pointer-events: none;
+}
+.plush__rest img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.plush__live {
+  opacity: 0;
+}
+/* The first live frame has been drawn: swap, same pixels. */
+.plush[data-live] .plush__live {
+  opacity: 1;
+}
+.plush[data-live] .plush__rest {
+  opacity: 0;
+}
+.plush__flat {
+  position: absolute;
+  /* the tile itself inside the bled box */
+  inset: calc((1 - 1 / var(--pt-bleed, 1.5)) * 50%);
+  display: block;
+  border-radius: 23%;
+  background: var(--moss-700);
+}
+.plush__glyph {
+  position: absolute;
+  inset: 20%;
+  background: var(--mist);
+  -webkit-mask: center / contain no-repeat;
+  mask: center / contain no-repeat;
+}
+.plush:active .plush__rest {
+  transform: translateY(1px);
+}
