@@ -62,6 +62,7 @@ export default function TumbleDeck({
   const sceneRef = useRef(null)
   const cardRefs = useRef([])
   const imgRefs = useRef([])
+  const slabRefs = useRef([])
   const slotK = useRef([])
   const state = useRef({ pos: 0 })
   const geo = useRef({ h: 200, gap: 44 })
@@ -86,13 +87,29 @@ export default function TumbleDeck({
       if (slotK.current[j] !== k) {
         slotK.current[j] = k
         const c = cards[wrap(k, n)]
-        img.src = c.src
+        const slab = slabRefs.current[j]
+        if (c.src) {
+          img.src = c.src
+          img.style.display = ''
+          if (slab) slab.hidden = true
+        } else {
+          // no capture yet: a designed concrete slab with the name and its status
+          img.removeAttribute('src')
+          img.style.display = 'none'
+          if (slab) {
+            slab.hidden = false
+            slab.children[0].textContent = c.slab?.title ?? ''
+            slab.children[1].textContent = c.slab?.status ?? ''
+          }
+        }
         img.alt = ''
       }
       const p = cardPose(k, pos, depth)
       el.style.transform = `translate3d(0, ${-p.lift}px, ${p.z * gap}px) rotateX(${p.angle}deg)`
       el.style.opacity = String(p.opacity)
       el.style.visibility = p.opacity > 0 ? 'visible' : 'hidden'
+      // a card lying on the floor would show its face upside down: show plain concrete instead
+      el.dataset.flat = p.flat ? '1' : '0'
       el.style.setProperty('--td-shade', String(p.flat ? 0.06 : (-p.angle / 90) * 0.06))
     })
     const front = wrap(Math.round(pos), n)
@@ -283,6 +300,16 @@ export default function TumbleDeck({
               draggable={false}
               decoding="async"
             />
+            <div
+              ref={(el) => {
+                slabRefs.current[j] = el
+              }}
+              className="td-slab"
+              hidden
+            >
+              <span className="td-slab__title" />
+              <span className="td-slab__status" />
+            </div>
           </div>
         ))}
       </div>

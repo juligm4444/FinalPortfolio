@@ -234,3 +234,9 @@ a.work-slab:active {
     transition: none;
   }
 }
+
+@media (hover: none) {
+  .pedestal__hint {
+    display: none;
+  }
+}

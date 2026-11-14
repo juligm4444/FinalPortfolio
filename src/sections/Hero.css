@@ -41,6 +41,10 @@
   left: 8%;
   top: 30%;
   max-width: 34ch;
+  /* ACABADO §3: text over the photo stands on the veil */
+  padding: var(--space-4) var(--space-6);
+  background: var(--veil);
+  border-radius: var(--radius-slab);
 }
 @media (max-width: 719px) {
   .hero__static {

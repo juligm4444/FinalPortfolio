@@ -1175,11 +1175,18 @@ export default function CitronKeyscapeCanvas({ words, captionLines, logo, onStat
             })
             const n = list.length
             const byKey = new Map()
+            // one technology per key (ACABADO §5): the words go to the keys nearest the
+            // hero, one each; the rest of the bed stays blank concrete.
+            const order = []
+            for (let g = 0; g < COUNT; g++) if (g !== HERO) order.push(g)
+            const dist = (g) => (gi(g) - gi(HERO)) ** 2 + (gj(g) - gj(HERO)) ** 2
+            order.sort((a, b) => dist(a) - dist(b) || a - b)
+            const wordOf = new Map(order.slice(0, n).map((g, k) => [g, k]))
             for (let g = 0; g < COUNT; g++) {
                 if (g === HERO) continue
-                const { c, m } = wordClass(gi(g), gj(g))
-                const word = n ? (c + 4 * m) % n : -1
-                const style = (n ? word : c) % 3
+                const { c } = wordClass(gi(g), gj(g))
+                const word = wordOf.has(g) ? wordOf.get(g) : -1
+                const style = (word >= 0 ? word : c) % 3
                 const k = `${style}:${word}`
                 if (!byKey.has(k)) byKey.set(k, { style, word, cells: [] })
                 byKey.get(k)?.cells.push(g)
@@ -1692,8 +1699,8 @@ export default function CitronKeyscapeCanvas({ words, captionLines, logo, onStat
             ;(heroU.uGlowColor.value ).copy(accent).multiplyScalar(0.75 * glowK)
             glowLight.color.copy(accent)
             glowLow.color.copy(accent)
-            glowLight.intensity = 0.65 * glowK
-            glowLow.intensity = 0.35 * glowK
+            glowLight.intensity = 0.3 * glowK
+            glowLow.intensity = 0.08 * glowK
             glowLight.position.set(0, hy + CAP_H * 0.45, 0)
             glowLow.position.set(0, 0.12, 0)
             // centred a little behind the hero: the ring behind is lit, the caps in front fall off

@@ -33,15 +33,15 @@
 .vine__body {
   position: relative;
   display: grid;
-  grid-template-columns: 120px 1fr;
+  grid-template-columns: 64px 1fr;
   gap: var(--space-6);
 }
 .vine__svg {
-  width: 120px;
-  height: 100%;
+  width: 64px;
+  height: auto;
   grid-column: 1;
   grid-row: 1;
-  align-self: stretch;
+  align-self: start;
   overflow: visible;
 }
 .vine__pier {
@@ -52,7 +52,7 @@
 .vine__stem {
   fill: none;
   stroke: var(--moss-700);
-  stroke-width: 4;
+  stroke-width: 5;
   stroke-linecap: round;
   stroke-linejoin: round;
   vector-effect: non-scaling-stroke;
@@ -60,26 +60,28 @@
 .vine__list {
   grid-column: 2;
   grid-row: 1;
+  align-self: start;
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-auto-rows: minmax(100px, auto);
   row-gap: var(--space-4);
-  min-height: var(--vine-h);
   /* oldest at the top, as approved; the vine climbs from the foot. */
 }
 .vine__item {
   position: relative;
-  padding-top: var(--space-2);
-  padding-left: var(--space-4);
+  padding: var(--space-4) var(--space-6);
+  background: var(--concrete-100);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-slab);
+  box-shadow: var(--slab-shadow);
 }
 .vine__sprout {
   position: absolute;
-  left: calc(-1 * var(--space-6) - 60px - 6px);
-  top: calc(var(--space-2) + 4px);
-  width: 12px;
-  height: 12px;
+  left: calc(-1 * var(--space-6) - 32px - 8px);
+  top: 16px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   background: var(--moss-400);
   box-shadow: 0 0 0 3px var(--mist);
@@ -88,10 +90,10 @@
 }
 .vine__item--bloom .vine__sprout {
   background: var(--bloom);
-  width: 16px;
-  height: 16px;
-  left: calc(-1 * var(--space-6) - 60px - 8px);
-  top: calc(var(--space-2) + 2px);
+  width: 22px;
+  height: 22px;
+  left: calc(-1 * var(--space-6) - 32px - 11px);
+  top: 13px;
 }
 .vine__item.is-grown .vine__sprout {
   transform: scale(1);
@@ -121,21 +123,13 @@
 }
 @media (max-width: 767px) {
   .vine__body {
-    grid-template-columns: 64px 1fr;
     gap: var(--space-4);
   }
-  .vine__svg {
-    width: 64px;
-  }
-  .vine__list {
-    grid-auto-rows: auto;
-    row-gap: var(--space-6);
-  }
   .vine__sprout {
-    left: calc(-1 * var(--space-4) - 32px - 6px);
+    left: calc(-1 * var(--space-4) - 32px - 8px);
   }
   .vine__item--bloom .vine__sprout {
-    left: calc(-1 * var(--space-4) - 32px - 8px);
+    left: calc(-1 * var(--space-4) - 32px - 11px);
   }
 }
 /* No JS or reduced motion: everything drawn, every sprout grown. */
@@ -263,4 +257,10 @@
   .vine__list {
     grid-auto-rows: 1fr;
   }
+}
+
+/* The ocobo melts into the page: no hard rectangle (ACABADO §5). */
+.about__ocobo > * {
+  -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, rgb(0 0 0) 55%, transparent 100%);
+  mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, rgb(0 0 0) 55%, transparent 100%);
 }

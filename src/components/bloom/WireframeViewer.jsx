@@ -59,7 +59,7 @@ export default function WireframeViewer({ b }) {
                 onClick={() => setActive(s.key)}
                 className="font-nav uppercase"
                 style={{
-                  fontSize: 11,
+                  fontSize: 12,
                   letterSpacing: '0.16em',
                   fontWeight: 600,
                   padding: '8px 12px',

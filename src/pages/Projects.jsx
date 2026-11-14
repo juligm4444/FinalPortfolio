@@ -13,8 +13,8 @@ import './Projects.css'
 
 function StatusBadge({ status }) {
   const { t } = useLocale()
-  if (status !== 'in-progress') return null
-  return <span className="work__status">{t('projects.status.in-progress')}</span>
+  if (status !== 'in-progress' && status !== 'soon') return null
+  return <span className="work__status">{t(`projects.status.${status}`)}</span>
 }
 
 /** The link a work offers: its case study, else its site, else nothing. */
@@ -49,9 +49,11 @@ function WebGroup() {
   const { t } = useLocale()
   const items = worksByGroup('web')
   const [front, setFront] = useState(0)
+  const badge = (w) => (w.status === 'in-progress' || w.status === 'soon' ? t(`projects.status.${w.status}`) : '')
   const cards = items.map((w) => ({
     src: w.media.screenshot,
-    label: [t(`works.${w.id}.title`), w.status === 'in-progress' ? t('projects.status.in-progress') : ''].filter(Boolean).join(' · '),
+    slab: { title: t(`works.${w.id}.title`), status: badge(w) },
+    label: [t(`works.${w.id}.title`), badge(w)].filter(Boolean).join(' · '),
   }))
   const current = items[front] ?? items[0]
   return (

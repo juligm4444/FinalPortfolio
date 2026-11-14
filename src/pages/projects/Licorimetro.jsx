@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { useLocale } from '../../i18n/LocaleProvider.jsx';
-import { caseStudies } from '../../data/projects.js';
+import { CaseHero, NextCase } from '../../components/CaseStudy.jsx';
 import licorimetroProblemImg from '../../assets/images/licorimetro/problem.webp';
 import licorimetroEvolutionImg from '../../assets/images/licorimetro/evolution.webp';
 import licorimetroReflectionsImg from '../../assets/images/licorimetro/reflections.webp';
@@ -10,17 +10,6 @@ import licorimetroScanVideo from '../../assets/images/licorimetro/summary-scan.m
 const ACCENT = 'var(--case-accent)';
 const EASE = [0.16, 1, 0.3, 1];
 
-const slabStyle = {
-  background: ACCENT,
-  color: 'var(--case-on-accent)',
-  display: 'inline-block',
-  padding: '8px 14px',
-  fontSize: 12,
-  letterSpacing: '0.22em',
-  fontWeight: 700,
-  textTransform: 'uppercase',
-  fontFamily: 'var(--font-label)',
-};
 
 /* ======================== Feature icons (7) ======================== */
 const FEATURE_ICONS = [
@@ -186,86 +175,20 @@ const ARCH_LAYERS = [
 
 export default function Licorimetro() {
   const { t } = useLocale();
-  const reduced = useReducedMotion();
-  const project = caseStudies.licorimetro;
 
   return (
     <article className="w-full">
-      {/* HERO */}
-      <header className="mx-auto w-full max-w-[1200px] px-4 pt-16 md:px-8 md:pt-28">
-        <motion.span
-          style={slabStyle}
-          initial={{ opacity: 0, y: reduced ? 0 : 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: reduced ? 0 : 0.6, ease: EASE }}
-        >
-          {t('licorimetro.tag')}
-        </motion.span>
-
-        <motion.h1
-          className="mt-6 font-display"
-          style={{
-            color: 'var(--text)',
-            fontSize: 'clamp(48px, 8vw, 112px)',
-            lineHeight: 1.0,
-            fontWeight: 700,
-            letterSpacing: '-0.02em',
-            textWrap: 'balance',
-          }}
-          initial={{ opacity: 0, y: reduced ? 0 : 28 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: reduced ? 0 : 1.0, ease: EASE, delay: reduced ? 0 : 0.1 }}
-        >
-          {t('licorimetro.title')}
-        </motion.h1>
-
-        <motion.p
-          className="mt-8 font-body"
-          style={{
-            color: 'var(--text-muted)',
-            fontSize: 'clamp(18px, 2vw, 24px)',
-            lineHeight: 1.5,
-            maxWidth: '60ch',
-          }}
-          initial={{ opacity: 0, y: reduced ? 0 : 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: reduced ? 0 : 0.85, ease: EASE, delay: reduced ? 0 : 0.24 }}
-        >
-          {t('licorimetro.subtitle')}
-        </motion.p>
-
-        <motion.div
-          className="mt-14 grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16"
-          style={{
-            borderTop: '1px solid color-mix(in srgb, var(--text) 15%, transparent)',
-            paddingTop: 36,
-          }}
-          initial={{ opacity: 0, y: reduced ? 0 : 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: reduced ? 0 : 0.7, ease: EASE, delay: reduced ? 0 : 0.4 }}
-        >
-          <div className="md:col-span-12 flex flex-col gap-10">
-            <MetaBlock label={t('licorimetro.sectionRoleLabel')} value={t('licorimetro.role')} />
-            <MetaBlock
-              label={t('licorimetro.sectionTimelineLabel')}
-              value={`${t('licorimetro.period')} · ${t('licorimetro.status')}`}
-            />
-            <div>
-              <p
-                className="font-nav uppercase"
-                style={{ color: 'var(--text-muted)', fontSize: 11, letterSpacing: '0.22em' }}
-              >
-                {t('licorimetro.stackKicker')}
-              </p>
-              <div className="mt-5">
-                <p className="font-body" style={{ color: 'var(--text-muted)', fontSize: 16, lineHeight: 1.7 }}>
-                  {project.skills.join(' · ')}
-                </p>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      </header>
+      <CaseHero
+        slug="licorimetro"
+        links={[]}
+        kicker={t('licorimetro.tag')}
+        h1={t('licorimetro.title')}
+        sub={t('licorimetro.subtitle')}
+        meta={[
+          { label: t('licorimetro.sectionRoleLabel'), value: t('licorimetro.role') },
+          { label: t('licorimetro.sectionTimelineLabel'), value: `${t('licorimetro.period')} · ${t('licorimetro.status')}` },
+        ]}
+      />
 
       {/* SUMMARY */}
       <Section>
@@ -434,6 +357,7 @@ export default function Licorimetro() {
           </div>
         </div>
       </Section>
+      <NextCase slug="licorimetro" />
     </article>
   );
 }
@@ -500,8 +424,8 @@ function FlowStepCard({ step, icon, mobile = false }) {
       onMouseLeave={() => setHover(false)}
       style={{
         background: hover
-          ? `color-mix(in srgb, ${ACCENT} 6%, var(--concrete-300))`
-          : 'var(--concrete-300)',
+          ? `color-mix(in srgb, ${ACCENT} 6%, var(--concrete-100))`
+          : 'var(--concrete-100)',
         border: `1px solid ${
           hover
             ? `color-mix(in srgb, ${ACCENT} 35%, transparent)`
@@ -514,7 +438,7 @@ function FlowStepCard({ step, icon, mobile = false }) {
       <span
         style={{
           fontFamily: 'var(--font-label)',
-          fontSize: 10,
+          fontSize: 12,
           letterSpacing: '0.18em',
           color: ACCENT,
           display: 'block',
@@ -556,7 +480,7 @@ function FlowStepCard({ step, icon, mobile = false }) {
 
       <p
         className="font-body"
-        style={{ fontSize: 13, lineHeight: 1.6, color: 'var(--text-muted)' }}
+        style={{ fontSize: 14, lineHeight: 1.6, color: 'var(--text-muted)' }}
       >
         {step.intro}
       </p>
@@ -594,8 +518,8 @@ function ArchitectureDiagram() {
               style={{
                 flex: 1,
                 background: layer.highlight
-                  ? `color-mix(in srgb, ${ACCENT} 5%, var(--concrete-300))`
-                  : 'var(--concrete-300)',
+                  ? `color-mix(in srgb, ${ACCENT} 5%, var(--concrete-100))`
+                  : 'var(--concrete-100)',
                 border: layer.highlight
                   ? `1px solid color-mix(in srgb, ${ACCENT} 22%, transparent)`
                   : '1px solid color-mix(in srgb, var(--text) 10%, transparent)',
@@ -605,7 +529,7 @@ function ArchitectureDiagram() {
               <p
                 style={{
                   fontFamily: 'var(--font-label)',
-                  fontSize: 9,
+                  fontSize: 12,
                   letterSpacing: '0.22em',
                   textTransform: 'uppercase',
                   color: layer.highlight ? ACCENT : 'var(--text-muted)',
@@ -642,7 +566,7 @@ function ArchitectureDiagram() {
                       >
                         {node.name}
                       </div>
-                      <div style={{ fontSize: 10, color: 'var(--text-muted)', marginTop: 2 }}>
+                      <div style={{ fontSize: 12, color: 'var(--text-muted)', marginTop: 2 }}>
                         {node.sub}
                       </div>
                     </div>
@@ -724,7 +648,7 @@ function OCRScanVisual() {
             background: `color-mix(in srgb, ${ACCENT} 6%, transparent)`,
           }}
         >
-          <span style={{ color: 'var(--text-muted)', fontSize: 11, letterSpacing: '0.1em' }}>
+          <span style={{ color: 'var(--text-muted)', fontSize: 12, letterSpacing: '0.1em' }}>
             ANALYSING BITMAP...
           </span>
           <span
@@ -734,7 +658,7 @@ function OCRScanVisual() {
               left: 10,
               background: 'var(--surface)',
               padding: '0 6px',
-              fontSize: 9,
+              fontSize: 12,
               color: ACCENT,
               letterSpacing: '0.18em',
               fontWeight: 700,
@@ -753,7 +677,7 @@ function OCRScanVisual() {
             <span
               style={{
                 color: row.active ? ACCENT : 'var(--text-muted)',
-                fontSize: 10,
+                fontSize: 12,
                 fontWeight: 700,
                 letterSpacing: '0.12em',
                 opacity: 1,
@@ -768,7 +692,7 @@ function OCRScanVisual() {
                 background: `color-mix(in srgb, var(--text) ${row.active ? 18 : 10}%, transparent)`,
               }}
             />
-            <span style={{ color: row.active ? 'var(--text)' : 'var(--text-muted)', fontSize: 10 }}>
+            <span style={{ color: row.active ? 'var(--text)' : 'var(--text-muted)', fontSize: 12 }}>
               {row.confidence}
             </span>
           </div>
@@ -778,21 +702,21 @@ function OCRScanVisual() {
           style={{
             marginTop: 6,
             padding: '10px 14px',
-            background: 'var(--concrete-300)',
+            background: 'var(--concrete-100)',
             border: '1px solid color-mix(in srgb, var(--text) 10%, transparent)',
           }}
         >
           <p style={{ color: 'var(--text)', fontSize: 12, fontWeight: 700, letterSpacing: '0.06em' }}>
             BEVERAGE IDENTIFIED
           </p>
-          <p style={{ color: 'var(--text-muted)', fontSize: 10, marginTop: 4 }}>confidence: 87.4%</p>
+          <p style={{ color: 'var(--text-muted)', fontSize: 12, marginTop: 4 }}>confidence: 87.4%</p>
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 3, marginTop: 2 }}>
-          <span style={{ color: 'var(--text-muted)', fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
+          <span style={{ color: 'var(--text-muted)', fontSize: 12, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
             BITMAP ANALYSIS · MANUAL OCR
           </span>
-          <span style={{ color: 'var(--text-muted)', fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
+          <span style={{ color: 'var(--text-muted)', fontSize: 12, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
             NO ML FRAMEWORK · HAND-BUILT
           </span>
         </div>
@@ -966,24 +890,6 @@ function Bullet({ children }) {
   );
 }
 
-function MetaBlock({ label, value, className = '' }) {
-  return (
-    <div className={className}>
-      <p
-        className="font-nav uppercase"
-        style={{ color: 'var(--text-muted)', fontSize: 11, letterSpacing: '0.22em' }}
-      >
-        {label}
-      </p>
-      <p
-        className="mt-2 font-display"
-        style={{ color: 'var(--text)', fontSize: 18, lineHeight: 1.45, fontWeight: 700 }}
-      >
-        {value}
-      </p>
-    </div>
-  );
-}
 
 function FeatureCard({ feature, index, icon }) {
   const [hover, setHover] = useState(false);
@@ -997,7 +903,7 @@ function FeatureCard({ feature, index, icon }) {
       onMouseLeave={() => setHover(false)}
       className="relative p-7"
       style={{
-        background: 'var(--concrete-300)',
+        background: 'var(--concrete-100)',
         border: '1px solid color-mix(in srgb, var(--text) 10%, transparent)',
         transition: 'transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease',
         transform: hover ? 'translateY(-4px)' : 'translateY(0)',

@@ -71,14 +71,14 @@ for (const vp of VIEWPORTS) {
     await page.waitForTimeout(1500)
     const name = (route.replace(/^\/(es|en)\/?/, (m, l) => l + '-').replace(/\/$/, '').replace(/\//g, '-') || 'root').replace(/-$/, '')
     await page.screenshot({ path: join(out, `${name}__${vp.tag}__fold.png`) })
-    // dispara los Reveal de scroll y vuelve arriba antes de la página completa
+    // recorre la página para disparar los Reveal y la enredadera antes de la captura completa
     const h = await page.evaluate(() => document.documentElement.scrollHeight)
     for (let y = 0; y < h; y += vp.height * 0.8) {
       await page.evaluate((yy) => window.scrollTo(0, yy), y)
       await page.waitForTimeout(120)
     }
-    await page.evaluate(() => window.scrollTo(0, 0))
-    await page.waitForTimeout(400)
+    // se queda abajo: la enredadera y los Reveal ya están dibujados al capturar
+    await page.waitForTimeout(500)
     await page.screenshot({ path: join(out, `${name}__${vp.tag}__full.png`), fullPage: true })
     n += 2
     await page.close()

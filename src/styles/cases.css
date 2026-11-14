@@ -94,3 +94,8 @@
     opacity: 0.16 !important;
   }
 }
+
+/* Text on a case never touches the photo: the whole case stands on the veil (ACABADO §3). */
+.case {
+  background: var(--veil);
+}

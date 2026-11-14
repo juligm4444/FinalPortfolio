@@ -1,9 +1,8 @@
 import { createContext, useContext, useRef } from 'react';
-import Link from '../../components/LocaleLink.jsx';
-import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { useLocale } from '../../i18n/LocaleProvider.jsx';
+import { CaseHero, NextCase } from '../../components/CaseStudy.jsx';
 import { caseStudies } from '../../data/projects.js';
-import { ArrowRightIcon, ExternalLinkIcon, GitHubIcon, InstagramIcon } from '../../components/icons/IconSet.jsx';
 
 /* case-study imagery */
 import summaryImg from '../../assets/images/candelaria/summary.webp';
@@ -104,11 +103,11 @@ function SectionTag({ number, label }) {
   return (
     <Reveal>
       <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginBottom: 60 }}>
-        <span style={{ fontFamily: LABEL, fontSize: 11, letterSpacing: '0.26em', color: c.gold, textTransform: 'uppercase', fontWeight: 500 }}>
+        <span style={{ fontFamily: LABEL, fontSize: 12, letterSpacing: '0.26em', color: c.gold, textTransform: 'uppercase', fontWeight: 500 }}>
           {String(number).padStart(2, '0')}
         </span>
         <div style={{ flex: 1, height: 1, background: c.borderAccent }} />
-        <span style={{ fontFamily: LABEL, fontSize: 11, letterSpacing: '0.22em', color: c.textMuted, textTransform: 'uppercase' }}>
+        <span style={{ fontFamily: LABEL, fontSize: 12, letterSpacing: '0.22em', color: c.textMuted, textTransform: 'uppercase' }}>
           {label}
         </span>
       </div>
@@ -116,14 +115,6 @@ function SectionTag({ number, label }) {
   );
 }
 
-function Kicker({ children }) {
-  const { c } = useC();
-  return (
-    <p style={{ fontFamily: LABEL, fontSize: 12, letterSpacing: '0.24em', color: c.gold, textTransform: 'uppercase', fontWeight: 500, marginBottom: 16 }}>
-      {children}
-    </p>
-  );
-}
 
 function Title({ children, size = 'clamp(30px, 4.4vw, 52px)', style = {} }) {
   const { c } = useC();
@@ -157,151 +148,43 @@ function CImage({ src, alt, ratio = '4 / 5' }) {
   );
 }
 
-function CButton({ href, to, children, variant = 'primary', Icon }) {
-  const { c } = useC();
-  const base = {
-    display: 'inline-flex', alignItems: 'center', gap: 10, padding: '13px 24px',
-    fontFamily: LABEL, fontWeight: 600, fontSize: 14, letterSpacing: '0.02em',
-    textDecoration: 'none', transition: 'transform 200ms ease, background 200ms ease, border-color 200ms ease',
-    cursor: 'pointer',
-  };
-  const styles = variant === 'primary'
-    ? { ...base, background: c.lavender, color: c.btnText, border: `1px solid ${c.lavender}` }
-    : { ...base, background: 'transparent', color: c.text, border: `1px solid ${c.borderAccent}` };
-  const handlers = {
-    onMouseEnter: (e) => { e.currentTarget.style.transform = 'translateY(-2px)'; if (variant !== 'primary') e.currentTarget.style.borderColor = c.violet; },
-    onMouseLeave: (e) => { e.currentTarget.style.transform = 'translateY(0)'; if (variant !== 'primary') e.currentTarget.style.borderColor = c.borderAccent; },
-  };
-  // `to` stays inside the portfolio; `href` leaves it in a new tab.
-  if (to) {
-    return (
-      <Link to={to} style={styles} {...handlers}>
-        {Icon && <Icon />}
-        {children}
-      </Link>
-    );
-  }
-  return (
-    <a href={href} target="_blank" rel="noreferrer noopener" style={styles} {...handlers}>
-      {Icon && <Icon />}
-      {children}
-    </a>
-  );
-}
 
 /* ─────────────────────────────────────────
    HERO
    ───────────────────────────────────────── */
-/* The brand and the website are two works with two destinations: the brand
-   lives on the team's Instagram, the site is its own product. */
-function CTAs() {
-  const { t, variant } = useC();
-  const project = caseStudies.candelaria;
-  if (variant === 'brand') {
-    return (
-      <>
-        <CButton href={project.instagram} variant="primary" Icon={InstagramIcon}>{t('candelaria.brandPage.ctaInstagram')}</CButton>
-        <CButton to="/projects/candelaria-website" variant="outline" Icon={ArrowRightIcon}>{t('candelaria.brandPage.ctaWebsite')}</CButton>
-      </>
-    );
-  }
-  return (
-    <>
-      <CButton href={project.site} variant="primary" Icon={ExternalLinkIcon}>{t('candelaria.ctaVisit')}</CButton>
-      <CButton href={project.code} variant="outline" Icon={GitHubIcon}>{t('candelaria.ctaCode')}</CButton>
-    </>
-  );
-}
+
 
 const BRAND_SKILLS = ['Figma', 'Illustrator', 'Photoshop'];
 
 function Hero() {
-  const { c, t, variant } = useC();
+  const { t, variant } = useC();
   const brand = variant === 'brand';
   const project = caseStudies.candelaria;
-  const ref = useRef(null);
-  const reduce = useReducedMotion();
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
-  const condorY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 90]);
-  const condorRotate = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 40]);
-
+  const links = brand
+    ? [
+        { label: t('case.instagram'), href: project.instagram },
+        { label: t('case.siteCase'), to: '/projects/candelaria-website' },
+      ]
+    : [
+        { label: t('case.visit'), href: project.site },
+        { label: t('case.code'), href: project.code },
+      ];
   return (
-    <section ref={ref} style={{ position: 'relative', overflow: 'hidden', background: c.bg, paddingTop: 120, paddingBottom: 96, paddingInline: 'clamp(20px, 5vw, 80px)' }}>
-      <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: `radial-gradient(ellipse 70% 60% at 70% 20%, ${c.glowSoft} 0%, transparent 60%)` }} />
-      {/* metallic condor mark */}
-      <motion.img
-        className="case-condor"
-        src={condorMain} alt="" aria-hidden
-        style={{ position: 'absolute', top: '6%', right: 'clamp(-80px, -2vw, 40px)', width: 'clamp(220px, 34vw, 520px)', opacity: 0.9, y: condorY, rotate: condorRotate, pointerEvents: 'none', filter: 'drop-shadow(0 20px 60px color-mix(in srgb, var(--concrete-900) 40%, transparent))' }}
-      />
-
-      <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative', zIndex: 2 }}>
-        <motion.p
-          initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2, delay: 0.2 }}
-          style={{ fontFamily: LABEL, fontSize: 12, letterSpacing: '0.26em', color: c.gold, textTransform: 'uppercase', fontWeight: 500 }}
-        >
-          {t(brand ? 'candelaria.brandPage.tag' : 'candelaria.tag')}
-        </motion.p>
-
-        <motion.h1
-          initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.1, delay: 0.35, ease: EASE }}
-          style={{ fontFamily: DISPLAY, fontSize: 'clamp(44px, 8vw, 112px)', fontWeight: 700, lineHeight: 1.02, color: c.text, letterSpacing: '-0.02em', marginTop: 26, maxWidth: '12ch' }}
-        >
-          {t(brand ? 'candelaria.brandPage.title' : 'candelaria.title')}
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.1, delay: 0.6 }}
-          style={{ fontFamily: LABEL, fontSize: 'clamp(16px, 2vw, 24px)', color: c.gold, letterSpacing: '0.12em', marginTop: 18, textTransform: 'uppercase', fontWeight: 600 }}
-        >
-          {t('candelaria.heroTagline')}
-        </motion.p>
-
-        <motion.p
-          initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.1, delay: 0.75 }}
-          style={{ fontFamily: BODY, fontWeight: 300, fontSize: 'clamp(15px, 1.6vw, 18px)', color: c.textSoft, lineHeight: 1.75, maxWidth: '54ch', marginTop: 28 }}
-        >
-          {t(brand ? 'candelaria.brandPage.subtitle' : 'candelaria.subtitle')}
-        </motion.p>
-
-        {/* meta + CTAs */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.95, ease: EASE }}
-          style={{ marginTop: 52, borderTop: `1px solid ${c.border}`, paddingTop: 36, display: 'grid', gap: 40, alignItems: 'start' }}
-          // Columns live in the class, not inline: an inline template would
-          // override the breakpoint and pin the CTAs under the meta forever.
-          className="grid-cols-1 md:grid-cols-[1.4fr_1fr]"
-        >
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 26 }}>
-            <Meta label={t('candelaria.sectionRoleLabel')} value={t(brand ? 'candelaria.brandPage.role' : 'candelaria.role')} />
-            <Meta label={t('candelaria.sectionTimelineLabel')} value={`${t('candelaria.period')} · ${t('candelaria.status')}`} />
-            <div>
-              <p style={{ fontFamily: LABEL, fontSize: 11, letterSpacing: '0.22em', color: c.textMuted, textTransform: 'uppercase', marginBottom: 16 }}>
-                {t('candelaria.stackKicker')}
-              </p>
-              <p style={{ fontFamily: LABEL, fontSize: 14, lineHeight: 1.7, color: c.text }}>
-                {(brand ? BRAND_SKILLS : project.skills).join(' · ')}
-              </p>
-            </div>
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }} className="items-stretch md:items-end">
-            <CTAs />
-          </div>
-        </motion.div>
-      </div>
-    </section>
+    <CaseHero
+      kicker={t(brand ? 'candelaria.brandPage.tag' : 'candelaria.tag')}
+      h1={t(brand ? 'candelaria.brandPage.title' : 'candelaria.title')}
+      sub={t(brand ? 'candelaria.brandPage.subtitle' : 'candelaria.subtitle')}
+      meta={[
+        { label: t('candelaria.sectionRoleLabel'), value: t(brand ? 'candelaria.brandPage.role' : 'candelaria.role') },
+        { label: t('candelaria.sectionTimelineLabel'), value: `${t('candelaria.period')} · ${t('candelaria.status')}` },
+      ]}
+      tools={brand ? BRAND_SKILLS : project.skills}
+      links={links}
+      media={condorMain}
+    />
   );
 }
 
-function Meta({ label, value }) {
-  const { c } = useC();
-  return (
-    <div>
-      <p style={{ fontFamily: LABEL, fontSize: 11, letterSpacing: '0.22em', color: c.textMuted, textTransform: 'uppercase' }}>{label}</p>
-      <p style={{ fontFamily: DISPLAY, fontSize: 18, lineHeight: 1.4, fontWeight: 700, color: c.text, marginTop: 8 }}>{value}</p>
-    </div>
-  );
-}
 
 /* ─────────────────────────────────────────
    SUMMARY
@@ -372,7 +255,7 @@ function TeamCard({ meta, name, role, index }) {
       <div style={{ position: 'relative', width: 96, height: 96, margin: '0 auto 18px' }}>
         <img src={meta.logo} alt={`${name} condor`} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
       </div>
-      <p style={{ position: 'relative', fontFamily: LABEL, fontSize: 10, letterSpacing: '0.22em', color: TEAM_COLOR, textTransform: 'uppercase', fontWeight: 500, marginBottom: 6 }}>
+      <p style={{ position: 'relative', fontFamily: LABEL, fontSize: 12, letterSpacing: '0.22em', color: TEAM_COLOR, textTransform: 'uppercase', fontWeight: 500, marginBottom: 6 }}>
         {meta.abbr}
       </p>
       <h3 style={{ position: 'relative', fontFamily: DISPLAY, fontSize: 17, fontWeight: 700, color: c.text, marginBottom: 8 }}>{name}</h3>
@@ -404,7 +287,7 @@ function TeamSection({ number }) {
         <Reveal delay={0.24} className="col-span-2 md:col-span-1">
           <div style={{ background: c.card, border: `1px solid ${c.borderAccent}`, padding: '28px 24px', textAlign: 'center', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
             <img src={condorMain} alt="Candelaria condor" style={{ width: 96, height: 96, objectFit: 'contain', filter: `drop-shadow(0 0 20px ${c.gold}66)` }} />
-            <p style={{ fontFamily: LABEL, fontSize: 10, letterSpacing: '0.2em', color: c.gold, textTransform: 'uppercase', fontWeight: 500, marginTop: 14, lineHeight: 1.6 }}>
+            <p style={{ fontFamily: LABEL, fontSize: 12, letterSpacing: '0.2em', color: c.gold, textTransform: 'uppercase', fontWeight: 500, marginTop: 14, lineHeight: 1.6 }}>
               {t('candelaria.teamsCredit')}
             </p>
           </div>
@@ -440,7 +323,7 @@ function BrandSection({ number }) {
 
       <Reveal delay={0.16}>
         <div style={{ marginTop: 44 }}>
-          <p style={{ fontFamily: LABEL, fontSize: 11, letterSpacing: '0.22em', color: c.textMuted, textTransform: 'uppercase', marginBottom: 18 }}>
+          <p style={{ fontFamily: LABEL, fontSize: 12, letterSpacing: '0.22em', color: c.textMuted, textTransform: 'uppercase', marginBottom: 18 }}>
             {t('candelaria.brandPaletteLabel')}
           </p>
           <div style={{ display: 'flex', height: 64, overflow: 'hidden', gap: 3 }}>
@@ -572,7 +455,7 @@ function CTable({ header, rows, accentRow }) {
         <thead>
           <tr>
             {header.map((h, i) => (
-              <th key={i} style={{ fontFamily: LABEL, textAlign: 'left', padding: '14px 16px', fontSize: 11, letterSpacing: '0.2em', color: c.textMuted, textTransform: 'uppercase', borderBottom: `2px solid ${c.borderAccent}`, fontWeight: 500 }}>{h}</th>
+              <th key={i} style={{ fontFamily: LABEL, textAlign: 'left', padding: '14px 16px', fontSize: 12, letterSpacing: '0.2em', color: c.textMuted, textTransform: 'uppercase', borderBottom: `2px solid ${c.borderAccent}`, fontWeight: 500 }}>{h}</th>
             ))}
           </tr>
         </thead>
@@ -674,26 +557,7 @@ function ReflectionsSection({ number }) {
   );
 }
 
-/* ─────────────────────────────────────────
-   FINAL CTA
-   ───────────────────────────────────────── */
-function FinalCTA() {
-  const { c, t, variant } = useC();
-  return (
-    <section style={{ background: c.bg, paddingTop: 96, paddingBottom: 128, paddingInline: 'clamp(20px, 5vw, 80px)', position: 'relative', overflow: 'hidden' }}>
-      <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: `radial-gradient(ellipse 80% 60% at 50% 100%, ${c.glowSoft} 0%, transparent 60%)` }} />
-      <div style={{ maxWidth: 720, margin: '0 auto', textAlign: 'center', position: 'relative', zIndex: 1 }}>
-        <img src={condorMain} alt="" aria-hidden style={{ width: 88, height: 88, objectFit: 'contain', margin: '0 auto 28px', filter: `drop-shadow(0 0 24px ${c.gold}55)` }} />
-        <Title size="clamp(28px, 4vw, 44px)" style={{ marginBottom: 32 }}>
-          {t(variant === 'brand' ? 'candelaria.brandPage.closingTitle' : 'candelaria.title')}
-        </Title>
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 14 }}>
-          <CTAs />
-        </div>
-      </div>
-    </section>
-  );
-}
+
 
 /* ─────────────────────────────────────────
    PAGES
@@ -709,7 +573,7 @@ function CandelariaPage({ variant, children }) {
       <article style={{ background: c.bg, color: c.text }}>
         <Hero />
         {children}
-        <FinalCTA />
+        <NextCase slug={variant === 'brand' ? 'candelaria' : 'candelaria-website'} />
       </article>
     </CCtx.Provider>
   );

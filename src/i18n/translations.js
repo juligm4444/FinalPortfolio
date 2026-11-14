@@ -2,6 +2,15 @@ export const LOCALES = ['en', 'es']
 
 const translations = {
   en: {
+    case: {
+      tools: 'Tools',
+      next: 'Next case',
+      visit: 'Visit the site',
+      code: 'Repository',
+      instagram: 'Follow on Instagram',
+      siteCase: 'See the website case',
+      brandCase: 'See the brand case',
+    },
     herbarium: {
       items: {
         candelariaWebsite: { genus: 'Web · Full-stack', year: 'Oct 2025 — present', role: 'Design lead, product engineering' },
@@ -130,7 +139,7 @@ const translations = {
         objeto: 'Object',
         marca: 'Brand',
       },
-      status: { 'in-progress': 'In progress' },
+      status: { 'in-progress': 'In progress', soon: 'Coming soon' },
       openCase: 'Open case study',
       visitSite: 'Visit website',
       viewCode: 'GitHub repository',
@@ -171,6 +180,16 @@ const translations = {
         kicker: 'Web · Design & development',
         title: 'juligm4.com',
         desc: 'This portfolio: concrete overgrown with moss, built in React with a shared WebGL budget.',
+      },
+      freelanceSite: {
+        kicker: 'Web · Freelance',
+        title: 'Freelance project',
+        desc: 'A client website currently in progress.',
+      },
+      adidasMilo: {
+        kicker: 'Web · Campaign',
+        title: 'adidas × Milo J',
+        desc: 'Website, coming soon.',
       },
       candelariaBrand: {
         kicker: 'Identity · Research Group',
@@ -907,6 +926,15 @@ const translations = {
   },
 
   es: {
+    case: {
+      tools: 'Herramientas',
+      next: 'Siguiente caso',
+      visit: 'Visitar el sitio',
+      code: 'Repositorio',
+      instagram: 'Seguir en Instagram',
+      siteCase: 'Ver el caso del sitio',
+      brandCase: 'Ver el caso de la marca',
+    },
     herbarium: {
       items: {
         candelariaWebsite: { genus: 'Web · Full-stack', year: 'Oct 2025 — presente', role: 'Diseño e ingeniería de producto' },
@@ -1035,7 +1063,7 @@ const translations = {
         objeto: 'Objeto',
         marca: 'Marca',
       },
-      status: { 'in-progress': 'En curso' },
+      status: { 'in-progress': 'En curso', soon: 'Próximamente' },
       openCase: 'Abrir caso de estudio',
       visitSite: 'Visitar el sitio',
       viewCode: 'Repositorio en GitHub',
@@ -1076,6 +1104,16 @@ const translations = {
         kicker: 'Web · Diseño y desarrollo',
         title: 'juligm4.com',
         desc: 'Este portafolio: concreto invadido de musgo, hecho en React con un presupuesto WebGL compartido.',
+      },
+      freelanceSite: {
+        kicker: 'Web · Freelance',
+        title: 'Proyecto freelance',
+        desc: 'Sitio web de un cliente, actualmente en curso.',
+      },
+      adidasMilo: {
+        kicker: 'Web · Campaña',
+        title: 'adidas × Milo J',
+        desc: 'Sitio web, próximamente.',
       },
       candelariaBrand: {
         kicker: 'Identidad · Semillero',

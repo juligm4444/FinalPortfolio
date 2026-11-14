@@ -1,6 +1,7 @@
 import { useLocale } from '../../i18n/LocaleProvider.jsx'
 import {
   CaseHero,
+  NextCase,
   CaseSection,
   Figure,
   Heading,
@@ -43,7 +44,7 @@ export default function Umbral() {
   return (
     <>
       <CaseHero
-        accent={ACCENT}
+        slug="umbral"
         kicker={h('heroKicker')}
         h1={h('heroH1')}
         h2={h('heroH2')}
@@ -94,7 +95,7 @@ export default function Umbral() {
           <Reveal>
             <p
               className="mb-8 font-nav uppercase"
-              style={{ fontSize: 10, letterSpacing: '0.22em', color: 'var(--text-muted)' }}
+              style={{ fontSize: 12, letterSpacing: '0.22em', color: 'var(--text-muted)' }}
             >
               {h('stepsTitle')}
             </p>
@@ -121,7 +122,7 @@ export default function Umbral() {
                   </h3>
                   <p
                     className="mt-2 font-body"
-                    style={{ color: 'var(--text-muted)', fontSize: 13, lineHeight: 1.6 }}
+                    style={{ color: 'var(--text-muted)', fontSize: 14, lineHeight: 1.6 }}
                   >
                     {s.desc}
                   </p>
@@ -229,7 +230,7 @@ export default function Umbral() {
             <Reveal>
               <p
                 className="mt-5 font-body"
-                style={{ color: 'var(--text-muted)', fontSize: 13, lineHeight: 1.65, maxWidth: '62ch' }}
+                style={{ color: 'var(--text-muted)', fontSize: 14, lineHeight: 1.65, maxWidth: '62ch' }}
               >
                 {h('stackNote')}
               </p>
@@ -355,7 +356,7 @@ export default function Umbral() {
               <SubHeading>{h('photoNoteTitle')}</SubHeading>
               <p
                 className="mt-4 font-body"
-                style={{ color: 'var(--text-muted)', fontSize: 13, lineHeight: 1.7, maxWidth: '62ch' }}
+                style={{ color: 'var(--text-muted)', fontSize: 14, lineHeight: 1.7, maxWidth: '62ch' }}
               >
                 {h('photoNote')}
               </p>
@@ -364,6 +365,7 @@ export default function Umbral() {
           <SpecList title={h('specsTitle')} body={h('specs')} />
         </div>
       </CaseSection>
+      <NextCase slug="umbral" />
     </>
   )
 }

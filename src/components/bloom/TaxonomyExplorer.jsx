@@ -67,7 +67,7 @@ export default function TaxonomyExplorer({ b }) {
                   <span
                     className="hidden font-nav uppercase sm:inline"
                     style={{
-                      fontSize: 9,
+                      fontSize: 12,
                       letterSpacing: '0.2em',
                       color: ACCENT,
                       border: `1px solid ${ACCENT}`,
@@ -139,7 +139,7 @@ export default function TaxonomyExplorer({ b }) {
                     />
                     <span
                       className="font-nav uppercase"
-                      style={{ fontSize: 13, letterSpacing: '0.18em', fontWeight: 700, color: 'var(--text)' }}
+                      style={{ fontSize: 14, letterSpacing: '0.18em', fontWeight: 700, color: 'var(--text)' }}
                     >
                       {names[ci]}
                     </span>
@@ -171,7 +171,7 @@ export default function TaxonomyExplorer({ b }) {
         </div>
       </LayoutGroup>
 
-      <p className="mt-4 font-nav" style={{ color: 'var(--text-muted)', fontSize: 11 }}>
+      <p className="mt-4 font-nav" style={{ color: 'var(--text-muted)', fontSize: 12 }}>
         <SharedMark cats={['cuerpo', 'mente']} /> {b('explorerShared')} · {b('explorerLang')}
       </p>
     </div>
@@ -261,7 +261,7 @@ export function SystemInUse({ b }) {
               key={piece.title}
               className="flex flex-col p-5"
               style={{
-                background: 'var(--concrete-300)',
+                background: 'var(--concrete-100)',
                 border: `1px solid ${joined ? ACCENT : 'color-mix(in srgb, var(--text) 10%, transparent)'}`,
                 opacity: focus && !joined ? 0.45 : 1,
                 transition: 'opacity 220ms ease, border-color 220ms ease',
@@ -270,11 +270,11 @@ export function SystemInUse({ b }) {
               <div className="flex items-center justify-between gap-3">
                 <span className="flex items-center gap-2">
                   <span aria-hidden className="inline-block h-2.5 w-2.5" style={{ background: CATEGORY_COLORS[cat] }} />
-                  <span className="font-nav uppercase" style={{ fontSize: 11, letterSpacing: '0.18em', fontWeight: 700 }}>
+                  <span className="font-nav uppercase" style={{ fontSize: 12, letterSpacing: '0.18em', fontWeight: 700 }}>
                     {names[CATEGORY_KEYS.indexOf(cat)]}
                   </span>
                 </span>
-                <span className="font-nav uppercase" style={{ fontSize: 10, letterSpacing: '0.16em', color: 'var(--text-muted)' }}>
+                <span className="font-nav uppercase" style={{ fontSize: 12, letterSpacing: '0.16em', color: 'var(--text-muted)' }}>
                   {formats[i]}
                 </span>
               </div>
@@ -338,7 +338,7 @@ export function SystemInUse({ b }) {
                 transition: 'border-color 200ms ease',
               }}
             >
-              <span className="uppercase" style={{ letterSpacing: '0.18em', color: ACCENT, fontWeight: 700, fontSize: 10 }}>
+              <span className="uppercase" style={{ letterSpacing: '0.18em', color: ACCENT, fontWeight: 700, fontSize: 12 }}>
                 {b('caseBridge')}
               </span>
               {ends.map((cat, i) => (

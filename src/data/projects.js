@@ -51,6 +51,23 @@ const works = [
     site: 'https://www.juligm4.com/',
     media: { screenshot: portfolioShot },
   },
+  // No capture yet: the deck shows a designed concrete slab with name and status.
+  {
+    id: 'freelanceSite',
+    group: 'web',
+    status: 'in-progress',
+    href: null,
+    site: null,
+    media: {},
+  },
+  {
+    id: 'adidasMilo',
+    group: 'web',
+    status: 'soon',
+    href: null,
+    site: null,
+    media: {},
+  },
 
   // ── DIGITAL ──────────────────────────────────────────────────────────
   {

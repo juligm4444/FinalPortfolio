@@ -1,4 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion'
+import { useLocale } from '../i18n/LocaleProvider.jsx'
+import LocaleLink from './LocaleLink.jsx'
+import { caseStudies } from '../data/projects.js'
 
 /**
  * Shared scaffolding for case-study pages.
@@ -43,7 +46,7 @@ export function SectionTag({ number, label, accent }) {
       <div className="mb-12 flex items-center gap-5 md:mb-16">
         <span
           className="font-body uppercase"
-          style={{ fontSize: 10, letterSpacing: '0.28em', color: accent }}
+          style={{ fontSize: 12, letterSpacing: '0.28em', color: accent }}
         >
           {String(number).padStart(2, '0')}
         </span>
@@ -54,7 +57,7 @@ export function SectionTag({ number, label, accent }) {
         />
         <span
           className="font-body uppercase"
-          style={{ fontSize: 10, letterSpacing: '0.22em', color: 'var(--text-muted)' }}
+          style={{ fontSize: 12, letterSpacing: '0.22em', color: 'var(--text-muted)' }}
         >
           {label}
         </span>
@@ -63,82 +66,88 @@ export function SectionTag({ number, label, accent }) {
   )
 }
 
-export function CaseHero({ kicker, h1, h2, sub, tags, accent, meta }) {
+/* ACABADO §7 — the one header every case uses:
+   1. kicker, title, one-line summary; 2. ficha (role, dates, team, tools — text);
+   3. links as the site's slab buttons. `media` is an optional project image,
+   shown on a concrete slab (never bleeding with its own background). */
+export function CaseHero({ slug, kicker, h1, h2, sub, tags, meta = [], tools: toolsProp, links: linksProp, media, mediaAlt = '' }) {
+  const { t } = useLocale()
+  const study = caseStudies[slug] ?? {}
+  const tools = toolsProp ?? study.skills
+  const links =
+    linksProp ??
+    [study.site && { label: t('case.visit'), href: study.site }, study.code && { label: t('case.code'), href: study.code }].filter(Boolean)
+  const ficha = [...meta, ...(tools?.length ? [{ label: t('case.tools'), value: tools.join(' · ') }] : [])]
   return (
-    <header className="px-4 pb-16 pt-24 md:px-8 md:pb-24 md:pt-32">
+    <header className="px-4 pb-16 pt-16 md:px-8 md:pb-24 md:pt-24">
       <div className="mx-auto w-full max-w-[1200px]">
-        <Reveal>
-          <p
-            className="font-body uppercase"
-            style={{ fontSize: 11, letterSpacing: '0.26em', color: accent }}
-          >
-            {kicker}
-          </p>
-        </Reveal>
+        <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-14">
+          <div className={media ? 'lg:col-span-7' : 'lg:col-span-12'}>
+            <Reveal>
+              <p className="font-nav uppercase" style={{ fontSize: 12, letterSpacing: '0.22em', color: 'var(--text-muted)' }}>
+                {kicker}
+              </p>
+            </Reveal>
+            <Reveal delay={0.08}>
+              <h1
+                className="mt-5 font-display"
+                style={{
+                  color: 'var(--text)',
+                  fontSize: 'clamp(38px, 6vw, 84px)',
+                  lineHeight: 1.04,
+                  fontWeight: 700,
+                  letterSpacing: '-0.02em',
+                  textWrap: 'balance',
+                }}
+              >
+                {h1}
+                {h2 ? (
+                  <>
+                    <br />
+                    {h2}
+                  </>
+                ) : null}
+              </h1>
+            </Reveal>
+            <Reveal delay={0.16}>
+              <p className="mt-6 font-body" style={{ color: 'var(--text-muted)', fontSize: 17, lineHeight: 1.7, maxWidth: '58ch' }}>
+                {sub}
+              </p>
+            </Reveal>
+            {tags?.length ? (
+              <Reveal delay={0.24}>
+                <ul className="mt-6 flex flex-wrap gap-2">
+                  {tags.map((tag) => (
+                    <li
+                      key={tag}
+                      className="font-nav uppercase"
+                      style={{ fontSize: 12, letterSpacing: '0.14em', color: 'var(--text-muted)', border: '1px solid var(--border)', padding: '5px 10px' }}
+                    >
+                      {tag}
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+            ) : null}
+          </div>
+          {media ? (
+            <Reveal delay={0.2} className="lg:col-span-5">
+              <div className="flex items-center justify-center p-6" style={{ background: 'var(--concrete-100)', border: '1px solid var(--border)', aspectRatio: '1 / 1' }}>
+                <img src={media} alt={mediaAlt} width="480" height="480" decoding="async" draggable="false" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
+              </div>
+            </Reveal>
+          ) : null}
+        </div>
 
-        <Reveal delay={0.08}>
-          <h1
-            className="mt-6 font-display"
-            style={{
-              color: 'var(--text)',
-              fontSize: 'clamp(38px, 6.4vw, 92px)',
-              lineHeight: 1.02,
-              fontWeight: 700,
-              letterSpacing: '-0.02em',
-            }}
-          >
-            {h1}
-            <br />
-            <span style={{ color: accent }}>{h2}</span>
-          </h1>
-        </Reveal>
-
-        <Reveal delay={0.16}>
-          <p
-            className="mt-8 font-body"
-            style={{ color: 'var(--text-muted)', fontSize: 17, lineHeight: 1.7, maxWidth: '58ch' }}
-          >
-            {sub}
-          </p>
-        </Reveal>
-
-        {tags?.length ? (
-          <Reveal delay={0.24}>
-            <ul className="mt-8 flex flex-wrap gap-2">
-              {tags.map((tag) => (
-                <li
-                  key={tag}
-                  className="font-nav uppercase"
-                  style={{
-                    fontSize: 10,
-                    letterSpacing: '0.18em',
-                    color: 'var(--text-muted)',
-                    border: '1px solid color-mix(in srgb, var(--text) 18%, transparent)',
-                    padding: '5px 10px',
-                  }}
-                >
-                  {tag}
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-        ) : null}
-
-        {meta?.length ? (
-          <Reveal delay={0.32}>
-            <dl className="mt-12 grid grid-cols-2 gap-6 md:grid-cols-4 md:gap-8">
-              {meta.map(({ label, value }) => (
+        {ficha.length ? (
+          <Reveal delay={0.3}>
+            <dl className="mt-12 grid grid-cols-1 gap-6 border-t pt-8 sm:grid-cols-2 lg:grid-cols-4" style={{ borderColor: 'var(--border)' }}>
+              {ficha.map(({ label, value }) => (
                 <div key={label}>
-                  <dt
-                    className="font-nav uppercase"
-                    style={{ fontSize: 10, letterSpacing: '0.2em', color: 'var(--text-muted)' }}
-                  >
+                  <dt className="font-nav uppercase" style={{ fontSize: 12, letterSpacing: '0.16em', color: 'var(--text-muted)' }}>
                     {label}
                   </dt>
-                  <dd
-                    className="mt-2 font-body"
-                    style={{ color: 'var(--text)', fontSize: 14, lineHeight: 1.5 }}
-                  >
+                  <dd className="mt-2 font-body" style={{ color: 'var(--text)', fontSize: 15, lineHeight: 1.5 }}>
                     {value}
                   </dd>
                 </div>
@@ -146,8 +155,58 @@ export function CaseHero({ kicker, h1, h2, sub, tags, accent, meta }) {
             </dl>
           </Reveal>
         ) : null}
+
+        {links.length ? (
+          <Reveal delay={0.36}>
+            <div className="mt-8 flex flex-wrap gap-3">
+              {links.map((l) =>
+                l.to ? (
+                  <LocaleLink key={l.label} to={l.to} className="slab">
+                    {l.label}
+                  </LocaleLink>
+                ) : (
+                  <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer" className="slab">
+                    {l.label}
+                  </a>
+                ),
+              )}
+            </div>
+          </Reveal>
+        ) : null}
       </div>
     </header>
+  )
+}
+
+const CASE_ORDER = [
+  ['candelaria', 'candelariaBrand'],
+  ['candelaria-website', 'candelariaWebsite'],
+  ['licorimetro', 'licorimetro'],
+  ['sensewave', 'sensewaveProduct'],
+  ['umbral', 'umbral'],
+  ['bloom', 'bloom'],
+]
+
+/* §7.5 — the next case, as a slab link. */
+export function NextCase({ slug }) {
+  const { t } = useLocale()
+  const i = CASE_ORDER.findIndex(([s]) => s === slug)
+  const [nextSlug, key] = CASE_ORDER[(i + 1) % CASE_ORDER.length]
+  return (
+    <CaseSection>
+      <Reveal>
+        <p className="font-nav uppercase" style={{ fontSize: 12, letterSpacing: '0.22em', color: 'var(--text-muted)' }}>
+          {t('case.next')}
+        </p>
+        <LocaleLink
+          to={`/projects/${nextSlug}`}
+          className="mt-4 inline-block font-display"
+          style={{ color: 'var(--text)', fontSize: 'clamp(28px, 4vw, 48px)', fontWeight: 700, lineHeight: 1.1, textDecoration: 'underline', textUnderlineOffset: 8, textDecorationColor: 'var(--moss-400)' }}
+        >
+          {t(`works.${key}.title`)} →
+        </LocaleLink>
+      </Reveal>
+    </CaseSection>
   )
 }
 
@@ -264,14 +323,14 @@ export function SpecList({ title, body, note }) {
       <div
         className="p-6"
         style={{
-          background: 'var(--concrete-300)',
+          background: 'var(--concrete-100)',
           border: '1px solid color-mix(in srgb, var(--text) 10%, transparent)',
         }}
       >
         {title ? (
           <p
             className="mb-4 font-nav uppercase"
-            style={{ fontSize: 10, letterSpacing: '0.2em', color: 'var(--text-muted)' }}
+            style={{ fontSize: 12, letterSpacing: '0.2em', color: 'var(--text-muted)' }}
           >
             {title}
           </p>
@@ -281,7 +340,7 @@ export function SpecList({ title, body, note }) {
             <li
               key={line}
               className="font-body"
-              style={{ color: 'var(--text-muted)', fontSize: 13, lineHeight: 1.6 }}
+              style={{ color: 'var(--text-muted)', fontSize: 14, lineHeight: 1.6 }}
             >
               {line}
             </li>
@@ -306,7 +365,7 @@ export function CaseFooter({ label, quote, paragraphs, tags, accent }) {
       <Reveal>
         <p
           className="font-nav uppercase"
-          style={{ fontSize: 10, letterSpacing: '0.24em', color: accent }}
+          style={{ fontSize: 12, letterSpacing: '0.24em', color: accent }}
         >
           {label}
         </p>
@@ -324,7 +383,7 @@ export function CaseFooter({ label, quote, paragraphs, tags, accent }) {
               key={tag}
               className="font-nav uppercase"
               style={{
-                fontSize: 10,
+                fontSize: 12,
                 letterSpacing: '0.18em',
                 color: 'var(--text-muted)',
                 border: `1px solid color-mix(in srgb, ${accent} 35%, transparent)`,

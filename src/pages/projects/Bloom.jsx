@@ -2,6 +2,7 @@ import { useLocale } from '../../i18n/LocaleProvider.jsx'
 import {
   CaseFooter,
   CaseHero,
+  NextCase,
   CaseSection,
   Heading,
   Prose,
@@ -24,7 +25,7 @@ export default function Bloom() {
   return (
     <>
       <CaseHero
-        accent={ACCENT}
+        slug="bloom"
         kicker={b('heroKicker')}
         h1={b('heroH1')}
         h2={b('heroH2')}
@@ -176,6 +177,7 @@ export default function Bloom() {
         paragraphs={[b('reflP1'), b('reflP2')]}
         tags={b('reflTags')}
       />
+      <NextCase slug="bloom" />
     </>
   )
 }

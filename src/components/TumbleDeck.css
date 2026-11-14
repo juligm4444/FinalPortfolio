@@ -49,3 +49,36 @@
   background: var(--concrete-900);
   opacity: var(--td-shade, 0);
 }
+
+/* A card with no capture: concrete slab, the site's name, its status. */
+.td-slab {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  padding: var(--space-6);
+  background: var(--concrete-100);
+}
+.td-slab[hidden] {
+  display: none;
+}
+.td-slab__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 3.4vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--text);
+}
+.td-slab__status {
+  font-family: var(--font-label);
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.td-card[data-flat='1'] > * {
+  visibility: hidden;
+}
