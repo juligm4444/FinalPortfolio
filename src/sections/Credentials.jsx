@@ -1,3 +1,4 @@
+import Surface from '../components/Surface.jsx'
 import { useLocale } from '../i18n/LocaleProvider.jsx'
 import ux from '../assets/badges/ux-fundamentals.webp'
 import edt from '../assets/badges/edt-practitioner.webp'
@@ -16,7 +17,7 @@ export default function Credentials() {
   const { t } = useLocale()
   const names = t('about.certItems')
   return (
-    <section className="creds" aria-labelledby="creds-title">
+    <Surface as="section" className="creds" aria-labelledby="creds-title">
       <h2 id="creds-title" className="creds__kicker">
         {t('about.certKicker')}
       </h2>
@@ -32,6 +33,6 @@ export default function Credentials() {
           </li>
         ))}
       </ul>
-    </section>
+    </Surface>
   )
 }

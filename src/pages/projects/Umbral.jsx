@@ -122,7 +122,7 @@ export default function Umbral() {
                   </h3>
                   <p
                     className="mt-2 font-body"
-                    style={{ color: 'var(--text-muted)', fontSize: 14, lineHeight: 1.6 }}
+                    style={{ color: 'var(--text-muted)', fontSize: 16, lineHeight: 1.6 }}
                   >
                     {s.desc}
                   </p>
@@ -230,7 +230,7 @@ export default function Umbral() {
             <Reveal>
               <p
                 className="mt-5 font-body"
-                style={{ color: 'var(--text-muted)', fontSize: 14, lineHeight: 1.65, maxWidth: '62ch' }}
+                style={{ color: 'var(--text-muted)', fontSize: 16, lineHeight: 1.65, maxWidth: '62ch' }}
               >
                 {h('stackNote')}
               </p>
@@ -246,7 +246,7 @@ export default function Umbral() {
         <Reveal>
           <p
             className="font-body"
-            style={{ color: 'var(--text-muted)', fontSize: 15, lineHeight: 1.75, maxWidth: '72ch' }}
+            style={{ color: 'var(--text-muted)', fontSize: 16, lineHeight: 1.75, maxWidth: '66ch' }}
           >
             {h('viewsIntro')}
           </p>
@@ -272,7 +272,7 @@ export default function Umbral() {
         <Reveal>
           <p
             className="font-body"
-            style={{ color: 'var(--text-muted)', fontSize: 15, lineHeight: 1.75, maxWidth: '72ch' }}
+            style={{ color: 'var(--text-muted)', fontSize: 16, lineHeight: 1.75, maxWidth: '66ch' }}
           >
             {h('configIntro')}
           </p>
@@ -311,7 +311,7 @@ export default function Umbral() {
         <Reveal>
           <p
             className="font-body"
-            style={{ color: 'var(--text-muted)', fontSize: 15, lineHeight: 1.75, maxWidth: '72ch' }}
+            style={{ color: 'var(--text-muted)', fontSize: 16, lineHeight: 1.75, maxWidth: '66ch' }}
           >
             {h('useIntro')}
           </p>
@@ -356,7 +356,7 @@ export default function Umbral() {
               <SubHeading>{h('photoNoteTitle')}</SubHeading>
               <p
                 className="mt-4 font-body"
-                style={{ color: 'var(--text-muted)', fontSize: 14, lineHeight: 1.7, maxWidth: '62ch' }}
+                style={{ color: 'var(--text-muted)', fontSize: 16, lineHeight: 1.7, maxWidth: '62ch' }}
               >
                 {h('photoNote')}
               </p>

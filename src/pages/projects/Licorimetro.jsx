@@ -339,7 +339,7 @@ export default function Licorimetro() {
       {/* REFLECTIONS */}
       <Section>
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
-          <div className="md:col-span-7">
+          <div className="md:col-span-8">
             <InsetCard>
               <Reveal>
                 <Kicker>{t('licorimetro.reflectionsKicker')}</Kicker>
@@ -350,7 +350,7 @@ export default function Licorimetro() {
               </Reveal>
             </InsetCard>
           </div>
-          <div className="md:col-span-5">
+          <div className="md:col-span-4">
             <div className="md:sticky md:top-[120px]">
               <CaseImage src={licorimetroReflectionsImg} alt="Reflections — Licorímetro legacy" ratio="4 / 5" />
             </div>
@@ -480,7 +480,7 @@ function FlowStepCard({ step, icon, mobile = false }) {
 
       <p
         className="font-body"
-        style={{ fontSize: 14, lineHeight: 1.6, color: 'var(--text-muted)' }}
+        style={{ fontSize: 16, lineHeight: 1.6, color: 'var(--text-muted)' }}
       >
         {step.intro}
       </p>
@@ -558,7 +558,7 @@ function ArchitectureDiagram() {
                     <div>
                       <div
                         style={{
-                          fontSize: 12,
+                          fontSize: 14,
                           fontWeight: 700,
                           color: 'var(--text)',
                           lineHeight: 1.2,
@@ -566,7 +566,7 @@ function ArchitectureDiagram() {
                       >
                         {node.name}
                       </div>
-                      <div style={{ fontSize: 12, color: 'var(--text-muted)', marginTop: 2 }}>
+                      <div style={{ fontSize: 14, color: 'var(--text-muted)', marginTop: 2 }}>
                         {node.sub}
                       </div>
                     </div>
@@ -648,7 +648,7 @@ function OCRScanVisual() {
             background: `color-mix(in srgb, ${ACCENT} 6%, transparent)`,
           }}
         >
-          <span style={{ color: 'var(--text-muted)', fontSize: 12, letterSpacing: '0.1em' }}>
+          <span style={{ color: 'var(--text-muted)', fontSize: 14, letterSpacing: '0.1em' }}>
             ANALYSING BITMAP...
           </span>
           <span
@@ -658,7 +658,7 @@ function OCRScanVisual() {
               left: 10,
               background: 'var(--surface)',
               padding: '0 6px',
-              fontSize: 12,
+              fontSize: 14,
               color: ACCENT,
               letterSpacing: '0.18em',
               fontWeight: 700,
@@ -677,7 +677,7 @@ function OCRScanVisual() {
             <span
               style={{
                 color: row.active ? ACCENT : 'var(--text-muted)',
-                fontSize: 12,
+                fontSize: 14,
                 fontWeight: 700,
                 letterSpacing: '0.12em',
                 opacity: 1,
@@ -692,7 +692,7 @@ function OCRScanVisual() {
                 background: `color-mix(in srgb, var(--text) ${row.active ? 18 : 10}%, transparent)`,
               }}
             />
-            <span style={{ color: row.active ? 'var(--text)' : 'var(--text-muted)', fontSize: 12 }}>
+            <span style={{ color: row.active ? 'var(--text)' : 'var(--text-muted)', fontSize: 14 }}>
               {row.confidence}
             </span>
           </div>
@@ -706,10 +706,10 @@ function OCRScanVisual() {
             border: '1px solid color-mix(in srgb, var(--text) 10%, transparent)',
           }}
         >
-          <p style={{ color: 'var(--text)', fontSize: 12, fontWeight: 700, letterSpacing: '0.06em' }}>
+          <p style={{ color: 'var(--text)', fontSize: 14, fontWeight: 700, letterSpacing: '0.06em' }}>
             BEVERAGE IDENTIFIED
           </p>
-          <p style={{ color: 'var(--text-muted)', fontSize: 12, marginTop: 4 }}>confidence: 87.4%</p>
+          <p style={{ color: 'var(--text-muted)', fontSize: 14, marginTop: 4 }}>confidence: 87.4%</p>
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 3, marginTop: 2 }}>
@@ -792,7 +792,7 @@ function InsetCard({ children }) {
       style={{
         background: 'var(--surface)',
         border: '1px solid var(--border)',
-        padding: 'clamp(24px, 4vw, 48px)',
+        padding: 'clamp(20px, 3vw, 36px)',
         position: 'relative',
         display: 'inline-block',
         width: '100%',
@@ -956,7 +956,7 @@ function FeatureCard({ feature, index, icon }) {
       </h3>
       <p
         className="mt-3 font-body"
-        style={{ color: 'var(--text-muted)', fontSize: 15, lineHeight: 1.65 }}
+        style={{ color: 'var(--text-muted)', fontSize: 16, lineHeight: 1.65 }}
       >
         {feature.body}
       </p>
@@ -1017,7 +1017,7 @@ function TableRow({ row }) {
           key={k}
           style={{
             padding: '14px 16px',
-            fontSize: 15,
+            fontSize: 14,
             color: k === 2 ? ACCENT : 'var(--text)',
             fontWeight: k === 0 ? 700 : 400,
             borderBottom: '1px solid color-mix(in srgb, var(--text) 12%, transparent)',

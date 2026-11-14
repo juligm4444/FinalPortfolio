@@ -80,7 +80,7 @@ export default function TaxonomyExplorer({ b }) {
               </span>
               <span
                 className="font-nav uppercase"
-                style={{ fontSize: 'clamp(9px, 0.9vw, 11px)', letterSpacing: '0.18em', fontWeight: 600 }}
+                style={{ fontSize: '12px', letterSpacing: '0.18em', fontWeight: 600 }}
               >
                 {b(`${v.key}Title`)}
               </span>
@@ -105,7 +105,7 @@ export default function TaxonomyExplorer({ b }) {
           exit={reduce ? undefined : { opacity: 0, y: -6 }}
           transition={{ duration: 0.25 }}
           className="mt-6 font-body"
-          style={{ color: 'var(--text-muted)', fontSize: 15, lineHeight: 1.75, maxWidth: '72ch', minHeight: '3.5em' }}
+          style={{ color: 'var(--text-muted)', fontSize: 16, lineHeight: 1.75, maxWidth: '66ch', minHeight: '3.5em' }}
         >
           {b(`${versionKey}Desc`)}
         </motion.p>
@@ -113,7 +113,7 @@ export default function TaxonomyExplorer({ b }) {
 
       <p
         className="mt-6 font-nav"
-        style={{ color: 'var(--text-muted)', fontSize: 12, lineHeight: 1.6, maxWidth: '72ch' }}
+        style={{ color: 'var(--text-muted)', fontSize: 16, lineHeight: 1.6, maxWidth: '66ch' }}
       >
         {b('explorerHint')}
       </p>
@@ -144,7 +144,7 @@ export default function TaxonomyExplorer({ b }) {
                       {names[ci]}
                     </span>
                   </span>
-                  <span className="font-nav tabular-nums" style={{ fontSize: 12, color: 'var(--text-muted)' }}>
+                  <span className="font-nav tabular-nums" style={{ fontSize: 14, color: 'var(--text-muted)' }}>
                     {tags.length} {b('explorerTags')}
                   </span>
                 </div>
@@ -171,7 +171,7 @@ export default function TaxonomyExplorer({ b }) {
         </div>
       </LayoutGroup>
 
-      <p className="mt-4 font-nav" style={{ color: 'var(--text-muted)', fontSize: 12 }}>
+      <p className="mt-4 font-nav" style={{ color: 'var(--text-muted)', fontSize: 14 }}>
         <SharedMark cats={['cuerpo', 'mente']} /> {b('explorerShared')} · {b('explorerLang')}
       </p>
     </div>
@@ -217,7 +217,7 @@ const Chip = forwardRef(function Chip({ tag, cats = [], focus, setFocus, reduce,
         title={shared ? sharedLabel : undefined}
         className="flex items-center gap-1.5 font-body"
         style={{
-          fontSize: 12.5,
+          fontSize: 14.5,
           lineHeight: 1.2,
           padding: '6px 10px',
           color: lit ? 'var(--bg)' : 'var(--text)',
@@ -301,7 +301,7 @@ export function SystemInUse({ b }) {
                         onClick={() => bridge && setFocus(lit ? null : tag)}
                         className="flex items-center gap-1.5 font-body disabled:cursor-default"
                         style={{
-                          fontSize: 12,
+                          fontSize: 14,
                           padding: '5px 9px',
                           color: lit ? 'var(--bg)' : 'var(--text)',
                           background: lit ? ACCENT : shared ? 'color-mix(in srgb, var(--case-accent) 9%, transparent)' : 'transparent',
@@ -333,7 +333,7 @@ export function SystemInUse({ b }) {
               onMouseLeave={() => setFocus(null)}
               className="flex flex-wrap items-center gap-3 px-4 py-3 font-nav"
               style={{
-                fontSize: 12,
+                fontSize: 14,
                 border: `1px dashed ${lit ? ACCENT : 'color-mix(in srgb, var(--text) 18%, transparent)'}`,
                 transition: 'border-color 200ms ease',
               }}

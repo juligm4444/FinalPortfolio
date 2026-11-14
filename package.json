@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "shots": "node scripts/shots.mjs",
-    "check:tokens": "node scripts/check-tokens.mjs"
+    "check:tokens": "node scripts/check-tokens.mjs",
+    "audit:text": "node scripts/audit-text.mjs"
   },
   "dependencies": {
     "@higgsfield/cli": "^0.1.40",

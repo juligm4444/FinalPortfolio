@@ -10,7 +10,7 @@ export const CANDELARIA_BRAND_PALETTE = [
 export const SENSEWAVE_PALETTE = [
   { name: 'Deep Space', hex: '#02020A', label: 'Background' },
   { name: 'Surface', hex: '#070710', label: 'Surface' },
-  { name: 'Periwinkle', hex: '#8B9DE8', label: 'Primary Accent' },
-  { name: 'Soft Violet', hex: '#B8A6F0', label: 'Secondary' },
-  { name: 'Cool White', hex: '#EEEEF5', label: 'Text Primary' },
+  { name: 'Periwinkle', hex: '#8B9DE8', label: 'Primary Accent', light: true },
+  { name: 'Soft Violet', hex: '#B8A6F0', label: 'Secondary', light: true },
+  { name: 'Cool White', hex: '#EEEEF5', label: 'Text Primary', light: true },
 ]

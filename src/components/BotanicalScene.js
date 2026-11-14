@@ -25,8 +25,8 @@ const TUNING = {
   bloomAlpha: 0.95,
   leafAlpha: 0.98,
   bloomSize: 1,
-  leafSize: 1,
-  leafMix: 0.2,
+  leafSize: 1.8,
+  leafMix: 0.88, // share of particles that are leaves: flowers stay under 15 % (ACABADO §3)
   spread: 0.2,
   duration: 0.9, // seconds for one bloom to open
   delay: 0.35, // stagger window, so the word opens as a wave

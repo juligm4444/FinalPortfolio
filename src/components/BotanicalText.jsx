@@ -10,7 +10,9 @@ import './BotanicalText.css'
       grants this component a slot (REDESIGN §4.1).
    Changing `text` (e.g. language switch) wilts the word and blooms the new one. */
 export default function BotanicalText({ text, as: Tag = 'h1', size = 140, lang, id, className = '' }) {
-  const { ref, active } = useWebGL({ id })
+  // Under ~340 px the foliage stops reading at a glance: keep the plain H1 (ACABADO §3).
+  const [narrow] = useState(() => typeof window !== 'undefined' && window.innerWidth < 340)
+  const { ref, active } = useWebGL({ id, disabled: narrow })
   const canvasRef = useRef(null)
   const sceneRef = useRef(null)
   const textRef = useRef(text)

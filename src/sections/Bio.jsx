@@ -1,3 +1,4 @@
+import Surface from '../components/Surface.jsx'
 import { motion } from 'framer-motion'
 import { useLocale } from '../i18n/LocaleProvider.jsx'
 
@@ -6,7 +7,7 @@ export default function Bio() {
   const pills = [t('home.bioPill1'), t('home.bioPill2'), t('home.bioPill3')]
 
   return (
-    <section className="bio mx-auto w-full max-w-[1200px] px-4 py-24 md:px-8 md:py-32">
+    <Surface as="section" className="bio mx-auto w-full max-w-[1200px] px-4 py-24 md:px-8 md:py-32">
       <div>
         {/* RIGHT — paragraphs + (kicker / pills / slab moved to the bottom) */}
         <div className="flex max-w-[780px] flex-col">
@@ -31,7 +32,7 @@ export default function Bio() {
           <div className="mt-12 pt-10" style={{ borderTop: '1px solid color-mix(in srgb, var(--text) 12%, transparent)' }}>
             <p
               className="font-nav uppercase tracking-[0.22em]"
-              style={{ color: 'var(--text-muted)', fontSize: 12 }}
+              style={{ color: 'var(--text-muted)', fontSize: 14 }}
             >
               {t('home.bioTitle')}
             </p>
@@ -45,7 +46,7 @@ export default function Bio() {
                     style={{
                       border: '1px solid var(--text)',
                       color: 'var(--text)',
-                      fontSize: 13,
+                      fontSize: 14,
                       padding: '6px 12px',
                       borderRadius: 999,
                       letterSpacing: '0.04em',
@@ -59,6 +60,6 @@ export default function Bio() {
           </div>
         </div>
       </div>
-    </section>
+    </Surface>
   )
 }

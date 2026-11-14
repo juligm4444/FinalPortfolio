@@ -235,7 +235,7 @@ a.work-slab:active {
   }
 }
 
-@media (hover: none) {
+@media (hover: none), (max-width: 767px) {
   .pedestal__hint {
     display: none;
   }

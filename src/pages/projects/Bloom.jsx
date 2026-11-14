@@ -66,7 +66,7 @@ export default function Bloom() {
         <Reveal>
           <p
             className="font-body"
-            style={{ color: 'var(--text-muted)', fontSize: 15, lineHeight: 1.75, maxWidth: '72ch' }}
+            style={{ color: 'var(--text-muted)', fontSize: 16, lineHeight: 1.75, maxWidth: '66ch' }}
           >
             {b('versionsIntro')}
           </p>
@@ -112,7 +112,7 @@ export default function Bloom() {
           <Reveal>
             <p
               className="mt-4 font-body"
-              style={{ color: 'var(--text-muted)', fontSize: 14, lineHeight: 1.75, maxWidth: '72ch' }}
+              style={{ color: 'var(--text-muted)', fontSize: 16, lineHeight: 1.75, maxWidth: '66ch' }}
             >
               {b('caseIntro')}
             </p>
@@ -148,7 +148,7 @@ export default function Bloom() {
               </p>
               <p
                 className="mt-4 font-body"
-                style={{ color: 'var(--text-muted)', fontSize: 15, lineHeight: 1.7, maxWidth: '36ch' }}
+                style={{ color: 'var(--text-muted)', fontSize: 16, lineHeight: 1.7, maxWidth: '36ch' }}
               >
                 {b('wfStatLabel')}
               </p>

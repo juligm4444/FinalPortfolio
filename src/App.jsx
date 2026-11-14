@@ -8,6 +8,7 @@ import Home from './pages/Home.jsx'
 import About from './pages/About.jsx'
 import Projects from './pages/Projects.jsx'
 import Lab from './pages/Lab.jsx'
+import Surface from './components/Surface.jsx'
 import CaseCrack from './components/CaseCrack.jsx'
 import Candelaria, { CandelariaWebsite } from './pages/projects/Candelaria.jsx'
 import Licorimetro from './pages/projects/Licorimetro.jsx'
@@ -42,10 +43,10 @@ function CaseLayout() {
   const { pathname } = useLocation()
   const slug = splitLocale(pathname).path.split('/')[2] ?? ''
   return (
-    <div className="case" data-case={slug} key={slug}>
+    <Surface className="case" data-case={slug} key={slug}>
       <CaseCrack />
       <Outlet />
-    </div>
+    </Surface>
   )
 }
 

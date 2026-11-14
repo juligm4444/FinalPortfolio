@@ -259,7 +259,7 @@ function TeamCard({ meta, name, role, index }) {
         {meta.abbr}
       </p>
       <h3 style={{ position: 'relative', fontFamily: DISPLAY, fontSize: 17, fontWeight: 700, color: c.text, marginBottom: 8 }}>{name}</h3>
-      <p style={{ position: 'relative', fontFamily: BODY, fontWeight: 300, fontSize: 12.5, lineHeight: 1.6, color: c.textMuted }}>{role}</p>
+      <p style={{ position: 'relative', fontFamily: BODY, fontWeight: 300, fontSize: 16.5, lineHeight: 1.6, color: c.textMuted }}>{role}</p>
     </motion.div>
   );
 }
@@ -315,7 +315,7 @@ function BrandSection({ number }) {
           <Reveal key={i} delay={0.06 * i}>
             <div style={{ background: c.card, borderTop: `2px solid ${c.gold}`, border: `1px solid ${c.border}`, borderTopWidth: 2, padding: 26, height: '100%' }}>
               <h3 style={{ fontFamily: DISPLAY, fontSize: 19, fontWeight: 700, color: c.text, marginBottom: 12 }}>{a.title}</h3>
-              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 14, lineHeight: 1.7, color: c.textSoft }}>{a.body}</p>
+              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 16, lineHeight: 1.7, color: c.textSoft }}>{a.body}</p>
             </div>
           </Reveal>
         ))}
@@ -368,7 +368,7 @@ function ProblemSection({ number }) {
 function Bullet({ children }) {
   const { c } = useC();
   return (
-    <li style={{ position: 'relative', paddingLeft: 26, fontFamily: BODY, fontWeight: 300, fontSize: 15, lineHeight: 1.65, color: c.textSoft, maxWidth: '60ch' }}>
+    <li style={{ position: 'relative', paddingLeft: 26, fontFamily: BODY, fontWeight: 300, fontSize: 16, lineHeight: 1.65, color: c.textSoft, maxWidth: '60ch' }}>
       <span aria-hidden style={{ position: 'absolute', left: 0, top: '0.55em', width: 10, height: 10, background: c.violet }} />
       {children}
     </li>
@@ -395,10 +395,10 @@ function ProcessSection({ number }) {
             <Reveal key={step.n} delay={i * 0.06}>
               <div style={{ padding: '28px 0', borderBottom: `1px solid ${c.border}` }}>
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: 16 }}>
-                  <span style={{ fontFamily: LABEL, fontSize: 12, letterSpacing: '0.2em', color: c.gold, fontWeight: 500 }}>{step.n}</span>
+                  <span style={{ fontFamily: LABEL, fontSize: 14, letterSpacing: '0.2em', color: c.gold, fontWeight: 500 }}>{step.n}</span>
                   <h3 style={{ fontFamily: DISPLAY, fontSize: 21, fontWeight: 700, color: c.text }}>{step.title}</h3>
                 </div>
-                <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 15, lineHeight: 1.7, color: c.textSoft, marginTop: 12, marginLeft: 32 }}>{step.intro}</p>
+                <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 16, lineHeight: 1.7, color: c.textSoft, marginTop: 12, marginLeft: 32 }}>{step.intro}</p>
                 <ul style={{ marginTop: 16, marginLeft: 32, display: 'flex', flexDirection: 'column', gap: 10 }}>
                   {step.bullets.map((b, k) => <Bullet key={k}>{b}</Bullet>)}
                 </ul>
@@ -435,7 +435,7 @@ function FeaturesSection({ number }) {
                 <span style={{ width: 8, height: 8, background: c.violet }} />
                 <h3 style={{ fontFamily: DISPLAY, fontSize: 19, fontWeight: 700, color: c.text }}>{f.title}</h3>
               </div>
-              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 14, lineHeight: 1.7, color: c.textSoft }}>{f.body}</p>
+              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 16, lineHeight: 1.7, color: c.textSoft }}>{f.body}</p>
             </div>
           </Reveal>
         ))}
@@ -465,7 +465,7 @@ function CTable({ header, rows, accentRow }) {
             return (
               <tr key={i}>
                 {row.map((cell, k) => (
-                  <td key={k} style={{ padding: '14px 16px', fontSize: 15, fontWeight: accent || k === 0 ? 500 : 300, color: accent ? c.violet : c.text, borderBottom: `1px solid ${c.border}` }}>{cell}</td>
+                  <td key={k} style={{ padding: '14px 16px', fontSize: 14, fontWeight: accent || k === 0 ? 500 : 300, color: accent ? c.violet : c.text, borderBottom: `1px solid ${c.border}` }}>{cell}</td>
                 ))}
               </tr>
             );

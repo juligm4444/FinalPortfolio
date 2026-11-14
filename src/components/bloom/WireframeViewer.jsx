@@ -92,20 +92,20 @@ export default function WireframeViewer({ b }) {
             </h3>
             <p
               className="mt-4 font-body"
-              style={{ color: 'var(--text-muted)', fontSize: 15, lineHeight: 1.75, maxWidth: '44ch' }}
+              style={{ color: 'var(--text-muted)', fontSize: 16, lineHeight: 1.75, maxWidth: '44ch' }}
             >
               {current.desc}
             </p>
             <p
               className="mt-5 font-nav tabular-nums"
-              style={{ color: 'var(--text-muted)', fontSize: 12, letterSpacing: '0.08em' }}
+              style={{ color: 'var(--text-muted)', fontSize: 14, letterSpacing: '0.08em' }}
             >
               {FRAME_W} × {SCREENS[active].h.toLocaleString('es-CO')} px
             </p>
           </motion.div>
         </AnimatePresence>
 
-        <p className="mt-8 font-nav" style={{ color: 'var(--text-muted)', fontSize: 12 }}>
+        <p className="mt-8 font-nav" style={{ color: 'var(--text-muted)', fontSize: 14 }}>
           {b('wfViewerHint')}
         </p>
       </div>
@@ -220,7 +220,7 @@ export function WireframeFlow({ b }) {
           >
             <img src={src} alt={steps[i]} loading="lazy" decoding="async" draggable="false" className="block h-full w-full object-cover object-top" />
           </div>
-          <p className="mt-3 flex gap-2 font-body" style={{ fontSize: 12.5, lineHeight: 1.55, color: 'var(--text-muted)' }}>
+          <p className="mt-3 flex gap-2 font-body" style={{ fontSize: 16.5, lineHeight: 1.55, color: 'var(--text-muted)' }}>
             <span className="font-nav tabular-nums" style={{ color: ACCENT, fontWeight: 700 }}>
               {String(i + 1).padStart(2, '0')}
             </span>

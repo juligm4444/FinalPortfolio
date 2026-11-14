@@ -137,7 +137,7 @@ function SWAsset({ id, label, description, ratio = '16/9', className = '' }) {
           {label}
         </p>
         {description && (
-          <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, color: sw.textMuted, lineHeight: 1.65, maxWidth: '36ch' }}>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, color: sw.textMuted, lineHeight: 1.65, maxWidth: '36ch' }}>
             {description}
           </p>
         )}
@@ -181,10 +181,10 @@ function HumanProblemSection() {
           </Reveal>
           <Reveal delay={0.15} duration={1.0}>
             <div style={{ paddingLeft: 31, marginTop: 40 }}>
-              <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.85, color: sw.textSoft, maxWidth: '52ch' }}>
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, lineHeight: 1.85, color: sw.textSoft, maxWidth: '52ch' }}>
                 {t('sensewave.problemP1')}
               </p>
-              <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.85, color: sw.textSoft, maxWidth: '52ch', marginTop: 20 }}>
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, lineHeight: 1.85, color: sw.textSoft, maxWidth: '52ch', marginTop: 20 }}>
                 {t('sensewave.problemP2')}
               </p>
             </div>
@@ -194,7 +194,7 @@ function HumanProblemSection() {
               {[t('sensewave.statA'), t('sensewave.statB')].map((s) => (
                 <div key={s.value}>
                   <div style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 700, color: sw.accent, lineHeight: 1 }}>{s.value}</div>
-                  <div style={{ fontFamily: 'var(--font-body)', fontSize: 12, color: sw.textMuted, lineHeight: 1.6, maxWidth: '18ch', marginTop: 8 }}>{s.label}</div>
+                  <div style={{ fontFamily: 'var(--font-body)', fontSize: 16, color: sw.textMuted, lineHeight: 1.6, maxWidth: '18ch', marginTop: 8 }}>{s.label}</div>
                 </div>
               ))}
             </div>
@@ -230,7 +230,7 @@ function TechnologySection() {
             </h2>
           </Reveal>
           <Reveal delay={0.15} duration={1.0}>
-            <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.85, color: sw.textSoft, maxWidth: '48ch', marginTop: 24 }}>
+            <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, lineHeight: 1.85, color: sw.textSoft, maxWidth: '48ch', marginTop: 24 }}>
               {t('sensewave.techP')}
             </p>
           </Reveal>
@@ -246,7 +246,7 @@ function TechnologySection() {
                 <div style={{ marginTop: 22 }}>
                   <p style={{ fontFamily: 'var(--font-label)', fontSize: 12, letterSpacing: '0.22em', color: sw.accent, textTransform: 'uppercase', marginBottom: 8 }}>{chip.tagline}</p>
                   <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 20, fontWeight: 700, color: sw.text, marginBottom: 10 }}>{chip.name}</h3>
-                  <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, lineHeight: 1.75, color: sw.textSoft }}>{chip.desc}</p>
+                  <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, lineHeight: 1.75, color: sw.textSoft }}>{chip.desc}</p>
                 </div>
               </div>
             </Reveal>
@@ -309,7 +309,7 @@ function DonorSection() {
           </h2>
         </Reveal>
         <Reveal delay={0.15} duration={1.0}>
-          <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.85, color: sw.textSoft, marginTop: 24 }}>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, lineHeight: 1.85, color: sw.textSoft, marginTop: 24 }}>
             {t('sensewave.donorP')}
           </p>
         </Reveal>
@@ -321,7 +321,7 @@ function DonorSection() {
             <div style={{ padding: 28, border: `1px solid ${sw.border}`, height: '100%' }}>
               <div style={{ fontFamily: 'var(--font-display)', fontSize: 28, color: sw.accent, marginBottom: 18 }}>{item.symbol}</div>
               <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 18, fontWeight: 700, color: sw.text, marginBottom: 10 }}>{item.title}</h3>
-              <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, lineHeight: 1.75, color: sw.textSoft }}>{item.desc}</p>
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, lineHeight: 1.75, color: sw.textSoft }}>{item.desc}</p>
             </div>
           </Reveal>
         ))}
@@ -350,7 +350,7 @@ function BrandSection() {
           </h2>
         </Reveal>
         <Reveal delay={0.15}>
-          <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, lineHeight: 1.85, color: sw.textSoft, marginTop: 24, maxWidth: '48ch' }}>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, lineHeight: 1.85, color: sw.textSoft, marginTop: 24, maxWidth: '48ch' }}>
             {t('sensewave.brandP')}
           </p>
         </Reveal>
@@ -364,7 +364,7 @@ function BrandSection() {
           <div style={{ display: 'flex', height: 72, overflow: 'hidden', gap: 3 }}>
             {palette.map((p) => (
               <div key={p.name} title={p.name} style={{ flex: 1, background: p.hex, border: p.name === 'Cool White' ? `1px solid ${sw.border}` : undefined, position: 'relative' }}>
-                <div style={{ position: 'absolute', bottom: 8, left: 8, fontFamily: 'var(--font-body)', fontSize: 8, letterSpacing: '0.1em', color: 'rgba(238,238,245,0.35)' }}>{p.label}</div>
+                <div style={{ position: 'absolute', bottom: 8, left: 8, fontFamily: 'var(--font-body)', fontSize: 14, letterSpacing: '0.1em', color: p.light ? 'var(--text)' : SENSEWAVE_PALETTE[4].hex }}>{p.label}</div>
               </div>
             ))}
           </div>
@@ -423,7 +423,7 @@ function DigitalSection() {
               <br />
               {t('sensewave.digitalH2')}
             </h2>
-            <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, lineHeight: 1.85, color: sw.textSoft, marginTop: 24, maxWidth: '48ch' }}>
+            <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, lineHeight: 1.85, color: sw.textSoft, marginTop: 24, maxWidth: '48ch' }}>
               {t('sensewave.digitalP')}
             </p>
           </div>
@@ -496,7 +496,7 @@ function ProcessSection() {
               </span>
               <div>
                 <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 17, fontWeight: 700, color: sw.text, marginBottom: 8 }}>{step.title}</h3>
-                <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, lineHeight: 1.75, color: sw.textSoft }}>{step.desc}</p>
+                <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, lineHeight: 1.75, color: sw.textSoft }}>{step.desc}</p>
               </div>
             </div>
           </Reveal>
@@ -525,10 +525,10 @@ function ReflectionSection() {
           </blockquote>
         </Reveal>
         <Reveal delay={0.2} duration={1.2}>
-          <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, lineHeight: 1.9, color: sw.textSoft, maxWidth: '52ch', margin: '40px auto 0' }}>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, lineHeight: 1.9, color: sw.textSoft, maxWidth: '52ch', margin: '40px auto 0' }}>
             {t('sensewave.reflP1')}
           </p>
-          <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, lineHeight: 1.9, color: sw.textSoft, maxWidth: '52ch', margin: '20px auto 0' }}>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, lineHeight: 1.9, color: sw.textSoft, maxWidth: '52ch', margin: '20px auto 0' }}>
             {t('sensewave.reflP2')}
           </p>
         </Reveal>

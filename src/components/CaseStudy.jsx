@@ -147,7 +147,7 @@ export function CaseHero({ slug, kicker, h1, h2, sub, tags, meta = [], tools: to
                   <dt className="font-nav uppercase" style={{ fontSize: 12, letterSpacing: '0.16em', color: 'var(--text-muted)' }}>
                     {label}
                   </dt>
-                  <dd className="mt-2 font-body" style={{ color: 'var(--text)', fontSize: 15, lineHeight: 1.5 }}>
+                  <dd className="mt-2 font-body" style={{ color: 'var(--text)', fontSize: 16, lineHeight: 1.5 }}>
                     {value}
                   </dd>
                 </div>
@@ -241,7 +241,7 @@ export function Figure({ src, alt, caption, ratio, contain = true, className = '
         {caption ? (
           <figcaption
             className="mt-3 font-body"
-            style={{ color: 'var(--text-muted)', fontSize: 12, lineHeight: 1.5 }}
+            style={{ color: 'var(--text-muted)', fontSize: 16, lineHeight: 1.5 }}
           >
             {caption}
           </figcaption>
@@ -258,7 +258,7 @@ export function Prose({ children, className = '' }) {
         <p
           key={i}
           className="font-body"
-          style={{ color: 'var(--text-muted)', fontSize: 15, lineHeight: 1.75, maxWidth: '62ch' }}
+          style={{ color: 'var(--text-muted)', fontSize: 16, lineHeight: 1.75, maxWidth: '62ch' }}
         >
           {p}
         </p>
@@ -340,7 +340,7 @@ export function SpecList({ title, body, note }) {
             <li
               key={line}
               className="font-body"
-              style={{ color: 'var(--text-muted)', fontSize: 14, lineHeight: 1.6 }}
+              style={{ color: 'var(--text-muted)', fontSize: 16, lineHeight: 1.6 }}
             >
               {line}
             </li>
@@ -349,7 +349,7 @@ export function SpecList({ title, body, note }) {
         {note ? (
           <p
             className="mt-4 font-body"
-            style={{ color: 'var(--text-muted)', fontSize: 12, lineHeight: 1.6 }}
+            style={{ color: 'var(--text-muted)', fontSize: 16, lineHeight: 1.6 }}
           >
             {note}
           </p>

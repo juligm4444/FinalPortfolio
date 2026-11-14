@@ -12,10 +12,10 @@
   --case-on-accent: var(--mist);
   --case-bg: var(--mist);
   --case-surface: var(--concrete-100);
-  --case-card: var(--concrete-300);
+  --case-card: var(--concrete-100);
   --case-ink: var(--concrete-900);
-  --case-ink-soft: rgb(30 31 29 / 0.7);
-  --case-ink-muted: rgb(30 31 29 / 0.5);
+  --case-ink-soft: var(--concrete-500);
+  --case-ink-muted: var(--concrete-500);
   --case-border: rgb(30 31 29 / 0.12);
   --case-border-accent: rgb(30 31 29 / 0.22);
   --case-glow: rgb(30 31 29 / 0.1);
@@ -93,9 +93,4 @@
   .case-condor {
     opacity: 0.16 !important;
   }
-}
-
-/* Text on a case never touches the photo: the whole case stands on the veil (ACABADO §3). */
-.case {
-  background: var(--veil);
 }

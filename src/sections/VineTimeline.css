@@ -236,7 +236,7 @@
 }
 .creds__name {
   font-family: var(--font-label);
-  font-size: var(--text-label-sm);
+  font-size: var(--text-label);
   letter-spacing: 0.02em;
   color: var(--text);
 }

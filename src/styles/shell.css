@@ -334,16 +334,15 @@
   }
 }
 
-/* ---------- content surfaces (ACABADO §3, §4) ----------
-   The photo lives in the first screen and the margins; any text block that
-   sits over it stands on the veil. */
-.about__header,
-.about__story,
-.vine,
-.about__ocobo,
-.creds,
-.proj,
-.bio,
-.herb {
+/* ---------- surfaces (ACABADO §3) ----------
+   The photo lives in the first screen and the margins. Text stands on one of two
+   surfaces, via <Surface tone="veil|slab">. */
+.surface--veil {
   background: var(--veil);
+}
+.surface--slab {
+  background: var(--concrete-100);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-slab);
+  box-shadow: var(--slab-shadow);
 }

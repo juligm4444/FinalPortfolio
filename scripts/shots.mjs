@@ -1,6 +1,6 @@
 /* npm run shots [-- <rutas…>] [--out=<dir>]
    Levanta `vite preview` sobre dist/ y captura cada ruta a 1440×900 y 390×844:
-   primera pantalla (fold) y página completa. Sale en shots/<out|actual>/.
+   primera pantalla (fold), mitad de página (mid) y página completa. Sale en shots/<out|actual>/.
    Rutas por defecto: las 9 de ACABADO §8, en /es. Ejemplo: npm run shots -- /es/about --out=antes */
 import { spawn } from 'node:child_process'
 import { mkdir, rm } from 'node:fs/promises'
@@ -71,6 +71,13 @@ for (const vp of VIEWPORTS) {
     await page.waitForTimeout(1500)
     const name = (route.replace(/^\/(es|en)\/?/, (m, l) => l + '-').replace(/\/$/, '').replace(/\//g, '-') || 'root').replace(/-$/, '')
     await page.screenshot({ path: join(out, `${name}__${vp.tag}__fold.png`) })
+    // mitad de página: donde el dock, la nav y el texto se encaraman con el contenido
+    const total = await page.evaluate(() => document.documentElement.scrollHeight)
+    await page.evaluate((y) => window.scrollTo(0, y), Math.max(0, total / 2 - vp.height / 2))
+    await page.waitForTimeout(900)
+    await page.screenshot({ path: join(out, `${name}__${vp.tag}__mid.png`) })
+    await page.evaluate(() => window.scrollTo(0, 0))
+    await page.waitForTimeout(200)
     // recorre la página para disparar los Reveal y la enredadera antes de la captura completa
     const h = await page.evaluate(() => document.documentElement.scrollHeight)
     for (let y = 0; y < h; y += vp.height * 0.8) {
@@ -80,7 +87,7 @@ for (const vp of VIEWPORTS) {
     // se queda abajo: la enredadera y los Reveal ya están dibujados al capturar
     await page.waitForTimeout(500)
     await page.screenshot({ path: join(out, `${name}__${vp.tag}__full.png`), fullPage: true })
-    n += 2
+    n += 3
     await page.close()
   }
   await ctx.close()

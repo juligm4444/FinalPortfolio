@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useLocale } from '../i18n/LocaleProvider.jsx'
 import LocaleLink from '../components/LocaleLink.jsx'
 import BotanicalText from '../components/BotanicalText.jsx'
+import Surface from '../components/Surface.jsx'
 import TumbleDeck from '../components/TumbleDeck.jsx'
 import CitronKeyscape from '../components/CitronKeyscape.jsx'
 import { worksByGroup } from '../data/projects.js'
@@ -166,7 +167,7 @@ function ObjectGroup() {
 export default function Projects() {
   const { t } = useLocale()
   return (
-    <div className="proj">
+    <Surface className="proj">
       <header className="proj__header">
         <p className="proj__kicker">{t('projects.label')}</p>
         <BotanicalText text={t('projects.title')} size={120} id="projects-h1" />
@@ -183,6 +184,6 @@ export default function Projects() {
         </h2>
         <CitronKeyscape id="tools-keyscape" />
       </section>
-    </div>
+    </Surface>
   )
 }
