@@ -1,4 +1,4 @@
-/* Herbario (REDESIGN §6): three square slabs, one row at 1440, no scroll to see the set. */
+/* Herbario (REDESIGN §6, ACABADO §5): six square slabs, 3×2 at 1440. */
 .herb {
   max-width: var(--content-max);
   margin: 0 auto;
@@ -41,8 +41,13 @@
 }
 @media (max-width: 1023px) {
   .herb__grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--space-6);
+  }
+}
+@media (max-width: 639px) {
+  .herb__grid {
+    grid-template-columns: 1fr;
   }
 }
 .herb__cell {
@@ -53,7 +58,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  aspect-ratio: 1;
+  height: 100%;
   min-height: 0;
   box-sizing: border-box;
   padding: var(--space-4);
@@ -72,65 +77,22 @@
   transform: translateY(2px);
   box-shadow: var(--slab-shadow-pressed);
 }
-.herb__specimen {
-  position: relative;
-  z-index: 1;
-  flex: 1 1 0;
-  min-height: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-3);
-}
-.herb__specimen img {
-  max-width: 78%;
-  max-height: 100%;
-  height: 100%;
-  object-fit: contain;
-  /* pressed: flat, a little faded, a hairline shadow where it meets the stone */
-  filter: saturate(0.85) drop-shadow(0 1px 0 color-mix(in srgb, var(--concrete-900) 18%, transparent));
-}
-/* Taxonomic label: a paper tag at the foot of the slab. */
-.herb__label {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  gap: 2px;
-  margin-top: auto;
-  padding: var(--space-3) var(--space-3) var(--space-2);
-  background: var(--mist);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-slab);
-}
-.herb__genus {
-  font-family: var(--font-label);
-  font-size: var(--text-label-sm);
-  font-weight: 500;
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-.herb__species {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: var(--text-species);
-  line-height: var(--leading-h3);
-  color: var(--text);
-}
-.herb__meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-1) var(--space-3);
-  font-family: var(--font-body);
-  font-size: var(--text-small);
-  color: var(--text-muted);
-}
-/* Where the shared canvas lands: the slab plus 40% on each side, for the grass. */
+/* Where the shared canvas lands: the slab plus 40% on each side, for the grass. The slab
+   itself is cut out of the mask, so the grass only grows round it and never covers the
+   label (ACABADO §5). 55.56% = 100 / 180, the slab inside the slot. */
 .herb__slot {
   position: absolute;
   inset: -40%;
   z-index: 2;
   pointer-events: none;
+  -webkit-mask:
+    linear-gradient(rgb(0 0 0), rgb(0 0 0)),
+    linear-gradient(rgb(0 0 0), rgb(0 0 0)) center / 55.56% 55.56% no-repeat;
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(rgb(0 0 0), rgb(0 0 0)),
+    linear-gradient(rgb(0 0 0), rgb(0 0 0)) center / 55.56% 55.56% no-repeat;
+  mask-composite: exclude;
 }
 /* Static grass, the no-WebGL version: a moss band rising at the foot on hover/focus. */
 .herb__slab::after {
@@ -149,7 +111,12 @@
     opacity 220ms ease,
     transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-.herb__slab:hover::after,
+@media (hover: hover) {
+  .herb__slab:hover::after {
+    opacity: 0.9;
+    transform: none;
+  }
+}
 .herb__slab:focus-visible::after {
   opacity: 0.9;
   transform: none;
@@ -167,4 +134,32 @@
   .herb__slab::after {
     transition: none;
   }
+}
+
+/* Mini bio (ACABADO §6): one paragraph on a slab and a link. */
+.bio {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--space-12) var(--space-4);
+}
+@media (min-width: 768px) {
+  .bio {
+    padding-left: var(--space-8);
+    padding-right: var(--space-8);
+  }
+}
+.bio__slab {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-6);
+  padding: var(--space-8);
+}
+.bio__text {
+  margin: 0;
+  max-width: 62ch;
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--text);
 }

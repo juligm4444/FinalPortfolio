@@ -7,7 +7,7 @@ import { isLocale, localePath, splitLocale, LOCALES } from './i18n/routes.js'
 import Home from './pages/Home.jsx'
 import About from './pages/About.jsx'
 import Projects from './pages/Projects.jsx'
-import Lab from './pages/Lab.jsx'
+import Surface from './components/Surface.jsx'
 import CaseCrack from './components/CaseCrack.jsx'
 import Candelaria, { CandelariaWebsite } from './pages/projects/Candelaria.jsx'
 import Licorimetro from './pages/projects/Licorimetro.jsx'
@@ -37,16 +37,15 @@ function NotFound() {
   return <Navigate to={localePath(isLocale(lang) ? lang : 'es', '/')} replace />
 }
 
-/* Case studies: the route sets the project's palette (cases.css, [data-case])
-   and plays the crack entrance. Keyed by slug so moving between two cases replays it. */
+/* Case studies: one template, site tokens only (cases.css), and the crack entrance. Keyed by slug so moving between two cases replays it. */
 function CaseLayout() {
   const { pathname } = useLocation()
   const slug = splitLocale(pathname).path.split('/')[2] ?? ''
   return (
-    <div className="case" data-case={slug} key={slug}>
+    <Surface className="case" data-case={slug} key={slug}>
       <CaseCrack />
       <Outlet />
-    </div>
+    </Surface>
   )
 }
 
@@ -81,7 +80,6 @@ export default function App() {
           <Route path="projects/umbral" element={<Umbral />} />
           <Route path="projects/bloom" element={<Bloom />} />
         </Route>
-        <Route path="lab" element={<Lab />} />
         <Route path="*" element={<NotFound />} />
       </Route>
       <Route path="*" element={<LocaleRedirect />} />

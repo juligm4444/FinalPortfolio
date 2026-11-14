@@ -1,6 +1,6 @@
 # FinalPortfolio — juligm4.com
 
-> Redesign in progress: **`docs/REDESIGN.md` is the source of truth and wins over this file if they contradict.**
+> Redesign in progress: **`docs/ACABADO.md` wins over `docs/REDESIGN.md`, which wins over this file if they contradict.** Before each commit run `npm run shots` and look at the captures; `npm run check:tokens` must pass (no hex outside `src/styles/index.css`).
 
 Personal portfolio for Julián Galindo Mora. React + Vite SPA deployed on Vercel.
 
@@ -38,8 +38,6 @@ src/
     fonts/             # Libre Baskerville, Roboto Mono (variable)
     identity/          # Logo variants (Icon, DarkIcon, LightIcon)
     images/            # Project images (candelaria/, licorimetro/)
-    skills/Normal/     # Tech stack icons — default state
-    skills/Hovered/    # Tech stack icons — hovered state
 ```
 
 ## Pages & routes
@@ -60,11 +58,10 @@ src/
 ## Key conventions
 
 - **Never hardcode text in components.** All copy must go through `translations.js` and be consumed via the locale hook.
-- **`<<text>>` syntax in translations** marks highlighted words — rendered by the `Highlight` component.
 - **New projects** require an entry in `src/data/projects.js` (slug, i18n keys, accent color, skills, links) plus a new page under `src/pages/projects/` and a route in `App.jsx`.
-- **Skill icons** come in pairs: `src/assets/skills/Normal/<Name>.png` and `src/assets/skills/Hovered/<Name>_hovered.png`.
+- **Case studies** share one header (`CaseHero` in `src/components/CaseStudy.jsx`: kicker, title, summary, ficha, links) and end with `NextCase`. Site tokens only: no per-project palette or display font.
 - **`PillarsBackground`** is a global decorative layer rendered behind all content in `App.jsx`.
-- **Case-study typography is fixed site-wide:** Libre Baskerville (`font-display`) for headings, Roboto Mono (`font-body`) for prose, Space Grotesk (`font-nav`) for labels, tags and buttons. Layout and palette may vary per project; fonts may not.
+- **Typography is fixed site-wide:** Libre Baskerville (`font-display`) for headings, Roboto Mono (`font-body`) for prose, Space Grotesk (`font-nav`) for labels, tags and buttons. Palette is the site's too (ACABADO §0).
 - Theme is applied via `data-theme` attribute, so CSS should use `[data-theme='dark']` selectors rather than a `.dark` class.
 
 ## Dev commands

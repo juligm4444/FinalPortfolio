@@ -17,7 +17,7 @@ export const PROJECT_SLUGS = [
   'bloom',
 ]
 
-/** Pages that get a prerendered HTML file. `/lab` is deliberately absent. */
+/** Pages that get a prerendered HTML file. */
 export const STATIC_PATHS = ['/', '/about', '/projects', ...PROJECT_SLUGS.map((s) => `/projects/${s}`)]
 
 export function isLocale(x) {
@@ -41,12 +41,11 @@ export function localePath(locale, path = '/') {
   return `/${locale}${clean}`
 }
 
-/** Route key used by backgrounds and meta: home | about | projects | project | lab | unknown */
+/** Route key used by backgrounds and meta: home | about | projects | project | unknown */
 export function routeKey(path) {
   if (path === '/' || path === '') return 'home'
   if (path === '/about') return 'about'
   if (path === '/projects') return 'projects'
-  if (path === '/lab') return 'lab'
   if (path.startsWith('/projects/')) return 'project'
   return 'unknown'
 }

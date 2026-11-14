@@ -2,7 +2,7 @@
    Side nav, bottom dock, fixed route background, concrete slabs. */
 
 :root {
-  --dock-h: 88px;
+  --dock-h: 112px;
   --nav-top-h: 56px; /* below md the nav is a top row */
 }
 
@@ -196,7 +196,10 @@
   z-index: 40;
   display: flex;
   justify-content: center;
-  padding: var(--space-4) var(--space-4) calc(var(--space-4) + env(safe-area-inset-bottom, 0px));
+  padding: var(--space-8) var(--space-4) calc(var(--space-4) + env(safe-area-inset-bottom, 0px));
+  /* ACABADO §4: nothing shows through behind the dock; content ends above it
+     (shell__main keeps padding-bottom = dock height + space). */
+  background: linear-gradient(to top, var(--mist) 0%, var(--mist) 55%, transparent 100%);
   pointer-events: none;
 }
 .dock__list {
@@ -270,7 +273,7 @@
 @media (max-width: 767px) {
   :root {
     --nav-offset: 0px;
-    --dock-h: 72px;
+    --dock-h: 104px;
   }
   .side-nav {
     top: 0;
@@ -282,7 +285,8 @@
     gap: var(--space-3);
     padding: 0 var(--space-4);
     padding-top: env(safe-area-inset-top, 0px);
-    background: var(--veil);
+    background: var(--mist);
+    border-bottom: 1px solid var(--border);
   }
   .side-nav__list {
     flex-direction: row;
@@ -292,6 +296,9 @@
     padding: var(--space-1) var(--space-3);
     min-height: 36px;
     font-size: var(--text-label-sm);
+  }
+  .side-nav__brand img {
+    height: 22px !important;
   }
   .nav-pill--lang {
     margin-top: 0;
@@ -306,5 +313,49 @@
   }
   .dock__list {
     gap: var(--space-2);
+  }
+}
+
+/* ---------- 390 px: the whole top row fits (logo, 3 links, language) ---------- */
+@media (max-width: 420px) {
+  .side-nav {
+    gap: var(--space-2);
+    padding-inline: var(--space-3);
+  }
+  .side-nav__brand img {
+    height: 18px !important;
+  }
+  .side-nav__list {
+    gap: 0;
+  }
+  .nav-pill {
+    padding: var(--space-1) var(--space-2);
+    letter-spacing: 0.04em;
+  }
+}
+
+/* ---------- surfaces (ACABADO §3) ----------
+   The photo lives in the first screen and the margins. Text stands on one of two
+   surfaces, via <Surface tone="veil|slab">. */
+.surface--veil {
+  background: var(--veil);
+}
+.surface--slab {
+  background: var(--concrete-100);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-slab);
+  box-shadow: var(--slab-shadow);
+}
+
+/* ---------- device-aware instructions (DeviceHint, ACABADO §5.3) ---------- */
+.hint--pointer {
+  display: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .hint--pointer {
+    display: inline;
+  }
+  .hint--touch {
+    display: none;
   }
 }

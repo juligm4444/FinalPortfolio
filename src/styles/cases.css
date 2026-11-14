@@ -1,30 +1,39 @@
-/* ================= CASE STUDIES (REDESIGN §5, regla híbrida) =================
-   Fijo en todos los casos: shell, retícula, tipografía de cuerpo y de etiquetas,
-   estructura del relato. Propio de cada caso: la paleta, que vive aquí como
-   variables CSS bajo [data-case] (lo fija CaseLayout según la ruta). Display
-   propio solo en proyectos de marca (--case-display).
-   Los valores de cada paleta son los de la identidad del proyecto, no tokens
-   del sitio: por eso son los únicos hex permitidos fuera de tokens.css. */
+/* ================= CASE STUDIES (ACABADO §0, §7) =================
+   Sin paleta ni tipografía por proyecto: todos los casos usan los tokens del
+   sitio. La identidad de cada proyecto aparece solo dentro de sus imágenes. */
 
 .case {
-  /* Tipografía: la del sitio salvo que un caso de marca la reemplace. */
   --case-display: var(--font-display);
 
   /* Base por si un caso no define algo: la paleta del sitio. */
-  --case-accent: var(--bloom-ink);
-  --case-accent-soft: var(--bloom);
+  --case-accent: var(--moss-700);
+  --case-accent-soft: var(--moss-400);
   --case-accent-2: var(--moss-700);
   --case-on-accent: var(--mist);
   --case-bg: var(--mist);
   --case-surface: var(--concrete-100);
-  --case-card: var(--concrete-300);
+  --case-card: var(--concrete-100);
   --case-ink: var(--concrete-900);
-  --case-ink-soft: rgb(30 31 29 / 0.7);
-  --case-ink-muted: rgb(30 31 29 / 0.5);
+  --case-ink-soft: var(--concrete-500);
+  --case-ink-muted: var(--concrete-500);
   --case-border: rgb(30 31 29 / 0.12);
   --case-border-accent: rgb(30 31 29 / 0.22);
   --case-glow: rgb(30 31 29 / 0.1);
   --case-glow-soft: rgb(30 31 29 / 0.05);
+  --case-warm: var(--moss-700);
+  --case-warm-deep: var(--moss-700);
+  --case-screen: var(--mist);
+  --case-chip-a: var(--moss-400);
+  --case-chip-b: var(--concrete-300);
+}
+
+/* La superficie del caso llega de borde a borde: también bajo la columna del nav (§4),
+   sin franja de foto a la izquierda. */
+@media (min-width: 768px) {
+  .case {
+    margin-left: calc(-1 * var(--nav-offset));
+    padding-left: var(--nav-offset);
+  }
 }
 
 /* ---------- La grieta de entrada ----------
@@ -33,7 +42,7 @@
    cliente y no existe con reduced-motion. */
 .crack {
   position: fixed;
-  inset: 0 0 0 var(--nav-offset);
+  inset: 0;
   z-index: 5;
   pointer-events: none;
   overflow: hidden;
@@ -41,7 +50,7 @@
 .crack__flood {
   position: absolute;
   inset: 0;
-  background: var(--case-accent);
+  background: var(--moss-700);
   animation: crack-flood 1.35s ease forwards;
 }
 .crack__half {
@@ -86,71 +95,6 @@
   .crack {
     display: none;
   }
-}
-
-/* ---------- El Umbral: madera clara y grabado, marrón cálido ---------- */
-.case[data-case='umbral'] {
-  --case-accent: #8c6244;
-  --case-accent-soft: #b08566;
-  --case-on-accent: var(--mist);
-}
-
-/* ---------- Bloom (BeBloomers): ciruela y rosa de la plataforma ---------- */
-.case[data-case='bloom'] {
-  --case-accent: #b03560;
-  --case-accent-soft: #d0668a;
-  --case-on-accent: var(--mist);
-  --case-screen: #f7f6f2; /* the phone screen in the wireframe mock-ups */
-}
-
-/* ---------- Licorímetro: el vino de su logotipo ---------- */
-.case[data-case='licorimetro'] {
-  --case-accent: #9b2335;
-  --case-accent-soft: #c0485a;
-  --case-on-accent: var(--mist);
-}
-
-/* ---------- SenseWave: lavanda fría y azul de neurotecnología ---------- */
-.case[data-case='sensewave'] {
-  --case-bg: #f2f2fa;
-  --case-surface: #e6e6f2;
-  --case-card: #dadadf;
-  --case-accent: #3d50b8;
-  --case-accent-2: #6650a8;
-  --case-ink: #08081a;
-  --case-ink-soft: rgb(8 8 26 / 0.68);
-  --case-ink-muted: rgb(8 8 26 / 0.4);
-  --case-border: rgb(8 8 26 / 0.09);
-  --case-border-accent: rgb(61 80 184 / 0.22);
-  --case-glow: rgb(61 80 184 / 0.07);
-  --case-on-accent: #f2f2fa;
-  --case-chip-a: #8b9de8; /* Chill Chip glow */
-  --case-chip-b: #b8a6f0; /* Complex Chip glow */
-}
-
-/* ---------- Candelaria (marca y sitio): berenjena, violeta y oro del manual ---------- */
-.case[data-case='candelaria'],
-.case[data-case='candelaria-website'] {
-  --case-bg: #efeeea;
-  --case-surface: #e6e4dc;
-  --case-card: #dddbd1;
-  --case-accent: #6d28a8;
-  --case-accent-soft: #8b3fd0;
-  --case-accent-2: #7c4db8;
-  --case-warm: #bc8215;
-  --case-warm-deep: #a66e12;
-  --case-ink: #1e0a29;
-  --case-ink-soft: rgb(30 10 41 / 0.66);
-  --case-ink-muted: rgb(30 10 41 / 0.42);
-  --case-border: rgb(30 10 41 / 0.1);
-  --case-border-accent: rgb(109 40 168 / 0.22);
-  --case-glow: rgb(109 40 168 / 0.22);
-  --case-glow-soft: rgb(139 63 208 / 0.08);
-  --case-on-accent: #efeeea;
-}
-/* Proyecto de marca: display propio, el del manual (Sansation). */
-.case[data-case='candelaria'] {
-  --case-display: 'Sansation', var(--font-label);
 }
 
 /* El cóndor decorativo no debe pisar el título en pantallas estrechas. */

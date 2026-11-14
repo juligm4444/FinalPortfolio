@@ -2,8 +2,10 @@ import { useState } from 'react'
 import { useLocale } from '../i18n/LocaleProvider.jsx'
 import LocaleLink from '../components/LocaleLink.jsx'
 import BotanicalText from '../components/BotanicalText.jsx'
+import Surface from '../components/Surface.jsx'
 import TumbleDeck from '../components/TumbleDeck.jsx'
-import CitronKeyscape from '../components/CitronKeyscape.jsx'
+import Specimen from '../components/Specimen.jsx'
+import DeviceHint from '../components/DeviceHint.jsx'
 import { worksByGroup } from '../data/projects.js'
 import './Projects.css'
 
@@ -13,8 +15,8 @@ import './Projects.css'
 
 function StatusBadge({ status }) {
   const { t } = useLocale()
-  if (status !== 'in-progress') return null
-  return <span className="work__status">{t('projects.status.in-progress')}</span>
+  if (status !== 'in-progress' && status !== 'soon') return null
+  return <span className="work__status">{t(`projects.status.${status}`)}</span>
 }
 
 /** The link a work offers: its case study, else its site, else nothing. */
@@ -49,9 +51,11 @@ function WebGroup() {
   const { t } = useLocale()
   const items = worksByGroup('web')
   const [front, setFront] = useState(0)
+  const badge = (w) => (w.status === 'in-progress' || w.status === 'soon' ? t(`projects.status.${w.status}`) : '')
   const cards = items.map((w) => ({
     src: w.media.screenshot,
-    label: [t(`works.${w.id}.title`), w.status === 'in-progress' ? t('projects.status.in-progress') : ''].filter(Boolean).join(' · '),
+    slab: { title: t(`works.${w.id}.title`), status: badge(w) },
+    label: [t(`works.${w.id}.title`), badge(w)].filter(Boolean).join(' · '),
   }))
   const current = items[front] ?? items[0]
   return (
@@ -82,21 +86,16 @@ function WebGroup() {
   )
 }
 
+/* Digital and Brand: the same specimen as the Home herbarium (one component), plus the blurb. */
 function SlabCard({ work }) {
   const { t } = useLocale()
   return (
     <li>
       <WorkLink work={work} className="work-slab">
-        <span className="work-slab__media" aria-hidden="true">
-          <img src={work.media.logo} alt="" loading="lazy" decoding="async" />
-        </span>
-        <span className="work-slab__body">
-          <span className="work__kicker">{t(`works.${work.id}.kicker`)}</span>
-          <span className="work__title">
-            {t(`works.${work.id}.title`)} <StatusBadge status={work.status} />
-          </span>
+        <Specimen work={work}>
+          <StatusBadge status={work.status} />
           <span className="work__desc">{t(`works.${work.id}.desc`)}</span>
-        </span>
+        </Specimen>
       </WorkLink>
     </li>
   )
@@ -115,35 +114,37 @@ function SlabGroup({ group }) {
   )
 }
 
-/* Object: each piece on a concrete pedestal; hover or focus takes it apart
-   (the exploded render cross-fades in). No GLB exists for these pieces. */
+/* Object: each piece is a cutout on a concrete slab over the same plinth. The piece itself
+   is a button that takes it apart: hover/focus on a pointer, a tap on touch, Enter/Space on a
+   keyboard. The case study is the title link. */
 function Pedestal({ work }) {
   const { t } = useLocale()
+  const [apart, setApart] = useState(false)
   const title = t(`works.${work.id}.title`)
+  const { piece, apart: apartSrc } = work.media.pedestal
   return (
-    <li className="pedestal">
-      <WorkLink work={work} className="pedestal__link">
-        <span className="pedestal__stage" aria-hidden="true">
-          <img className="pedestal__piece" src={work.media.render} alt="" loading="lazy" decoding="async" />
-          <img className="pedestal__piece pedestal__piece--exploded" src={work.media.exploded} alt="" loading="lazy" decoding="async" />
-        </span>
-        <span className="pedestal__plinth" aria-hidden="true" />
-        <span className="pedestal__label">
-          <span className="work__kicker">{t(`works.${work.id}.kicker`)}</span>
+    <li className="pedestal" data-apart={apart ? '1' : '0'}>
+      <button
+        type="button"
+        className="pedestal__stage"
+        aria-pressed={apart}
+        aria-label={`${title}: ${t(apart ? 'projects.explodedHide' : 'projects.explodedShow')}`}
+        onClick={() => setApart((a) => !a)}
+      >
+        <img className="pedestal__piece" src={piece} alt="" loading="lazy" decoding="async" />
+        <img className="pedestal__piece pedestal__piece--apart" src={apartSrc} alt="" loading="lazy" decoding="async" />
+      </button>
+      <span className="pedestal__plinth" aria-hidden="true" />
+      <div className="pedestal__label">
+        <span className="work__kicker">{t(`works.${work.id}.kicker`)}</span>
+        <WorkLink work={work} className="pedestal__title">
           <span className="work__title">{title}</span>
-          <span className="work__desc">{t(`works.${work.id}.desc`)}</span>
-          <span className="pedestal__hint">{t('projects.explodedHint')}</span>
+        </WorkLink>
+        <span className="work__desc">{t(`works.${work.id}.desc`)}</span>
+        <span className="pedestal__hint">
+          <DeviceHint pointer={t('projects.explodedHintPointer')} touch={t('projects.explodedHintTouch')} />
         </span>
-      </WorkLink>
-      {work.media.views && (
-        <ul className="pedestal__views" aria-hidden="true">
-          {work.media.views.map((v, i) => (
-            <li key={i}>
-              <img src={v} alt="" loading="lazy" decoding="async" />
-            </li>
-          ))}
-        </ul>
-      )}
+      </div>
     </li>
   )
 }
@@ -161,10 +162,31 @@ function ObjectGroup() {
   )
 }
 
+/* Tools: one slab per technology (ACABADO §5: the keyscape was retired, the list stays). */
+function Tools() {
+  const { t } = useLocale()
+  const words = t('projects.tools')
+  return (
+    <section className="proj__group" aria-labelledby="tools-title">
+      <p className="proj__kicker">{t('projects.toolsKicker')}</p>
+      <h2 id="tools-title" className="proj__group-title">
+        {t('projects.toolsTitle')}
+      </h2>
+      <ul className="tools">
+        {words.map((w) => (
+          <li key={w} className="tools__slab">
+            {w}
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}
+
 export default function Projects() {
   const { t } = useLocale()
   return (
-    <div className="proj">
+    <Surface className="proj">
       <header className="proj__header">
         <p className="proj__kicker">{t('projects.label')}</p>
         <BotanicalText text={t('projects.title')} size={120} id="projects-h1" />
@@ -174,13 +196,7 @@ export default function Projects() {
       <SlabGroup group="digital" />
       <ObjectGroup />
       <SlabGroup group="marca" />
-      <section className="proj__group" aria-labelledby="tools-title">
-        <p className="proj__kicker">{t('projects.toolsKicker')}</p>
-        <h2 id="tools-title" className="proj__group-title">
-          {t('projects.toolsTitle')}
-        </h2>
-        <CitronKeyscape id="tools-keyscape" />
-      </section>
-    </div>
+      <Tools />
+    </Surface>
   )
 }

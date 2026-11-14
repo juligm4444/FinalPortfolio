@@ -2,35 +2,26 @@ export const LOCALES = ['en', 'es']
 
 const translations = {
   en: {
+    case: {
+      tools: 'Tools',
+      period: 'Dates',
+      sections: { problem: 'Problem', process: 'Process', decisions: 'Decisions', result: 'Result' },
+      next: 'Next case',
+      visit: 'Visit the site',
+      code: 'Repository',
+      instagram: 'Follow on Instagram',
+      siteCase: 'See the website case',
+    },
     herbarium: {
+      gen: 'Gen.',
       items: {
-        candelariaWebsite: { genus: 'Web · Full-stack', year: 'Oct 2025 — present', role: 'Design lead, product engineering' },
-        bloom: { genus: 'Digital · UX', year: 'Jun 2026', role: 'UX research, information architecture' },
-        sensewaveProduct: { genus: 'Object · Speculative brand', year: '2025', role: 'Brand and product design' },
+        candelariaWebsite: { genus: 'Web', year: 'Oct 2025 — present', role: 'Design lead, product engineering' },
+        candelariaBrand: { genus: 'Brand', year: 'Oct 2025 — present', role: 'Design lead, identity, art direction' },
+        licorimetro: { genus: 'Mobile', year: '2023', role: 'Product architecture, UX/UI, mobile development' },
+        bloom: { genus: 'Digital', year: 'Jun 2026', role: 'UX research, information architecture' },
+        umbral: { genus: 'Object', year: '2026', role: 'Product design, digital fabrication' },
+        sensewaveProduct: { genus: 'Object', year: '2025', role: 'Brand and product design' },
       },
-    },
-    keyscape: {
-      label: 'A bed of concrete keys, one technology on each, with the site logo on the central key and moss in the slots.',
-      caption: 'Tools',
-      items: ['Figma', 'React', 'Next.js', 'Python', 'Django', 'Supabase', 'Tailwind', 'Three.js', 'Blender', 'Unity', 'Git', 'SQL'],
-    },
-    lab: {
-      title: 'Lab',
-      lead: 'Component bench for the redesign. Each OriginKit port lands here first, alone, before it goes into a page.',
-      webglActive: 'WebGL contexts live',
-      webglWaiting: 'Waiting for a slot',
-      webglCaps: 'Device verdict',
-      fps: 'Frames per second',
-      botanicalVariants: 'Botanical Text — language variants',
-      keyscapeVariants: 'Citron Keyscape — language variants',
-      plushVariants: 'Plush Tile — language variants',
-      plushDock: 'Dock (moss)',
-      plushHerbarium: 'Herbarium (grass round the slab)',
-      velourVariants: 'Velour Bolster — language variants',
-      velourLabel: 'Explore',
-      moonlitVariants: 'Moonlit Petals — language variants',
-      moonlitCaption: 'Ocobo in overcast daylight',
-      moonlitLabel: 'A tree in pink ocobo bloom under an overcast sky, petals drifting down. Moving across it stirs the blossoms.',
     },
     meta: {
       siteName: 'Julián Galindo — Designer & Developer',
@@ -40,7 +31,6 @@ const translations = {
       },
       about: { title: 'About', description: 'Systems engineering as the base, design as what grows on it. Education, experience and the career change, told straight.' },
       projects: { title: 'Projects', description: 'Web, digital, object and brand work: Candelaria, Licorímetro, Bloom, El Umbral and SenseWave.' },
-      lab: { title: 'Lab', description: 'Component bench. Nothing to see here yet.' },
     },
     nav: {
       label: 'Main navigation',
@@ -69,17 +59,14 @@ const translations = {
     hero: {
       name: 'Julián Galindo',
       tagline: 'Designer & Developer',
-      profileAlt: 'Julián Galindo Mora',
+      ctaProjects: 'See projects',
+      ctaCv: 'Download CV',
     },
     home: {
       bioTitle: 'About me',
+      bioLink: 'More about me',
       bioPara1:
-        'Julián Galindo is a designer and developer of digital experiences that flow from structure to aesthetics, blending backend logic with the intuition of human-centered design.',
-      bioPara2:
-        'Every line of code I write aims to unite functionality with creative expression.',
-      bioPill1: 'Structure',
-      bioPill2: 'Aesthetics',
-      bioPill3: 'Human-centered',
+        'I study Design at Universidad de los Andes after nine semesters of Systems Engineering. Today what I enjoy most is structuring a product and building its whole aesthetic and functional side: identity, components, functionality and feel.',
       herbKicker: 'Herbarium',
       herbTitle: 'Specimens from the last two years',
       herbCta: 'All projects',
@@ -132,16 +119,19 @@ const translations = {
         objeto: 'Object',
         marca: 'Brand',
       },
-      status: { 'in-progress': 'In progress' },
+      status: { 'in-progress': 'In progress', soon: 'Coming soon' },
       openCase: 'Open case study',
       visitSite: 'Visit website',
-      viewCode: 'GitHub repository',
       deckLabel: 'Websites, one card at a time',
       deckHint: 'Scroll, drag, click or use the arrow keys to flip through them.',
       deckListTitle: 'All websites',
-      explodedHint: 'Hover or focus to see it apart',
+      explodedHintPointer: 'Hover, focus or click the piece to see it apart',
+      explodedHintTouch: 'Tap the piece to see it apart',
+      explodedShow: 'Show it apart',
+      explodedHide: 'Put it back together',
       toolsKicker: 'Tools',
       toolsTitle: 'What I build with',
+      tools: ['Figma', 'React', 'Next.js', 'Python', 'Django', 'Supabase', 'Tailwind', 'Three.js', 'Blender', 'Unity', 'Git', 'SQL'],
     },
     works: {
       candelariaWebsite: {
@@ -169,10 +159,25 @@ const translations = {
         title: 'SenseWave',
         desc: 'Sense Eco glasses and a two-chip system that turns a donated sensation into neural signal.',
       },
+      sensewaveSite: {
+        kicker: 'Web · Speculative brand',
+        title: 'SenseWave website',
+        desc: 'Site for the speculative SenseWave brand: product, chips, activation and prices.',
+      },
       portfolio: {
         kicker: 'Web · Design & development',
         title: 'juligm4.com',
         desc: 'This portfolio: concrete overgrown with moss, built in React with a shared WebGL budget.',
+      },
+      freelanceSite: {
+        kicker: 'Web · Freelance',
+        title: 'Freelance project',
+        desc: 'A client website currently in progress.',
+      },
+      adidasMilo: {
+        kicker: 'Web · Campaign',
+        title: 'adidas × Milo J',
+        desc: 'Website, coming soon.',
       },
       candelariaBrand: {
         kicker: 'Identity · Research Group',
@@ -194,14 +199,14 @@ const translations = {
       summaryKicker: 'Overview',
       summaryTitle: 'A social ecosystem built around uncertainty',
       summaryParas: [
-        'Licorímetro was born from a simple truth: when people come of age, alcohol becomes completely unfamiliar territory. What to drink. How much it costs. What it tastes like. What experiences it creates. The app proposed a single platform combining <<camera recognition>>, contextual information, community reviews, <<gamification>> and social discovery for any type of alcoholic beverage.',
-        'Unlike platforms limited to wine or beer, Licorímetro envisioned a broader scope — any beverage, any social context, any level of experience. The project combined <<architecture thinking>>, UX/UI design and mobile development built almost entirely solo within a week of intensive work.',
+        'Licorímetro was born from a simple truth: when people come of age, alcohol becomes completely unfamiliar territory. What to drink. How much it costs. What it tastes like. What experiences it creates. The app proposed a single platform combining camera recognition, contextual information, community reviews, gamification and social discovery for any type of alcoholic beverage.',
+        'Unlike platforms limited to wine or beer, Licorímetro envisioned a broader scope — any beverage, any social context, any level of experience. The project combined architecture thinking, UX/UI design and mobile development built almost entirely solo within a week of intensive work.',
       ],
 
       problemKicker: 'Problem',
       problemTitle: 'Alcohol as a fragmented information system',
       problemLead:
-        'The experience of discovering alcohol is full of <<uncertainty and friction>>. Information is scattered, reviews are unreliable, and no existing platform addresses the full spectrum of alcoholic beverages with a <<social-first approach>>.',
+        'The experience of discovering alcohol is full of uncertainty and friction. Information is scattered, reviews are unreliable, and no existing platform addresses the full spectrum of alcoholic beverages with a social-first approach.',
       problemBullets: [
         'Information dispersed across unrelated platforms.',
         'No visual recognition for beverages beyond wine.',
@@ -248,9 +253,9 @@ const translations = {
       ocrKicker: 'Technical Challenge',
       ocrTitle: 'Building computer vision without mobile experience',
       ocrParas: [
-        'One of the greatest technical challenges of the project was the <<OCR system>>. The original plan relied on third-party visual recognition APIs — but during production, that solution stopped working.',
-        'With very little prior experience in mobile development, the system had to be <<rebuilt manually from scratch>>, using bitmap analysis and basic image processing. The result was a functional prototype capable of identifying beverages whose labels contained clear, readable text.',
-        'More than technical precision, the process represented <<accelerated learning>>, autonomous research and problem-solving under pressure — all within a week of continuous development.',
+        'One of the greatest technical challenges of the project was the OCR system. The original plan relied on third-party visual recognition APIs — but during production, that solution stopped working.',
+        'With very little prior experience in mobile development, the system had to be rebuilt manually from scratch, using bitmap analysis and basic image processing. The result was a functional prototype capable of identifying beverages whose labels contained clear, readable text.',
+        'More than technical precision, the process represented accelerated learning, autonomous research and problem-solving under pressure — all within a week of continuous development.',
       ],
       ocrBullets: [
         'Third-party API failed mid-production.',
@@ -316,17 +321,8 @@ const translations = {
       architectureKicker: 'Architecture',
       architectureTitle: 'Thinking like a startup before building one',
       architectureParas: [
-        'Although the final prototype was limited, the <<conceptual architecture>> of Licorímetro contemplated a much broader ecosystem. The system included authentication, profiles, reputation, gamification, smart recommendations, social storage, community interaction — and potential marketplace integrations.',
-        'Even from an academic stage, the project already contemplated <<retention strategies>>, commercial partnerships, monetization models and scalability. The thinking was product-first: not a school project that happened to have features, but a <<startup MVP that happened to be built in class>>.',
-      ],
-      architectureBullets: [
-        'Full authentication and profile system.',
-        'Reputation and gamification engine.',
-        'Smart recommendations based on behavior.',
-        'Social storage (Tu Bodega) with sharing.',
-        'Potential external marketplace integrations.',
-        'Monetization and commercial partnership model.',
-        'Scalability considered from day one.',
+        'Although the final prototype was limited, the conceptual architecture of Licorímetro contemplated a much broader ecosystem. The system included authentication, profiles, reputation, gamification, smart recommendations, social storage, community interaction — and potential marketplace integrations.',
+        'Even from an academic stage, the project already contemplated retention strategies, commercial partnerships, monetization models and scalability. The thinking was product-first: not a school project that happened to have features, but a startup MVP that happened to be built in class.',
       ],
 
       whatChangedKicker: 'Evolution',
@@ -344,28 +340,22 @@ const translations = {
       reflectionsKicker: 'Reflections',
       reflectionsTitle: 'More than a university app',
       reflectionsParas: [
-        'Licorímetro never became a real startup. But it represented something more important: the ability to <<transform an everyday need into a complex digital system>> — combining product thinking, UX design and engineering within a single cohesive idea.',
-        'It marked the <<first contact with mobile development>>, the first experience with OCR, and one of the earliest real exercises in product architecture. More than the technical result, the project proved that <<curiosity, resilience and learning speed>> can turn a university idea into a vision with genuine potential.',
+        'Licorímetro never became a real startup. But it represented something more important: the ability to transform an everyday need into a complex digital system — combining product thinking, UX design and engineering within a single cohesive idea.',
+        'It marked the first contact with mobile development, the first experience with OCR, and one of the earliest real exercises in product architecture. More than the technical result, the project proved that curiosity, resilience and learning speed can turn a university idea into a vision with genuine potential.',
       ],
 
-      stackKicker: 'Tools used',
-      stackTitle: 'Built with',
 
-      ctaCode: 'View on GitHub',
     },
     candelaria: {
       tag: 'Student Research Group · Academic project',
       title: 'Candelaria Website',
       subtitle:
         'Design leader and sole developer of the full digital system for a university solar vehicle research team.',
-      faceDigital: 'A React and Django site built end to end — the team\'s public face, its sponsor pitch and its archive in one system.',
-      faceVisual: 'The visual identity underneath it: condor mark, division system and the rules that keep eight sub-teams looking like one.',
       role: 'Design Lead · Product Engineering · Full-stack',
       period: 'Oct 2025 – Present',
       status: 'In development',
       sectionRoleLabel: 'Role',
       sectionTimelineLabel: 'Timeline & Status',
-      heroTagline: 'Defy the limits of the sun',
       brandPage: {
         tag: 'Student Research Group · Brand Identity',
         title: 'Candelaria',
@@ -373,9 +363,6 @@ const translations = {
           'Design lead behind the visual identity of a university solar vehicle research team: the condor mark, a logo system for seven divisions and the brand manual the whole team works from.',
         role: 'Design Lead · Brand Identity · Art Direction',
         roleTitle: 'Leading the design team.',
-        ctaInstagram: 'Follow on Instagram',
-        ctaWebsite: 'See the website case study',
-        closingTitle: 'Follow the team on Instagram',
       },
 
       teamsKicker: 'The Team',
@@ -398,8 +385,8 @@ const translations = {
       summaryKicker: 'Overview',
       summaryTitle: 'A team\'s digital home, not a portfolio',
       summaryParas: [
-        'Candelaria is the <<complete digital presence>> of a university engineering competition team. The site goes beyond a static portfolio: it integrates <<member management>>, publications, memberships, donations, a <<merchandise shop>> and a <<gamification system>> for followers, all under a kinetic, high-contrast visual identity.',
-        'The project was born out of the need to <<centralize the team\'s communications>>, make external support easy, and offer a user experience that matches the team\'s technical level. From database architecture to color palette, every decision was made with <<product and engineering criteria>>.',
+        'Candelaria is the complete digital presence of a university engineering competition team. The site goes beyond a static portfolio: it integrates member management, publications, memberships, donations, a merchandise shop and a gamification system for followers, all under a kinetic, high-contrast visual identity.',
+        'The project was born out of the need to centralize the team\'s communications, make external support easy, and offer a user experience that matches the team\'s technical level. From database architecture to color palette, every decision was made with product and engineering criteria.',
       ],
 
       myRoleKicker: 'Two roles, one project',
@@ -436,7 +423,7 @@ const translations = {
       problemKicker: 'Problem',
       problemTitle: 'Beyond a PDF and a donations link',
       problemLead:
-        'University competition teams usually settle for <<partial solutions>>: an Instagram account, a PDF with their achievements, and a generic donations link. Candelaria needed <<something different>>.',
+        'University competition teams usually settle for partial solutions: an Instagram account, a PDF with their achievements, and a generic donations link. Candelaria needed something different.',
       problemBullets: [
         'A platform that reflects the team\'s technical and visual identity.',
         'A system that lets external supporters back the team financially with real traceability.',
@@ -564,26 +551,18 @@ const translations = {
       reflectionsKicker: 'Reflections',
       reflectionsTitle: 'What I learned',
       reflectionsParas: [
-        'Candelaria is the project that forced me to think like a <<product engineer>>, not just a developer. Architectural decisions about when to use Django vs Supabase, how to model the tier system, and how to abstract two payment providers required reasoning about <<real trade-offs>>, not just shipping features.',
-        'The biggest lesson was designing for <<two completely different audiences>>: an external follower who wants to support with one click, and a team leader who needs to manage people and publish content. Building a single platform that serves both without either feeling the interface wasn\'t made for them was the most interesting design challenge of the project.',
-        'Carrying both the <<design leadership>> and the <<technical development>> simultaneously revealed a clear advantage: when you set the brand rules and implement them in code, every inconsistency surfaces immediately. The cost is that you carry every inconsistency alone.',
+        'Candelaria is the project that forced me to think like a product engineer, not just a developer. Architectural decisions about when to use Django vs Supabase, how to model the tier system, and how to abstract two payment providers required reasoning about real trade-offs, not just shipping features.',
+        'The biggest lesson was designing for two completely different audiences: an external follower who wants to support with one click, and a team leader who needs to manage people and publish content. Building a single platform that serves both without either feeling the interface wasn\'t made for them was the most interesting design challenge of the project.',
+        'Carrying both the design leadership and the technical development simultaneously revealed a clear advantage: when you set the brand rules and implement them in code, every inconsistency surfaces immediately. The cost is that you carry every inconsistency alone.',
       ],
 
-      stackKicker: 'Tools used',
-      stackTitle: 'Built solo with',
-      stackHint: 'Hover the badges',
 
-      ctaVisit: 'Visit the website',
-      ctaCode: 'View on GitHub',
     },
     sensewave: {
       title: 'SenseWave',
       subtitle: 'A speculative neurotechnology brand exploring direct neural interfaces for restoring human sensation.',
 
       // One project, three faces — the lane it appears in decides which.
-      faceProduct: 'The Sense Eco glasses and a two-chip system: hardware that turns another person\'s recorded sensation into neural signal.',
-      faceDigital: 'The interface layer that curates a donated sensory library and hands the recipient control over what they feel, and when.',
-      faceVisual: 'A brand system built on empathy rather than spectacle — identity, language and motion for technology that has to feel trustworthy.',
 
       heroPeriod: 'Sensewave · Speculative Design · 2025',
       heroH1: 'What if memories',
@@ -670,8 +649,6 @@ const translations = {
       title: 'El Umbral',
       subtitle:
         'A modular coffee table built from two interchangeable modules, where the user decides which face is the top.',
-      faceProduct: 'Two identical structures, two different surfaces. Swap which one sits on top and the table changes character — no tools, no hardware.',
-      faceVisual: 'A pattern drawn from the study of pre-Columbian geometry and Antonio Grass\'s work, rewritten to the table\'s own grid.',
 
       metaRole: 'Role',
       metaDimensions: 'Dimensions',
@@ -839,13 +816,10 @@ const translations = {
 
       versionsIntro: 'Rather than propose one answer, I built three, each a defensible position on the same axis: how much can you compress a taxonomy before it stops being able to describe the content?',
       v1Title: 'V1 · Recategorised original',
-      v1Count: '75 tags',
       v1Desc: 'The existing tags reorganised under five categories — Body, Mind, Relationships, Sex, Culture — with duplicates removed. This version proves the categories hold, but keeps the volume problem.',
       v2Title: 'V2 · Logical grouping',
-      v2Count: '46 tags',
       v2Desc: 'Tags collapsed into concepts rather than phrasings. Sharp enough for Bloom AI to make precise recommendations, still heavy for a mobile filter row.',
       v3Title: 'V3 · Simplified access',
-      v3Count: '28 tags',
       v3Desc: 'The recommendation. Under 40% of the original count, balanced across the five categories, and short enough that the whole filter fits on a phone screen.',
       v3Badge: 'Sweet spot',
 
@@ -858,7 +832,6 @@ const translations = {
       bridgeP2: 'Those shared tags are what let Bloom AI connect an article filed under Body with a podcast filed under Mind. A reader looking at menopause and hormones can be pointed to anxiety and emotional management, because the taxonomy itself encodes the relationship.',
       bridgeP3: 'The tinting that shows this overlap exists only in the specification. To the reader on the site, the bridge is invisible — it just feels like the recommendations understand them.',
 
-      structureTitle: 'Final structure · 28 tags across 5 categories',
       categories: [
         { name: 'Body', count: '12', tags: 'menstruation · contraceptives · pregnancy · fertility · menopause · endometriosis · STIs · personal care · hormones · motherhood · sexual desire · gynaecology' },
         { name: 'Mind', count: '7', tags: 'anxiety · self-esteem · mental health · depression · self-knowledge · hormones · emotional management' },
@@ -868,10 +841,14 @@ const translations = {
       ],
 
       caseTitle: 'How a piece lives in the system',
-      caseIntro: 'Every piece carries one category plus two to five tags. Marked tags are shared — they appear in content from other categories, and Bloom AI reads them as bridges for cross-recommendation. Point at one to see what it connects.',
+      caseIntro: 'Every piece carries one category plus two to five tags. Marked tags are shared — they appear in content from other categories, and Bloom AI reads them as bridges for cross-recommendation.',
+      caseHintPointer: 'Point at one to see what it connects.',
+      caseHintTouch: 'Tap one to see what it connects.',
 
       explorerLabel: 'Taxonomy explorer',
-      explorerHint: 'Switch versions to watch the taxonomy compress. Point at any tag to find every category it lives in.',
+      explorerHint: 'Switch versions to watch the taxonomy compress.',
+      explorerHintPointer: 'Point at any tag to find every category it lives in.',
+      explorerHintTouch: 'Tap any tag to find every category it lives in.',
       explorerTags: 'tags',
       explorerShared: 'Shared across categories',
       explorerLang: 'Tags appear in Spanish, as they were delivered to the client.',
@@ -909,35 +886,26 @@ const translations = {
   },
 
   es: {
+    case: {
+      tools: 'Herramientas',
+      period: 'Fechas',
+      sections: { problem: 'Problema', process: 'Proceso', decisions: 'Decisiones', result: 'Resultado' },
+      next: 'Siguiente caso',
+      visit: 'Visitar el sitio',
+      code: 'Repositorio',
+      instagram: 'Seguir en Instagram',
+      siteCase: 'Ver el caso del sitio',
+    },
     herbarium: {
+      gen: 'Gen.',
       items: {
-        candelariaWebsite: { genus: 'Web · Full-stack', year: 'Oct 2025 — presente', role: 'Diseño e ingeniería de producto' },
-        bloom: { genus: 'Digital · UX', year: 'Jun 2026', role: 'Investigación UX, arquitectura de información' },
-        sensewaveProduct: { genus: 'Objeto · Marca especulativa', year: '2025', role: 'Diseño de marca y producto' },
+        candelariaWebsite: { genus: 'Web', year: 'Oct 2025 — presente', role: 'Diseño e ingeniería de producto' },
+        candelariaBrand: { genus: 'Marca', year: 'Oct 2025 — presente', role: 'Líder de diseño, identidad, dirección de arte' },
+        licorimetro: { genus: 'Móvil', year: '2023', role: 'Arquitectura de producto, UX/UI, desarrollo móvil' },
+        bloom: { genus: 'Digital', year: 'Jun 2026', role: 'Investigación UX, arquitectura de información' },
+        umbral: { genus: 'Objeto', year: '2026', role: 'Diseño de producto, fabricación digital' },
+        sensewaveProduct: { genus: 'Objeto', year: '2025', role: 'Diseño de marca y producto' },
       },
-    },
-    keyscape: {
-      label: 'Un lecho de teclas de concreto, una tecnología en cada una, con el logo del sitio en la tecla central y musgo en las ranuras.',
-      caption: 'Herramientas',
-      items: ['Figma', 'React', 'Next.js', 'Python', 'Django', 'Supabase', 'Tailwind', 'Three.js', 'Blender', 'Unity', 'Git', 'SQL'],
-    },
-    lab: {
-      title: 'Laboratorio',
-      lead: 'Banco de componentes del rediseño. Cada porte de OriginKit aterriza aquí primero, solo, antes de entrar a una página.',
-      webglActive: 'Contextos WebGL vivos',
-      webglWaiting: 'En espera de cupo',
-      webglCaps: 'Veredicto del dispositivo',
-      fps: 'Cuadros por segundo',
-      botanicalVariants: 'Botanical Text — variantes de idioma',
-      keyscapeVariants: 'Citron Keyscape — variantes de idioma',
-      plushVariants: 'Plush Tile — variantes de idioma',
-      plushDock: 'Dock (musgo)',
-      plushHerbarium: 'Herbario (pasto alrededor de la losa)',
-      velourVariants: 'Velour Bolster — variantes de idioma',
-      velourLabel: 'Explorar',
-      moonlitVariants: 'Moonlit Petals — variantes de idioma',
-      moonlitCaption: 'Ocobo a la luz de un día nublado',
-      moonlitLabel: 'Un árbol de ocobo en flor rosada bajo un cielo nublado, con pétalos que caen. Al pasar el puntero por encima se agitan las flores.',
     },
     meta: {
       siteName: 'Julián Galindo — Diseñador y Desarrollador',
@@ -947,7 +915,6 @@ const translations = {
       },
       about: { title: 'Sobre mí', description: 'Ingeniería de sistemas como base, diseño como lo que crece encima. Educación, experiencia y el cambio de carrera, contado de frente.' },
       projects: { title: 'Proyectos', description: 'Trabajo web, digital, de objeto y de marca: Candelaria, Licorímetro, Bloom, El Umbral y SenseWave.' },
-      lab: { title: 'Laboratorio', description: 'Banco de componentes. Todavía no hay nada que ver.' },
     },
     nav: {
       label: 'Navegación principal',
@@ -976,17 +943,14 @@ const translations = {
     hero: {
       name: 'Julián Galindo',
       tagline: 'Diseñador y Desarrollador',
-      profileAlt: 'Julián Galindo Mora',
+      ctaProjects: 'Ver proyectos',
+      ctaCv: 'Descargar CV',
     },
     home: {
       bioTitle: 'Sobre mí',
+      bioLink: 'Más sobre mí',
       bioPara1:
-        'Julián Galindo es diseñador y desarrollador de experiencias digitales que fluyen de la estructura a la estética, mezclando la lógica del backend con la intuición del diseño centrado en la persona.',
-      bioPara2:
-        'Cada línea de código que escribo busca unir la funcionalidad con la expresión creativa.',
-      bioPill1: 'Estructura',
-      bioPill2: 'Estética',
-      bioPill3: 'Centrado en la persona',
+        'Estudio Diseño en la Universidad de los Andes después de nueve semestres de Ingeniería de Sistemas. Hoy lo que más disfruto es estructurar un producto y construir todo su apartado estético y funcional: identidad, componentes, funcionalidad y sensación.',
       herbKicker: 'Herbario',
       herbTitle: 'Especímenes de los últimos dos años',
       herbCta: 'Todos los proyectos',
@@ -1039,16 +1003,19 @@ const translations = {
         objeto: 'Objeto',
         marca: 'Marca',
       },
-      status: { 'in-progress': 'En curso' },
+      status: { 'in-progress': 'En curso', soon: 'Próximamente' },
       openCase: 'Abrir caso de estudio',
       visitSite: 'Visitar el sitio',
-      viewCode: 'Repositorio en GitHub',
       deckLabel: 'Sitios web, una tarjeta a la vez',
       deckHint: 'Desplaza, arrastra, haz clic o usa las flechas para pasarlas.',
       deckListTitle: 'Todos los sitios',
-      explodedHint: 'Pasa el puntero o enfoca para verlo desarmado',
+      explodedHintPointer: 'Pasa el puntero, enfoca o haz clic en la pieza para verla desarmada',
+      explodedHintTouch: 'Toca la pieza para verla desarmada',
+      explodedShow: 'Ver desarmada',
+      explodedHide: 'Volver a armar',
       toolsKicker: 'Herramientas',
       toolsTitle: 'Con qué construyo',
+      tools: ['Figma', 'React', 'Next.js', 'Python', 'Django', 'Supabase', 'Tailwind', 'Three.js', 'Blender', 'Unity', 'Git', 'SQL'],
     },
     works: {
       candelariaWebsite: {
@@ -1076,10 +1043,25 @@ const translations = {
         title: 'SenseWave',
         desc: 'Gafas Sense Eco y un sistema de dos chips que convierte una sensación donada en señal neural.',
       },
+      sensewaveSite: {
+        kicker: 'Web · Marca especulativa',
+        title: 'Sitio de SenseWave',
+        desc: 'Sitio de la marca especulativa SenseWave: producto, chips, activación y precios.',
+      },
       portfolio: {
         kicker: 'Web · Diseño y desarrollo',
         title: 'juligm4.com',
         desc: 'Este portafolio: concreto invadido de musgo, hecho en React con un presupuesto WebGL compartido.',
+      },
+      freelanceSite: {
+        kicker: 'Web · Freelance',
+        title: 'Proyecto freelance',
+        desc: 'Sitio web de un cliente, actualmente en curso.',
+      },
+      adidasMilo: {
+        kicker: 'Web · Campaña',
+        title: 'adidas × Milo J',
+        desc: 'Sitio web, próximamente.',
       },
       candelariaBrand: {
         kicker: 'Identidad · Semillero',
@@ -1101,14 +1083,14 @@ const translations = {
       summaryKicker: 'Resumen',
       summaryTitle: 'Un ecosistema social construido alrededor de la incertidumbre',
       summaryParas: [
-        'Licorímetro nació de una verdad simple: cuando la gente llega a la mayoría de edad, el alcohol se convierte en un territorio completamente desconocido. Qué tomar. Cuánto cuesta. Qué sabor tiene. Qué experiencias genera. La app propuso una sola plataforma que combinara <<reconocimiento por cámara>>, información contextual, reviews comunitarias, <<gamificación>> y descubrimiento social para cualquier tipo de bebida alcohólica.',
-        'A diferencia de plataformas limitadas a vinos o cervezas, Licorímetro contemplaba un alcance más amplio — cualquier bebida, cualquier contexto social, cualquier nivel de experiencia. El proyecto combinó <<pensamiento de arquitectura>>, diseño UX/UI y desarrollo móvil construido casi en su totalidad en solitario en una semana de trabajo intensivo.',
+        'Licorímetro nació de una verdad simple: cuando la gente llega a la mayoría de edad, el alcohol se convierte en un territorio completamente desconocido. Qué tomar. Cuánto cuesta. Qué sabor tiene. Qué experiencias genera. La app propuso una sola plataforma que combinara reconocimiento por cámara, información contextual, reviews comunitarias, gamificación y descubrimiento social para cualquier tipo de bebida alcohólica.',
+        'A diferencia de plataformas limitadas a vinos o cervezas, Licorímetro contemplaba un alcance más amplio — cualquier bebida, cualquier contexto social, cualquier nivel de experiencia. El proyecto combinó pensamiento de arquitectura, diseño UX/UI y desarrollo móvil construido casi en su totalidad en solitario en una semana de trabajo intensivo.',
       ],
 
       problemKicker: 'Problema',
       problemTitle: 'El alcohol como sistema de información fragmentado',
       problemLead:
-        'La experiencia de descubrir el alcohol está llena de <<incertidumbre y fricción>>. La información está dispersa, las reseñas son poco confiables y ninguna plataforma existente aborda el espectro completo de bebidas alcohólicas con un <<enfoque social>>.',
+        'La experiencia de descubrir el alcohol está llena de incertidumbre y fricción. La información está dispersa, las reseñas son poco confiables y ninguna plataforma existente aborda el espectro completo de bebidas alcohólicas con un enfoque social.',
       problemBullets: [
         'Información dispersa en plataformas no relacionadas.',
         'Sin reconocimiento visual para bebidas más allá del vino.',
@@ -1155,9 +1137,9 @@ const translations = {
       ocrKicker: 'Reto Técnico',
       ocrTitle: 'Construir visión computacional sin experiencia móvil',
       ocrParas: [
-        'Uno de los mayores retos técnicos del proyecto fue el <<sistema OCR>>. El plan original contemplaba el uso de APIs externas de reconocimiento visual — pero durante la producción, esa solución dejó de funcionar.',
-        'Con muy poca experiencia previa en desarrollo móvil, el sistema tuvo que ser <<reconstruido manualmente desde cero>>, usando análisis de mapas de bits y procesamiento básico de imagen. El resultado fue un prototipo funcional capaz de identificar bebidas cuyos logotipos contenían texto claro y legible.',
-        'Más allá de la precisión técnica, el proceso representó <<aprendizaje acelerado>>, investigación autónoma y resolución de problemas bajo presión — todo dentro de una semana de desarrollo continuo.',
+        'Uno de los mayores retos técnicos del proyecto fue el sistema OCR. El plan original contemplaba el uso de APIs externas de reconocimiento visual — pero durante la producción, esa solución dejó de funcionar.',
+        'Con muy poca experiencia previa en desarrollo móvil, el sistema tuvo que ser reconstruido manualmente desde cero, usando análisis de mapas de bits y procesamiento básico de imagen. El resultado fue un prototipo funcional capaz de identificar bebidas cuyos logotipos contenían texto claro y legible.',
+        'Más allá de la precisión técnica, el proceso representó aprendizaje acelerado, investigación autónoma y resolución de problemas bajo presión — todo dentro de una semana de desarrollo continuo.',
       ],
       ocrBullets: [
         'La API de terceros falló a mitad de la producción.',
@@ -1223,17 +1205,8 @@ const translations = {
       architectureKicker: 'Arquitectura',
       architectureTitle: 'Pensar como startup antes de construir una',
       architectureParas: [
-        'Aunque el prototipo final fue limitado, la <<arquitectura conceptual>> de Licorímetro contemplaba un ecosistema mucho más amplio. El sistema incluía autenticación, perfiles, reputación, gamificación, recomendaciones inteligentes, almacenamiento social, interacción comunitaria — e integraciones potenciales con marketplaces externos.',
-        'Incluso desde una etapa académica, el proyecto ya contemplaba <<estrategias de fidelización>>, alianzas comerciales, modelos de monetización y escalabilidad. El pensamiento era product-first: no un proyecto escolar que resultó tener features, sino un <<MVP de startup que resultó construirse en clase>>.',
-      ],
-      architectureBullets: [
-        'Sistema completo de autenticación y perfiles.',
-        'Motor de reputación y gamificación.',
-        'Recomendaciones inteligentes basadas en comportamiento.',
-        'Almacenamiento social (Tu Bodega) con sharing.',
-        'Potenciales integraciones con marketplaces externos.',
-        'Modelo de monetización y alianzas comerciales.',
-        'Escalabilidad considerada desde el día uno.',
+        'Aunque el prototipo final fue limitado, la arquitectura conceptual de Licorímetro contemplaba un ecosistema mucho más amplio. El sistema incluía autenticación, perfiles, reputación, gamificación, recomendaciones inteligentes, almacenamiento social, interacción comunitaria — e integraciones potenciales con marketplaces externos.',
+        'Incluso desde una etapa académica, el proyecto ya contemplaba estrategias de fidelización, alianzas comerciales, modelos de monetización y escalabilidad. El pensamiento era product-first: no un proyecto escolar que resultó tener features, sino un MVP de startup que resultó construirse en clase.',
       ],
 
       whatChangedKicker: 'Evolución',
@@ -1251,28 +1224,22 @@ const translations = {
       reflectionsKicker: 'Reflexiones',
       reflectionsTitle: 'Más que una aplicación universitaria',
       reflectionsParas: [
-        'Licorímetro nunca se convirtió en una startup real. Pero representó algo más importante: la capacidad de <<transformar una necesidad cotidiana en un sistema digital complejo>> — combinando pensamiento de producto, diseño UX e ingeniería en una sola idea coherente.',
-        'Marcó el <<primer contacto con el desarrollo móvil>>, la primera experiencia con OCR y uno de los primeros ejercicios reales de arquitectura de producto. Más allá del resultado técnico, el proyecto demostró que <<curiosidad, resiliencia y velocidad de aprendizaje>> pueden convertir una idea universitaria en una visión con potencial real.',
+        'Licorímetro nunca se convirtió en una startup real. Pero representó algo más importante: la capacidad de transformar una necesidad cotidiana en un sistema digital complejo — combinando pensamiento de producto, diseño UX e ingeniería en una sola idea coherente.',
+        'Marcó el primer contacto con el desarrollo móvil, la primera experiencia con OCR y uno de los primeros ejercicios reales de arquitectura de producto. Más allá del resultado técnico, el proyecto demostró que curiosidad, resiliencia y velocidad de aprendizaje pueden convertir una idea universitaria en una visión con potencial real.',
       ],
 
-      stackKicker: 'Herramientas usadas',
-      stackTitle: 'Construido con',
 
-      ctaCode: 'Ver en GitHub',
     },
     candelaria: {
       tag: 'Semillero · Proyecto Académico',
       title: 'Candelaria Website',
       subtitle:
         'Líder de diseño y desarrollador único de la presencia digital completa de un equipo universitario de investigación en vehículos solares.',
-      faceDigital: 'Un sitio en React y Django construido de punta a punta — la cara pública del equipo, su pitch a patrocinadores y su archivo en un solo sistema.',
-      faceVisual: 'La identidad visual que lo sostiene: marca del cóndor, sistema de divisiones y las reglas que hacen que ocho subequipos se vean como uno.',
       role: 'Líder de Diseño · Ingeniería de Producto · Full-stack',
       period: 'Oct 2025 – Presente',
       status: 'En desarrollo',
       sectionRoleLabel: 'Rol',
       sectionTimelineLabel: 'Cronología y Estado',
-      heroTagline: 'Desafía los límites del sol',
       brandPage: {
         tag: 'Semillero · Identidad de Marca',
         title: 'Candelaria',
@@ -1280,9 +1247,6 @@ const translations = {
           'Líder de diseño detrás de la identidad visual de un semillero universitario de vehículos solares: la marca del cóndor, un sistema de logos para siete áreas y el manual de marca con el que trabaja todo el equipo.',
         role: 'Líder de Diseño · Identidad de Marca · Dirección de Arte',
         roleTitle: 'Liderando al equipo de diseño.',
-        ctaInstagram: 'Seguir en Instagram',
-        ctaWebsite: 'Ver el caso del website',
-        closingTitle: 'Sigue al equipo en Instagram',
       },
 
       teamsKicker: 'El Equipo',
@@ -1305,8 +1269,8 @@ const translations = {
       summaryKicker: 'Resumen',
       summaryTitle: 'La casa digital de un equipo, no un portafolio',
       summaryParas: [
-        'Candelaria es la <<presencia digital completa>> de un equipo universitario de ingeniería de competición. El sitio va más allá de un portafolio estático: integra <<gestión de miembros>>, publicaciones, membresías, donaciones, <<tienda de merchandise>> y un <<sistema de gamificación>> para seguidores, todo bajo una identidad visual cinética y de alto contraste.',
-        'El proyecto nació de la necesidad de <<centralizar la comunicación del equipo>>, facilitar el apoyo externo y ofrecer una experiencia de usuario a la altura del nivel técnico del equipo. Desde la arquitectura de base de datos hasta la paleta de color, cada decisión fue tomada con <<criterio de producto y de ingeniería>>.',
+        'Candelaria es la presencia digital completa de un equipo universitario de ingeniería de competición. El sitio va más allá de un portafolio estático: integra gestión de miembros, publicaciones, membresías, donaciones, tienda de merchandise y un sistema de gamificación para seguidores, todo bajo una identidad visual cinética y de alto contraste.',
+        'El proyecto nació de la necesidad de centralizar la comunicación del equipo, facilitar el apoyo externo y ofrecer una experiencia de usuario a la altura del nivel técnico del equipo. Desde la arquitectura de base de datos hasta la paleta de color, cada decisión fue tomada con criterio de producto y de ingeniería.',
       ],
 
       myRoleKicker: 'Dos roles, un proyecto',
@@ -1343,7 +1307,7 @@ const translations = {
       problemKicker: 'Problema',
       problemTitle: 'Más allá de un PDF y un link de donaciones',
       problemLead:
-        'Los equipos universitarios de competición suelen quedarse con <<soluciones parciales>>: una cuenta de Instagram, un PDF con sus logros y un link de donaciones genérico. Candelaria necesitaba <<algo diferente>>.',
+        'Los equipos universitarios de competición suelen quedarse con soluciones parciales: una cuenta de Instagram, un PDF con sus logros y un link de donaciones genérico. Candelaria necesitaba algo diferente.',
       problemBullets: [
         'Una plataforma que refleje la identidad técnica y visual del equipo.',
         'Un sistema que permita a seguidores externos apoyar económicamente con trazabilidad real.',
@@ -1471,26 +1435,18 @@ const translations = {
       reflectionsKicker: 'Reflexiones',
       reflectionsTitle: 'Lo que aprendí',
       reflectionsParas: [
-        'Candelaria fue el proyecto que me obligó a pensar como <<product engineer>>, no solo como desarrollador. Decisiones de arquitectura como cuándo usar Django vs Supabase, cómo modelar el sistema de tiers o cómo abstraer dos proveedores de pago requirieron razonar sobre <<trade-offs reales>>, no solo implementar features.',
-        'El mayor aprendizaje fue diseñar para <<dos audiencias completamente distintas>>: un seguidor externo que quiere apoyar con un clic, y un líder de equipo que necesita administrar personas y publicar contenido. Construir una sola plataforma que sirva a ambos sin que ninguno sienta que la interfaz no fue pensada para él fue el reto de diseño más interesante del proyecto.',
-        'Sostener al mismo tiempo el <<liderazgo de diseño>> y el <<desarrollo técnico>> reveló una ventaja concreta: cuando eres quien establece las reglas de marca y quien las implementa en código, cualquier inconsistencia aparece de inmediato. El costo es que también cargas con cada inconsistencia solo.',
+        'Candelaria fue el proyecto que me obligó a pensar como product engineer, no solo como desarrollador. Decisiones de arquitectura como cuándo usar Django vs Supabase, cómo modelar el sistema de tiers o cómo abstraer dos proveedores de pago requirieron razonar sobre trade-offs reales, no solo implementar features.',
+        'El mayor aprendizaje fue diseñar para dos audiencias completamente distintas: un seguidor externo que quiere apoyar con un clic, y un líder de equipo que necesita administrar personas y publicar contenido. Construir una sola plataforma que sirva a ambos sin que ninguno sienta que la interfaz no fue pensada para él fue el reto de diseño más interesante del proyecto.',
+        'Sostener al mismo tiempo el liderazgo de diseño y el desarrollo técnico reveló una ventaja concreta: cuando eres quien establece las reglas de marca y quien las implementa en código, cualquier inconsistencia aparece de inmediato. El costo es que también cargas con cada inconsistencia solo.',
       ],
 
-      stackKicker: 'Herramientas usadas',
-      stackTitle: 'Construido en solitario con',
-      stackHint: 'Pasa el cursor sobre los badges',
 
-      ctaVisit: 'Visitar el sitio',
-      ctaCode: 'Ver en GitHub',
     },
     sensewave: {
       title: 'SenseWave',
       subtitle: 'Una marca especulativa de neurotecnología que explora interfaces neurales directas para restaurar la sensación humana.',
 
       // Un proyecto, tres caras — la franja en la que aparece decide cuál.
-      faceProduct: 'Las gafas Sense Eco y un sistema de dos chips: el hardware que convierte la sensación grabada de otra persona en señal neural.',
-      faceDigital: 'La capa de interfaz que cura una biblioteca sensorial donada y le da al receptor control sobre qué siente y cuándo.',
-      faceVisual: 'Un sistema de marca construido sobre la empatía y no sobre el espectáculo — identidad, lenguaje y movimiento para una tecnología que debe inspirar confianza.',
 
       heroPeriod: 'Sensewave · Diseño Especulativo · 2025',
       heroH1: '¿Y si los recuerdos',
@@ -1577,8 +1533,6 @@ const translations = {
       title: 'El Umbral',
       subtitle:
         'Una mesa de centro modular compuesta por dos módulos intercambiables, donde el usuario decide cuál cara queda arriba.',
-      faceProduct: 'Dos estructuras idénticas, dos superficies distintas. Cambiar cuál queda arriba transforma el carácter de la mesa — sin herramientas ni herrajes.',
-      faceVisual: 'Un patrón que parte del estudio de la geometría precolombina y del trabajo de Antonio Grass, reescrito sobre la propia cuadrícula de la mesa.',
 
       metaRole: 'Rol',
       metaDimensions: 'Dimensiones',
@@ -1746,13 +1700,10 @@ const translations = {
 
       versionsIntro: 'En lugar de proponer una respuesta, construí tres, cada una una postura defendible sobre el mismo eje: ¿cuánto se puede comprimir una taxonomía antes de que deje de poder describir el contenido?',
       v1Title: 'V1 · Original recategorizado',
-      v1Count: '75 tags',
       v1Desc: 'Los tags existentes reorganizados bajo cinco categorías —Cuerpo, Mente, Relaciones, Sexo, Cultura— y sin duplicados. Esta versión demuestra que las categorías se sostienen, pero conserva el problema de volumen.',
       v2Title: 'V2 · Agrupación lógica',
-      v2Count: '46 tags',
       v2Desc: 'Tags condensados en conceptos y no en formulaciones. Lo bastante precisa para que Bloom AI recomiende con exactitud, todavía pesada para una fila de filtros en móvil.',
       v3Title: 'V3 · Acceso simplificado',
-      v3Count: '28 tags',
       v3Desc: 'La recomendación. Menos del 40% del conteo original, balanceada entre las cinco categorías, y lo bastante corta para que el filtro completo quepa en una pantalla de teléfono.',
       v3Badge: 'Sweet spot',
 
@@ -1765,7 +1716,6 @@ const translations = {
       bridgeP2: 'Esos tags compartidos son los que permiten que Bloom AI conecte un artículo archivado en Cuerpo con un podcast archivado en Mente. A quien lee sobre menopausia y hormonas se le puede señalar ansiedad y gestión emocional, porque la taxonomía misma codifica esa relación.',
       bridgeP3: 'El tinte que muestra ese solapamiento existe solo en la especificación. Para quien lee el sitio, el puente es invisible — simplemente siente que las recomendaciones la entienden.',
 
-      structureTitle: 'Estructura final · 28 tags en 5 categorías',
       categories: [
         { name: 'Cuerpo', count: '12', tags: 'menstruación · anticonceptivos · embarazo · fertilidad · menopausia · endometriosis · ITS · cuidado personal · hormonas · maternidad · deseo sexual · ginecología' },
         { name: 'Mente', count: '7', tags: 'ansiedad · autoestima · salud mental · depresión · autoconocimiento · hormonas · gestión emocional' },
@@ -1775,10 +1725,14 @@ const translations = {
       ],
 
       caseTitle: 'Cómo vive un contenido en el sistema',
-      caseIntro: 'Cada pieza tiene una categoría más dos a cinco tags. Los tags marcados son mixtos — aparecen en contenidos de otras categorías, y Bloom AI los lee como puentes para recomendación cruzada. Pasa el cursor sobre uno para ver qué conecta.',
+      caseIntro: 'Cada pieza tiene una categoría más dos a cinco tags. Los tags marcados son mixtos — aparecen en contenidos de otras categorías, y Bloom AI los lee como puentes para recomendación cruzada.',
+      caseHintPointer: 'Pasa el cursor sobre uno para ver qué conecta.',
+      caseHintTouch: 'Toca uno para ver qué conecta.',
 
       explorerLabel: 'Explorador de taxonomía',
-      explorerHint: 'Cambia de versión para ver cómo se comprime la taxonomía. Pasa el cursor sobre un tag para encontrar todas las categorías donde vive.',
+      explorerHint: 'Cambia de versión para ver cómo se comprime la taxonomía.',
+      explorerHintPointer: 'Pasa el cursor sobre un tag para encontrar todas las categorías donde vive.',
+      explorerHintTouch: 'Toca un tag para encontrar todas las categorías donde vive.',
       explorerTags: 'tags',
       explorerShared: 'Compartido entre categorías',
       explorerLang: 'Los tags aparecen tal como se entregaron al cliente.',

@@ -1,7 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /lab
-Disallow: /es/lab
-Disallow: /en/lab
 
 Sitemap: https://juligm4.com/sitemap.xml

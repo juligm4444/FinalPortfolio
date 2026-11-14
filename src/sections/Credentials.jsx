@@ -1,3 +1,4 @@
+import Surface from '../components/Surface.jsx'
 import { useLocale } from '../i18n/LocaleProvider.jsx'
 import ux from '../assets/badges/ux-fundamentals.webp'
 import edt from '../assets/badges/edt-practitioner.webp'
@@ -16,22 +17,28 @@ export default function Credentials() {
   const { t } = useLocale()
   const names = t('about.certItems')
   return (
-    <section className="creds" aria-labelledby="creds-title">
+    <Surface as="section" className="creds" aria-labelledby="creds-title">
       <h2 id="creds-title" className="creds__kicker">
         {t('about.certKicker')}
       </h2>
       <p className="creds__lead">{t('about.certLead')}</p>
-      <ul className="creds__list">
-        {names.map((name, i) => (
-          <li key={name} className="creds__item">
-            <img src={BADGES[i]} alt="" width="96" height="96" loading="lazy" decoding="async" />
-            <span className="creds__name">{name}</span>
-            <a className="creds__verify" href={VERIFY} target="_blank" rel="noopener noreferrer" aria-label={`${t('about.certVerify')}: ${name}`}>
-              {t('about.certVerify')}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </section>
+      {/* IBM first (the four SkillsBuild badges), then Cisco (the four NetAcad badges). */}
+      {[names.slice(0, 4), names.slice(4)].map((group, g) => (
+        <ul key={g} className="creds__list">
+          {group.map((name, j) => {
+            const i = g * 4 + j
+            return (
+              <li key={name} className="creds__item">
+                <img src={BADGES[i]} alt="" width="96" height="96" loading="lazy" decoding="async" />
+                <span className="creds__name">{name}</span>
+                <a className="creds__verify" href={VERIFY} target="_blank" rel="noopener noreferrer" aria-label={`${t('about.certVerify')}: ${name}`}>
+                  {t('about.certVerify')}
+                </a>
+              </li>
+            )
+          })}
+        </ul>
+      ))}
+    </Surface>
   )
 }

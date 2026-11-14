@@ -4,6 +4,45 @@
   width: 100%;
   min-height: calc(100dvh - var(--dock-h));
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+/* The stage holds the poster, the static text and the R3F canvas. */
+.hero__stage {
+  position: absolute;
+  inset: 0;
+}
+/* Calls to action: primary (Velour) and secondary (CV). A real <a> each. */
+.hero__actions {
+  position: absolute;
+  left: 8%;
+  bottom: 12%;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+}
+@media (max-width: 719px) {
+  /* Phone: bust and title on top, actions in their own band, dock below. No overlap. */
+  .hero {
+    /* nav row on top, dock at the bottom: the hero is what is left between them */
+    min-height: calc(100dvh - var(--nav-top-h) - var(--dock-h));
+  }
+  .hero__stage {
+    position: relative;
+    inset: auto;
+    flex: 1 1 auto;
+    min-height: 54dvh;
+  }
+  .hero__actions {
+    position: static;
+    flex: 0 0 auto;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: var(--space-3);
+    padding: var(--space-2) var(--space-4) var(--space-4);
+  }
 }
 .hero__poster,
 .hero__live {
@@ -38,9 +77,14 @@
 /* Static text, laid over the poster. Hidden when the scene carries the text. */
 .hero__static {
   position: absolute;
+  z-index: 2;
   left: 8%;
-  top: 30%;
-  max-width: 34ch;
+  top: 18%;
+  width: min(40%, 520px);
+  /* ACABADO §3: text over the photo stands on the veil */
+  padding: var(--space-4) var(--space-6);
+  background: var(--veil);
+  border-radius: var(--radius-slab);
 }
 @media (max-width: 719px) {
   .hero__static {
@@ -49,20 +93,12 @@
     bottom: 10%;
     transform: translateX(-50%);
     text-align: center;
-    width: max-content;
-    max-width: 90%;
+    width: 90%;
   }
 }
-.hero-text {
-  pointer-events: none;
-  user-select: none;
-  width: max-content;
-  max-width: 34ch;
+.hero__static .botanical {
+  min-height: 0;
 }
-.hero-text--narrow {
-  text-align: center;
-}
-.hero-text__name,
 .hero__static h1 {
   margin: 0;
   font-family: var(--font-display);
@@ -72,8 +108,7 @@
   letter-spacing: var(--tracking-h1);
   color: var(--text);
 }
-.hero-text__role,
-.hero__static p {
+.hero__static > p {
   margin: var(--space-3) 0 0;
   font-family: var(--font-label);
   font-size: var(--text-label);
@@ -81,4 +116,13 @@
   letter-spacing: var(--tracking-label);
   text-transform: uppercase;
   color: var(--text-muted);
+}
+.hero__actions .slab {
+  white-space: nowrap;
+}
+@media (max-width: 719px) {
+  .hero__actions .slab {
+    padding-inline: var(--space-4);
+    flex: 0 0 auto;
+  }
 }

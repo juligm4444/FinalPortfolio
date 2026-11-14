@@ -18,44 +18,6 @@
   font-display: swap;
 }
 
-/* ===== Candelaria project fonts — Sansation =====
-   Self-hosted, only downloaded when a page references it. */
-@font-face {
-  font-family: 'Sansation';
-  src: url('../assets/fonts/Sansation/Sansation-Light.ttf') format('truetype');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Sansation';
-  src: url('../assets/fonts/Sansation/Sansation-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Sansation';
-  src: url('../assets/fonts/Sansation/Sansation-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Sansation';
-  src: url('../assets/fonts/Sansation/Sansation-Italic.ttf') format('truetype');
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Sansation';
-  src: url('../assets/fonts/Sansation/Sansation-BoldItalic.ttf') format('truetype');
-  font-weight: 700;
-  font-style: italic;
-  font-display: swap;
-}
-
 /* ================= TOKENS (REDESIGN §2, Fase 1) =================
    Sin modo claro/oscuro. Una sola paleta: concreto, niebla, musgo, ocobo. */
 :root {
@@ -92,7 +54,7 @@
   --text-h3: 1.5rem;
   --text-species: 1.375rem;
   --text-body: 1rem;
-  --text-small: 0.8125rem;
+  --text-small: 0.875rem;
   --text-label: 0.875rem;
   --text-label-sm: 0.75rem;
 
@@ -118,44 +80,6 @@
   /* Layout */
   --nav-offset: 240px;
   --content-max: 1104px;
-
-  /* ── Alias de la paleta anterior ──
-     Las páginas y secciones existentes siguen leyendo estos nombres hasta que
-     se reescriban en Fases 5–8. Apuntan a los tokens nuevos; no añadir usos. */
-  --fg: var(--text);
-  --fg-soft: rgb(30 31 29 / 0.78);
-  --fg-muted: var(--text-muted);
-  --surface-2: var(--concrete-300);
-  --surface-strong: var(--concrete-300);
-  --pink-light: var(--bloom);
-  --pink: var(--bloom);
-  --pink-dark: var(--bloom-deep);
-  --pink-brand: var(--bloom-deep);
-  --white-light: var(--mist);
-  --white: var(--concrete-100);
-  --white-dark: var(--concrete-300);
-  --black-light: var(--concrete-500);
-  --black: var(--concrete-900);
-  --black-dark: var(--concrete-900);
-  --gray-light: var(--concrete-500);
-  --gray: var(--concrete-500);
-  --gray-dark: var(--concrete-900);
-  --pillar: var(--concrete-100);
-  --pillar-shade: rgb(0 0 0 / 0.18);
-  --hex-border: color-mix(in srgb, var(--text) 12%, transparent);
-  --glass-bg: color-mix(in srgb, var(--surface) 55%, transparent);
-  --glass-border: color-mix(in srgb, var(--text) 12%, transparent);
-  --filter-bar-bg: rgb(217 214 207 / 0.6);
-  --filter-active-from: var(--concrete-500);
-  --filter-active-to: var(--concrete-900);
-  --filter-active-fg: var(--mist);
-  --filter-fg: var(--text);
-  --glass-panel: rgb(221 242 235 / 0.42);
-  --glass-panel-hover: rgb(221 242 235 / 0.62);
-  --glass-panel-edge: rgb(221 242 235 / 0.55);
-  --glass-ink: var(--concrete-900);
-  --glass-ink-soft: rgb(30 31 29 / 0.62);
-  --glass-ink-faint: rgb(30 31 29 / 0.28);
 }
 
 @layer base {

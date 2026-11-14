@@ -1,0 +1,94 @@
+.donor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding-block: var(--space-6);
+}
+@media (min-width: 768px) {
+  .donor {
+    flex-direction: row;
+  }
+}
+.donor__node {
+  display: grid;
+  place-items: center;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  font-family: var(--font-label);
+  font-size: var(--text-label-sm);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text);
+  background: var(--mist);
+  animation: donor-pulse 3.5s ease-in-out infinite;
+}
+.donor__node--a {
+  border: 3px solid var(--moss-700);
+}
+.donor__node--b {
+  border: 3px solid var(--concrete-500);
+  animation-delay: 1.75s;
+}
+.donor__link {
+  /* Phone: a vertical joint with the label in the flow, never beside it (no clipping). */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+}
+.donor__link::before,
+.donor__link::after {
+  content: '';
+  width: 3px;
+  height: 20px;
+  background: var(--concrete-500);
+}
+.donor__label {
+  max-width: 100%;
+  text-align: center;
+  font-family: var(--font-label);
+  font-size: var(--text-label-sm);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+@media (min-width: 768px) {
+  .donor__link {
+    position: relative;
+    flex: 1;
+    max-width: 320px;
+    height: 3px;
+    display: block;
+    background: var(--concrete-500);
+  }
+  .donor__link::before,
+  .donor__link::after {
+    content: none;
+  }
+  .donor__label {
+    position: absolute;
+    bottom: var(--space-3);
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    padding: 0 var(--space-1);
+    background: var(--concrete-100);
+  }
+}
+@keyframes donor-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--moss-400) 0%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 0 10px color-mix(in srgb, var(--moss-400) 22%, transparent);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .donor__node {
+    animation: none;
+  }
+}

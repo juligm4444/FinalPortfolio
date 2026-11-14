@@ -31,9 +31,6 @@ export function getRouteMeta(locale, path) {
     const work = t.works[SLUG_TO_WORK[projectSlug(path)]]
     title = work ? `${work.title} — ${site}` : site
     description = work?.desc ?? t.meta.home.description
-  } else if (key === 'lab') {
-    title = `${t.meta.lab.title} — ${site}`
-    description = t.meta.lab.description
     noindex = true
   } else if (key === 'unknown') {
     title = site

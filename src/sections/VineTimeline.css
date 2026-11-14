@@ -32,27 +32,27 @@
 }
 .vine__body {
   position: relative;
+  --vine-gap: var(--space-6);
   display: grid;
-  grid-template-columns: 120px 1fr;
-  gap: var(--space-6);
+  grid-template-columns: 64px 1fr;
+  gap: var(--vine-gap);
 }
 .vine__svg {
-  width: 120px;
-  height: 100%;
+  width: 64px;
+  height: auto;
   grid-column: 1;
   grid-row: 1;
-  align-self: stretch;
+  align-self: start;
   overflow: visible;
 }
 .vine__pier {
-  fill: var(--concrete-100);
-  stroke: var(--concrete-300);
-  stroke-width: 1;
+  /* no grey bar: the stem stands on its own against the veil */
+  display: none;
 }
 .vine__stem {
   fill: none;
   stroke: var(--moss-700);
-  stroke-width: 4;
+  stroke-width: 9;
   stroke-linecap: round;
   stroke-linejoin: round;
   vector-effect: non-scaling-stroke;
@@ -60,38 +60,43 @@
 .vine__list {
   grid-column: 2;
   grid-row: 1;
+  align-self: start;
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-auto-rows: minmax(100px, auto);
   row-gap: var(--space-4);
-  min-height: var(--vine-h);
   /* oldest at the top, as approved; the vine climbs from the foot. */
 }
 .vine__item {
   position: relative;
-  padding-top: var(--space-2);
-  padding-left: var(--space-4);
+  padding: var(--space-4) var(--space-6);
+  background: var(--concrete-100);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-slab);
+  box-shadow: var(--slab-shadow);
 }
 .vine__sprout {
   position: absolute;
-  left: calc(-1 * var(--space-6) - 60px - 6px);
-  top: calc(var(--space-2) + 4px);
-  width: 12px;
-  height: 12px;
+  left: calc(-1 * var(--vine-gap) - 32px - 10px);
+  top: 14px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   background: var(--moss-400);
+  border: 3px solid var(--moss-700);
+  box-sizing: border-box;
   box-shadow: 0 0 0 3px var(--mist);
   transform: scale(0.35);
   transition: transform 420ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .vine__item--bloom .vine__sprout {
   background: var(--bloom);
-  width: 16px;
-  height: 16px;
-  left: calc(-1 * var(--space-6) - 60px - 8px);
-  top: calc(var(--space-2) + 2px);
+  width: 26px;
+  height: 26px;
+  border-color: var(--bloom-deep);
+  left: calc(-1 * var(--vine-gap) - 32px - 13px);
+  top: 11px;
 }
 .vine__item.is-grown .vine__sprout {
   transform: scale(1);
@@ -121,22 +126,24 @@
 }
 @media (max-width: 767px) {
   .vine__body {
-    grid-template-columns: 64px 1fr;
-    gap: var(--space-4);
+    --vine-gap: var(--space-4);
   }
-  .vine__svg {
-    width: 64px;
-  }
-  .vine__list {
-    grid-auto-rows: auto;
-    row-gap: var(--space-6);
-  }
-  .vine__sprout {
-    left: calc(-1 * var(--space-4) - 32px - 6px);
-  }
-  .vine__item--bloom .vine__sprout {
-    left: calc(-1 * var(--space-4) - 32px - 8px);
-  }
+}
+/* Branch: joins each sprout to its slab, so the vine visibly ties the milestones. */
+.vine__sprout::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: calc(var(--vine-gap) + 32px - 10px);
+  height: 6px;
+  margin-top: -3px;
+  background: var(--moss-700);
+  border-radius: 3px;
+}
+.vine__item--bloom .vine__sprout::after {
+  width: calc(var(--vine-gap) + 32px - 13px);
+  background: var(--moss-700);
 }
 /* No JS or reduced motion: everything drawn, every sprout grown. */
 @media (prefers-reduced-motion: reduce) {
@@ -174,11 +181,11 @@
   color: var(--text-muted);
 }
 .about__story p {
-  max-width: 68ch;
+  max-width: 62ch;
   margin: 0 0 var(--space-6);
   font-family: var(--font-body);
-  font-size: var(--text-body);
-  line-height: var(--leading-body);
+  font-size: 1.0625rem;
+  line-height: 1.75;
   color: var(--text);
 }
 .about__ocobo {
@@ -215,13 +222,11 @@
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(8, minmax(0, 1fr));
-  gap: var(--space-4);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-6) var(--space-4);
 }
-@media (max-width: 1023px) {
-  .creds__list {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
+.creds__list + .creds__list {
+  margin-top: var(--space-8);
 }
 @media (max-width: 479px) {
   .creds__list {
@@ -242,7 +247,7 @@
 }
 .creds__name {
   font-family: var(--font-label);
-  font-size: var(--text-label-sm);
+  font-size: var(--text-label);
   letter-spacing: 0.02em;
   color: var(--text);
 }
@@ -251,7 +256,7 @@
   font-size: var(--text-label-sm);
   letter-spacing: var(--tracking-label);
   text-transform: uppercase;
-  color: var(--bloom-ink);
+  color: var(--moss-700);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -263,4 +268,17 @@
   .vine__list {
     grid-auto-rows: 1fr;
   }
+}
+
+/* The ocobo closes the page: no veil, no rectangle; it fades into the background on every
+   side and its pink is toned down (ACABADO §2, §5). */
+.surface.about__ocobo {
+  background: none;
+  padding-block: var(--space-4);
+  -webkit-mask-image: radial-gradient(closest-side, rgb(0 0 0) 35%, transparent 100%);
+  mask-image: radial-gradient(closest-side, rgb(0 0 0) 35%, transparent 100%);
+}
+.about__ocobo > * {
+  filter: saturate(0.45);
+  opacity: 0.85;
 }

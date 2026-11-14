@@ -3,6 +3,14 @@ import candelariaSite from '../assets/images/candelaria/website-hero.webp'
 import sensewaveMark from '../assets/images/sensewave/sensewave_mark.webp'
 import umbralRender from '../assets/images/umbral/config-pattern-up.webp'
 import bloomLogo from '../assets/images/bloom/bloom_logo.webp'
+import candelariaSpecimen from '../assets/images/candelaria/condor-specimen.webp'
+import umbralSpecimen from '../assets/images/umbral/umbral-specimen.webp'
+import sensewaveSite from '../assets/images/sensewave/website-hero.webp'
+import sensewaveCutout from '../assets/images/sensewave/glasses-cutout.webp'
+import sensewaveApart from '../assets/images/sensewave/glasses-exploded-cutout.webp'
+import umbralApart from '../assets/images/umbral/exploded-cutout.webp'
+import sensewaveSpecimen from '../assets/images/sensewave/mark-specimen.webp'
+import bloomSpecimen from '../assets/images/bloom/bloom-specimen.webp'
 // Authored here rather than supplied — see the note in the file itself.
 import licorimetroLogo from '../assets/images/licorimetro/licorimetro_logo.svg'
 
@@ -41,7 +49,15 @@ const works = [
     status: 'live',
     href: '/projects/candelaria-website',
     site: 'https://www.candelaria.website/',
-    media: { screenshot: candelariaSite },
+    media: { screenshot: candelariaSite, specimen: candelariaSite },
+  },
+  {
+    id: 'sensewaveSite',
+    group: 'web',
+    status: 'delivered',
+    href: '/projects/sensewave',
+    site: null,
+    media: { screenshot: sensewaveSite },
   },
   {
     id: 'portfolio',
@@ -51,6 +67,23 @@ const works = [
     site: 'https://www.juligm4.com/',
     media: { screenshot: portfolioShot },
   },
+  // No capture yet: the deck shows a designed concrete slab with name and status.
+  {
+    id: 'freelanceSite',
+    group: 'web',
+    status: 'in-progress',
+    href: null,
+    site: null,
+    media: {},
+  },
+  {
+    id: 'adidasMilo',
+    group: 'web',
+    status: 'soon',
+    href: null,
+    site: null,
+    media: {},
+  },
 
   // ── DIGITAL ──────────────────────────────────────────────────────────
   {
@@ -59,7 +92,7 @@ const works = [
     status: 'academic',
     href: '/projects/licorimetro',
     site: null,
-    media: { logo: licorimetroLogo },
+    media: { logo: licorimetroLogo, specimen: licorimetroLogo },
   },
   {
     id: 'bloom',
@@ -67,7 +100,7 @@ const works = [
     status: 'delivered',
     href: '/projects/bloom',
     site: 'https://bebloomers.com/',
-    media: { logo: bloomLogo },
+    media: { logo: bloomLogo, specimen: bloomSpecimen },
   },
 
   // ── OBJETO ───────────────────────────────────────────────────────────
@@ -77,7 +110,7 @@ const works = [
     status: 'academic',
     href: '/projects/umbral',
     site: null,
-    media: { render: umbralRender, exploded: umbralExploded, views: [umbralTop, umbralSide, umbralIso] },
+    media: { specimen: umbralSpecimen, pedestal: { piece: umbralSpecimen, apart: umbralApart }, render: umbralRender, exploded: umbralExploded, views: [umbralTop, umbralSide, umbralIso] },
   },
   {
     id: 'sensewaveProduct',
@@ -85,7 +118,7 @@ const works = [
     status: 'academic',
     href: '/projects/sensewave',
     site: null,
-    media: { render: sensewaveGlasses, exploded: sensewaveChips, logo: sensewaveMark },
+    media: { specimen: sensewaveSpecimen, pedestal: { piece: sensewaveCutout, apart: sensewaveApart }, render: sensewaveGlasses, exploded: sensewaveChips, logo: sensewaveMark },
   },
 
   // ── MARCA ────────────────────────────────────────────────────────────
@@ -95,7 +128,7 @@ const works = [
     status: 'live',
     href: '/projects/candelaria',
     site: null,
-    media: { logo: candelariaLogo },
+    media: { logo: candelariaLogo, specimen: candelariaSpecimen },
   },
 ]
 
@@ -142,10 +175,10 @@ export const caseStudies = {
 }
 
 /**
- * The three the Herbario on the homepage presses: web, digital, object —
- * one per group, so the range is obvious before anyone clicks through.
+ * The six the Herbario on the homepage presses. Each has `media.specimen`:
+ * the one image used there (ACABADO §5), cropped to its content.
  */
-export const homeFeatured = ['candelariaWebsite', 'bloom', 'sensewaveProduct']
+export const homeFeatured = ['candelariaWebsite', 'candelariaBrand', 'licorimetro', 'bloom', 'umbral', 'sensewaveProduct']
   .map((id) => works.find((w) => w.id === id))
   .filter(Boolean)
 

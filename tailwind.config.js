@@ -32,11 +32,6 @@ export default {
           DEFAULT: 'var(--cta-bg)',
           text: 'var(--cta-text)',
         },
-        // Legacy names used by pages pending rewrite (Fases 5–8). Do not add uses.
-        black: { light: 'var(--concrete-500)', DEFAULT: 'var(--concrete-900)', dark: 'var(--concrete-900)' },
-        pink: { light: 'var(--bloom)', DEFAULT: 'var(--bloom)', dark: 'var(--bloom-deep)' },
-        gray: { light: 'var(--concrete-500)', DEFAULT: 'var(--concrete-500)', dark: 'var(--concrete-900)' },
-        white: { light: 'var(--mist)', DEFAULT: 'var(--concrete-100)', dark: 'var(--concrete-300)' },
       },
       fontFamily: {
         display: ['"Libre Baskerville"', 'Georgia', 'serif'],
