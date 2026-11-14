@@ -293,6 +293,9 @@
     min-height: 36px;
     font-size: var(--text-label-sm);
   }
+  .side-nav__brand img {
+    height: 22px !important;
+  }
   .nav-pill--lang {
     margin-top: 0;
     margin-left: auto;
@@ -306,5 +309,23 @@
   }
   .dock__list {
     gap: var(--space-2);
+  }
+}
+
+/* ---------- 390 px: the whole top row fits (logo, 3 links, language) ---------- */
+@media (max-width: 420px) {
+  .side-nav {
+    gap: var(--space-2);
+    padding-inline: var(--space-3);
+  }
+  .side-nav__brand img {
+    height: 18px !important;
+  }
+  .side-nav__list {
+    gap: 0;
+  }
+  .nav-pill {
+    padding: var(--space-1) var(--space-2);
+    letter-spacing: 0.04em;
   }
 }

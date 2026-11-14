@@ -9,8 +9,8 @@ export default function Logo({ size = 44, className = '' }) {
       width={size}
       height={size}
       draggable="false"
-      className={`block select-none ${className}`}
-      style={{ height: size, width: 'auto' }}
+      className={`block shrink-0 select-none ${className}`}
+      style={{ height: size, width: 'auto', maxWidth: 'none' }}
     />
   )
 }
