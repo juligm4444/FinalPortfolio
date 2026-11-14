@@ -78,15 +78,15 @@ const translations = {
     hero: {
       name: 'Julián Galindo',
       tagline: 'Designer & Developer',
+      ctaProjects: 'See projects',
+      ctaCv: 'Download CV',
       profileAlt: 'Julián Galindo Mora',
     },
     home: {
       bioTitle: 'About me',
+      bioLink: 'More about me',
       bioPara1:
         'I study Design at Universidad de los Andes after nine semesters of Systems Engineering. Today what I enjoy most is structuring a product and building its whole aesthetic and functional side: identity, components, functionality and feel.',
-      bioPill1: 'Structure',
-      bioPill2: 'Aesthetics',
-      bioPill3: 'Human-centered',
       herbKicker: 'Herbarium',
       herbTitle: 'Specimens from the last two years',
       herbCta: 'All projects',
@@ -1002,15 +1002,15 @@ const translations = {
     hero: {
       name: 'Julián Galindo',
       tagline: 'Diseñador y Desarrollador',
+      ctaProjects: 'Ver proyectos',
+      ctaCv: 'Descargar CV',
       profileAlt: 'Julián Galindo Mora',
     },
     home: {
       bioTitle: 'Sobre mí',
+      bioLink: 'Más sobre mí',
       bioPara1:
         'Estudio Diseño en la Universidad de los Andes después de nueve semestres de Ingeniería de Sistemas. Hoy lo que más disfruto es estructurar un producto y construir todo su apartado estético y funcional: identidad, componentes, funcionalidad y sensación.',
-      bioPill1: 'Estructura',
-      bioPill2: 'Estética',
-      bioPill3: 'Centrado en la persona',
       herbKicker: 'Herbario',
       herbTitle: 'Especímenes de los últimos dos años',
       herbCta: 'Todos los proyectos',

@@ -4,6 +4,45 @@
   width: 100%;
   min-height: calc(100dvh - var(--dock-h));
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+/* The stage holds the poster, the static text and the R3F canvas. */
+.hero__stage {
+  position: absolute;
+  inset: 0;
+}
+/* Calls to action: primary (Velour) and secondary (CV). A real <a> each. */
+.hero__actions {
+  position: absolute;
+  left: 8%;
+  bottom: 12%;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+}
+@media (max-width: 719px) {
+  /* Phone: bust and title on top, actions in their own band, dock below. No overlap. */
+  .hero {
+    /* nav row on top, dock at the bottom: the hero is what is left between them */
+    min-height: calc(100dvh - var(--nav-top-h) - var(--dock-h));
+  }
+  .hero__stage {
+    position: relative;
+    inset: auto;
+    flex: 1 1 auto;
+    min-height: 54dvh;
+  }
+  .hero__actions {
+    position: static;
+    flex: 0 0 auto;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: var(--space-3);
+    padding: var(--space-2) var(--space-4) var(--space-4);
+  }
 }
 .hero__poster,
 .hero__live {
@@ -85,4 +124,13 @@
   letter-spacing: var(--tracking-label);
   text-transform: uppercase;
   color: var(--text-muted);
+}
+.hero__actions .slab {
+  white-space: nowrap;
+}
+@media (max-width: 719px) {
+  .hero__actions .slab {
+    padding-inline: var(--space-4);
+    flex: 0 0 auto;
+  }
 }

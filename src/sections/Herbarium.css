@@ -168,3 +168,31 @@
     transition: none;
   }
 }
+
+/* Mini bio (ACABADO §6): one paragraph on a slab and a link. */
+.bio {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--space-12) var(--space-4);
+}
+@media (min-width: 768px) {
+  .bio {
+    padding-left: var(--space-8);
+    padding-right: var(--space-8);
+  }
+}
+.bio__slab {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-6);
+  padding: var(--space-8);
+}
+.bio__text {
+  margin: 0;
+  max-width: 62ch;
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--text);
+}

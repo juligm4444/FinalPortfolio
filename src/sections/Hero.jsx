@@ -1,6 +1,9 @@
 import { Component, useEffect, useRef, useState } from 'react'
 import { useLocale } from '../i18n/LocaleProvider.jsx'
 import { useWebGL } from '../webgl/index.js'
+import VelourBolster from '../components/VelourBolster.jsx'
+import cvEn from '../assets/files/CV-English.pdf'
+import cvEs from '../assets/files/CV-Español.pdf'
 import poster from '../assets/backgrounds/hero-poster.webp'
 import './Hero.css'
 
@@ -28,12 +31,21 @@ class SceneBoundary extends Component {
       slot; once its first frame is drawn the poster fades and the texts move
       into the scene (still DOM, still a real <h1>). */
 export default function Hero() {
-  const { t } = useLocale()
+  const { t, locale } = useLocale()
   const { ref, active } = useWebGL({ id: 'hero' })
   const [Scene, setScene] = useState(null)
   const [status, setStatus] = useState('pending')
   const [draws] = useState(() => ({ n: 0 }))
   const sectionRef = useRef(null)
+  // Phone: a smaller primary button so both calls to action sit on one row.
+  const [phone, setPhone] = useState(false)
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 719px)')
+    const on = () => setPhone(mq.matches)
+    on()
+    mq.addEventListener('change', on)
+    return () => mq.removeEventListener('change', on)
+  }, [])
   const setRefs = (el) => {
     ref.current = el
     sectionRef.current = el
@@ -62,18 +74,30 @@ export default function Hero() {
 
   return (
     <section ref={setRefs} className={`hero ${live ? 'hero--live' : ''}`} data-webgl={live ? 'active' : 'fallback'}>
-      <img className="hero__poster" src={poster} alt="" width="549" height="752" decoding="async" />
-      {!live && (
-        <div className="hero__static">
-          <h1>{name}</h1>
-          <p>{role}</p>
-        </div>
-      )}
-      {active && Scene && (
-        <SceneBoundary onFail={() => setStatus('pending')}>
-          <Scene name={name} role={role} onStatus={setStatus} draws={draws} />
-        </SceneBoundary>
-      )}
+      <div className="hero__stage">
+        <img className="hero__poster" src={poster} alt="" width="549" height="752" decoding="async" />
+        {!live && (
+          <div className="hero__static">
+            <h1>{name}</h1>
+            <p>{role}</p>
+          </div>
+        )}
+        {active && Scene && (
+          <SceneBoundary onFail={() => setStatus('pending')}>
+            <Scene name={name} role={role} onStatus={setStatus} draws={draws} />
+          </SceneBoundary>
+        )}
+      </div>
+      <div className="hero__actions">
+        <VelourBolster label={t('hero.ctaProjects')} to="/projects" id="hero-cta" width={phone ? 184 : 240} height={phone ? 56 : 68} />
+        <a
+          className="slab"
+          href={locale === 'es' ? cvEs : cvEn}
+          download={locale === 'es' ? 'Julian-Galindo-CV-Espanol.pdf' : 'Julian-Galindo-CV-English.pdf'}
+        >
+          {t('hero.ctaCv')}
+        </a>
+      </div>
     </section>
   )
 }
