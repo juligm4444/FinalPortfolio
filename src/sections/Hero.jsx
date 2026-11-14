@@ -1,8 +1,24 @@
-import { useEffect, useRef, useState } from 'react'
+import { Component, useEffect, useRef, useState } from 'react'
 import { useLocale } from '../i18n/LocaleProvider.jsx'
 import { useWebGL } from '../webgl/index.js'
 import poster from '../assets/backgrounds/hero-poster.webp'
 import './Hero.css'
+
+/* If the scene throws (blocked or corrupt GLB, context loss) the poster and the
+   plain-HTML texts stay: a missing 3D model must never blank the page. */
+class SceneBoundary extends Component {
+  state = { failed: false }
+  static getDerivedStateFromError() {
+    return { failed: true }
+  }
+  componentDidCatch(err) {
+    console.warn('hero scene failed, keeping the static poster', err)
+    this.props.onFail?.()
+  }
+  render() {
+    return this.state.failed ? null : this.props.children
+  }
+}
 
 /* Home hero. Three layers:
    1. the poster (static fallback — low-end devices, reduced motion, no WebGL2,
@@ -53,7 +69,11 @@ export default function Hero() {
           <p>{role}</p>
         </div>
       )}
-      {active && Scene && <Scene name={name} role={role} onStatus={setStatus} draws={draws} />}
+      {active && Scene && (
+        <SceneBoundary onFail={() => setStatus('pending')}>
+          <Scene name={name} role={role} onStatus={setStatus} draws={draws} />
+        </SceneBoundary>
+      )}
     </section>
   )
 }

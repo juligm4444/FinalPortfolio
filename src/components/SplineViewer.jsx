@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useWebGL } from '../webgl/index.js'
 
 /**
@@ -47,6 +47,7 @@ export default function SplineViewer({
 }) {
   const [ready, setReady] = useState(false)
   const { ref, active } = useWebGL({ id: `spline:${url}` })
+  const hostRef = useRef(null)
 
   useEffect(() => {
     if (!active) return
@@ -59,11 +60,26 @@ export default function SplineViewer({
     }
   }, [active])
 
+  // Unmounting the element leaves its WebGL context to the GC; release it now.
+  useEffect(() => {
+    if (!(active && ready)) return
+    const el = hostRef.current?.querySelector('spline-viewer')
+    return () => {
+      const canvas = el?.shadowRoot?.querySelector('canvas')
+      const gl = canvas && (canvas.getContext('webgl2') || canvas.getContext('webgl'))
+      gl?.getExtension('WEBGL_lose_context')?.loseContext()
+    }
+  }, [active, ready])
+
   // One stable wrapper carries the observer ref for both states; swapping
   // the observed node would make the observer report it as gone.
   return (
     <div
-      ref={ref}
+      ref={(el) => {
+        ref.current = el
+        hostRef.current = el
+      }}
+      role="img"
       className={className}
       style={{ width: '100%', height: '100%', background: 'transparent', ...style }}
       aria-label={ariaLabel}

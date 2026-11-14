@@ -35,7 +35,7 @@ export default function SideNav() {
         type="button"
         className="nav-pill nav-pill--lang"
         onClick={toggle}
-        aria-label={t(`nav.langSwitch.${other}`)}
+        aria-label={`${t(`nav.langShort.${other}`)} — ${t(`nav.langSwitch.${other}`)}`}
         lang={other}
       >
         {t(`nav.langShort.${other}`)}

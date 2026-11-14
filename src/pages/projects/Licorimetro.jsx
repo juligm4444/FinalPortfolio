@@ -542,7 +542,7 @@ function FlowStepCard({ step, icon, mobile = false }) {
         {icon}
       </div>
 
-      <h4
+      <h3
         className="font-display"
         style={{
           fontSize: 16,
@@ -553,7 +553,7 @@ function FlowStepCard({ step, icon, mobile = false }) {
         }}
       >
         {step.title}
-      </h4>
+      </h3>
 
       <p
         className="font-body"
@@ -609,7 +609,7 @@ function ArchitectureDiagram() {
                   fontSize: 9,
                   letterSpacing: '0.22em',
                   textTransform: 'uppercase',
-                  color: layer.highlight ? ACCENT : 'var(--fg-muted)',
+                  color: layer.highlight ? ACCENT : 'var(--fg-soft)',
                   marginBottom: 14,
                 }}
               >
@@ -725,7 +725,7 @@ function OCRScanVisual() {
             background: `color-mix(in srgb, ${ACCENT} 6%, transparent)`,
           }}
         >
-          <span style={{ color: 'var(--fg-muted)', fontSize: 11, letterSpacing: '0.1em', opacity: 0.7 }}>
+          <span style={{ color: 'var(--fg-soft)', fontSize: 11, letterSpacing: '0.1em' }}>
             ANALYSING BITMAP...
           </span>
           <span
@@ -753,11 +753,11 @@ function OCRScanVisual() {
           <div key={row.label} style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
             <span
               style={{
-                color: row.active ? ACCENT : 'var(--fg-muted)',
+                color: row.active ? ACCENT : 'var(--fg-soft)',
                 fontSize: 10,
                 fontWeight: 700,
                 letterSpacing: '0.12em',
-                opacity: row.active ? 1 : 0.45,
+                opacity: 1,
               }}
             >
               {row.label}
@@ -769,7 +769,7 @@ function OCRScanVisual() {
                 background: `color-mix(in srgb, var(--fg) ${row.active ? 18 : 10}%, transparent)`,
               }}
             />
-            <span style={{ color: row.active ? 'var(--fg)' : 'var(--fg-muted)', fontSize: 10, opacity: row.active ? 1 : 0.45 }}>
+            <span style={{ color: row.active ? 'var(--fg)' : 'var(--fg-soft)', fontSize: 10 }}>
               {row.confidence}
             </span>
           </div>
@@ -786,14 +786,14 @@ function OCRScanVisual() {
           <p style={{ color: 'var(--fg)', fontSize: 12, fontWeight: 700, letterSpacing: '0.06em' }}>
             BEVERAGE IDENTIFIED
           </p>
-          <p style={{ color: 'var(--fg-muted)', fontSize: 10, marginTop: 4 }}>confidence: 87.4%</p>
+          <p style={{ color: 'var(--fg-soft)', fontSize: 10, marginTop: 4 }}>confidence: 87.4%</p>
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 3, marginTop: 2 }}>
-          <span style={{ color: 'var(--fg-muted)', fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
+          <span style={{ color: 'var(--fg-soft)', fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
             BITMAP ANALYSIS · MANUAL OCR
           </span>
-          <span style={{ color: 'var(--fg-muted)', fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', opacity: 0.5 }}>
+          <span style={{ color: 'var(--fg-soft)', fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
             NO ML FRAMEWORK · HAND-BUILT
           </span>
         </div>

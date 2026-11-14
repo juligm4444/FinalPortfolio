@@ -101,11 +101,12 @@ export default function Umbral() {
           </Reveal>
           <ol className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {h('steps').map((s, i) => (
-              <Reveal key={s.n} delay={i * 0.06}>
-                <li
-                  className="h-full p-5"
-                  style={{ borderTop: `2px solid color-mix(in srgb, ${ACCENT} 45%, transparent)` }}
-                >
+              <li
+                key={s.n}
+                className="h-full p-5"
+                style={{ borderTop: `2px solid color-mix(in srgb, ${ACCENT} 45%, transparent)` }}
+              >
+                <Reveal delay={i * 0.06}>
                   <span
                     className="font-display"
                     style={{ color: ACCENT, fontSize: 26, fontWeight: 700 }}
@@ -124,8 +125,8 @@ export default function Umbral() {
                   >
                     {s.desc}
                   </p>
-                </li>
-              </Reveal>
+                </Reveal>
+              </li>
             ))}
           </ol>
         </div>
