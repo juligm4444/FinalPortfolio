@@ -6,7 +6,7 @@ export default function Bio() {
   const pills = [t('home.bioPill1'), t('home.bioPill2'), t('home.bioPill3')]
 
   return (
-    <section className="mx-auto w-full max-w-[1200px] px-4 py-24 md:px-8 md:py-32">
+    <section className="bio mx-auto w-full max-w-[1200px] px-4 py-24 md:px-8 md:py-32">
       <div>
         {/* RIGHT — paragraphs + (kicker / pills / slab moved to the bottom) */}
         <div className="flex max-w-[780px] flex-col">
@@ -55,10 +55,6 @@ export default function Bio() {
                   </span>
                 ))}
               </div>
-              <span
-                aria-hidden
-                style={{ width: 36, height: 36, background: 'var(--bloom)' }}
-              />
             </div>
           </div>
         </div>

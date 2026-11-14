@@ -6,8 +6,8 @@
   --case-display: var(--font-display);
 
   /* Base por si un caso no define algo: la paleta del sitio. */
-  --case-accent: var(--bloom-ink);
-  --case-accent-soft: var(--bloom);
+  --case-accent: var(--moss-700);
+  --case-accent-soft: var(--moss-400);
   --case-accent-2: var(--moss-700);
   --case-on-accent: var(--mist);
   --case-bg: var(--mist);

@@ -976,7 +976,7 @@ export default function CitronKeyscapeCanvas({ words, captionLines, logo, onStat
         font: { fontFamily: tok.fontLabel, fontWeight: 700, lineHeight: "1.12em", letterSpacing: "0em" },
         textColor: tok.str.c900,
         scale: DEFAULTS.scale,
-        palette: { accent: tok.str.bloom, light: tok.str.c100, dark: tok.str.c500, ink: tok.str.c900 },
+        palette: { accent: tok.str.bloom, light: tok.str.c100, dark: tok.str.c300, ink: tok.str.c900 },
         glow: DEFAULTS.glow,
         parallax: DEFAULTS.parallax,
         press: DEFAULTS.press,
@@ -1680,8 +1680,8 @@ export default function CitronKeyscapeCanvas({ words, captionLines, logo, onStat
             ink.set(pal.ink)
             for (const c of combos) {
                 c.mat.color.copy(c.style === 1 ? light : dark)
-                ;(c.uni.uTopInk.value ).copy(c.style === 0 ? accent : c.style === 1 ? ink : light)
-                c.uni.uInkGlow.value = c.style === 0 ? 0.35 : 0
+                ;(c.uni.uTopInk.value ).copy(ink)
+                c.uni.uInkGlow.value = 0
             }
             heroMat.color.copy(light).lerp(accent, 0.2)
             ;(heroU.uTopInk.value ).set(p.textColor)
