@@ -17,7 +17,7 @@ export default function Bio() {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             style={{
               fontFamily: 'var(--font-label)',
-              color: 'var(--fg-soft)',
+              color: 'var(--text-muted)',
               fontSize: 18,
               lineHeight: 1.7,
               fontWeight: 400,
@@ -48,7 +48,7 @@ export default function Bio() {
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
             className="font-display"
             style={{
-              color: 'var(--fg)',
+              color: 'var(--text)',
               fontSize: 'clamp(28px, 3.4vw, 44px)',
               lineHeight: 1.18,
               fontWeight: 400,
@@ -58,10 +58,10 @@ export default function Bio() {
           </motion.p>
 
           {/* Kicker + pills + slab — now at the bottom of the right column */}
-          <div className="mt-12 pt-10" style={{ borderTop: '1px solid color-mix(in srgb, var(--fg) 12%, transparent)' }}>
+          <div className="mt-12 pt-10" style={{ borderTop: '1px solid color-mix(in srgb, var(--text) 12%, transparent)' }}>
             <p
               className="font-nav uppercase tracking-[0.22em]"
-              style={{ color: 'var(--fg-muted)', fontSize: 12 }}
+              style={{ color: 'var(--text-muted)', fontSize: 12 }}
             >
               {t('home.bioTitle')}
             </p>
@@ -73,8 +73,8 @@ export default function Bio() {
                     key={p}
                     className="inline-flex items-center font-nav"
                     style={{
-                      border: '1px solid var(--fg)',
-                      color: 'var(--fg)',
+                      border: '1px solid var(--text)',
+                      color: 'var(--text)',
                       fontSize: 13,
                       padding: '6px 12px',
                       borderRadius: 999,

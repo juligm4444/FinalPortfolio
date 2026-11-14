@@ -94,7 +94,7 @@ export default function Umbral() {
           <Reveal>
             <p
               className="mb-8 font-nav uppercase"
-              style={{ fontSize: 10, letterSpacing: '0.22em', color: 'var(--fg-muted)' }}
+              style={{ fontSize: 10, letterSpacing: '0.22em', color: 'var(--text-muted)' }}
             >
               {h('stepsTitle')}
             </p>
@@ -115,13 +115,13 @@ export default function Umbral() {
                   </span>
                   <h3
                     className="mt-3 font-display"
-                    style={{ color: 'var(--fg)', fontSize: 16, fontWeight: 700, lineHeight: 1.3 }}
+                    style={{ color: 'var(--text)', fontSize: 16, fontWeight: 700, lineHeight: 1.3 }}
                   >
                     {s.title}
                   </h3>
                   <p
                     className="mt-2 font-body"
-                    style={{ color: 'var(--fg-soft)', fontSize: 13, lineHeight: 1.6 }}
+                    style={{ color: 'var(--text-muted)', fontSize: 13, lineHeight: 1.6 }}
                   >
                     {s.desc}
                   </p>
@@ -229,7 +229,7 @@ export default function Umbral() {
             <Reveal>
               <p
                 className="mt-5 font-body"
-                style={{ color: 'var(--fg-muted)', fontSize: 13, lineHeight: 1.65, maxWidth: '62ch' }}
+                style={{ color: 'var(--text-muted)', fontSize: 13, lineHeight: 1.65, maxWidth: '62ch' }}
               >
                 {h('stackNote')}
               </p>
@@ -245,7 +245,7 @@ export default function Umbral() {
         <Reveal>
           <p
             className="font-body"
-            style={{ color: 'var(--fg-soft)', fontSize: 15, lineHeight: 1.75, maxWidth: '72ch' }}
+            style={{ color: 'var(--text-muted)', fontSize: 15, lineHeight: 1.75, maxWidth: '72ch' }}
           >
             {h('viewsIntro')}
           </p>
@@ -271,7 +271,7 @@ export default function Umbral() {
         <Reveal>
           <p
             className="font-body"
-            style={{ color: 'var(--fg-soft)', fontSize: 15, lineHeight: 1.75, maxWidth: '72ch' }}
+            style={{ color: 'var(--text-muted)', fontSize: 15, lineHeight: 1.75, maxWidth: '72ch' }}
           >
             {h('configIntro')}
           </p>
@@ -310,7 +310,7 @@ export default function Umbral() {
         <Reveal>
           <p
             className="font-body"
-            style={{ color: 'var(--fg-soft)', fontSize: 15, lineHeight: 1.75, maxWidth: '72ch' }}
+            style={{ color: 'var(--text-muted)', fontSize: 15, lineHeight: 1.75, maxWidth: '72ch' }}
           >
             {h('useIntro')}
           </p>
@@ -355,7 +355,7 @@ export default function Umbral() {
               <SubHeading>{h('photoNoteTitle')}</SubHeading>
               <p
                 className="mt-4 font-body"
-                style={{ color: 'var(--fg-muted)', fontSize: 13, lineHeight: 1.7, maxWidth: '62ch' }}
+                style={{ color: 'var(--text-muted)', fontSize: 13, lineHeight: 1.7, maxWidth: '62ch' }}
               >
                 {h('photoNote')}
               </p>

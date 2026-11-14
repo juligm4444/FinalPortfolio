@@ -63,9 +63,9 @@ export default function WireframeViewer({ b }) {
                   letterSpacing: '0.16em',
                   fontWeight: 600,
                   padding: '8px 12px',
-                  color: on ? 'var(--bg)' : 'var(--fg)',
+                  color: on ? 'var(--bg)' : 'var(--text)',
                   background: on ? ACCENT : 'transparent',
-                  border: `1px solid ${on ? ACCENT : 'color-mix(in srgb, var(--fg) 20%, transparent)'}`,
+                  border: `1px solid ${on ? ACCENT : 'color-mix(in srgb, var(--text) 20%, transparent)'}`,
                   transition: 'background 180ms ease, color 180ms ease, border-color 180ms ease',
                 }}
               >
@@ -86,26 +86,26 @@ export default function WireframeViewer({ b }) {
           >
             <h3
               className="font-display"
-              style={{ fontSize: 'clamp(24px, 2.6vw, 34px)', fontWeight: 700, lineHeight: 1.15, color: 'var(--fg)' }}
+              style={{ fontSize: 'clamp(24px, 2.6vw, 34px)', fontWeight: 700, lineHeight: 1.15, color: 'var(--text)' }}
             >
               {current.name}
             </h3>
             <p
               className="mt-4 font-body"
-              style={{ color: 'var(--fg-soft)', fontSize: 15, lineHeight: 1.75, maxWidth: '44ch' }}
+              style={{ color: 'var(--text-muted)', fontSize: 15, lineHeight: 1.75, maxWidth: '44ch' }}
             >
               {current.desc}
             </p>
             <p
               className="mt-5 font-nav tabular-nums"
-              style={{ color: 'var(--fg-muted)', fontSize: 12, letterSpacing: '0.08em' }}
+              style={{ color: 'var(--text-muted)', fontSize: 12, letterSpacing: '0.08em' }}
             >
               {FRAME_W} × {SCREENS[active].h.toLocaleString('es-CO')} px
             </p>
           </motion.div>
         </AnimatePresence>
 
-        <p className="mt-8 font-nav" style={{ color: 'var(--fg-muted)', fontSize: 12 }}>
+        <p className="mt-8 font-nav" style={{ color: 'var(--text-muted)', fontSize: 12 }}>
           {b('wfViewerHint')}
         </p>
       </div>
@@ -176,7 +176,7 @@ function Phone({ src, alt }) {
         maxWidth: 'clamp(250px, 26vw, 340px)',
         padding: 10,
         borderRadius: 44,
-        background: 'color-mix(in srgb, var(--fg) 92%, transparent)',
+        background: 'color-mix(in srgb, var(--text) 92%, transparent)',
         boxShadow: '0 30px 80px -30px rgba(0,0,0,0.45)',
       }}
     >
@@ -214,13 +214,13 @@ export function WireframeFlow({ b }) {
             style={{
               aspectRatio: '390 / 844',
               borderRadius: 18,
-              border: '1px solid color-mix(in srgb, var(--fg) 14%, transparent)',
+              border: '1px solid color-mix(in srgb, var(--text) 14%, transparent)',
               background: 'var(--case-screen)',
             }}
           >
             <img src={src} alt={steps[i]} loading="lazy" decoding="async" draggable="false" className="block h-full w-full object-cover object-top" />
           </div>
-          <p className="mt-3 flex gap-2 font-body" style={{ fontSize: 12.5, lineHeight: 1.55, color: 'var(--fg-soft)' }}>
+          <p className="mt-3 flex gap-2 font-body" style={{ fontSize: 12.5, lineHeight: 1.55, color: 'var(--text-muted)' }}>
             <span className="font-nav tabular-nums" style={{ color: ACCENT, fontWeight: 700 }}>
               {String(i + 1).padStart(2, '0')}
             </span>

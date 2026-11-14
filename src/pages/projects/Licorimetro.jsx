@@ -205,7 +205,7 @@ export default function Licorimetro() {
         <motion.h1
           className="mt-6 font-display"
           style={{
-            color: 'var(--fg)',
+            color: 'var(--text)',
             fontSize: 'clamp(48px, 8vw, 112px)',
             lineHeight: 1.0,
             fontWeight: 700,
@@ -222,7 +222,7 @@ export default function Licorimetro() {
         <motion.p
           className="mt-8 font-body"
           style={{
-            color: 'var(--fg-soft)',
+            color: 'var(--text-muted)',
             fontSize: 'clamp(18px, 2vw, 24px)',
             lineHeight: 1.5,
             maxWidth: '60ch',
@@ -237,7 +237,7 @@ export default function Licorimetro() {
         <motion.div
           className="mt-14 grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16"
           style={{
-            borderTop: '1px solid color-mix(in srgb, var(--fg) 15%, transparent)',
+            borderTop: '1px solid color-mix(in srgb, var(--text) 15%, transparent)',
             paddingTop: 36,
           }}
           initial={{ opacity: 0, y: reduced ? 0 : 16 }}
@@ -253,12 +253,12 @@ export default function Licorimetro() {
             <div>
               <p
                 className="font-nav uppercase"
-                style={{ color: 'var(--fg-muted)', fontSize: 11, letterSpacing: '0.22em' }}
+                style={{ color: 'var(--text-muted)', fontSize: 11, letterSpacing: '0.22em' }}
               >
                 {t('licorimetro.stackKicker')}
               </p>
               <div className="mt-5">
-                <p className="font-body" style={{ color: 'var(--fg-soft)', fontSize: 16, lineHeight: 1.7 }}>
+                <p className="font-body" style={{ color: 'var(--text-muted)', fontSize: 16, lineHeight: 1.7 }}>
                   {project.skills.join(' · ')}
                 </p>
               </div>
@@ -307,7 +307,7 @@ export default function Licorimetro() {
               <p
                 className="font-body"
                 style={{
-                  color: 'var(--fg-soft)',
+                  color: 'var(--text-muted)',
                   fontSize: 17,
                   lineHeight: 1.7,
                   maxWidth: '60ch',
@@ -382,7 +382,7 @@ export default function Licorimetro() {
           <Title>{t('licorimetro.architectureTitle')}</Title>
           <p
             className="mt-4 font-body"
-            style={{ color: 'var(--fg-soft)', fontSize: 16, lineHeight: 1.7, maxWidth: '62ch' }}
+            style={{ color: 'var(--text-muted)', fontSize: 16, lineHeight: 1.7, maxWidth: '62ch' }}
           >
             {t('licorimetro.architectureParas')[0]}
           </p>
@@ -500,12 +500,12 @@ function FlowStepCard({ step, icon, mobile = false }) {
       onMouseLeave={() => setHover(false)}
       style={{
         background: hover
-          ? `color-mix(in srgb, ${ACCENT} 6%, var(--surface-2))`
-          : 'var(--surface-2)',
+          ? `color-mix(in srgb, ${ACCENT} 6%, var(--concrete-300))`
+          : 'var(--concrete-300)',
         border: `1px solid ${
           hover
             ? `color-mix(in srgb, ${ACCENT} 35%, transparent)`
-            : 'color-mix(in srgb, var(--fg) 10%, transparent)'
+            : 'color-mix(in srgb, var(--text) 10%, transparent)'
         }`,
         padding: mobile ? '20px' : '24px 20px',
         transition: 'background 280ms ease, border-color 280ms ease',
@@ -546,7 +546,7 @@ function FlowStepCard({ step, icon, mobile = false }) {
         style={{
           fontSize: 16,
           fontWeight: 700,
-          color: 'var(--fg)',
+          color: 'var(--text)',
           lineHeight: 1.2,
           marginBottom: 8,
         }}
@@ -556,7 +556,7 @@ function FlowStepCard({ step, icon, mobile = false }) {
 
       <p
         className="font-body"
-        style={{ fontSize: 13, lineHeight: 1.6, color: 'var(--fg-soft)' }}
+        style={{ fontSize: 13, lineHeight: 1.6, color: 'var(--text-muted)' }}
       >
         {step.intro}
       </p>
@@ -594,11 +594,11 @@ function ArchitectureDiagram() {
               style={{
                 flex: 1,
                 background: layer.highlight
-                  ? `color-mix(in srgb, ${ACCENT} 5%, var(--surface-2))`
-                  : 'var(--surface-2)',
+                  ? `color-mix(in srgb, ${ACCENT} 5%, var(--concrete-300))`
+                  : 'var(--concrete-300)',
                 border: layer.highlight
                   ? `1px solid color-mix(in srgb, ${ACCENT} 22%, transparent)`
-                  : '1px solid color-mix(in srgb, var(--fg) 10%, transparent)',
+                  : '1px solid color-mix(in srgb, var(--text) 10%, transparent)',
                 padding: '20px 18px',
               }}
             >
@@ -608,7 +608,7 @@ function ArchitectureDiagram() {
                   fontSize: 9,
                   letterSpacing: '0.22em',
                   textTransform: 'uppercase',
-                  color: layer.highlight ? ACCENT : 'var(--fg-soft)',
+                  color: layer.highlight ? ACCENT : 'var(--text-muted)',
                   marginBottom: 14,
                 }}
               >
@@ -621,7 +621,7 @@ function ArchitectureDiagram() {
                     key={node.name}
                     style={{
                       background: 'var(--surface)',
-                      border: '1px solid color-mix(in srgb, var(--fg) 9%, transparent)',
+                      border: '1px solid color-mix(in srgb, var(--text) 9%, transparent)',
                       padding: '10px 12px',
                       display: 'flex',
                       alignItems: 'center',
@@ -636,13 +636,13 @@ function ArchitectureDiagram() {
                         style={{
                           fontSize: 12,
                           fontWeight: 700,
-                          color: 'var(--fg)',
+                          color: 'var(--text)',
                           lineHeight: 1.2,
                         }}
                       >
                         {node.name}
                       </div>
-                      <div style={{ fontSize: 10, color: 'var(--fg-muted)', marginTop: 2 }}>
+                      <div style={{ fontSize: 10, color: 'var(--text-muted)', marginTop: 2 }}>
                         {node.sub}
                       </div>
                     </div>
@@ -665,7 +665,7 @@ function OCRScanVisual() {
       style={{
         position: 'relative',
         background: 'var(--surface)',
-        border: '1px solid color-mix(in srgb, var(--fg) 12%, transparent)',
+        border: '1px solid color-mix(in srgb, var(--text) 12%, transparent)',
         padding: 28,
         aspectRatio: '4 / 5',
         overflow: 'hidden',
@@ -724,7 +724,7 @@ function OCRScanVisual() {
             background: `color-mix(in srgb, ${ACCENT} 6%, transparent)`,
           }}
         >
-          <span style={{ color: 'var(--fg-soft)', fontSize: 11, letterSpacing: '0.1em' }}>
+          <span style={{ color: 'var(--text-muted)', fontSize: 11, letterSpacing: '0.1em' }}>
             ANALYSING BITMAP...
           </span>
           <span
@@ -752,7 +752,7 @@ function OCRScanVisual() {
           <div key={row.label} style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
             <span
               style={{
-                color: row.active ? ACCENT : 'var(--fg-soft)',
+                color: row.active ? ACCENT : 'var(--text-muted)',
                 fontSize: 10,
                 fontWeight: 700,
                 letterSpacing: '0.12em',
@@ -765,10 +765,10 @@ function OCRScanVisual() {
               style={{
                 flex: 1,
                 height: 1,
-                background: `color-mix(in srgb, var(--fg) ${row.active ? 18 : 10}%, transparent)`,
+                background: `color-mix(in srgb, var(--text) ${row.active ? 18 : 10}%, transparent)`,
               }}
             />
-            <span style={{ color: row.active ? 'var(--fg)' : 'var(--fg-soft)', fontSize: 10 }}>
+            <span style={{ color: row.active ? 'var(--text)' : 'var(--text-muted)', fontSize: 10 }}>
               {row.confidence}
             </span>
           </div>
@@ -778,21 +778,21 @@ function OCRScanVisual() {
           style={{
             marginTop: 6,
             padding: '10px 14px',
-            background: 'var(--surface-2)',
-            border: '1px solid color-mix(in srgb, var(--fg) 10%, transparent)',
+            background: 'var(--concrete-300)',
+            border: '1px solid color-mix(in srgb, var(--text) 10%, transparent)',
           }}
         >
-          <p style={{ color: 'var(--fg)', fontSize: 12, fontWeight: 700, letterSpacing: '0.06em' }}>
+          <p style={{ color: 'var(--text)', fontSize: 12, fontWeight: 700, letterSpacing: '0.06em' }}>
             BEVERAGE IDENTIFIED
           </p>
-          <p style={{ color: 'var(--fg-soft)', fontSize: 10, marginTop: 4 }}>confidence: 87.4%</p>
+          <p style={{ color: 'var(--text-muted)', fontSize: 10, marginTop: 4 }}>confidence: 87.4%</p>
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 3, marginTop: 2 }}>
-          <span style={{ color: 'var(--fg-soft)', fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
+          <span style={{ color: 'var(--text-muted)', fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
             BITMAP ANALYSIS · MANUAL OCR
           </span>
-          <span style={{ color: 'var(--fg-soft)', fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
+          <span style={{ color: 'var(--text-muted)', fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
             NO ML FRAMEWORK · HAND-BUILT
           </span>
         </div>
@@ -888,7 +888,7 @@ function Kicker({ children }) {
   return (
     <p
       className="font-nav uppercase"
-      style={{ color: 'var(--fg-muted)', fontSize: 12, letterSpacing: '0.22em' }}
+      style={{ color: 'var(--text-muted)', fontSize: 12, letterSpacing: '0.22em' }}
     >
       {children}
     </p>
@@ -900,7 +900,7 @@ function Title({ children, wide = false }) {
     <h2
       className="mt-4 font-display"
       style={{
-        color: 'var(--fg)',
+        color: 'var(--text)',
         fontSize: 'clamp(30px, 4vw, 52px)',
         lineHeight: 1.05,
         fontWeight: 700,
@@ -922,7 +922,7 @@ function Paragraphs({ items, highlight = false, fullWidth = false }) {
           key={i}
           className="font-body max-w-none"
           style={{
-            color: 'var(--fg-soft)',
+            color: 'var(--text-muted)',
             fontSize: 17,
             lineHeight: 1.7,
             ...(fullWidth ? {} : { maxWidth: '60ch' }),
@@ -943,7 +943,7 @@ function Bullet({ children }) {
       onMouseLeave={() => setHover(false)}
       className="relative pl-7 font-body transition-transform duration-200 ease-out"
       style={{
-        color: hover ? 'var(--fg)' : 'var(--fg-soft)',
+        color: hover ? 'var(--text)' : 'var(--text-muted)',
         fontSize: 16,
         lineHeight: 1.65,
         maxWidth: '60ch',
@@ -971,13 +971,13 @@ function MetaBlock({ label, value, className = '' }) {
     <div className={className}>
       <p
         className="font-nav uppercase"
-        style={{ color: 'var(--fg-muted)', fontSize: 11, letterSpacing: '0.22em' }}
+        style={{ color: 'var(--text-muted)', fontSize: 11, letterSpacing: '0.22em' }}
       >
         {label}
       </p>
       <p
         className="mt-2 font-display"
-        style={{ color: 'var(--fg)', fontSize: 18, lineHeight: 1.45, fontWeight: 700 }}
+        style={{ color: 'var(--text)', fontSize: 18, lineHeight: 1.45, fontWeight: 700 }}
       >
         {value}
       </p>
@@ -997,12 +997,12 @@ function FeatureCard({ feature, index, icon }) {
       onMouseLeave={() => setHover(false)}
       className="relative p-7"
       style={{
-        background: 'var(--surface-2)',
-        border: '1px solid color-mix(in srgb, var(--fg) 10%, transparent)',
+        background: 'var(--concrete-300)',
+        border: '1px solid color-mix(in srgb, var(--text) 10%, transparent)',
         transition: 'transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease',
         transform: hover ? 'translateY(-4px)' : 'translateY(0)',
         boxShadow: hover ? `0 14px 28px color-mix(in srgb, ${ACCENT} 16%, transparent)` : 'none',
-        borderColor: hover ? ACCENT : 'color-mix(in srgb, var(--fg) 10%, transparent)',
+        borderColor: hover ? ACCENT : 'color-mix(in srgb, var(--text) 10%, transparent)',
       }}
     >
       <span
@@ -1044,13 +1044,13 @@ function FeatureCard({ feature, index, icon }) {
 
       <h3
         className="font-display"
-        style={{ color: 'var(--fg)', fontSize: 20, lineHeight: 1.2, fontWeight: 700 }}
+        style={{ color: 'var(--text)', fontSize: 20, lineHeight: 1.2, fontWeight: 700 }}
       >
         {feature.title}
       </h3>
       <p
         className="mt-3 font-body"
-        style={{ color: 'var(--fg-soft)', fontSize: 15, lineHeight: 1.65 }}
+        style={{ color: 'var(--text-muted)', fontSize: 15, lineHeight: 1.65 }}
       >
         {feature.body}
       </p>
@@ -1076,8 +1076,8 @@ function BrutalistTable({ header, rows }) {
                   padding: '14px 16px',
                   fontSize: 12,
                   letterSpacing: '0.22em',
-                  color: 'var(--fg-muted)',
-                  borderBottom: `2px solid var(--fg)`,
+                  color: 'var(--text-muted)',
+                  borderBottom: `2px solid var(--text)`,
                 }}
               >
                 {h}
@@ -1102,7 +1102,7 @@ function TableRow({ row }) {
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       style={{
-        background: hover ? 'color-mix(in srgb, var(--fg) 5%, transparent)' : 'transparent',
+        background: hover ? 'color-mix(in srgb, var(--text) 5%, transparent)' : 'transparent',
         transition: 'background 200ms ease',
       }}
     >
@@ -1112,9 +1112,9 @@ function TableRow({ row }) {
           style={{
             padding: '14px 16px',
             fontSize: 15,
-            color: k === 2 ? ACCENT : 'var(--fg)',
+            color: k === 2 ? ACCENT : 'var(--text)',
             fontWeight: k === 0 ? 700 : 400,
-            borderBottom: '1px solid color-mix(in srgb, var(--fg) 12%, transparent)',
+            borderBottom: '1px solid color-mix(in srgb, var(--text) 12%, transparent)',
           }}
         >
           {cell}

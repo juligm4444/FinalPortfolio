@@ -39,7 +39,7 @@ export default function TaxonomyExplorer({ b }) {
         role="tablist"
         aria-label={b('explorerLabel')}
         className="grid grid-cols-3"
-        style={{ borderBottom: '1px solid color-mix(in srgb, var(--fg) 14%, transparent)' }}
+        style={{ borderBottom: '1px solid color-mix(in srgb, var(--text) 14%, transparent)' }}
       >
         {VERSIONS.map((v) => {
           const on = v.key === versionKey
@@ -54,7 +54,7 @@ export default function TaxonomyExplorer({ b }) {
                 setFocus(null)
               }}
               className="relative flex flex-col items-start gap-1 px-1 pb-4 pt-2 text-left md:px-2"
-              style={{ color: on ? 'var(--fg)' : 'var(--fg-muted)', transition: 'color 200ms ease' }}
+              style={{ color: on ? 'var(--text)' : 'var(--text-muted)', transition: 'color 200ms ease' }}
             >
               <span className="flex items-center gap-2">
                 <span
@@ -105,7 +105,7 @@ export default function TaxonomyExplorer({ b }) {
           exit={reduce ? undefined : { opacity: 0, y: -6 }}
           transition={{ duration: 0.25 }}
           className="mt-6 font-body"
-          style={{ color: 'var(--fg-soft)', fontSize: 15, lineHeight: 1.75, maxWidth: '72ch', minHeight: '3.5em' }}
+          style={{ color: 'var(--text-muted)', fontSize: 15, lineHeight: 1.75, maxWidth: '72ch', minHeight: '3.5em' }}
         >
           {b(`${versionKey}Desc`)}
         </motion.p>
@@ -113,7 +113,7 @@ export default function TaxonomyExplorer({ b }) {
 
       <p
         className="mt-6 font-nav"
-        style={{ color: 'var(--fg-muted)', fontSize: 12, lineHeight: 1.6, maxWidth: '72ch' }}
+        style={{ color: 'var(--text-muted)', fontSize: 12, lineHeight: 1.6, maxWidth: '72ch' }}
       >
         {b('explorerHint')}
       </p>
@@ -128,7 +128,7 @@ export default function TaxonomyExplorer({ b }) {
                 transition={layoutTransition}
                 key={cat}
                 className="grid grid-cols-1 gap-3 py-5 md:grid-cols-[180px_1fr] md:gap-8"
-                style={{ borderTop: '1px solid color-mix(in srgb, var(--fg) 10%, transparent)' }}
+                style={{ borderTop: '1px solid color-mix(in srgb, var(--text) 10%, transparent)' }}
               >
                 <div className="flex items-baseline gap-3 md:flex-col md:gap-1">
                   <span className="flex items-center gap-2">
@@ -139,12 +139,12 @@ export default function TaxonomyExplorer({ b }) {
                     />
                     <span
                       className="font-nav uppercase"
-                      style={{ fontSize: 13, letterSpacing: '0.18em', fontWeight: 700, color: 'var(--fg)' }}
+                      style={{ fontSize: 13, letterSpacing: '0.18em', fontWeight: 700, color: 'var(--text)' }}
                     >
                       {names[ci]}
                     </span>
                   </span>
-                  <span className="font-nav tabular-nums" style={{ fontSize: 12, color: 'var(--fg-muted)' }}>
+                  <span className="font-nav tabular-nums" style={{ fontSize: 12, color: 'var(--text-muted)' }}>
                     {tags.length} {b('explorerTags')}
                   </span>
                 </div>
@@ -171,7 +171,7 @@ export default function TaxonomyExplorer({ b }) {
         </div>
       </LayoutGroup>
 
-      <p className="mt-4 font-nav" style={{ color: 'var(--fg-muted)', fontSize: 11 }}>
+      <p className="mt-4 font-nav" style={{ color: 'var(--text-muted)', fontSize: 11 }}>
         <SharedMark cats={['cuerpo', 'mente']} /> {b('explorerShared')} · {b('explorerLang')}
       </p>
     </div>
@@ -220,9 +220,9 @@ const Chip = forwardRef(function Chip({ tag, cats = [], focus, setFocus, reduce,
           fontSize: 12.5,
           lineHeight: 1.2,
           padding: '6px 10px',
-          color: lit ? 'var(--bg)' : 'var(--fg)',
+          color: lit ? 'var(--bg)' : 'var(--text)',
           background: lit ? ACCENT : shared ? 'color-mix(in srgb, var(--case-accent) 9%, transparent)' : 'transparent',
-          border: `1px solid ${lit || shared ? ACCENT : 'color-mix(in srgb, var(--fg) 20%, transparent)'}`,
+          border: `1px solid ${lit || shared ? ACCENT : 'color-mix(in srgb, var(--text) 20%, transparent)'}`,
           transition: 'background 180ms ease, color 180ms ease, border-color 180ms ease',
         }}
       >
@@ -261,8 +261,8 @@ export function SystemInUse({ b }) {
               key={piece.title}
               className="flex flex-col p-5"
               style={{
-                background: 'var(--surface-2)',
-                border: `1px solid ${joined ? ACCENT : 'color-mix(in srgb, var(--fg) 10%, transparent)'}`,
+                background: 'var(--concrete-300)',
+                border: `1px solid ${joined ? ACCENT : 'color-mix(in srgb, var(--text) 10%, transparent)'}`,
                 opacity: focus && !joined ? 0.45 : 1,
                 transition: 'opacity 220ms ease, border-color 220ms ease',
               }}
@@ -274,13 +274,13 @@ export function SystemInUse({ b }) {
                     {names[CATEGORY_KEYS.indexOf(cat)]}
                   </span>
                 </span>
-                <span className="font-nav uppercase" style={{ fontSize: 10, letterSpacing: '0.16em', color: 'var(--fg-muted)' }}>
+                <span className="font-nav uppercase" style={{ fontSize: 10, letterSpacing: '0.16em', color: 'var(--text-muted)' }}>
                   {formats[i]}
                 </span>
               </div>
               <h4
                 className="mt-5 font-display"
-                style={{ fontSize: 17, lineHeight: 1.35, fontWeight: 700, color: 'var(--fg)' }}
+                style={{ fontSize: 17, lineHeight: 1.35, fontWeight: 700, color: 'var(--text)' }}
               >
                 “{piece.title}”
               </h4>
@@ -303,9 +303,9 @@ export function SystemInUse({ b }) {
                         style={{
                           fontSize: 12,
                           padding: '5px 9px',
-                          color: lit ? 'var(--bg)' : 'var(--fg)',
+                          color: lit ? 'var(--bg)' : 'var(--text)',
                           background: lit ? ACCENT : shared ? 'color-mix(in srgb, var(--case-accent) 9%, transparent)' : 'transparent',
-                          border: `1px solid ${lit || shared ? ACCENT : 'color-mix(in srgb, var(--fg) 20%, transparent)'}`,
+                          border: `1px solid ${lit || shared ? ACCENT : 'color-mix(in srgb, var(--text) 20%, transparent)'}`,
                           transition: 'background 180ms ease, color 180ms ease',
                         }}
                       >
@@ -334,7 +334,7 @@ export function SystemInUse({ b }) {
               className="flex flex-wrap items-center gap-3 px-4 py-3 font-nav"
               style={{
                 fontSize: 12,
-                border: `1px dashed ${lit ? ACCENT : 'color-mix(in srgb, var(--fg) 18%, transparent)'}`,
+                border: `1px dashed ${lit ? ACCENT : 'color-mix(in srgb, var(--text) 18%, transparent)'}`,
                 transition: 'border-color 200ms ease',
               }}
             >
@@ -343,14 +343,14 @@ export function SystemInUse({ b }) {
               </span>
               {ends.map((cat, i) => (
                 <span key={cat} className="flex items-center gap-2">
-                  {i > 0 ? <span aria-hidden style={{ color: 'var(--fg-muted)' }}>↔</span> : null}
+                  {i > 0 ? <span aria-hidden style={{ color: 'var(--text-muted)' }}>↔</span> : null}
                   <span aria-hidden className="inline-block h-2 w-2" style={{ background: CATEGORY_COLORS[cat] }} />
                   <span className="uppercase" style={{ letterSpacing: '0.14em', fontWeight: 600 }}>
                     {names[CATEGORY_KEYS.indexOf(cat)]}
                   </span>
                 </span>
               ))}
-              <span className="font-body" style={{ color: 'var(--fg-soft)' }}>
+              <span className="font-body" style={{ color: 'var(--text-muted)' }}>
                 · {tag}
               </span>
             </li>

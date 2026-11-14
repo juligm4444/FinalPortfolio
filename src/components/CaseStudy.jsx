@@ -54,7 +54,7 @@ export function SectionTag({ number, label, accent }) {
         />
         <span
           className="font-body uppercase"
-          style={{ fontSize: 10, letterSpacing: '0.22em', color: 'var(--fg-muted)' }}
+          style={{ fontSize: 10, letterSpacing: '0.22em', color: 'var(--text-muted)' }}
         >
           {label}
         </span>
@@ -80,7 +80,7 @@ export function CaseHero({ kicker, h1, h2, sub, tags, accent, meta }) {
           <h1
             className="mt-6 font-display"
             style={{
-              color: 'var(--fg)',
+              color: 'var(--text)',
               fontSize: 'clamp(38px, 6.4vw, 92px)',
               lineHeight: 1.02,
               fontWeight: 700,
@@ -96,7 +96,7 @@ export function CaseHero({ kicker, h1, h2, sub, tags, accent, meta }) {
         <Reveal delay={0.16}>
           <p
             className="mt-8 font-body"
-            style={{ color: 'var(--fg-soft)', fontSize: 17, lineHeight: 1.7, maxWidth: '58ch' }}
+            style={{ color: 'var(--text-muted)', fontSize: 17, lineHeight: 1.7, maxWidth: '58ch' }}
           >
             {sub}
           </p>
@@ -112,8 +112,8 @@ export function CaseHero({ kicker, h1, h2, sub, tags, accent, meta }) {
                   style={{
                     fontSize: 10,
                     letterSpacing: '0.18em',
-                    color: 'var(--fg-muted)',
-                    border: '1px solid color-mix(in srgb, var(--fg) 18%, transparent)',
+                    color: 'var(--text-muted)',
+                    border: '1px solid color-mix(in srgb, var(--text) 18%, transparent)',
                     padding: '5px 10px',
                   }}
                 >
@@ -131,13 +131,13 @@ export function CaseHero({ kicker, h1, h2, sub, tags, accent, meta }) {
                 <div key={label}>
                   <dt
                     className="font-nav uppercase"
-                    style={{ fontSize: 10, letterSpacing: '0.2em', color: 'var(--fg-muted)' }}
+                    style={{ fontSize: 10, letterSpacing: '0.2em', color: 'var(--text-muted)' }}
                   >
                     {label}
                   </dt>
                   <dd
                     className="mt-2 font-body"
-                    style={{ color: 'var(--fg)', fontSize: 14, lineHeight: 1.5 }}
+                    style={{ color: 'var(--text)', fontSize: 14, lineHeight: 1.5 }}
                   >
                     {value}
                   </dd>
@@ -165,8 +165,8 @@ export function Figure({ src, alt, caption, ratio, contain = true, className = '
           className="overflow-hidden"
           style={{
             aspectRatio: ratio,
-            background: 'color-mix(in srgb, var(--fg) 4%, transparent)',
-            border: '1px solid color-mix(in srgb, var(--fg) 8%, transparent)',
+            background: 'color-mix(in srgb, var(--text) 4%, transparent)',
+            border: '1px solid color-mix(in srgb, var(--text) 8%, transparent)',
           }}
         >
           <img
@@ -182,7 +182,7 @@ export function Figure({ src, alt, caption, ratio, contain = true, className = '
         {caption ? (
           <figcaption
             className="mt-3 font-body"
-            style={{ color: 'var(--fg-muted)', fontSize: 12, lineHeight: 1.5 }}
+            style={{ color: 'var(--text-muted)', fontSize: 12, lineHeight: 1.5 }}
           >
             {caption}
           </figcaption>
@@ -199,7 +199,7 @@ export function Prose({ children, className = '' }) {
         <p
           key={i}
           className="font-body"
-          style={{ color: 'var(--fg-soft)', fontSize: 15, lineHeight: 1.75, maxWidth: '62ch' }}
+          style={{ color: 'var(--text-muted)', fontSize: 15, lineHeight: 1.75, maxWidth: '62ch' }}
         >
           {p}
         </p>
@@ -213,7 +213,7 @@ export function Heading({ children, accent }) {
     <h2
       className="font-display"
       style={{
-        color: accent ?? 'var(--fg)',
+        color: accent ?? 'var(--text)',
         fontSize: 'clamp(26px, 3.2vw, 42px)',
         lineHeight: 1.12,
         fontWeight: 700,
@@ -229,7 +229,7 @@ export function SubHeading({ children }) {
   return (
     <h3
       className="font-display"
-      style={{ color: 'var(--fg)', fontSize: 19, lineHeight: 1.3, fontWeight: 700 }}
+      style={{ color: 'var(--text)', fontSize: 19, lineHeight: 1.3, fontWeight: 700 }}
     >
       {children}
     </h3>
@@ -242,7 +242,7 @@ export function PullQuote({ children, accent }) {
       <blockquote
         className="font-display"
         style={{
-          color: 'var(--fg)',
+          color: 'var(--text)',
           fontSize: 'clamp(22px, 2.8vw, 34px)',
           lineHeight: 1.3,
           fontWeight: 700,
@@ -264,14 +264,14 @@ export function SpecList({ title, body, note }) {
       <div
         className="p-6"
         style={{
-          background: 'var(--surface-2)',
-          border: '1px solid color-mix(in srgb, var(--fg) 10%, transparent)',
+          background: 'var(--concrete-300)',
+          border: '1px solid color-mix(in srgb, var(--text) 10%, transparent)',
         }}
       >
         {title ? (
           <p
             className="mb-4 font-nav uppercase"
-            style={{ fontSize: 10, letterSpacing: '0.2em', color: 'var(--fg-muted)' }}
+            style={{ fontSize: 10, letterSpacing: '0.2em', color: 'var(--text-muted)' }}
           >
             {title}
           </p>
@@ -281,7 +281,7 @@ export function SpecList({ title, body, note }) {
             <li
               key={line}
               className="font-body"
-              style={{ color: 'var(--fg-soft)', fontSize: 13, lineHeight: 1.6 }}
+              style={{ color: 'var(--text-muted)', fontSize: 13, lineHeight: 1.6 }}
             >
               {line}
             </li>
@@ -290,7 +290,7 @@ export function SpecList({ title, body, note }) {
         {note ? (
           <p
             className="mt-4 font-body"
-            style={{ color: 'var(--fg-muted)', fontSize: 12, lineHeight: 1.6 }}
+            style={{ color: 'var(--text-muted)', fontSize: 12, lineHeight: 1.6 }}
           >
             {note}
           </p>
@@ -326,7 +326,7 @@ export function CaseFooter({ label, quote, paragraphs, tags, accent }) {
               style={{
                 fontSize: 10,
                 letterSpacing: '0.18em',
-                color: 'var(--fg-muted)',
+                color: 'var(--text-muted)',
                 border: `1px solid color-mix(in srgb, ${accent} 35%, transparent)`,
                 padding: '5px 10px',
               }}
