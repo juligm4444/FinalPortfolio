@@ -8,13 +8,13 @@
 
 export const CATEGORY_KEYS = ['cuerpo', 'mente', 'relaciones', 'sexo', 'cultura']
 
-// The colour coding from the specification sheets, used only as markers.
+// Category markers, in site tokens (ACABADO §2).
 export const CATEGORY_COLORS = {
-  cuerpo: '#F0857A',
-  mente: '#A98FDB',
-  relaciones: '#5FB97E',
-  sexo: '#F4A93B',
-  cultura: '#55A7EE',
+  cuerpo: 'var(--bloom-ink)',
+  mente: 'var(--concrete-900)',
+  relaciones: 'var(--moss-400)',
+  sexo: 'var(--concrete-500)',
+  cultura: 'var(--moss-700)',
 }
 
 export const VERSIONS = [

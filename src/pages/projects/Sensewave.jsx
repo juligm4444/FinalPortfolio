@@ -1,4 +1,5 @@
 import { createContext, useContext, useRef, useMemo } from 'react';
+import { SENSEWAVE_PALETTE } from '../../data/swatches.js';
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { useLocale } from '../../i18n/LocaleProvider.jsx';
 import a1HeroVideo from '../../assets/images/sensewave/a1-hero.mp4';
@@ -410,13 +411,7 @@ function DonorSection() {
    ───────────────────────────────────────── */
 function BrandSection() {
   const { sw, t } = useSW();
-  const palette = [
-    { name: 'Deep Space', hex: '#02020A', label: 'Background' },
-    { name: 'Surface',    hex: '#070710', label: 'Surface' },
-    { name: 'Periwinkle', hex: '#8B9DE8', label: 'Primary Accent' },
-    { name: 'Soft Violet',hex: '#B8A6F0', label: 'Secondary' },
-    { name: 'Cool White', hex: '#EEEEF5', label: 'Text Primary' },
-  ];
+  const palette = SENSEWAVE_PALETTE;
   const roles = t('sensewave.typoRoles');
   return (
     <CinematicSection py={140}>

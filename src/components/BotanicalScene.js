@@ -209,7 +209,7 @@ export default class BotanicalScene {
     this.maskCanvas.height = h
     const ctx = this.maskCtx
     ctx.font = `${this.weight} ${this.fontSize}px ${this.tokens.family}`
-    ctx.fillStyle = '#ffffff'
+    ctx.fillStyle = 'white'
     ctx.clearRect(0, 0, w, h)
     lines.forEach((l, i) => ctx.fillText(l, 0, ((i + 0.8) * h) / lines.length))
     const data = ctx.getImageData(0, 0, w, h).data

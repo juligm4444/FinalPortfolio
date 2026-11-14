@@ -22,6 +22,7 @@ import condorCHA from '../../assets/images/candelaria/condor-CHA.webp';
 import condorCOM from '../../assets/images/candelaria/condor-COM.webp';
 import condorDIS from '../../assets/images/candelaria/condor-DIS.webp';
 import condorLOG from '../../assets/images/candelaria/condor-LOG.webp';
+import { CANDELARIA_BRAND_PALETTE } from '../../data/swatches.js';
 import condorRRHH from '../../assets/images/candelaria/condor-RRHH.webp';
 
 /* ─────────────────────────────────────────
@@ -54,20 +55,17 @@ const BODY = 'var(--font-body)';
 const LABEL = 'var(--font-label)';
 const EASE = [0.16, 1, 0.3, 1];
 
-const BRAND_PALETTE = [
-  '#FFB938', '#3E1057', '#C471EA', '#D4BCFA', '#EFEEEA',
-  '#F2A413', '#2D0E3F', '#BC56EB', '#B793F0', '#D5D5D2',
-];
 
-/* team meta — abbr → logo + signal color. Order matches translations `teams`. */
+/* team meta — abbr → logo. Order matches translations `teams`. */
+const TEAM_COLOR = 'var(--moss-700)';
 const TEAMS = [
-  { abbr: 'BAT',  logo: condorBAT,  color: '#3FA34D' },
-  { abbr: 'CEL',  logo: condorCEL,  color: '#4C6BE8' },
-  { abbr: 'CHA',  logo: condorCHA,  color: '#C7CBD1' },
-  { abbr: 'COM',  logo: condorCOM,  color: '#E8623A' },
-  { abbr: 'DIS',  logo: condorDIS,  color: '#E86FA8' },
-  { abbr: 'LOG',  logo: condorLOG,  color: '#35C0D8' },
-  { abbr: 'RRHH', logo: condorRRHH, color: '#A24DD8' },
+  { abbr: 'BAT',  logo: condorBAT },
+  { abbr: 'CEL',  logo: condorCEL },
+  { abbr: 'CHA',  logo: condorCHA },
+  { abbr: 'COM',  logo: condorCOM },
+  { abbr: 'DIS',  logo: condorDIS },
+  { abbr: 'LOG',  logo: condorLOG },
+  { abbr: 'RRHH', logo: condorRRHH },
 ];
 
 const CCtx = createContext(null);
@@ -367,14 +365,14 @@ function TeamCard({ meta, name, role, index }) {
       transition={{ duration: 0.8, delay: (index % 4) * 0.07, ease: EASE }}
       className="group"
       style={{ background: c.card, border: `1px solid ${c.border}`, padding: '28px 24px', textAlign: 'center', position: 'relative', overflow: 'hidden', transition: 'border-color 260ms ease, transform 260ms ease' }}
-      onMouseEnter={(e) => { e.currentTarget.style.borderColor = meta.color; e.currentTarget.style.transform = 'translateY(-4px)'; }}
+      onMouseEnter={(e) => { e.currentTarget.style.borderColor = TEAM_COLOR; e.currentTarget.style.transform = 'translateY(-4px)'; }}
       onMouseLeave={(e) => { e.currentTarget.style.borderColor = c.border; e.currentTarget.style.transform = 'translateY(0)'; }}
     >
-      <div aria-hidden style={{ position: 'absolute', inset: 0, background: `radial-gradient(circle at 50% 0%, ${meta.color}22 0%, transparent 60%)`, opacity: 0, transition: 'opacity 260ms ease' }} className="group-hover:opacity-100" />
+      <div aria-hidden style={{ position: 'absolute', inset: 0, background: `radial-gradient(circle at 50% 0%, color-mix(in srgb, ${TEAM_COLOR} 13%, transparent) 0%, transparent 60%)`, opacity: 0, transition: 'opacity 260ms ease' }} className="group-hover:opacity-100" />
       <div style={{ position: 'relative', width: 96, height: 96, margin: '0 auto 18px' }}>
-        <img src={meta.logo} alt={`${name} condor`} style={{ width: '100%', height: '100%', objectFit: 'contain', filter: `drop-shadow(0 0 18px ${meta.color}55)` }} />
+        <img src={meta.logo} alt={`${name} condor`} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
       </div>
-      <p style={{ position: 'relative', fontFamily: LABEL, fontSize: 10, letterSpacing: '0.22em', color: meta.color, textTransform: 'uppercase', fontWeight: 500, marginBottom: 6 }}>
+      <p style={{ position: 'relative', fontFamily: LABEL, fontSize: 10, letterSpacing: '0.22em', color: TEAM_COLOR, textTransform: 'uppercase', fontWeight: 500, marginBottom: 6 }}>
         {meta.abbr}
       </p>
       <h3 style={{ position: 'relative', fontFamily: DISPLAY, fontSize: 17, fontWeight: 700, color: c.text, marginBottom: 8 }}>{name}</h3>
@@ -446,8 +444,8 @@ function BrandSection({ number }) {
             {t('candelaria.brandPaletteLabel')}
           </p>
           <div style={{ display: 'flex', height: 64, overflow: 'hidden', gap: 3 }}>
-            {BRAND_PALETTE.map((hex) => (
-              <div key={hex} title={hex} style={{ flex: 1, background: hex, border: hex === '#EFEEEA' ? `1px solid ${c.border}` : undefined }} />
+            {CANDELARIA_BRAND_PALETTE.map((hex) => (
+              <div key={hex} title={hex} style={{ flex: 1, background: hex, border: hex === CANDELARIA_BRAND_PALETTE[4] ? `1px solid ${c.border}` : undefined }} />
             ))}
           </div>
         </div>
