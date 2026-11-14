@@ -1,6 +1,6 @@
-import logo from '../assets/identity/LightIcon.webp'
+import logo from '../assets/identity/Logo.png'
 
-/** Brand mark. Single palette: the dark-ink icon on the mist ground. */
+/** Brand mark. One ink (--concrete-900), no hexagon (ACABADO §4). */
 export default function Logo({ size = 44, className = '' }) {
   return (
     <img

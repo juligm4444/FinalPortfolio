@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useWebGL } from '../webgl/index.js'
 import { useLocale } from '../i18n/LocaleProvider.jsx'
 import still from '../assets/backgrounds/keyscape-still.webp'
-import logo from '../assets/identity/Icon.webp'
+import logo from '../assets/identity/Logo.png'
 import './CitronKeyscape.css'
 
 /* REDESIGN §5 — the "Herramientas" block: concrete keys, one technology per key,
