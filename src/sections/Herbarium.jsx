@@ -11,8 +11,9 @@ import './Herbarium.css'
 /* REDESIGN §6 — Herbario. Each featured work is a specimen pressed on a concrete
    slab with a taxonomic label: genus = discipline, species = the work, year and
    role. All visible at once; every slab is a real <a> to its case study. The
-   whole thing is HTML/CSS. On hover or keyboard focus the shared Plush canvas
-   moves to the slab and grass grows round it (src/components/plush). */
+   whole thing is HTML/CSS. On hover (mouse) or keyboard focus the shared Plush
+   canvas moves to the slab and grass grows round it, outside the slab. On touch
+   there is no grass: a tap navigates straight away. */
 function Slab({ work, index }) {
   const host = usePlush()
   const id = useId()
@@ -26,10 +27,8 @@ function Slab({ work, index }) {
         to={work.href}
         className="herb__slab"
         onPointerEnter={(e) => e.pointerType !== 'touch' && host.setHover(id)}
-        onPointerDown={(e) => e.pointerType === 'touch' && host.setHover(id)}
         onPointerMove={(e) => host.move(id, e.clientX, e.clientY)}
         onPointerLeave={() => host.setHover(null)}
-        onPointerUp={(e) => e.pointerType === 'touch' && host.setHover(null)}
         onPointerCancel={() => host.setHover(null)}
         onFocus={(e) => e.currentTarget.matches(':focus-visible') && host.setFocus(id)}
         onBlur={() => host.setFocus(null)}

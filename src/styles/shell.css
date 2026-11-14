@@ -346,3 +346,16 @@
   border-radius: var(--radius-slab);
   box-shadow: var(--slab-shadow);
 }
+
+/* ---------- device-aware instructions (DeviceHint, ACABADO §5.3) ---------- */
+.hint--pointer {
+  display: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .hint--pointer {
+    display: inline;
+  }
+  .hint--touch {
+    display: none;
+  }
+}

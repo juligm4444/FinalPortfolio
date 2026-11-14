@@ -49,19 +49,9 @@ export default function Umbral() {
       sections={[
         // 01 Problem: the concept
         [
-          {
-            type: 'split',
-            left: {
-              type: 'stack',
-              items: [
-                { type: 'text', kicker: h('s1') },
-                { type: 'quote', text: h('conceptQuote') },
-                { type: 'text', paras: [h('conceptP1'), h('conceptP2'), h('conceptP3')] },
-              ],
-            },
-            right: fig(configPatternUp, 'configATitle', { caption: h('useFig1'), ratio: '1/1' }),
-            even: true,
-          },
+          { type: 'text', kicker: h('s1') },
+          { type: 'quote', text: h('conceptQuote') },
+          { type: 'text', paras: [h('conceptP1'), h('conceptP2'), h('conceptP3')] },
           { type: 'text', heading: h('thresholdTitle'), paras: [h('thresholdP1'), h('thresholdP2'), h('thresholdP3')] },
           { type: 'steps', title: h('stepsTitle'), items: h('steps') },
         ],

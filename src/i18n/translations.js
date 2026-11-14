@@ -11,7 +11,6 @@ const translations = {
       code: 'Repository',
       instagram: 'Follow on Instagram',
       siteCase: 'See the website case',
-      brandCase: 'See the brand case',
     },
     herbarium: {
       gen: 'Gen.',
@@ -24,29 +23,6 @@ const translations = {
         sensewaveProduct: { genus: 'Object', year: '2025', role: 'Brand and product design' },
       },
     },
-    keyscape: {
-      label: 'A bed of concrete keys, one technology on each, with the site logo on the central key and moss in the slots.',
-      caption: 'Tools',
-      items: ['Figma', 'React', 'Next.js', 'Python', 'Django', 'Supabase', 'Tailwind', 'Three.js', 'Blender', 'Unity', 'Git', 'SQL'],
-    },
-    lab: {
-      title: 'Lab',
-      lead: 'Component bench for the redesign. Each OriginKit port lands here first, alone, before it goes into a page.',
-      webglActive: 'WebGL contexts live',
-      webglWaiting: 'Waiting for a slot',
-      webglCaps: 'Device verdict',
-      fps: 'Frames per second',
-      botanicalVariants: 'Botanical Text — language variants',
-      keyscapeVariants: 'Citron Keyscape — language variants',
-      plushVariants: 'Plush Tile — language variants',
-      plushDock: 'Dock (moss)',
-      plushHerbarium: 'Herbarium (grass round the slab)',
-      velourVariants: 'Velour Bolster — language variants',
-      velourLabel: 'Explore',
-      moonlitVariants: 'Moonlit Petals — language variants',
-      moonlitCaption: 'Ocobo in overcast daylight',
-      moonlitLabel: 'A tree in pink ocobo bloom under an overcast sky, petals drifting down. Moving across it stirs the blossoms.',
-    },
     meta: {
       siteName: 'Julián Galindo — Designer & Developer',
       home: {
@@ -55,7 +31,6 @@ const translations = {
       },
       about: { title: 'About', description: 'Systems engineering as the base, design as what grows on it. Education, experience and the career change, told straight.' },
       projects: { title: 'Projects', description: 'Web, digital, object and brand work: Candelaria, Licorímetro, Bloom, El Umbral and SenseWave.' },
-      lab: { title: 'Lab', description: 'Component bench. Nothing to see here yet.' },
     },
     nav: {
       label: 'Main navigation',
@@ -86,7 +61,6 @@ const translations = {
       tagline: 'Designer & Developer',
       ctaProjects: 'See projects',
       ctaCv: 'Download CV',
-      profileAlt: 'Julián Galindo Mora',
     },
     home: {
       bioTitle: 'About me',
@@ -148,7 +122,6 @@ const translations = {
       status: { 'in-progress': 'In progress', soon: 'Coming soon' },
       openCase: 'Open case study',
       visitSite: 'Visit website',
-      viewCode: 'GitHub repository',
       deckLabel: 'Websites, one card at a time',
       deckHint: 'Scroll, drag, click or use the arrow keys to flip through them.',
       deckListTitle: 'All websites',
@@ -158,6 +131,7 @@ const translations = {
       explodedHide: 'Put it back together',
       toolsKicker: 'Tools',
       toolsTitle: 'What I build with',
+      tools: ['Figma', 'React', 'Next.js', 'Python', 'Django', 'Supabase', 'Tailwind', 'Three.js', 'Blender', 'Unity', 'Git', 'SQL'],
     },
     works: {
       candelariaWebsite: {
@@ -350,15 +324,6 @@ const translations = {
         'Although the final prototype was limited, the conceptual architecture of Licorímetro contemplated a much broader ecosystem. The system included authentication, profiles, reputation, gamification, smart recommendations, social storage, community interaction — and potential marketplace integrations.',
         'Even from an academic stage, the project already contemplated retention strategies, commercial partnerships, monetization models and scalability. The thinking was product-first: not a school project that happened to have features, but a startup MVP that happened to be built in class.',
       ],
-      architectureBullets: [
-        'Full authentication and profile system.',
-        'Reputation and gamification engine.',
-        'Smart recommendations based on behavior.',
-        'Social storage (Tu Bodega) with sharing.',
-        'Potential external marketplace integrations.',
-        'Monetization and commercial partnership model.',
-        'Scalability considered from day one.',
-      ],
 
       whatChangedKicker: 'Evolution',
       whatChangedTitle: 'What I\'d build differently today',
@@ -379,24 +344,18 @@ const translations = {
         'It marked the first contact with mobile development, the first experience with OCR, and one of the earliest real exercises in product architecture. More than the technical result, the project proved that curiosity, resilience and learning speed can turn a university idea into a vision with genuine potential.',
       ],
 
-      stackKicker: 'Tools used',
-      stackTitle: 'Built with',
 
-      ctaCode: 'View on GitHub',
     },
     candelaria: {
       tag: 'Student Research Group · Academic project',
       title: 'Candelaria Website',
       subtitle:
         'Design leader and sole developer of the full digital system for a university solar vehicle research team.',
-      faceDigital: 'A React and Django site built end to end — the team\'s public face, its sponsor pitch and its archive in one system.',
-      faceVisual: 'The visual identity underneath it: condor mark, division system and the rules that keep eight sub-teams looking like one.',
       role: 'Design Lead · Product Engineering · Full-stack',
       period: 'Oct 2025 – Present',
       status: 'In development',
       sectionRoleLabel: 'Role',
       sectionTimelineLabel: 'Timeline & Status',
-      heroTagline: 'Defy the limits of the sun',
       brandPage: {
         tag: 'Student Research Group · Brand Identity',
         title: 'Candelaria',
@@ -404,9 +363,6 @@ const translations = {
           'Design lead behind the visual identity of a university solar vehicle research team: the condor mark, a logo system for seven divisions and the brand manual the whole team works from.',
         role: 'Design Lead · Brand Identity · Art Direction',
         roleTitle: 'Leading the design team.',
-        ctaInstagram: 'Follow on Instagram',
-        ctaWebsite: 'See the website case study',
-        closingTitle: 'Follow the team on Instagram',
       },
 
       teamsKicker: 'The Team',
@@ -600,21 +556,13 @@ const translations = {
         'Carrying both the design leadership and the technical development simultaneously revealed a clear advantage: when you set the brand rules and implement them in code, every inconsistency surfaces immediately. The cost is that you carry every inconsistency alone.',
       ],
 
-      stackKicker: 'Tools used',
-      stackTitle: 'Built solo with',
-      stackHint: 'Hover the badges',
 
-      ctaVisit: 'Visit the website',
-      ctaCode: 'View on GitHub',
     },
     sensewave: {
       title: 'SenseWave',
       subtitle: 'A speculative neurotechnology brand exploring direct neural interfaces for restoring human sensation.',
 
       // One project, three faces — the lane it appears in decides which.
-      faceProduct: 'The Sense Eco glasses and a two-chip system: hardware that turns another person\'s recorded sensation into neural signal.',
-      faceDigital: 'The interface layer that curates a donated sensory library and hands the recipient control over what they feel, and when.',
-      faceVisual: 'A brand system built on empathy rather than spectacle — identity, language and motion for technology that has to feel trustworthy.',
 
       heroPeriod: 'Sensewave · Speculative Design · 2025',
       heroH1: 'What if memories',
@@ -701,8 +649,6 @@ const translations = {
       title: 'El Umbral',
       subtitle:
         'A modular coffee table built from two interchangeable modules, where the user decides which face is the top.',
-      faceProduct: 'Two identical structures, two different surfaces. Swap which one sits on top and the table changes character — no tools, no hardware.',
-      faceVisual: 'A pattern drawn from the study of pre-Columbian geometry and Antonio Grass\'s work, rewritten to the table\'s own grid.',
 
       metaRole: 'Role',
       metaDimensions: 'Dimensions',
@@ -870,13 +816,10 @@ const translations = {
 
       versionsIntro: 'Rather than propose one answer, I built three, each a defensible position on the same axis: how much can you compress a taxonomy before it stops being able to describe the content?',
       v1Title: 'V1 · Recategorised original',
-      v1Count: '75 tags',
       v1Desc: 'The existing tags reorganised under five categories — Body, Mind, Relationships, Sex, Culture — with duplicates removed. This version proves the categories hold, but keeps the volume problem.',
       v2Title: 'V2 · Logical grouping',
-      v2Count: '46 tags',
       v2Desc: 'Tags collapsed into concepts rather than phrasings. Sharp enough for Bloom AI to make precise recommendations, still heavy for a mobile filter row.',
       v3Title: 'V3 · Simplified access',
-      v3Count: '28 tags',
       v3Desc: 'The recommendation. Under 40% of the original count, balanced across the five categories, and short enough that the whole filter fits on a phone screen.',
       v3Badge: 'Sweet spot',
 
@@ -889,7 +832,6 @@ const translations = {
       bridgeP2: 'Those shared tags are what let Bloom AI connect an article filed under Body with a podcast filed under Mind. A reader looking at menopause and hormones can be pointed to anxiety and emotional management, because the taxonomy itself encodes the relationship.',
       bridgeP3: 'The tinting that shows this overlap exists only in the specification. To the reader on the site, the bridge is invisible — it just feels like the recommendations understand them.',
 
-      structureTitle: 'Final structure · 28 tags across 5 categories',
       categories: [
         { name: 'Body', count: '12', tags: 'menstruation · contraceptives · pregnancy · fertility · menopause · endometriosis · STIs · personal care · hormones · motherhood · sexual desire · gynaecology' },
         { name: 'Mind', count: '7', tags: 'anxiety · self-esteem · mental health · depression · self-knowledge · hormones · emotional management' },
@@ -899,10 +841,14 @@ const translations = {
       ],
 
       caseTitle: 'How a piece lives in the system',
-      caseIntro: 'Every piece carries one category plus two to five tags. Marked tags are shared — they appear in content from other categories, and Bloom AI reads them as bridges for cross-recommendation. Point at one to see what it connects.',
+      caseIntro: 'Every piece carries one category plus two to five tags. Marked tags are shared — they appear in content from other categories, and Bloom AI reads them as bridges for cross-recommendation.',
+      caseHintPointer: 'Point at one to see what it connects.',
+      caseHintTouch: 'Tap one to see what it connects.',
 
       explorerLabel: 'Taxonomy explorer',
-      explorerHint: 'Switch versions to watch the taxonomy compress. Point at any tag to find every category it lives in.',
+      explorerHint: 'Switch versions to watch the taxonomy compress.',
+      explorerHintPointer: 'Point at any tag to find every category it lives in.',
+      explorerHintTouch: 'Tap any tag to find every category it lives in.',
       explorerTags: 'tags',
       explorerShared: 'Shared across categories',
       explorerLang: 'Tags appear in Spanish, as they were delivered to the client.',
@@ -949,7 +895,6 @@ const translations = {
       code: 'Repositorio',
       instagram: 'Seguir en Instagram',
       siteCase: 'Ver el caso del sitio',
-      brandCase: 'Ver el caso de la marca',
     },
     herbarium: {
       gen: 'Gen.',
@@ -962,29 +907,6 @@ const translations = {
         sensewaveProduct: { genus: 'Objeto', year: '2025', role: 'Diseño de marca y producto' },
       },
     },
-    keyscape: {
-      label: 'Un lecho de teclas de concreto, una tecnología en cada una, con el logo del sitio en la tecla central y musgo en las ranuras.',
-      caption: 'Herramientas',
-      items: ['Figma', 'React', 'Next.js', 'Python', 'Django', 'Supabase', 'Tailwind', 'Three.js', 'Blender', 'Unity', 'Git', 'SQL'],
-    },
-    lab: {
-      title: 'Laboratorio',
-      lead: 'Banco de componentes del rediseño. Cada porte de OriginKit aterriza aquí primero, solo, antes de entrar a una página.',
-      webglActive: 'Contextos WebGL vivos',
-      webglWaiting: 'En espera de cupo',
-      webglCaps: 'Veredicto del dispositivo',
-      fps: 'Cuadros por segundo',
-      botanicalVariants: 'Botanical Text — variantes de idioma',
-      keyscapeVariants: 'Citron Keyscape — variantes de idioma',
-      plushVariants: 'Plush Tile — variantes de idioma',
-      plushDock: 'Dock (musgo)',
-      plushHerbarium: 'Herbario (pasto alrededor de la losa)',
-      velourVariants: 'Velour Bolster — variantes de idioma',
-      velourLabel: 'Explorar',
-      moonlitVariants: 'Moonlit Petals — variantes de idioma',
-      moonlitCaption: 'Ocobo a la luz de un día nublado',
-      moonlitLabel: 'Un árbol de ocobo en flor rosada bajo un cielo nublado, con pétalos que caen. Al pasar el puntero por encima se agitan las flores.',
-    },
     meta: {
       siteName: 'Julián Galindo — Diseñador y Desarrollador',
       home: {
@@ -993,7 +915,6 @@ const translations = {
       },
       about: { title: 'Sobre mí', description: 'Ingeniería de sistemas como base, diseño como lo que crece encima. Educación, experiencia y el cambio de carrera, contado de frente.' },
       projects: { title: 'Proyectos', description: 'Trabajo web, digital, de objeto y de marca: Candelaria, Licorímetro, Bloom, El Umbral y SenseWave.' },
-      lab: { title: 'Laboratorio', description: 'Banco de componentes. Todavía no hay nada que ver.' },
     },
     nav: {
       label: 'Navegación principal',
@@ -1024,7 +945,6 @@ const translations = {
       tagline: 'Diseñador y Desarrollador',
       ctaProjects: 'Ver proyectos',
       ctaCv: 'Descargar CV',
-      profileAlt: 'Julián Galindo Mora',
     },
     home: {
       bioTitle: 'Sobre mí',
@@ -1086,7 +1006,6 @@ const translations = {
       status: { 'in-progress': 'En curso', soon: 'Próximamente' },
       openCase: 'Abrir caso de estudio',
       visitSite: 'Visitar el sitio',
-      viewCode: 'Repositorio en GitHub',
       deckLabel: 'Sitios web, una tarjeta a la vez',
       deckHint: 'Desplaza, arrastra, haz clic o usa las flechas para pasarlas.',
       deckListTitle: 'Todos los sitios',
@@ -1096,6 +1015,7 @@ const translations = {
       explodedHide: 'Volver a armar',
       toolsKicker: 'Herramientas',
       toolsTitle: 'Con qué construyo',
+      tools: ['Figma', 'React', 'Next.js', 'Python', 'Django', 'Supabase', 'Tailwind', 'Three.js', 'Blender', 'Unity', 'Git', 'SQL'],
     },
     works: {
       candelariaWebsite: {
@@ -1288,15 +1208,6 @@ const translations = {
         'Aunque el prototipo final fue limitado, la arquitectura conceptual de Licorímetro contemplaba un ecosistema mucho más amplio. El sistema incluía autenticación, perfiles, reputación, gamificación, recomendaciones inteligentes, almacenamiento social, interacción comunitaria — e integraciones potenciales con marketplaces externos.',
         'Incluso desde una etapa académica, el proyecto ya contemplaba estrategias de fidelización, alianzas comerciales, modelos de monetización y escalabilidad. El pensamiento era product-first: no un proyecto escolar que resultó tener features, sino un MVP de startup que resultó construirse en clase.',
       ],
-      architectureBullets: [
-        'Sistema completo de autenticación y perfiles.',
-        'Motor de reputación y gamificación.',
-        'Recomendaciones inteligentes basadas en comportamiento.',
-        'Almacenamiento social (Tu Bodega) con sharing.',
-        'Potenciales integraciones con marketplaces externos.',
-        'Modelo de monetización y alianzas comerciales.',
-        'Escalabilidad considerada desde el día uno.',
-      ],
 
       whatChangedKicker: 'Evolución',
       whatChangedTitle: 'Qué construiría diferente hoy',
@@ -1317,24 +1228,18 @@ const translations = {
         'Marcó el primer contacto con el desarrollo móvil, la primera experiencia con OCR y uno de los primeros ejercicios reales de arquitectura de producto. Más allá del resultado técnico, el proyecto demostró que curiosidad, resiliencia y velocidad de aprendizaje pueden convertir una idea universitaria en una visión con potencial real.',
       ],
 
-      stackKicker: 'Herramientas usadas',
-      stackTitle: 'Construido con',
 
-      ctaCode: 'Ver en GitHub',
     },
     candelaria: {
       tag: 'Semillero · Proyecto Académico',
       title: 'Candelaria Website',
       subtitle:
         'Líder de diseño y desarrollador único de la presencia digital completa de un equipo universitario de investigación en vehículos solares.',
-      faceDigital: 'Un sitio en React y Django construido de punta a punta — la cara pública del equipo, su pitch a patrocinadores y su archivo en un solo sistema.',
-      faceVisual: 'La identidad visual que lo sostiene: marca del cóndor, sistema de divisiones y las reglas que hacen que ocho subequipos se vean como uno.',
       role: 'Líder de Diseño · Ingeniería de Producto · Full-stack',
       period: 'Oct 2025 – Presente',
       status: 'En desarrollo',
       sectionRoleLabel: 'Rol',
       sectionTimelineLabel: 'Cronología y Estado',
-      heroTagline: 'Desafía los límites del sol',
       brandPage: {
         tag: 'Semillero · Identidad de Marca',
         title: 'Candelaria',
@@ -1342,9 +1247,6 @@ const translations = {
           'Líder de diseño detrás de la identidad visual de un semillero universitario de vehículos solares: la marca del cóndor, un sistema de logos para siete áreas y el manual de marca con el que trabaja todo el equipo.',
         role: 'Líder de Diseño · Identidad de Marca · Dirección de Arte',
         roleTitle: 'Liderando al equipo de diseño.',
-        ctaInstagram: 'Seguir en Instagram',
-        ctaWebsite: 'Ver el caso del website',
-        closingTitle: 'Sigue al equipo en Instagram',
       },
 
       teamsKicker: 'El Equipo',
@@ -1538,21 +1440,13 @@ const translations = {
         'Sostener al mismo tiempo el liderazgo de diseño y el desarrollo técnico reveló una ventaja concreta: cuando eres quien establece las reglas de marca y quien las implementa en código, cualquier inconsistencia aparece de inmediato. El costo es que también cargas con cada inconsistencia solo.',
       ],
 
-      stackKicker: 'Herramientas usadas',
-      stackTitle: 'Construido en solitario con',
-      stackHint: 'Pasa el cursor sobre los badges',
 
-      ctaVisit: 'Visitar el sitio',
-      ctaCode: 'Ver en GitHub',
     },
     sensewave: {
       title: 'SenseWave',
       subtitle: 'Una marca especulativa de neurotecnología que explora interfaces neurales directas para restaurar la sensación humana.',
 
       // Un proyecto, tres caras — la franja en la que aparece decide cuál.
-      faceProduct: 'Las gafas Sense Eco y un sistema de dos chips: el hardware que convierte la sensación grabada de otra persona en señal neural.',
-      faceDigital: 'La capa de interfaz que cura una biblioteca sensorial donada y le da al receptor control sobre qué siente y cuándo.',
-      faceVisual: 'Un sistema de marca construido sobre la empatía y no sobre el espectáculo — identidad, lenguaje y movimiento para una tecnología que debe inspirar confianza.',
 
       heroPeriod: 'Sensewave · Diseño Especulativo · 2025',
       heroH1: '¿Y si los recuerdos',
@@ -1639,8 +1533,6 @@ const translations = {
       title: 'El Umbral',
       subtitle:
         'Una mesa de centro modular compuesta por dos módulos intercambiables, donde el usuario decide cuál cara queda arriba.',
-      faceProduct: 'Dos estructuras idénticas, dos superficies distintas. Cambiar cuál queda arriba transforma el carácter de la mesa — sin herramientas ni herrajes.',
-      faceVisual: 'Un patrón que parte del estudio de la geometría precolombina y del trabajo de Antonio Grass, reescrito sobre la propia cuadrícula de la mesa.',
 
       metaRole: 'Rol',
       metaDimensions: 'Dimensiones',
@@ -1808,13 +1700,10 @@ const translations = {
 
       versionsIntro: 'En lugar de proponer una respuesta, construí tres, cada una una postura defendible sobre el mismo eje: ¿cuánto se puede comprimir una taxonomía antes de que deje de poder describir el contenido?',
       v1Title: 'V1 · Original recategorizado',
-      v1Count: '75 tags',
       v1Desc: 'Los tags existentes reorganizados bajo cinco categorías —Cuerpo, Mente, Relaciones, Sexo, Cultura— y sin duplicados. Esta versión demuestra que las categorías se sostienen, pero conserva el problema de volumen.',
       v2Title: 'V2 · Agrupación lógica',
-      v2Count: '46 tags',
       v2Desc: 'Tags condensados en conceptos y no en formulaciones. Lo bastante precisa para que Bloom AI recomiende con exactitud, todavía pesada para una fila de filtros en móvil.',
       v3Title: 'V3 · Acceso simplificado',
-      v3Count: '28 tags',
       v3Desc: 'La recomendación. Menos del 40% del conteo original, balanceada entre las cinco categorías, y lo bastante corta para que el filtro completo quepa en una pantalla de teléfono.',
       v3Badge: 'Sweet spot',
 
@@ -1827,7 +1716,6 @@ const translations = {
       bridgeP2: 'Esos tags compartidos son los que permiten que Bloom AI conecte un artículo archivado en Cuerpo con un podcast archivado en Mente. A quien lee sobre menopausia y hormonas se le puede señalar ansiedad y gestión emocional, porque la taxonomía misma codifica esa relación.',
       bridgeP3: 'El tinte que muestra ese solapamiento existe solo en la especificación. Para quien lee el sitio, el puente es invisible — simplemente siente que las recomendaciones la entienden.',
 
-      structureTitle: 'Estructura final · 28 tags en 5 categorías',
       categories: [
         { name: 'Cuerpo', count: '12', tags: 'menstruación · anticonceptivos · embarazo · fertilidad · menopausia · endometriosis · ITS · cuidado personal · hormonas · maternidad · deseo sexual · ginecología' },
         { name: 'Mente', count: '7', tags: 'ansiedad · autoestima · salud mental · depresión · autoconocimiento · hormonas · gestión emocional' },
@@ -1837,10 +1725,14 @@ const translations = {
       ],
 
       caseTitle: 'Cómo vive un contenido en el sistema',
-      caseIntro: 'Cada pieza tiene una categoría más dos a cinco tags. Los tags marcados son mixtos — aparecen en contenidos de otras categorías, y Bloom AI los lee como puentes para recomendación cruzada. Pasa el cursor sobre uno para ver qué conecta.',
+      caseIntro: 'Cada pieza tiene una categoría más dos a cinco tags. Los tags marcados son mixtos — aparecen en contenidos de otras categorías, y Bloom AI los lee como puentes para recomendación cruzada.',
+      caseHintPointer: 'Pasa el cursor sobre uno para ver qué conecta.',
+      caseHintTouch: 'Toca uno para ver qué conecta.',
 
       explorerLabel: 'Explorador de taxonomía',
-      explorerHint: 'Cambia de versión para ver cómo se comprime la taxonomía. Pasa el cursor sobre un tag para encontrar todas las categorías donde vive.',
+      explorerHint: 'Cambia de versión para ver cómo se comprime la taxonomía.',
+      explorerHintPointer: 'Pasa el cursor sobre un tag para encontrar todas las categorías donde vive.',
+      explorerHintTouch: 'Toca un tag para encontrar todas las categorías donde vive.',
       explorerTags: 'tags',
       explorerShared: 'Compartido entre categorías',
       explorerLang: 'Los tags aparecen tal como se entregaron al cliente.',

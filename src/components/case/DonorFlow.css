@@ -33,19 +33,22 @@
   animation-delay: 1.75s;
 }
 .donor__link {
-  position: relative;
+  /* Phone: a vertical joint with the label in the flow, never beside it (no clipping). */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+}
+.donor__link::before,
+.donor__link::after {
+  content: '';
   width: 3px;
-  height: 56px;
+  height: 20px;
   background: var(--concrete-500);
 }
 .donor__label {
-  position: absolute;
-  top: 50%;
-  left: calc(100% + var(--space-3));
-  transform: translateY(-50%);
-  white-space: nowrap;
-  padding: 0 var(--space-1);
-  background: var(--concrete-100);
+  max-width: 100%;
+  text-align: center;
   font-family: var(--font-label);
   font-size: var(--text-label-sm);
   letter-spacing: var(--tracking-label);
@@ -54,16 +57,25 @@
 }
 @media (min-width: 768px) {
   .donor__link {
+    position: relative;
     flex: 1;
     max-width: 320px;
-    width: auto;
     height: 3px;
+    display: block;
+    background: var(--concrete-500);
+  }
+  .donor__link::before,
+  .donor__link::after {
+    content: none;
   }
   .donor__label {
-    top: auto;
+    position: absolute;
     bottom: var(--space-3);
     left: 50%;
     transform: translateX(-50%);
+    white-space: nowrap;
+    padding: 0 var(--space-1);
+    background: var(--concrete-100);
   }
 }
 @keyframes donor-pulse {

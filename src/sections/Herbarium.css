@@ -77,12 +77,22 @@
   transform: translateY(2px);
   box-shadow: var(--slab-shadow-pressed);
 }
-/* Where the shared canvas lands: the slab plus 40% on each side, for the grass. */
+/* Where the shared canvas lands: the slab plus 40% on each side, for the grass. The slab
+   itself is cut out of the mask, so the grass only grows round it and never covers the
+   label (ACABADO §5). 55.56% = 100 / 180, the slab inside the slot. */
 .herb__slot {
   position: absolute;
   inset: -40%;
   z-index: 2;
   pointer-events: none;
+  -webkit-mask:
+    linear-gradient(rgb(0 0 0), rgb(0 0 0)),
+    linear-gradient(rgb(0 0 0), rgb(0 0 0)) center / 55.56% 55.56% no-repeat;
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(rgb(0 0 0), rgb(0 0 0)),
+    linear-gradient(rgb(0 0 0), rgb(0 0 0)) center / 55.56% 55.56% no-repeat;
+  mask-composite: exclude;
 }
 /* Static grass, the no-WebGL version: a moss band rising at the foot on hover/focus. */
 .herb__slab::after {
@@ -101,7 +111,12 @@
     opacity 220ms ease,
     transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-.herb__slab:hover::after,
+@media (hover: hover) {
+  .herb__slab:hover::after {
+    opacity: 0.9;
+    transform: none;
+  }
+}
 .herb__slab:focus-visible::after {
   opacity: 0.9;
   transform: none;

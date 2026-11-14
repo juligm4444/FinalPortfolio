@@ -84,6 +84,7 @@
 }
 .cs__stack {
   display: grid;
+  align-content: start;
   min-width: 0;
   gap: var(--space-5, 1.25rem);
 }
@@ -458,4 +459,39 @@
   height: 96px;
   margin-bottom: var(--space-3);
   object-fit: contain;
+}
+
+/* Phone: each row becomes a small card (label · value); no column is ever cut off. */
+@media (max-width: 639px) {
+  .cs__table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+  .cs__table tr {
+    display: block;
+    padding: var(--space-2) 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .cs__table td {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-1) 0;
+    border-bottom: 0;
+    text-align: right;
+  }
+  .cs__table td::before {
+    content: attr(data-label);
+    flex: 0 0 auto;
+    max-width: 50%;
+    text-align: left;
+    font-family: var(--font-label);
+    font-size: var(--text-label-sm);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
 }

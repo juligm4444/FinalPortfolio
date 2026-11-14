@@ -41,7 +41,7 @@ export default function Bloom() {
         // 03 Decisions
         [
           { type: 'text', kicker: b('s4'), heading: b('bridgeTitle'), paras: [b('bridgeP1'), b('bridgeP2'), b('bridgeP3')] },
-          { type: 'text', sub: b('caseTitle'), paras: [b('caseIntro')] },
+          { type: 'text', sub: b('caseTitle'), paras: [b('caseIntro')], hint: { pointer: b('caseHintPointer'), touch: b('caseHintTouch') } },
           { type: 'node', node: <SystemInUse b={b} /> },
           { type: 'text', kicker: b('s5'), heading: b('wfTitle'), paras: [b('wfP1'), b('wfP2')] },
           { type: 'stat', value: b('wfStat'), label: b('wfStatLabel') },

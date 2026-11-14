@@ -225,18 +225,6 @@ a.work-slab:active {
   text-transform: uppercase;
   color: var(--text-muted);
 }
-/* The instruction follows the device: touch by default, pointer where there is a mouse. */
-.pedestal__hint--pointer {
-  display: none;
-}
-@media (hover: hover) and (pointer: fine) {
-  .pedestal__hint--pointer {
-    display: block;
-  }
-  .pedestal__hint--touch {
-    display: none;
-  }
-}
 @media (prefers-reduced-motion: reduce) {
   .pedestal__piece,
   .work-slab {

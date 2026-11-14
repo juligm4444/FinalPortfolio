@@ -5,6 +5,7 @@ import BotanicalText from '../components/BotanicalText.jsx'
 import Surface from '../components/Surface.jsx'
 import TumbleDeck from '../components/TumbleDeck.jsx'
 import Specimen from '../components/Specimen.jsx'
+import DeviceHint from '../components/DeviceHint.jsx'
 import { worksByGroup } from '../data/projects.js'
 import './Projects.css'
 
@@ -140,8 +141,9 @@ function Pedestal({ work }) {
           <span className="work__title">{title}</span>
         </WorkLink>
         <span className="work__desc">{t(`works.${work.id}.desc`)}</span>
-        <span className="pedestal__hint pedestal__hint--pointer">{t('projects.explodedHintPointer')}</span>
-        <span className="pedestal__hint pedestal__hint--touch">{t('projects.explodedHintTouch')}</span>
+        <span className="pedestal__hint">
+          <DeviceHint pointer={t('projects.explodedHintPointer')} touch={t('projects.explodedHintTouch')} />
+        </span>
       </div>
     </li>
   )
@@ -163,7 +165,7 @@ function ObjectGroup() {
 /* Tools: one slab per technology (ACABADO §5: the keyscape was retired, the list stays). */
 function Tools() {
   const { t } = useLocale()
-  const words = t('keyscape.items')
+  const words = t('projects.tools')
   return (
     <section className="proj__group" aria-labelledby="tools-title">
       <p className="proj__kicker">{t('projects.toolsKicker')}</p>

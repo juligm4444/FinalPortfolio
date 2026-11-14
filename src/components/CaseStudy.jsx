@@ -3,6 +3,7 @@ import { useLocale } from '../i18n/LocaleProvider.jsx'
 import LocaleLink from './LocaleLink.jsx'
 import { caseStudies } from '../data/projects.js'
 import './CaseStudy.css'
+import DeviceHint from './DeviceHint.jsx'
 
 /* ACABADO §7 — the case template: Reveal, CaseHero, NextCase and the CaseStudy renderer. */
 
@@ -34,7 +35,8 @@ export function CaseHero({ slug, kicker, h1, h2, sub, tags, meta = [], tools: to
   const links =
     linksProp ??
     [study.site && { label: t('case.visit'), href: study.site }, study.code && { label: t('case.code'), href: study.code }].filter(Boolean)
-  const ficha = [...meta, ...(tools?.length ? [{ label: t('case.tools'), value: tools.join(' · ') }] : [])]
+  // A field with no content is not shown (ACABADO §7): no empty rows, nothing invented.
+  const ficha = [...meta, ...(tools?.length ? [{ label: t('case.tools'), value: tools.join(' · ') }] : [])].filter((f) => f.value && String(f.value).trim())
   return (
     <header className="px-4 pb-16 pt-16 md:px-8 md:pb-24 md:pt-24">
       <div className="mx-auto w-full max-w-[1200px]">
@@ -204,6 +206,11 @@ function Block({ b }) {
               {p}
             </p>
           ))}
+          {b.hint ? (
+            <p className="cs__p">
+              <DeviceHint pointer={b.hint.pointer} touch={b.hint.touch} />
+            </p>
+          ) : null}
         </div>
       )
       if (b.heading && b.stacked)
@@ -375,7 +382,9 @@ function Block({ b }) {
                 {b.rows.map((row, i) => (
                   <tr key={i} className={b.accent && row[0] === b.accent ? 'is-on' : undefined}>
                     {row.map((cell, k) => (
-                      <td key={k}>{cell}</td>
+                      <td key={k} data-label={b.header[k]}>
+                        {cell}
+                      </td>
                     ))}
                   </tr>
                 ))}

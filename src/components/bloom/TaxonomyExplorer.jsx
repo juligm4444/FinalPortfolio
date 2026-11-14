@@ -7,6 +7,7 @@ import {
   VERSIONS,
   membership,
 } from '../../data/bloomTaxonomy.js'
+import DeviceHint from '../DeviceHint.jsx'
 
 /**
  * The three taxonomy proposals as one live system instead of three posters.
@@ -115,7 +116,7 @@ export default function TaxonomyExplorer({ b }) {
         className="mt-6 font-nav"
         style={{ color: 'var(--text-muted)', fontSize: 16, lineHeight: 1.6, maxWidth: '66ch' }}
       >
-        {b('explorerHint')}
+        {b('explorerHint')} <DeviceHint pointer={b('explorerHintPointer')} touch={b('explorerHintTouch')} />
       </p>
 
       <LayoutGroup>

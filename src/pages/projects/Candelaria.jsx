@@ -18,6 +18,7 @@ import condorCHA from '../../assets/images/candelaria/condor-CHA.webp';
 import condorCOM from '../../assets/images/candelaria/condor-COM.webp';
 import condorDIS from '../../assets/images/candelaria/condor-DIS.webp';
 import condorLOG from '../../assets/images/candelaria/condor-LOG.webp';
+import siteHero from '../../assets/images/candelaria/website-hero.webp'
 import { CANDELARIA_BRAND_PALETTE } from '../../data/swatches.js';
 import condorRRHH from '../../assets/images/candelaria/condor-RRHH.webp';
 
@@ -62,15 +63,13 @@ function useCandelaria(brand) {
           { label: t('case.visit'), href: project.site },
           { label: t('case.code'), href: project.code },
         ],
-    media: condorMain,
-    mediaAlt: 'Candelaria condor',
+    // The condor belongs to the brand case; the site case opens with the site itself.
+    media: brand ? condorMain : siteHero,
+    mediaAlt: brand ? 'Candelaria condor' : 'Candelaria website',
   }
-  const role = {
-    type: 'split',
-    even: true,
-    left: fig(roleImg, 'Design team — Candelaria', '1/1'),
-    right: { type: 'text', stacked: true, kicker: c('myRoleKicker'), heading: t(brand ? 'candelaria.brandPage.roleTitle' : 'candelaria.myRoleTitle'), paras: roleParas },
-  }
+  const roleText = { type: 'text', kicker: c('myRoleKicker'), heading: t(brand ? 'candelaria.brandPage.roleTitle' : 'candelaria.myRoleTitle'), paras: roleParas }
+  // The team photo lives in the brand case only.
+  const role = brand ? { type: 'split', even: true, left: fig(roleImg, 'Design team — Candelaria', '1/1'), right: { ...roleText, stacked: true } } : roleText
   return { t, c, hero, role }
 }
 
@@ -93,7 +92,7 @@ export default function Candelaria() {
               cols: 4,
               items: [
                 ...TEAMS.map(([abbr, img], i) => ({ img, kicker: abbr, title: teams[i]?.name, desc: teams[i]?.role })),
-                { img: condorMain, title: c('teamsCredit') },
+                { title: c('teamsCredit') },
               ],
             },
           ],
