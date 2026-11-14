@@ -37,8 +37,7 @@ function NotFound() {
   return <Navigate to={localePath(isLocale(lang) ? lang : 'es', '/')} replace />
 }
 
-/* Case studies: the route sets the project's palette (cases.css, [data-case])
-   and plays the crack entrance. Keyed by slug so moving between two cases replays it. */
+/* Case studies: one template, site tokens only (cases.css), and the crack entrance. Keyed by slug so moving between two cases replays it. */
 function CaseLayout() {
   const { pathname } = useLocation()
   const slug = splitLocale(pathname).path.split('/')[2] ?? ''

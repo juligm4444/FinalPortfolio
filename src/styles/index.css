@@ -18,44 +18,6 @@
   font-display: swap;
 }
 
-/* ===== Candelaria project fonts — Sansation =====
-   Self-hosted, only downloaded when a page references it. */
-@font-face {
-  font-family: 'Sansation';
-  src: url('../assets/fonts/Sansation/Sansation-Light.ttf') format('truetype');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Sansation';
-  src: url('../assets/fonts/Sansation/Sansation-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Sansation';
-  src: url('../assets/fonts/Sansation/Sansation-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Sansation';
-  src: url('../assets/fonts/Sansation/Sansation-Italic.ttf') format('truetype');
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Sansation';
-  src: url('../assets/fonts/Sansation/Sansation-BoldItalic.ttf') format('truetype');
-  font-weight: 700;
-  font-style: italic;
-  font-display: swap;
-}
-
 /* ================= TOKENS (REDESIGN §2, Fase 1) =================
    Sin modo claro/oscuro. Una sola paleta: concreto, niebla, musgo, ocobo. */
 :root {

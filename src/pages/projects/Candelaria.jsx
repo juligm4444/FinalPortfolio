@@ -48,9 +48,7 @@ const C_LIGHT = {
   btnText:      'var(--case-on-accent)',
 };
 
-/* Body and labels are the site's (fixed across cases). Display is the site's
-   too, except on the brand route, where cases.css sets --case-display to the
-   brand manual's Sansation. */
+/* Body, labels and display are the site's (ACABADO §0). */
 const DISPLAY = 'var(--case-display)';
 const BODY = 'var(--font-body)';
 const LABEL = 'var(--font-label)';
