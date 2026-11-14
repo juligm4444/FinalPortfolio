@@ -14,15 +14,15 @@ Va en `docs/ACABADO.md`. Complementa a `docs/REDESIGN.md`. Si se contradicen, **
 
 Prueba para cada elemento visible: ¿es concreto, planta o grieta? Si no es ninguno, sobra.
 
-Prohibido en todo el sitio: personajes 3D tipo caricatura, vidrio esmerilado, neón, degradados morados, íconos hexagonales, teclas negras o rosadas, cualquier insignia de terceros ("Built with …").
+Prohibido en todo el sitio: personajes 3D tipo caricatura, vidrio esmerilado, neón, degradados morados, íconos hexagonales, teclas negras o rosadas, sellos de herramientas de terceros ("Built with …"). Las certificaciones propias (insignias de IBM, Cisco) no son sellos de herramientas: se quedan.
 
 ## 2. Paleta: solo tokens
 
 - Único origen de color: las variables de `src/styles/index.css` (`--mist`, `--concrete-*`, `--moss-*`, `--bloom*`).
 - **Cero hex fuera de ese archivo.** Excepción única: datos dentro de un canvas WebGL que lean los tokens al iniciar.
 - Se eliminan los alias heredados de Tailwind (`black`, `pink`, `gray`, `white`) y las variables `--fg`, `--fg-soft`, `--fg-muted`.
-- `--bloom` es acento escaso: como máximo un elemento rosa por pantalla visible. Nunca como relleno de bloques grandes ni como color dominante de un título.
-- Imágenes de proyecto: se muestran sobre losa `--concrete-100`, nunca a sangre con su propio fondo de color.
+- `--bloom` es acento escaso: como máximo un elemento rosa por pantalla visible. Nunca como relleno de bloques grandes ni como color dominante de un título. El límite aplica al color de interfaz, no a imágenes de contenido (insignias, fotos de proyecto, las flores del busto).
+- Imágenes de proyecto: se muestran sobre losa `--concrete-100`, nunca a sangre con su propio fondo de color. Las capturas de sitios web también: van dentro de una tarjeta de losa con margen parejo, no a sangre.
 
 ## 3. Texto siempre legible
 
@@ -30,7 +30,7 @@ Prohibido en todo el sitio: personajes 3D tipo caricatura, vidrio esmerilado, ne
 - Tamaños mínimos: cuerpo 16 px, texto secundario 14 px, etiquetas 12 px. Nada por debajo.
 - Ancho de línea del cuerpo: entre 45 y 75 caracteres.
 - Contraste AA verificado por cálculo, no a ojo.
-- H1 con Botanical Text: debe leerse a 390 px de un vistazo. Follaje verde (`--moss-*`) domina; flores rosa no pasan del 15 % de las partículas. Si no se lee, se usa el H1 de texto plano. El mismo tratamiento en las tres páginas, incluida Home.
+- H1 con Botanical Text: follaje verde (`--moss-*`) domina; flores rosa no pasan del 15 % de las partículas. En escritorio, Botanical en los tres H1 (Home, About, Proyectos). En móvil (ancho menor a 768 px o puntero táctil), H1 plano en los tres. La escena arranca después de la carga, en tiempo ocioso, y construye las partículas por tandas; mientras tanto se ve el H1 plano y el cambio no mueve el layout.
 
 ## 4. Shell
 
