@@ -4,14 +4,7 @@ import LocaleLink from './LocaleLink.jsx'
 import { caseStudies } from '../data/projects.js'
 import './CaseStudy.css'
 
-/**
- * Shared scaffolding for case-study pages.
- *
- * Unlike the Sensewave page, which ships its own palette because the brand it
- * documents *is* a palette, these primitives run entirely on the global theme
- * tokens and take a single `accent` per project. That is what keeps a new case
- * study correct in both themes without re-deriving a colour system each time.
- */
+/* ACABADO §7 — the case template: Reveal, CaseHero, NextCase and the CaseStudy renderer. */
 
 const EASE = [0.16, 1, 0.3, 1]
 
@@ -27,43 +20,6 @@ export function Reveal({ children, delay = 0, y = 24, className = '' }) {
     >
       {children}
     </motion.div>
-  )
-}
-
-export function CaseSection({ children, surface = false, className = '' }) {
-  return (
-    <section
-      className={`px-4 py-20 md:px-8 md:py-28 ${className}`}
-      style={{ background: surface ? 'var(--surface)' : 'transparent' }}
-    >
-      <div className="mx-auto w-full max-w-[1200px]">{children}</div>
-    </section>
-  )
-}
-
-export function SectionTag({ number, label, accent }) {
-  return (
-    <Reveal>
-      <div className="mb-12 flex items-center gap-5 md:mb-16">
-        <span
-          className="font-body uppercase"
-          style={{ fontSize: 12, letterSpacing: '0.28em', color: accent }}
-        >
-          {String(number).padStart(2, '0')}
-        </span>
-        <span
-          aria-hidden
-          className="h-px flex-1"
-          style={{ background: `color-mix(in srgb, ${accent} 30%, transparent)` }}
-        />
-        <span
-          className="font-body uppercase"
-          style={{ fontSize: 12, letterSpacing: '0.22em', color: 'var(--text-muted)' }}
-        >
-          {label}
-        </span>
-      </div>
-    </Reveal>
   )
 }
 
@@ -194,7 +150,7 @@ export function NextCase({ slug }) {
   const i = CASE_ORDER.findIndex(([s]) => s === slug)
   const [nextSlug, key] = CASE_ORDER[(i + 1) % CASE_ORDER.length]
   return (
-    <CaseSection>
+    <section className="cs__sec">
       <Reveal>
         <p className="font-nav uppercase" style={{ fontSize: 12, letterSpacing: '0.22em', color: 'var(--text-muted)' }}>
           {t('case.next')}
@@ -207,196 +163,7 @@ export function NextCase({ slug }) {
           {t(`works.${key}.title`)} →
         </LocaleLink>
       </Reveal>
-    </CaseSection>
-  )
-}
-
-/**
- * `ratio` crops the image into a fixed box — right when figures sit in a grid
- * and need to line up. Omit it and the image keeps its own proportions, which
- * is what tall spec artwork needs: forcing a ratio onto it just letterboxes
- * the thing you wanted people to read.
- */
-export function Figure({ src, alt, caption, ratio, contain = true, className = '' }) {
-  return (
-    <Reveal className={className}>
-      <figure>
-        <div
-          className="overflow-hidden"
-          style={{
-            aspectRatio: ratio,
-            background: 'color-mix(in srgb, var(--text) 4%, transparent)',
-            border: '1px solid color-mix(in srgb, var(--text) 8%, transparent)',
-          }}
-        >
-          <img
-            src={src}
-            alt={alt}
-            loading="lazy"
-            decoding="async"
-            draggable="false"
-            className={ratio ? 'h-full w-full' : 'block w-full'}
-            style={ratio ? { objectFit: contain ? 'contain' : 'cover' } : undefined}
-          />
-        </div>
-        {caption ? (
-          <figcaption
-            className="mt-3 font-body"
-            style={{ color: 'var(--text-muted)', fontSize: 16, lineHeight: 1.5 }}
-          >
-            {caption}
-          </figcaption>
-        ) : null}
-      </figure>
-    </Reveal>
-  )
-}
-
-export function Prose({ children, className = '' }) {
-  return (
-    <div className={`flex flex-col gap-5 ${className}`}>
-      {children.filter(Boolean).map((p, i) => (
-        <p
-          key={i}
-          className="font-body"
-          style={{ color: 'var(--text-muted)', fontSize: 16, lineHeight: 1.75, maxWidth: '62ch' }}
-        >
-          {p}
-        </p>
-      ))}
-    </div>
-  )
-}
-
-export function Heading({ children, accent }) {
-  return (
-    <h2
-      className="font-display"
-      style={{
-        color: accent ?? 'var(--text)',
-        fontSize: 'clamp(26px, 3.2vw, 42px)',
-        lineHeight: 1.12,
-        fontWeight: 700,
-        letterSpacing: '-0.01em',
-      }}
-    >
-      {children}
-    </h2>
-  )
-}
-
-export function SubHeading({ children }) {
-  return (
-    <h3
-      className="font-display"
-      style={{ color: 'var(--text)', fontSize: 19, lineHeight: 1.3, fontWeight: 700 }}
-    >
-      {children}
-    </h3>
-  )
-}
-
-export function PullQuote({ children, accent }) {
-  return (
-    <Reveal>
-      <blockquote
-        className="font-display"
-        style={{
-          color: 'var(--text)',
-          fontSize: 'clamp(22px, 2.8vw, 34px)',
-          lineHeight: 1.3,
-          fontWeight: 700,
-          borderLeft: `3px solid ${accent}`,
-          paddingLeft: 'clamp(20px, 3vw, 36px)',
-          maxWidth: '24ch',
-        }}
-      >
-        {children}
-      </blockquote>
-    </Reveal>
-  )
-}
-
-/** Renders a `\n`-separated spec block as a definition-style list. */
-export function SpecList({ title, body, note }) {
-  return (
-    <Reveal>
-      <div
-        className="p-6"
-        style={{
-          background: 'var(--concrete-100)',
-          border: '1px solid color-mix(in srgb, var(--text) 10%, transparent)',
-        }}
-      >
-        {title ? (
-          <p
-            className="mb-4 font-nav uppercase"
-            style={{ fontSize: 12, letterSpacing: '0.2em', color: 'var(--text-muted)' }}
-          >
-            {title}
-          </p>
-        ) : null}
-        <ul className="flex flex-col gap-2">
-          {body.split('\n').map((line) => (
-            <li
-              key={line}
-              className="font-body"
-              style={{ color: 'var(--text-muted)', fontSize: 16, lineHeight: 1.6 }}
-            >
-              {line}
-            </li>
-          ))}
-        </ul>
-        {note ? (
-          <p
-            className="mt-4 font-body"
-            style={{ color: 'var(--text-muted)', fontSize: 16, lineHeight: 1.6 }}
-          >
-            {note}
-          </p>
-        ) : null}
-      </div>
-    </Reveal>
-  )
-}
-
-export function CaseFooter({ label, quote, paragraphs, tags, accent }) {
-  return (
-    <CaseSection surface>
-      <Reveal>
-        <p
-          className="font-nav uppercase"
-          style={{ fontSize: 12, letterSpacing: '0.24em', color: accent }}
-        >
-          {label}
-        </p>
-      </Reveal>
-      <div className="mt-8">
-        <PullQuote accent={accent}>{quote}</PullQuote>
-      </div>
-      <Reveal>
-        <Prose className="mt-10">{paragraphs}</Prose>
-      </Reveal>
-      <Reveal>
-        <ul className="mt-10 flex flex-wrap gap-2">
-          {tags.map((tag) => (
-            <li
-              key={tag}
-              className="font-nav uppercase"
-              style={{
-                fontSize: 12,
-                letterSpacing: '0.18em',
-                color: 'var(--text-muted)',
-                border: `1px solid color-mix(in srgb, ${accent} 35%, transparent)`,
-                padding: '5px 10px',
-              }}
-            >
-              {tag}
-            </li>
-          ))}
-        </ul>
-      </Reveal>
-    </CaseSection>
+    </section>
   )
 }
 
@@ -415,6 +182,16 @@ export function CaseFooter({ label, quote, paragraphs, tags, accent }) {
    then the link to the next case. Order, type, colour and spacing are fixed here. */
 const SECTION_KEYS = ['problem', 'process', 'decisions', 'result']
 
+function Bullets({ items, cols }) {
+  return (
+    <ul className={`cs__bullets ${cols === 2 ? 'cs__bullets--2' : ''}`}>
+      {items.map((x, i) => (
+        <li key={i}>{x}</li>
+      ))}
+    </ul>
+  )
+}
+
 function Block({ b }) {
   if (!b) return null
   switch (b.type) {
@@ -429,6 +206,14 @@ function Block({ b }) {
           ))}
         </div>
       )
+      if (b.heading && b.stacked)
+        return (
+          <Reveal className="cs__stack">
+            {b.kicker ? <p className="cs__kicker">{b.kicker}</p> : null}
+            <h2 className="cs__h">{b.heading}</h2>
+            {body}
+          </Reveal>
+        )
       if (!b.heading) return <Reveal>{b.kicker ? <p className="cs__kicker">{b.kicker}</p> : null}{body}</Reveal>
       return (
         <Reveal className="cs__text cs__text--cols">
@@ -457,7 +242,15 @@ function Block({ b }) {
       return (
         <Reveal>
           <figure className="cs__fig cs__slab">
-            <img src={b.src} alt={b.alt ?? ''} loading="lazy" decoding="async" draggable="false" />
+            <img
+              src={b.src}
+              alt={b.alt ?? ''}
+              loading="lazy"
+              decoding="async"
+              draggable="false"
+              className={b.ratio ? (b.cover ? 'cs__img--cover' : 'cs__img--fit') : undefined}
+              style={b.ratio ? { aspectRatio: b.ratio } : undefined}
+            />
             {b.caption ? <figcaption>{b.caption}</figcaption> : null}
           </figure>
         </Reveal>
@@ -478,9 +271,167 @@ function Block({ b }) {
           </ul>
         </Reveal>
       )
+    case 'video':
+      return (
+        <Reveal>
+          <div className="cs__slab">
+            <video className="cs__video" autoPlay muted loop playsInline aria-hidden="true" style={b.ratio ? { aspectRatio: b.ratio } : undefined}>
+              <source src={b.src} type="video/mp4" />
+            </video>
+          </div>
+        </Reveal>
+      )
+    case 'cards':
+      return (
+        <Reveal>
+          <ul className={`cs__cards cs__cards--${b.cols ?? 3}`}>
+            {b.items.map((it, i) => (
+              <li key={i}>
+                {it.img ? <img className="cs__card-img" src={it.img} alt="" loading="lazy" decoding="async" /> : null}
+                {it.symbol ? <span className="cs__step-n">{it.symbol}</span> : null}
+                {it.kicker ? <p className="cs__kicker">{it.kicker}</p> : null}
+                <h3 className="cs__h3">{it.title}</h3>
+                {it.desc ?? it.body ? <p className="cs__p">{it.desc ?? it.body}</p> : null}
+              </li>
+            ))}
+          </ul>
+        </Reveal>
+      )
+    case 'rows':
+      return (
+        <Reveal>
+          <ol className="cs__rows">
+            {b.items.map((it) => (
+              <li key={it.phase}>
+                <span className={`cs__row-n ${it.highlight ? 'is-on' : ''}`}>{it.phase}</span>
+                <div className="cs__stack">
+                  <h3 className="cs__h3">{it.title}</h3>
+                  <p className="cs__p">{it.desc ?? it.intro}</p>
+                  {it.bullets ? <Bullets items={it.bullets} /> : null}
+                </div>
+              </li>
+            ))}
+          </ol>
+        </Reveal>
+      )
+    case 'swatches':
+      return (
+        <Reveal>
+          <div className="cs__slab">
+            {b.title ? <p className="cs__kicker">{b.title}</p> : null}
+            <ul className="cs__swatches">
+              {b.items.map((c) => (
+                <li key={c.name}>
+                  <span className="cs__sw" style={{ background: c.hex }} />
+                  <span>{c.name}</span>
+                  {c.label ? <span>{c.label}</span> : null}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Reveal>
+      )
+    case 'typespec':
+      return (
+        <Reveal>
+          <div className="cs__slab">
+            <p className="cs__kicker">{b.label}</p>
+            <p className="cs__type-d">{b.display}</p>
+            <p className="cs__type-s">{b.sub}</p>
+            <dl className="cs__roles">
+              {b.roles.map((r) => (
+                <div key={r.role}>
+                  <dt className="cs__kicker">{r.role}</dt>
+                  <dd>{r.name}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </Reveal>
+      )
+    case 'bullets':
+      return (
+        <Reveal>
+          <div className={b.card ? 'cs__slab' : undefined}>
+            <Bullets items={b.items} cols={b.cols} />
+          </div>
+        </Reveal>
+      )
+    case 'table':
+      return (
+        <Reveal>
+          <div className="cs__table-wrap">
+            <table className="cs__table">
+              <thead>
+                <tr>
+                  {b.header.map((h, i) => (
+                    <th key={i} scope="col">
+                      {h}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {b.rows.map((row, i) => (
+                  <tr key={i} className={b.accent && row[0] === b.accent ? 'is-on' : undefined}>
+                    {row.map((cell, k) => (
+                      <td key={k}>{cell}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Reveal>
+      )
+    case 'spec':
+      return (
+        <Reveal>
+          <div className="cs__spec">
+            {b.title ? <p className="cs__kicker">{b.title}</p> : null}
+            <ul>
+              {b.lines.map((l) => (
+                <li key={l}>{l}</li>
+              ))}
+            </ul>
+            {b.note ? <p className="cs__spec-note">{b.note}</p> : null}
+          </div>
+        </Reveal>
+      )
+    case 'steps':
+      return (
+        <Reveal>
+          {b.title ? <p className="cs__kicker">{b.title}</p> : null}
+          <ol className="cs__steps">
+            {b.items.map((it) => (
+              <li key={it.n}>
+                <span className="cs__step-n">{it.n}</span>
+                <h3 className="cs__h3">{it.title}</h3>
+                <p className="cs__p">{it.desc}</p>
+              </li>
+            ))}
+          </ol>
+        </Reveal>
+      )
+    case 'grid':
+      return (
+        <div className={`cs__grid cs__grid--${b.cols ?? 2}`}>
+          {b.items.map((it, i) => (
+            <Block key={i} b={it} />
+          ))}
+        </div>
+      )
+    case 'stack':
+      return (
+        <div className="cs__blocks">
+          {b.items.map((it, i) => (
+            <Block key={i} b={it} />
+          ))}
+        </div>
+      )
     case 'split':
       return (
-        <div className="cs__split">
+        <div className={`cs__split ${b.even ? 'cs__split--even' : ''}`}>
           <Block b={b.left} />
           <Block b={b.right} />
         </div>
@@ -495,23 +446,26 @@ export default function CaseStudy({ slug, hero, sections }) {
   const [h1, h2] = hero.title
   return (
     <>
-      <CaseHero slug={slug} kicker={hero.kicker} h1={h1} h2={h2} sub={hero.summary} tags={hero.tags} meta={hero.meta} media={hero.media} mediaAlt={hero.mediaAlt} />
-      {sections.map((blocks, i) => (
-        <section key={SECTION_KEYS[i]} className="cs__sec" aria-labelledby={`cs-${SECTION_KEYS[i]}`}>
-          <div className="cs__tag">
-            <span className="cs__num">{String(i + 1).padStart(2, '0')}</span>
-            <span aria-hidden className="cs__rule" />
-            <h2 id={`cs-${SECTION_KEYS[i]}`} className="cs__sec-label">
-              {t(`case.sections.${SECTION_KEYS[i]}`)}
-            </h2>
-          </div>
-          <div className="cs__blocks">
-            {blocks.map((b, j) => (
-              <Block key={j} b={b} />
-            ))}
-          </div>
-        </section>
-      ))}
+      <CaseHero slug={slug} kicker={hero.kicker} h1={h1} h2={h2} sub={hero.summary} tags={hero.tags} meta={hero.meta} tools={hero.tools} links={hero.links} media={hero.media} mediaAlt={hero.mediaAlt} />
+      {sections.map((sec, i) => {
+        const { key, blocks } = Array.isArray(sec) ? { key: SECTION_KEYS[i], blocks: sec } : sec
+        return (
+          <section key={key} className="cs__sec" aria-labelledby={`cs-${key}`}>
+            <div className="cs__tag">
+              <span className="cs__num">{String(i + 1).padStart(2, '0')}</span>
+              <span aria-hidden className="cs__rule" />
+              <h2 id={`cs-${key}`} className="cs__sec-label">
+                {t(`case.sections.${key}`)}
+              </h2>
+            </div>
+            <div className="cs__blocks">
+              {blocks.map((b, j) => (
+                <Block key={j} b={b} />
+              ))}
+            </div>
+          </section>
+        )
+      })}
       <NextCase slug={slug} />
     </>
   )
