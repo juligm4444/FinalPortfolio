@@ -12,10 +12,14 @@ const translations = {
       brandCase: 'See the brand case',
     },
     herbarium: {
+      gen: 'Gen.',
       items: {
-        candelariaWebsite: { genus: 'Web · Full-stack', year: 'Oct 2025 — present', role: 'Design lead, product engineering' },
-        bloom: { genus: 'Digital · UX', year: 'Jun 2026', role: 'UX research, information architecture' },
-        sensewaveProduct: { genus: 'Object · Speculative brand', year: '2025', role: 'Brand and product design' },
+        candelariaWebsite: { genus: 'Web', year: 'Oct 2025 — present', role: 'Design lead, product engineering' },
+        candelariaBrand: { genus: 'Brand', year: 'Oct 2025 — present', role: 'Design lead, identity, art direction' },
+        licorimetro: { genus: 'Mobile', year: '2023', role: 'Product architecture, UX/UI, mobile development' },
+        bloom: { genus: 'Digital', year: 'Jun 2026', role: 'UX research, information architecture' },
+        umbral: { genus: 'Object', year: '2026', role: 'Product design, digital fabrication' },
+        sensewaveProduct: { genus: 'Object', year: '2025', role: 'Brand and product design' },
       },
     },
     keyscape: {
@@ -936,10 +940,14 @@ const translations = {
       brandCase: 'Ver el caso de la marca',
     },
     herbarium: {
+      gen: 'Gen.',
       items: {
-        candelariaWebsite: { genus: 'Web · Full-stack', year: 'Oct 2025 — presente', role: 'Diseño e ingeniería de producto' },
-        bloom: { genus: 'Digital · UX', year: 'Jun 2026', role: 'Investigación UX, arquitectura de información' },
-        sensewaveProduct: { genus: 'Objeto · Marca especulativa', year: '2025', role: 'Diseño de marca y producto' },
+        candelariaWebsite: { genus: 'Web', year: 'Oct 2025 — presente', role: 'Diseño e ingeniería de producto' },
+        candelariaBrand: { genus: 'Marca', year: 'Oct 2025 — presente', role: 'Líder de diseño, identidad, dirección de arte' },
+        licorimetro: { genus: 'Móvil', year: '2023', role: 'Arquitectura de producto, UX/UI, desarrollo móvil' },
+        bloom: { genus: 'Digital', year: 'Jun 2026', role: 'Investigación UX, arquitectura de información' },
+        umbral: { genus: 'Objeto', year: '2026', role: 'Diseño de producto, fabricación digital' },
+        sensewaveProduct: { genus: 'Objeto', year: '2025', role: 'Diseño de marca y producto' },
       },
     },
     keyscape: {
