@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion'
 import { useLocale } from '../i18n/LocaleProvider.jsx'
-import SplineViewer from '../components/SplineViewer.jsx'
 
 export default function Bio() {
   const { t } = useLocale()
@@ -8,21 +7,9 @@ export default function Bio() {
 
   return (
     <section className="mx-auto w-full max-w-[1200px] px-4 py-24 md:px-8 md:py-32">
-      <div className="grid grid-cols-1 items-stretch gap-12 lg:grid-cols-12 lg:gap-16">
-        {/* LEFT — vertical 9:16 3D slot */}
-        <div className="lg:col-span-4">
-          <div className="lg:sticky lg:top-[120px]">
-            <div style={{ width: '100%', aspectRatio: '9 / 16' }}>
-              <SplineViewer
-                url="https://prod.spline.design/8M4AUjTdmnH8plii/scene.splinecode"
-                ariaLabel={t('hero.profileAlt')}
-              />
-            </div>
-          </div>
-        </div>
-
+      <div>
         {/* RIGHT — paragraphs + (kicker / pills / slab moved to the bottom) */}
-        <div className="lg:col-span-8 flex flex-col">
+        <div className="flex max-w-[780px] flex-col">
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}

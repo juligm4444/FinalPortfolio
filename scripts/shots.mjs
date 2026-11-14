@@ -51,7 +51,9 @@ process.on('exit', stop)
 for (let i = 0; i < 60; i++) {
   try {
     if ((await fetch(`http://localhost:${PORT}/es`)).ok) break
-  } catch {}
+  } catch {
+    // aún no responde
+  }
   await new Promise((r) => setTimeout(r, 500))
   if (i === 59) throw new Error('preview no arrancó; ¿corriste npm run build?')
 }

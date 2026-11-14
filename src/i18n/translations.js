@@ -194,14 +194,14 @@ const translations = {
       summaryKicker: 'Overview',
       summaryTitle: 'A social ecosystem built around uncertainty',
       summaryParas: [
-        'Licorímetro was born from a simple truth: when people come of age, alcohol becomes completely unfamiliar territory. What to drink. How much it costs. What it tastes like. What experiences it creates. The app proposed a single platform combining <<camera recognition>>, contextual information, community reviews, <<gamification>> and social discovery for any type of alcoholic beverage.',
-        'Unlike platforms limited to wine or beer, Licorímetro envisioned a broader scope — any beverage, any social context, any level of experience. The project combined <<architecture thinking>>, UX/UI design and mobile development built almost entirely solo within a week of intensive work.',
+        'Licorímetro was born from a simple truth: when people come of age, alcohol becomes completely unfamiliar territory. What to drink. How much it costs. What it tastes like. What experiences it creates. The app proposed a single platform combining camera recognition, contextual information, community reviews, gamification and social discovery for any type of alcoholic beverage.',
+        'Unlike platforms limited to wine or beer, Licorímetro envisioned a broader scope — any beverage, any social context, any level of experience. The project combined architecture thinking, UX/UI design and mobile development built almost entirely solo within a week of intensive work.',
       ],
 
       problemKicker: 'Problem',
       problemTitle: 'Alcohol as a fragmented information system',
       problemLead:
-        'The experience of discovering alcohol is full of <<uncertainty and friction>>. Information is scattered, reviews are unreliable, and no existing platform addresses the full spectrum of alcoholic beverages with a <<social-first approach>>.',
+        'The experience of discovering alcohol is full of uncertainty and friction. Information is scattered, reviews are unreliable, and no existing platform addresses the full spectrum of alcoholic beverages with a social-first approach.',
       problemBullets: [
         'Information dispersed across unrelated platforms.',
         'No visual recognition for beverages beyond wine.',
@@ -248,9 +248,9 @@ const translations = {
       ocrKicker: 'Technical Challenge',
       ocrTitle: 'Building computer vision without mobile experience',
       ocrParas: [
-        'One of the greatest technical challenges of the project was the <<OCR system>>. The original plan relied on third-party visual recognition APIs — but during production, that solution stopped working.',
-        'With very little prior experience in mobile development, the system had to be <<rebuilt manually from scratch>>, using bitmap analysis and basic image processing. The result was a functional prototype capable of identifying beverages whose labels contained clear, readable text.',
-        'More than technical precision, the process represented <<accelerated learning>>, autonomous research and problem-solving under pressure — all within a week of continuous development.',
+        'One of the greatest technical challenges of the project was the OCR system. The original plan relied on third-party visual recognition APIs — but during production, that solution stopped working.',
+        'With very little prior experience in mobile development, the system had to be rebuilt manually from scratch, using bitmap analysis and basic image processing. The result was a functional prototype capable of identifying beverages whose labels contained clear, readable text.',
+        'More than technical precision, the process represented accelerated learning, autonomous research and problem-solving under pressure — all within a week of continuous development.',
       ],
       ocrBullets: [
         'Third-party API failed mid-production.',
@@ -316,8 +316,8 @@ const translations = {
       architectureKicker: 'Architecture',
       architectureTitle: 'Thinking like a startup before building one',
       architectureParas: [
-        'Although the final prototype was limited, the <<conceptual architecture>> of Licorímetro contemplated a much broader ecosystem. The system included authentication, profiles, reputation, gamification, smart recommendations, social storage, community interaction — and potential marketplace integrations.',
-        'Even from an academic stage, the project already contemplated <<retention strategies>>, commercial partnerships, monetization models and scalability. The thinking was product-first: not a school project that happened to have features, but a <<startup MVP that happened to be built in class>>.',
+        'Although the final prototype was limited, the conceptual architecture of Licorímetro contemplated a much broader ecosystem. The system included authentication, profiles, reputation, gamification, smart recommendations, social storage, community interaction — and potential marketplace integrations.',
+        'Even from an academic stage, the project already contemplated retention strategies, commercial partnerships, monetization models and scalability. The thinking was product-first: not a school project that happened to have features, but a startup MVP that happened to be built in class.',
       ],
       architectureBullets: [
         'Full authentication and profile system.',
@@ -344,8 +344,8 @@ const translations = {
       reflectionsKicker: 'Reflections',
       reflectionsTitle: 'More than a university app',
       reflectionsParas: [
-        'Licorímetro never became a real startup. But it represented something more important: the ability to <<transform an everyday need into a complex digital system>> — combining product thinking, UX design and engineering within a single cohesive idea.',
-        'It marked the <<first contact with mobile development>>, the first experience with OCR, and one of the earliest real exercises in product architecture. More than the technical result, the project proved that <<curiosity, resilience and learning speed>> can turn a university idea into a vision with genuine potential.',
+        'Licorímetro never became a real startup. But it represented something more important: the ability to transform an everyday need into a complex digital system — combining product thinking, UX design and engineering within a single cohesive idea.',
+        'It marked the first contact with mobile development, the first experience with OCR, and one of the earliest real exercises in product architecture. More than the technical result, the project proved that curiosity, resilience and learning speed can turn a university idea into a vision with genuine potential.',
       ],
 
       stackKicker: 'Tools used',
@@ -398,8 +398,8 @@ const translations = {
       summaryKicker: 'Overview',
       summaryTitle: 'A team\'s digital home, not a portfolio',
       summaryParas: [
-        'Candelaria is the <<complete digital presence>> of a university engineering competition team. The site goes beyond a static portfolio: it integrates <<member management>>, publications, memberships, donations, a <<merchandise shop>> and a <<gamification system>> for followers, all under a kinetic, high-contrast visual identity.',
-        'The project was born out of the need to <<centralize the team\'s communications>>, make external support easy, and offer a user experience that matches the team\'s technical level. From database architecture to color palette, every decision was made with <<product and engineering criteria>>.',
+        'Candelaria is the complete digital presence of a university engineering competition team. The site goes beyond a static portfolio: it integrates member management, publications, memberships, donations, a merchandise shop and a gamification system for followers, all under a kinetic, high-contrast visual identity.',
+        'The project was born out of the need to centralize the team\'s communications, make external support easy, and offer a user experience that matches the team\'s technical level. From database architecture to color palette, every decision was made with product and engineering criteria.',
       ],
 
       myRoleKicker: 'Two roles, one project',
@@ -436,7 +436,7 @@ const translations = {
       problemKicker: 'Problem',
       problemTitle: 'Beyond a PDF and a donations link',
       problemLead:
-        'University competition teams usually settle for <<partial solutions>>: an Instagram account, a PDF with their achievements, and a generic donations link. Candelaria needed <<something different>>.',
+        'University competition teams usually settle for partial solutions: an Instagram account, a PDF with their achievements, and a generic donations link. Candelaria needed something different.',
       problemBullets: [
         'A platform that reflects the team\'s technical and visual identity.',
         'A system that lets external supporters back the team financially with real traceability.',
@@ -564,9 +564,9 @@ const translations = {
       reflectionsKicker: 'Reflections',
       reflectionsTitle: 'What I learned',
       reflectionsParas: [
-        'Candelaria is the project that forced me to think like a <<product engineer>>, not just a developer. Architectural decisions about when to use Django vs Supabase, how to model the tier system, and how to abstract two payment providers required reasoning about <<real trade-offs>>, not just shipping features.',
-        'The biggest lesson was designing for <<two completely different audiences>>: an external follower who wants to support with one click, and a team leader who needs to manage people and publish content. Building a single platform that serves both without either feeling the interface wasn\'t made for them was the most interesting design challenge of the project.',
-        'Carrying both the <<design leadership>> and the <<technical development>> simultaneously revealed a clear advantage: when you set the brand rules and implement them in code, every inconsistency surfaces immediately. The cost is that you carry every inconsistency alone.',
+        'Candelaria is the project that forced me to think like a product engineer, not just a developer. Architectural decisions about when to use Django vs Supabase, how to model the tier system, and how to abstract two payment providers required reasoning about real trade-offs, not just shipping features.',
+        'The biggest lesson was designing for two completely different audiences: an external follower who wants to support with one click, and a team leader who needs to manage people and publish content. Building a single platform that serves both without either feeling the interface wasn\'t made for them was the most interesting design challenge of the project.',
+        'Carrying both the design leadership and the technical development simultaneously revealed a clear advantage: when you set the brand rules and implement them in code, every inconsistency surfaces immediately. The cost is that you carry every inconsistency alone.',
       ],
 
       stackKicker: 'Tools used',
@@ -1101,14 +1101,14 @@ const translations = {
       summaryKicker: 'Resumen',
       summaryTitle: 'Un ecosistema social construido alrededor de la incertidumbre',
       summaryParas: [
-        'Licorímetro nació de una verdad simple: cuando la gente llega a la mayoría de edad, el alcohol se convierte en un territorio completamente desconocido. Qué tomar. Cuánto cuesta. Qué sabor tiene. Qué experiencias genera. La app propuso una sola plataforma que combinara <<reconocimiento por cámara>>, información contextual, reviews comunitarias, <<gamificación>> y descubrimiento social para cualquier tipo de bebida alcohólica.',
-        'A diferencia de plataformas limitadas a vinos o cervezas, Licorímetro contemplaba un alcance más amplio — cualquier bebida, cualquier contexto social, cualquier nivel de experiencia. El proyecto combinó <<pensamiento de arquitectura>>, diseño UX/UI y desarrollo móvil construido casi en su totalidad en solitario en una semana de trabajo intensivo.',
+        'Licorímetro nació de una verdad simple: cuando la gente llega a la mayoría de edad, el alcohol se convierte en un territorio completamente desconocido. Qué tomar. Cuánto cuesta. Qué sabor tiene. Qué experiencias genera. La app propuso una sola plataforma que combinara reconocimiento por cámara, información contextual, reviews comunitarias, gamificación y descubrimiento social para cualquier tipo de bebida alcohólica.',
+        'A diferencia de plataformas limitadas a vinos o cervezas, Licorímetro contemplaba un alcance más amplio — cualquier bebida, cualquier contexto social, cualquier nivel de experiencia. El proyecto combinó pensamiento de arquitectura, diseño UX/UI y desarrollo móvil construido casi en su totalidad en solitario en una semana de trabajo intensivo.',
       ],
 
       problemKicker: 'Problema',
       problemTitle: 'El alcohol como sistema de información fragmentado',
       problemLead:
-        'La experiencia de descubrir el alcohol está llena de <<incertidumbre y fricción>>. La información está dispersa, las reseñas son poco confiables y ninguna plataforma existente aborda el espectro completo de bebidas alcohólicas con un <<enfoque social>>.',
+        'La experiencia de descubrir el alcohol está llena de incertidumbre y fricción. La información está dispersa, las reseñas son poco confiables y ninguna plataforma existente aborda el espectro completo de bebidas alcohólicas con un enfoque social.',
       problemBullets: [
         'Información dispersa en plataformas no relacionadas.',
         'Sin reconocimiento visual para bebidas más allá del vino.',
@@ -1155,9 +1155,9 @@ const translations = {
       ocrKicker: 'Reto Técnico',
       ocrTitle: 'Construir visión computacional sin experiencia móvil',
       ocrParas: [
-        'Uno de los mayores retos técnicos del proyecto fue el <<sistema OCR>>. El plan original contemplaba el uso de APIs externas de reconocimiento visual — pero durante la producción, esa solución dejó de funcionar.',
-        'Con muy poca experiencia previa en desarrollo móvil, el sistema tuvo que ser <<reconstruido manualmente desde cero>>, usando análisis de mapas de bits y procesamiento básico de imagen. El resultado fue un prototipo funcional capaz de identificar bebidas cuyos logotipos contenían texto claro y legible.',
-        'Más allá de la precisión técnica, el proceso representó <<aprendizaje acelerado>>, investigación autónoma y resolución de problemas bajo presión — todo dentro de una semana de desarrollo continuo.',
+        'Uno de los mayores retos técnicos del proyecto fue el sistema OCR. El plan original contemplaba el uso de APIs externas de reconocimiento visual — pero durante la producción, esa solución dejó de funcionar.',
+        'Con muy poca experiencia previa en desarrollo móvil, el sistema tuvo que ser reconstruido manualmente desde cero, usando análisis de mapas de bits y procesamiento básico de imagen. El resultado fue un prototipo funcional capaz de identificar bebidas cuyos logotipos contenían texto claro y legible.',
+        'Más allá de la precisión técnica, el proceso representó aprendizaje acelerado, investigación autónoma y resolución de problemas bajo presión — todo dentro de una semana de desarrollo continuo.',
       ],
       ocrBullets: [
         'La API de terceros falló a mitad de la producción.',
@@ -1223,8 +1223,8 @@ const translations = {
       architectureKicker: 'Arquitectura',
       architectureTitle: 'Pensar como startup antes de construir una',
       architectureParas: [
-        'Aunque el prototipo final fue limitado, la <<arquitectura conceptual>> de Licorímetro contemplaba un ecosistema mucho más amplio. El sistema incluía autenticación, perfiles, reputación, gamificación, recomendaciones inteligentes, almacenamiento social, interacción comunitaria — e integraciones potenciales con marketplaces externos.',
-        'Incluso desde una etapa académica, el proyecto ya contemplaba <<estrategias de fidelización>>, alianzas comerciales, modelos de monetización y escalabilidad. El pensamiento era product-first: no un proyecto escolar que resultó tener features, sino un <<MVP de startup que resultó construirse en clase>>.',
+        'Aunque el prototipo final fue limitado, la arquitectura conceptual de Licorímetro contemplaba un ecosistema mucho más amplio. El sistema incluía autenticación, perfiles, reputación, gamificación, recomendaciones inteligentes, almacenamiento social, interacción comunitaria — e integraciones potenciales con marketplaces externos.',
+        'Incluso desde una etapa académica, el proyecto ya contemplaba estrategias de fidelización, alianzas comerciales, modelos de monetización y escalabilidad. El pensamiento era product-first: no un proyecto escolar que resultó tener features, sino un MVP de startup que resultó construirse en clase.',
       ],
       architectureBullets: [
         'Sistema completo de autenticación y perfiles.',
@@ -1251,8 +1251,8 @@ const translations = {
       reflectionsKicker: 'Reflexiones',
       reflectionsTitle: 'Más que una aplicación universitaria',
       reflectionsParas: [
-        'Licorímetro nunca se convirtió en una startup real. Pero representó algo más importante: la capacidad de <<transformar una necesidad cotidiana en un sistema digital complejo>> — combinando pensamiento de producto, diseño UX e ingeniería en una sola idea coherente.',
-        'Marcó el <<primer contacto con el desarrollo móvil>>, la primera experiencia con OCR y uno de los primeros ejercicios reales de arquitectura de producto. Más allá del resultado técnico, el proyecto demostró que <<curiosidad, resiliencia y velocidad de aprendizaje>> pueden convertir una idea universitaria en una visión con potencial real.',
+        'Licorímetro nunca se convirtió en una startup real. Pero representó algo más importante: la capacidad de transformar una necesidad cotidiana en un sistema digital complejo — combinando pensamiento de producto, diseño UX e ingeniería en una sola idea coherente.',
+        'Marcó el primer contacto con el desarrollo móvil, la primera experiencia con OCR y uno de los primeros ejercicios reales de arquitectura de producto. Más allá del resultado técnico, el proyecto demostró que curiosidad, resiliencia y velocidad de aprendizaje pueden convertir una idea universitaria en una visión con potencial real.',
       ],
 
       stackKicker: 'Herramientas usadas',
@@ -1305,8 +1305,8 @@ const translations = {
       summaryKicker: 'Resumen',
       summaryTitle: 'La casa digital de un equipo, no un portafolio',
       summaryParas: [
-        'Candelaria es la <<presencia digital completa>> de un equipo universitario de ingeniería de competición. El sitio va más allá de un portafolio estático: integra <<gestión de miembros>>, publicaciones, membresías, donaciones, <<tienda de merchandise>> y un <<sistema de gamificación>> para seguidores, todo bajo una identidad visual cinética y de alto contraste.',
-        'El proyecto nació de la necesidad de <<centralizar la comunicación del equipo>>, facilitar el apoyo externo y ofrecer una experiencia de usuario a la altura del nivel técnico del equipo. Desde la arquitectura de base de datos hasta la paleta de color, cada decisión fue tomada con <<criterio de producto y de ingeniería>>.',
+        'Candelaria es la presencia digital completa de un equipo universitario de ingeniería de competición. El sitio va más allá de un portafolio estático: integra gestión de miembros, publicaciones, membresías, donaciones, tienda de merchandise y un sistema de gamificación para seguidores, todo bajo una identidad visual cinética y de alto contraste.',
+        'El proyecto nació de la necesidad de centralizar la comunicación del equipo, facilitar el apoyo externo y ofrecer una experiencia de usuario a la altura del nivel técnico del equipo. Desde la arquitectura de base de datos hasta la paleta de color, cada decisión fue tomada con criterio de producto y de ingeniería.',
       ],
 
       myRoleKicker: 'Dos roles, un proyecto',
@@ -1343,7 +1343,7 @@ const translations = {
       problemKicker: 'Problema',
       problemTitle: 'Más allá de un PDF y un link de donaciones',
       problemLead:
-        'Los equipos universitarios de competición suelen quedarse con <<soluciones parciales>>: una cuenta de Instagram, un PDF con sus logros y un link de donaciones genérico. Candelaria necesitaba <<algo diferente>>.',
+        'Los equipos universitarios de competición suelen quedarse con soluciones parciales: una cuenta de Instagram, un PDF con sus logros y un link de donaciones genérico. Candelaria necesitaba algo diferente.',
       problemBullets: [
         'Una plataforma que refleje la identidad técnica y visual del equipo.',
         'Un sistema que permita a seguidores externos apoyar económicamente con trazabilidad real.',
@@ -1471,9 +1471,9 @@ const translations = {
       reflectionsKicker: 'Reflexiones',
       reflectionsTitle: 'Lo que aprendí',
       reflectionsParas: [
-        'Candelaria fue el proyecto que me obligó a pensar como <<product engineer>>, no solo como desarrollador. Decisiones de arquitectura como cuándo usar Django vs Supabase, cómo modelar el sistema de tiers o cómo abstraer dos proveedores de pago requirieron razonar sobre <<trade-offs reales>>, no solo implementar features.',
-        'El mayor aprendizaje fue diseñar para <<dos audiencias completamente distintas>>: un seguidor externo que quiere apoyar con un clic, y un líder de equipo que necesita administrar personas y publicar contenido. Construir una sola plataforma que sirva a ambos sin que ninguno sienta que la interfaz no fue pensada para él fue el reto de diseño más interesante del proyecto.',
-        'Sostener al mismo tiempo el <<liderazgo de diseño>> y el <<desarrollo técnico>> reveló una ventaja concreta: cuando eres quien establece las reglas de marca y quien las implementa en código, cualquier inconsistencia aparece de inmediato. El costo es que también cargas con cada inconsistencia solo.',
+        'Candelaria fue el proyecto que me obligó a pensar como product engineer, no solo como desarrollador. Decisiones de arquitectura como cuándo usar Django vs Supabase, cómo modelar el sistema de tiers o cómo abstraer dos proveedores de pago requirieron razonar sobre trade-offs reales, no solo implementar features.',
+        'El mayor aprendizaje fue diseñar para dos audiencias completamente distintas: un seguidor externo que quiere apoyar con un clic, y un líder de equipo que necesita administrar personas y publicar contenido. Construir una sola plataforma que sirva a ambos sin que ninguno sienta que la interfaz no fue pensada para él fue el reto de diseño más interesante del proyecto.',
+        'Sostener al mismo tiempo el liderazgo de diseño y el desarrollo técnico reveló una ventaja concreta: cuando eres quien establece las reglas de marca y quien las implementa en código, cualquier inconsistencia aparece de inmediato. El costo es que también cargas con cada inconsistencia solo.',
       ],
 
       stackKicker: 'Herramientas usadas',

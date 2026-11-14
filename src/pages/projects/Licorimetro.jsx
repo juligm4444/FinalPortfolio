@@ -2,9 +2,6 @@ import { useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { useLocale } from '../../i18n/LocaleProvider.jsx';
 import { caseStudies } from '../../data/projects.js';
-import MiniSkills from '../../components/MiniSkills.jsx';
-import Highlight from '../../components/Highlight.jsx';
-import GlassBlock from '../../components/GlassBlock.jsx';
 import licorimetroProblemImg from '../../assets/images/licorimetro/problem.webp';
 import licorimetroEvolutionImg from '../../assets/images/licorimetro/evolution.webp';
 import licorimetroReflectionsImg from '../../assets/images/licorimetro/reflections.webp';
@@ -261,7 +258,9 @@ export default function Licorimetro() {
                 {t('licorimetro.stackKicker')}
               </p>
               <div className="mt-5">
-                <MiniSkills skills={project.skills} size={56} gap={10} />
+                <p className="font-body" style={{ color: 'var(--fg-soft)', fontSize: 16, lineHeight: 1.7 }}>
+                  {project.skills.join(' · ')}
+                </p>
               </div>
             </div>
           </div>
@@ -277,9 +276,9 @@ export default function Licorimetro() {
               <Title>{t('licorimetro.summaryTitle')}</Title>
             </Reveal>
             <Reveal delay={0.14}>
-              <GlassBlock className="mt-6" padding="28px 32px">
+              <div className="mt-6">
                 <Paragraphs items={t('licorimetro.summaryParas')} highlight />
-              </GlassBlock>
+              </div>
             </Reveal>
           </div>
           <div className="md:col-span-5">
@@ -304,7 +303,7 @@ export default function Licorimetro() {
               <Title>{t('licorimetro.problemTitle')}</Title>
             </Reveal>
             <Reveal delay={0.14}>
-            <GlassBlock className="mt-6" padding="28px 32px">
+            <div className="mt-6">
               <p
                 className="font-body"
                 style={{
@@ -314,14 +313,14 @@ export default function Licorimetro() {
                   maxWidth: '60ch',
                 }}
               >
-                <Highlight text={t('licorimetro.problemLead')} />
+                {t('licorimetro.problemLead')}
               </p>
               <ul className="mt-8 space-y-3">
                 {t('licorimetro.problemBullets').map((b, i) => (
                   <Bullet key={i}>{b}</Bullet>
                 ))}
               </ul>
-            </GlassBlock>
+            </div>
             </Reveal>
           </div>
         </div>
@@ -385,7 +384,7 @@ export default function Licorimetro() {
             className="mt-4 font-body"
             style={{ color: 'var(--fg-soft)', fontSize: 16, lineHeight: 1.7, maxWidth: '62ch' }}
           >
-            <Highlight text={t('licorimetro.architectureParas')[0]} />
+            {t('licorimetro.architectureParas')[0]}
           </p>
         </Reveal>
         <ArchitectureDiagram />
@@ -867,10 +866,8 @@ function InsetCard({ children }) {
   return (
     <div
       style={{
-        background: 'var(--glass-bg)',
-        backdropFilter: 'blur(14px) saturate(140%)',
-        WebkitBackdropFilter: 'blur(14px) saturate(140%)',
-        border: '1px solid var(--glass-border)',
+        background: 'var(--surface)',
+        border: '1px solid var(--border)',
         padding: 'clamp(24px, 4vw, 48px)',
         position: 'relative',
         display: 'inline-block',
@@ -931,7 +928,7 @@ function Paragraphs({ items, highlight = false, fullWidth = false }) {
             ...(fullWidth ? {} : { maxWidth: '60ch' }),
           }}
         >
-          {highlight ? <Highlight text={p} /> : p}
+          {p}
         </p>
       ))}
     </div>
@@ -964,8 +961,7 @@ function Bullet({ children }) {
           background: ACCENT,
         }}
       />
-      <Highlight text={typeof children === 'string' ? children : ''} />
-      {typeof children === 'string' ? null : children}
+      {children}
     </li>
   );
 }
@@ -1050,13 +1046,13 @@ function FeatureCard({ feature, index, icon }) {
         className="font-display"
         style={{ color: 'var(--fg)', fontSize: 20, lineHeight: 1.2, fontWeight: 700 }}
       >
-        <Highlight text={feature.title} />
+        {feature.title}
       </h3>
       <p
         className="mt-3 font-body"
         style={{ color: 'var(--fg-soft)', fontSize: 15, lineHeight: 1.65 }}
       >
-        <Highlight text={feature.body} />
+        {feature.body}
       </p>
     </motion.div>
   );

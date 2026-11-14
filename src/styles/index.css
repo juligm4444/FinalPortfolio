@@ -143,8 +143,6 @@
   --pillar: var(--concrete-100);
   --pillar-shade: rgb(0 0 0 / 0.18);
   --hex-border: color-mix(in srgb, var(--text) 12%, transparent);
-  --glass-bg: color-mix(in srgb, var(--surface) 55%, transparent);
-  --glass-border: color-mix(in srgb, var(--text) 12%, transparent);
   --filter-bar-bg: rgb(217 214 207 / 0.6);
   --filter-active-from: var(--concrete-500);
   --filter-active-to: var(--concrete-900);

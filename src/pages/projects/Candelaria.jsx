@@ -1,9 +1,8 @@
-import { createContext, useContext, useRef, Fragment } from 'react';
+import { createContext, useContext, useRef } from 'react';
 import Link from '../../components/LocaleLink.jsx';
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { useLocale } from '../../i18n/LocaleProvider.jsx';
 import { caseStudies } from '../../data/projects.js';
-import MiniSkills from '../../components/MiniSkills.jsx';
 import { ArrowRightIcon, ExternalLinkIcon, GitHubIcon, InstagramIcon } from '../../components/icons/IconSet.jsx';
 
 /* case-study imagery */
@@ -76,28 +75,6 @@ const TEAMS = [
 const CCtx = createContext(null);
 const useC = () => useContext(CCtx);
 
-/* ─── highlight `<<word>>` with a violet glow ─── */
-function Glow({ text }) {
-  const { c } = useC();
-  if (typeof text !== 'string') return text;
-  if (!text.includes('<<')) return text;
-  const RE = /<<([^>]+)>>/g;
-  const out = [];
-  let last = 0, m, i = 0;
-  RE.lastIndex = 0;
-  while ((m = RE.exec(text))) {
-    if (m.index > last) out.push(<Fragment key={`p${i++}`}>{text.slice(last, m.index)}</Fragment>);
-    out.push(
-      <strong key={`h${i++}`} style={{ color: c.violet, fontWeight: 700, textShadow: `0 0 22px ${c.glow}` }}>
-        {m[1]}
-      </strong>
-    );
-    last = m.index + m[0].length;
-  }
-  if (last < text.length) out.push(<Fragment key={`t${i++}`}>{text.slice(last)}</Fragment>);
-  return <>{out}</>;
-}
-
 /* ─── animation helper ─── */
 function Reveal({ children, delay = 0, duration = 1.0, y = 26, className = '' }) {
   const reduce = useReducedMotion();
@@ -168,7 +145,7 @@ function Body({ items }) {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
       {arr.map((p, i) => (
         <p key={i} style={{ fontFamily: BODY, fontWeight: 300, fontSize: 16, lineHeight: 1.75, color: c.textSoft, maxWidth: '60ch' }}>
-          <Glow text={p} />
+          {p}
         </p>
       ))}
     </div>
@@ -306,7 +283,9 @@ function Hero() {
               <p style={{ fontFamily: LABEL, fontSize: 11, letterSpacing: '0.22em', color: c.textMuted, textTransform: 'uppercase', marginBottom: 16 }}>
                 {t('candelaria.stackKicker')}
               </p>
-              <MiniSkills skills={brand ? BRAND_SKILLS : project.skills} size={52} gap={10} />
+              <p style={{ fontFamily: LABEL, fontSize: 14, lineHeight: 1.7, color: c.text }}>
+                {(brand ? BRAND_SKILLS : project.skills).join(' · ')}
+              </p>
             </div>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }} className="items-stretch md:items-end">
@@ -492,7 +471,7 @@ function ProblemSection({ number }) {
           <Reveal><Title>{t('candelaria.problemTitle')}</Title></Reveal>
           <Reveal delay={0.12}>
             <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 16, lineHeight: 1.75, color: c.textSoft, marginTop: 24, maxWidth: '58ch' }}>
-              <Glow text={t('candelaria.problemLead')} />
+              {t('candelaria.problemLead')}
             </p>
             <ul style={{ marginTop: 28, display: 'flex', flexDirection: 'column', gap: 14 }}>
               {t('candelaria.problemBullets').map((b, i) => <Bullet key={i}>{b}</Bullet>)}
@@ -575,9 +554,9 @@ function FeaturesSection({ number }) {
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14 }}>
                 <span style={{ width: 8, height: 8, background: c.violet }} />
-                <h3 style={{ fontFamily: DISPLAY, fontSize: 19, fontWeight: 700, color: c.text }}><Glow text={f.title} /></h3>
+                <h3 style={{ fontFamily: DISPLAY, fontSize: 19, fontWeight: 700, color: c.text }}>{f.title}</h3>
               </div>
-              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 14, lineHeight: 1.7, color: c.textSoft }}><Glow text={f.body} /></p>
+              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 14, lineHeight: 1.7, color: c.textSoft }}>{f.body}</p>
             </div>
           </Reveal>
         ))}
