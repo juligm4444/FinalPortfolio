@@ -1,3 +1,4 @@
+import Specimen from '../components/Specimen.jsx'
 import Surface from '../components/Surface.jsx'
 import { useEffect, useId, useRef } from 'react'
 import { useLocale } from '../i18n/LocaleProvider.jsx'
@@ -13,13 +14,11 @@ import './Herbarium.css'
    whole thing is HTML/CSS. On hover or keyboard focus the shared Plush canvas
    moves to the slab and grass grows round it (src/components/plush). */
 function Slab({ work, index }) {
-  const { t } = useLocale()
   const host = usePlush()
   const id = useId()
   const el = useRef(null)
   const slot = useRef(null)
   useEffect(() => host.register(id, { el: el.current, slot: slot.current, mode: 'grass', seed: 20 + index }), [host, id, index])
-  const label = t(`herbarium.items.${work.id}`)
   return (
     <li className="herb__cell">
       <LocaleLink
@@ -35,19 +34,7 @@ function Slab({ work, index }) {
         onFocus={(e) => e.currentTarget.matches(':focus-visible') && host.setFocus(id)}
         onBlur={() => host.setFocus(null)}
       >
-        <span className="herb__specimen" aria-hidden="true">
-          <img src={work.media.specimen} alt="" loading="lazy" decoding="async" />
-        </span>
-        <span className="herb__label">
-          <span className="herb__genus">
-            {t('herbarium.gen')} {label.genus}
-          </span>
-          <span className="herb__species">{t(`works.${work.id}.title`)}</span>
-          <span className="herb__meta">
-            <span>{label.year}</span>
-            <span>{label.role}</span>
-          </span>
-        </span>
+        <Specimen work={work} />
         <span ref={slot} className="herb__slot" aria-hidden="true" />
       </LocaleLink>
     </li>

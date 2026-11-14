@@ -5,6 +5,10 @@ import umbralRender from '../assets/images/umbral/config-pattern-up.webp'
 import bloomLogo from '../assets/images/bloom/bloom_logo.webp'
 import candelariaSpecimen from '../assets/images/candelaria/condor-specimen.webp'
 import umbralSpecimen from '../assets/images/umbral/umbral-specimen.webp'
+import sensewaveSite from '../assets/images/sensewave/website-hero.webp'
+import sensewaveCutout from '../assets/images/sensewave/glasses-cutout.webp'
+import sensewaveApart from '../assets/images/sensewave/glasses-exploded-cutout.webp'
+import umbralApart from '../assets/images/umbral/exploded-cutout.webp'
 import sensewaveSpecimen from '../assets/images/sensewave/mark-specimen.webp'
 import bloomSpecimen from '../assets/images/bloom/bloom-specimen.webp'
 // Authored here rather than supplied — see the note in the file itself.
@@ -46,6 +50,14 @@ const works = [
     href: '/projects/candelaria-website',
     site: 'https://www.candelaria.website/',
     media: { screenshot: candelariaSite, specimen: candelariaSite },
+  },
+  {
+    id: 'sensewaveSite',
+    group: 'web',
+    status: 'delivered',
+    href: '/projects/sensewave',
+    site: null,
+    media: { screenshot: sensewaveSite },
   },
   {
     id: 'portfolio',
@@ -98,7 +110,7 @@ const works = [
     status: 'academic',
     href: '/projects/umbral',
     site: null,
-    media: { specimen: umbralSpecimen, render: umbralRender, exploded: umbralExploded, views: [umbralTop, umbralSide, umbralIso] },
+    media: { specimen: umbralSpecimen, pedestal: { piece: umbralSpecimen, apart: umbralApart }, render: umbralRender, exploded: umbralExploded, views: [umbralTop, umbralSide, umbralIso] },
   },
   {
     id: 'sensewaveProduct',
@@ -106,7 +118,7 @@ const works = [
     status: 'academic',
     href: '/projects/sensewave',
     site: null,
-    media: { specimen: sensewaveSpecimen, render: sensewaveGlasses, exploded: sensewaveChips, logo: sensewaveMark },
+    media: { specimen: sensewaveSpecimen, pedestal: { piece: sensewaveCutout, apart: sensewaveApart }, render: sensewaveGlasses, exploded: sensewaveChips, logo: sensewaveMark },
   },
 
   // ── MARCA ────────────────────────────────────────────────────────────

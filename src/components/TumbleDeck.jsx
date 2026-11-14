@@ -108,7 +108,10 @@ export default function TumbleDeck({
       el.style.transform = `translate3d(0, ${-p.lift}px, ${p.z * gap}px) rotateX(${p.angle}deg)`
       el.style.opacity = String(p.opacity)
       el.style.visibility = p.opacity > 0 ? 'visible' : 'hidden'
-      // a card lying on the floor would show its face upside down: show plain concrete instead
+      // A card tipping onto the floor would show its face upside down and mirrored: the face
+      // fades out between 20° and 55° of tilt, so what lands is plain concrete, never inverted.
+      const face = p.flat ? 0 : Math.max(0, Math.min(1, (55 + p.angle) / 35))
+      el.style.setProperty('--td-face', face.toFixed(3))
       el.dataset.flat = p.flat ? '1' : '0'
       el.style.setProperty('--td-shade', String(p.flat ? 0.06 : (-p.angle / 90) * 0.06))
     })

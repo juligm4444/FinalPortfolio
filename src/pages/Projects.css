@@ -129,26 +129,13 @@ a.work-slab:active {
   transform: translateY(2px);
   box-shadow: var(--slab-shadow-pressed);
 }
-.work-slab__media {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  aspect-ratio: 16 / 9;
-  padding: var(--space-6);
-  border-bottom: 1px solid var(--border);
-}
-.work-slab__media img {
-  max-width: 60%;
-  max-height: 100%;
-  object-fit: contain;
-}
-.work-slab__body {
-  display: grid;
-  gap: var(--space-2);
+/* the specimen inside carries its own padding */
+.work-slab {
   padding: var(--space-4);
+  gap: 0;
 }
 
-/* Object: pedestals */
+/* Object: cutouts on slabs over the same plinth */
 .proj__pedestals {
   list-style: none;
   margin: 0;
@@ -157,40 +144,58 @@ a.work-slab:active {
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 380px), 1fr));
   gap: var(--space-12) var(--space-8);
 }
-.pedestal__link {
-  display: block;
-  color: var(--text);
-  text-decoration: none;
-}
 .pedestal__stage {
   position: relative;
   display: block;
+  width: 100%;
   aspect-ratio: 4 / 3;
+  padding: 0;
+  cursor: pointer;
+  color: inherit;
+  background: var(--concrete-100);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-slab);
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+.pedestal__stage:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
 }
 .pedestal__piece {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  inset: 8%;
+  width: 84%;
+  height: 84%;
   object-fit: contain;
+  filter: saturate(0.85);
   transition:
     opacity 360ms ease,
     transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-.pedestal__piece--exploded {
+.pedestal__piece--apart {
   opacity: 0;
   transform: scale(0.96);
 }
-.pedestal__link:hover .pedestal__piece:not(.pedestal__piece--exploded),
-.pedestal__link:focus-visible .pedestal__piece:not(.pedestal__piece--exploded) {
+.pedestal[data-apart='1'] .pedestal__piece:not(.pedestal__piece--apart),
+.pedestal__stage:focus-visible .pedestal__piece:not(.pedestal__piece--apart) {
   opacity: 0;
 }
-.pedestal__link:hover .pedestal__piece--exploded,
-.pedestal__link:focus-visible .pedestal__piece--exploded {
+.pedestal[data-apart='1'] .pedestal__piece--apart,
+.pedestal__stage:focus-visible .pedestal__piece--apart {
   opacity: 1;
   transform: none;
 }
-/* The plinth: a slab of concrete under the piece. */
+@media (hover: hover) and (pointer: fine) {
+  .pedestal__stage:hover .pedestal__piece:not(.pedestal__piece--apart) {
+    opacity: 0;
+  }
+  .pedestal__stage:hover .pedestal__piece--apart {
+    opacity: 1;
+    transform: none;
+  }
+}
+/* The plinth: a slab of concrete under the piece, the same for every object. */
 .pedestal__plinth {
   display: block;
   height: 28px;
@@ -205,6 +210,14 @@ a.work-slab:active {
   gap: var(--space-2);
   margin-top: var(--space-4);
 }
+.pedestal__title {
+  color: var(--text);
+  text-decoration: none;
+  justify-self: start;
+}
+.pedestal__title:hover .work__title {
+  color: var(--moss-700);
+}
 .pedestal__hint {
   font-family: var(--font-label);
   font-size: var(--text-label-sm);
@@ -212,21 +225,17 @@ a.work-slab:active {
   text-transform: uppercase;
   color: var(--text-muted);
 }
-.pedestal__views {
-  list-style: none;
-  margin: var(--space-4) 0 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-2);
+/* The instruction follows the device: touch by default, pointer where there is a mouse. */
+.pedestal__hint--pointer {
+  display: none;
 }
-.pedestal__views img {
-  width: 100%;
-  aspect-ratio: 1;
-  object-fit: contain;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-slab);
+@media (hover: hover) and (pointer: fine) {
+  .pedestal__hint--pointer {
+    display: block;
+  }
+  .pedestal__hint--touch {
+    display: none;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .pedestal__piece,
@@ -235,8 +244,24 @@ a.work-slab:active {
   }
 }
 
-@media (hover: none), (max-width: 767px) {
-  .pedestal__hint {
-    display: none;
-  }
+/* Tools: one slab per technology */
+.tools {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 150px), 1fr));
+  gap: var(--space-3);
+}
+.tools__slab {
+  padding: var(--space-4) var(--space-3);
+  text-align: center;
+  font-family: var(--font-label);
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  color: var(--text);
+  background: var(--concrete-100);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-slab);
+  box-shadow: var(--slab-shadow);
 }
