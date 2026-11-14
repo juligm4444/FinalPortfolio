@@ -27,36 +27,6 @@ export default function Bio() {
             {t('home.bioPara1')}
           </motion.p>
 
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.8, ease: [0.65, 0, 0.35, 1], delay: 0.15 }}
-            style={{
-              transformOrigin: 'left center',
-              height: 2,
-              background: 'var(--bloom)',
-              margin: '40px 0',
-              width: '40%',
-            }}
-          />
-
-          <motion.p
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-            className="font-display"
-            style={{
-              color: 'var(--text)',
-              fontSize: 'clamp(28px, 3.4vw, 44px)',
-              lineHeight: 1.18,
-              fontWeight: 400,
-            }}
-          >
-            {t('home.bioPara2')}
-          </motion.p>
-
           {/* Kicker + pills + slab — now at the bottom of the right column */}
           <div className="mt-12 pt-10" style={{ borderTop: '1px solid color-mix(in srgb, var(--text) 12%, transparent)' }}>
             <p

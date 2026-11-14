@@ -74,9 +74,7 @@ const translations = {
     home: {
       bioTitle: 'About me',
       bioPara1:
-        'Julián Galindo is a designer and developer of digital experiences that flow from structure to aesthetics, blending backend logic with the intuition of human-centered design.',
-      bioPara2:
-        'Every line of code I write aims to unite functionality with creative expression.',
+        'I study Design at Universidad de los Andes after nine semesters of Systems Engineering. Today what I enjoy most is structuring a product and building its whole aesthetic and functional side: identity, components, functionality and feel.',
       bioPill1: 'Structure',
       bioPill2: 'Aesthetics',
       bioPill3: 'Human-centered',
@@ -981,9 +979,7 @@ const translations = {
     home: {
       bioTitle: 'Sobre mí',
       bioPara1:
-        'Julián Galindo es diseñador y desarrollador de experiencias digitales que fluyen de la estructura a la estética, mezclando la lógica del backend con la intuición del diseño centrado en la persona.',
-      bioPara2:
-        'Cada línea de código que escribo busca unir la funcionalidad con la expresión creativa.',
+        'Estudio Diseño en la Universidad de los Andes después de nueve semestres de Ingeniería de Sistemas. Hoy lo que más disfruto es estructurar un producto y construir todo su apartado estético y funcional: identidad, componentes, funcionalidad y sensación.',
       bioPill1: 'Estructura',
       bioPill2: 'Estética',
       bioPill3: 'Centrado en la persona',
