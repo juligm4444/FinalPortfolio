@@ -1,14 +1,13 @@
 import { Suspense, useEffect, useMemo, useRef } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { Html, useGLTF } from '@react-three/drei'
+import { useGLTF } from '@react-three/drei'
 import * as THREE from 'three'
 
 /* Hero scene (REDESIGN §5 Home.1): the marble bust split by the crack, laurel
    growing out of it. Loaded on demand by Hero.jsx; this module is the only one
    that imports R3F. The bust turns on Y toward the pointer (±8°, damped), the
-   leaf_* meshes bend away from it on an underdamped spring, and the name and
-   role live in the same camera as DOM text (drei <Html transform>) so they
-   tilt with it and stay real text. */
+   leaf_* meshes bend away from it on an underdamped spring. The name is outside
+   the scene (Hero.jsx). */
 
 const MODEL = '/models/hero-bust.glb'
 const DRACO = '/draco/'
@@ -97,24 +96,6 @@ function Lights({ tok }) {
   )
 }
 
-/** Name and role as DOM inside the camera: real text, tilted with the view. */
-function Texts({ name, role, narrow }) {
-  const position = narrow ? [0, -0.58, 0.12] : [-0.62, 0.3, 0.12]
-  return (
-    <Html
-      transform
-      position={position}
-      distanceFactor={0.62}
-      center={narrow}
-      zIndexRange={[2, 1]}
-      className={`hero-text ${narrow ? 'hero-text--narrow' : ''}`}
-    >
-      <h1 className="hero-text__name">{name}</h1>
-      <p className="hero-text__role">{role}</p>
-    </Html>
-  )
-}
-
 function Rig({ pointer }) {
   const { camera, size } = useThree()
   useEffect(() => {
@@ -131,7 +112,7 @@ function Rig({ pointer }) {
   return null
 }
 
-export default function HeroScene({ name, role, onStatus, draws }) {
+export default function HeroScene({ onStatus, draws }) {
   const pointer = useRef({ x: 0, y: 0, want: 0, over: 0 })
   const tok = useMemo(() => readTokens(), [])
   const hostRef = useRef(null)
@@ -180,7 +161,6 @@ export default function HeroScene({ name, role, onStatus, draws }) {
         <Lights tok={tok} />
         <Suspense fallback={null}>
           <Bust pointer={pointer} narrow={narrow} debug={draws} onReady={() => onStatus?.('ready')} />
-          <Texts name={name} role={role} narrow={narrow} />
         </Suspense>
         <FrameCounter draws={draws} />
       </Canvas>

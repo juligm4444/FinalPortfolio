@@ -2,6 +2,7 @@ import { Component, useEffect, useRef, useState } from 'react'
 import { useLocale } from '../i18n/LocaleProvider.jsx'
 import { useWebGL } from '../webgl/index.js'
 import VelourBolster from '../components/VelourBolster.jsx'
+import BotanicalText from '../components/BotanicalText.jsx'
 import cvEn from '../assets/files/CV-English.pdf'
 import cvEs from '../assets/files/CV-Español.pdf'
 import poster from '../assets/backgrounds/hero-poster.webp'
@@ -76,15 +77,14 @@ export default function Hero() {
     <section ref={setRefs} className={`hero ${live ? 'hero--live' : ''}`} data-webgl={live ? 'active' : 'fallback'}>
       <div className="hero__stage">
         <img className="hero__poster" src={poster} alt="" width="549" height="752" decoding="async" />
-        {!live && (
-          <div className="hero__static">
-            <h1>{name}</h1>
-            <p>{role}</p>
-          </div>
-        )}
+        {/* The H1 is the same Botanical Text as About and Projects (plain on phones and touch). */}
+        <div className="hero__static">
+          <BotanicalText text={name.replace(' ', '\n')} size={96} id="home-h1" className="hero__h1" />
+          <p>{role}</p>
+        </div>
         {active && Scene && (
           <SceneBoundary onFail={() => setStatus('pending')}>
-            <Scene name={name} role={role} onStatus={setStatus} draws={draws} />
+            <Scene onStatus={setStatus} draws={draws} />
           </SceneBoundary>
         )}
       </div>

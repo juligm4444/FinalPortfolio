@@ -77,9 +77,10 @@
 /* Static text, laid over the poster. Hidden when the scene carries the text. */
 .hero__static {
   position: absolute;
+  z-index: 2;
   left: 8%;
-  top: 30%;
-  max-width: 34ch;
+  top: 18%;
+  width: min(40%, 520px);
   /* ACABADO §3: text over the photo stands on the veil */
   padding: var(--space-4) var(--space-6);
   background: var(--veil);
@@ -92,20 +93,12 @@
     bottom: 10%;
     transform: translateX(-50%);
     text-align: center;
-    width: max-content;
-    max-width: 90%;
+    width: 90%;
   }
 }
-.hero-text {
-  pointer-events: none;
-  user-select: none;
-  width: max-content;
-  max-width: 34ch;
+.hero__static .botanical {
+  min-height: 0;
 }
-.hero-text--narrow {
-  text-align: center;
-}
-.hero-text__name,
 .hero__static h1 {
   margin: 0;
   font-family: var(--font-display);
@@ -115,8 +108,7 @@
   letter-spacing: var(--tracking-h1);
   color: var(--text);
 }
-.hero-text__role,
-.hero__static p {
+.hero__static > p {
   margin: var(--space-3) 0 0;
   font-family: var(--font-label);
   font-size: var(--text-label);

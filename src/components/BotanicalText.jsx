@@ -2,7 +2,13 @@ import { useEffect, useRef, useState } from 'react'
 import { useWebGL } from '../webgl/index.js'
 import './BotanicalText.css'
 
-/* REDESIGN §3 — Botanical Text, the H1 of each page. Three layers:
+const PLAIN_QUERY = '(max-width: 767px), (pointer: coarse)'
+
+/* REDESIGN §3 / ACABADO §3 — Botanical Text, the H1 of Home, About and Projects.
+   Desktop only: under 768 px or with a coarse (touch) pointer the H1 is plain text.
+   On desktop the scene starts after the first paint, when the main thread is idle,
+   and builds its particles in slices; until it is live the plain H1 is what shows,
+   in a frame of fixed height, so the swap never moves the layout. Three layers:
    1. a real heading in the DOM, visually hidden (always);
    2. plain text as the static fallback (no WebGL2, reduced motion, low-end,
       over budget, or before the scene is ready) — and what the prerender ships;
@@ -10,9 +16,66 @@ import './BotanicalText.css'
       grants this component a slot (REDESIGN §4.1).
    Changing `text` (e.g. language switch) wilts the word and blooms the new one. */
 export default function BotanicalText({ text, as: Tag = 'h1', size = 140, lang, id, className = '' }) {
-  // Under ~340 px the foliage stops reading at a glance: keep the plain H1 (ACABADO §3).
-  const [narrow] = useState(() => typeof window !== 'undefined' && window.innerWidth < 340)
-  const { ref, active } = useWebGL({ id, disabled: narrow })
+  // Plain until proven desktop (also what the prerender ships).
+  const [plain, setPlain] = useState(true)
+  useEffect(() => {
+    const mq = window.matchMedia(PLAIN_QUERY)
+    const on = () => setPlain(mq.matches)
+    on()
+    mq.addEventListener('change', on)
+    return () => mq.removeEventListener('change', on)
+  }, [])
+  // Ask for a WebGL slot only after the page has loaded and the main thread is idle:
+  // creating a context while the GPU process is still busy with the first paint
+  // blocks the main thread for hundreds of milliseconds.
+  const [idle, setIdle] = useState(false)
+  useEffect(() => {
+    if (plain) return
+    let cancel = () => {}
+    const afterIdle = () => {
+      if (typeof window.requestIdleCallback === 'function') {
+        const h = window.requestIdleCallback(() => setIdle(true), { timeout: 3000 })
+        cancel = () => window.cancelIdleCallback(h)
+      } else {
+        const h = setTimeout(() => setIdle(true), 500)
+        cancel = () => clearTimeout(h)
+      }
+    }
+    // After load, wait for a quiet second (no long task from anything else: the hero
+    // scene, images decoding), then for an idle callback. Gives up waiting after 6 s.
+    const onLoad = () => {
+      let last = performance.now()
+      let obs = null
+      try {
+        obs = new PerformanceObserver(() => {
+          last = performance.now()
+        })
+        obs.observe({ type: 'longtask' })
+      } catch {
+        obs = null
+      }
+      const t0 = performance.now()
+      const poll = setInterval(() => {
+        const now = performance.now()
+        if (now - last > 1000 || now - t0 > 6000) {
+          clearInterval(poll)
+          obs?.disconnect()
+          afterIdle()
+        }
+      }, 200)
+      cancel = () => {
+        clearInterval(poll)
+        obs?.disconnect()
+      }
+    }
+    if (document.readyState === 'complete') onLoad()
+    else window.addEventListener('load', onLoad, { once: true })
+    return () => {
+      window.removeEventListener('load', onLoad)
+      cancel()
+    }
+  }, [plain])
+  const { ref, active } = useWebGL({ id, disabled: plain || !idle })
   const canvasRef = useRef(null)
   const sceneRef = useRef(null)
   const textRef = useRef(text)

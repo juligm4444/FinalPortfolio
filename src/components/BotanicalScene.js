@@ -14,7 +14,9 @@
    demand, so pages that never activate it never download it. */
 import * as THREE from 'three'
 
-const MAX_PARTICLES = 20000
+const MAX_PARTICLES = 16000
+/** Particles built per idle slice: no single task builds the whole word (no long task > 100 ms). */
+const BATCH = 2000
 /** World units per CSS pixel of type (original constant). */
 const SCALE = 0.085
 const CAM_DISTANCE = 35
@@ -35,6 +37,17 @@ const TUNING = {
 }
 
 const circOut = (t) => Math.sqrt(1 - (t - 1) * (t - 1))
+const HIDDEN = new THREE.Matrix4().makeScale(0, 0, 0)
+
+/** Run `fn` when the main thread is idle (or soon, where idle callbacks do not exist). */
+function whenIdle(fn) {
+  if (typeof window.requestIdleCallback === 'function') {
+    const id = window.requestIdleCallback(fn, { timeout: 120 })
+    return () => window.cancelIdleCallback(id)
+  }
+  const id = setTimeout(fn, 16)
+  return () => clearTimeout(id)
+}
 
 function spriteCanvas(size) {
   const canvas = document.createElement('canvas')
@@ -143,8 +156,10 @@ export default class BotanicalScene {
     this.frameId = 0
     this.lastT = 0
     this.disposed = false
+    this.dirty = true
+    this.cancelBuild = null
 
-    this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
+    this.renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true })
     this.renderer.setClearColor(0x000000, 0)
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2))
     this.renderer.outputColorSpace = THREE.SRGBColorSpace
@@ -224,64 +239,74 @@ export default class BotanicalScene {
     return coords
   }
 
-  /** Replace the word outright: used on first bloom and after a wilt. */
+  /** Replace the word outright: used on first bloom and after a wilt. The particles are
+      built in idle slices of BATCH; each slice is drawn as soon as it exists. */
   grow(text) {
     this.text = text
+    this.cancelBuild?.()
     const coords = this.sample(text)
-    this.particles = coords.map(([x, y]) => {
-      const px = x * SCALE
-      const py = y * SCALE
-      return Math.random() > TUNING.leafMix ? makeBloom(px, py) : makeLeaf(px, py)
-    })
-    this.rebuildMeshes()
+    const types = coords.map(() => (Math.random() > TUNING.leafMix ? 0 : 1))
+    this.particles = []
+    this.rebuildMeshes([0, 1].map((type) => types.filter((x) => x === type).length))
     this.setPhase('grow')
-  }
-
-  /** Exposed on the container (data-phase) so the lab and tests can see the cycle. */
-  setPhase(phase) {
-    this.phase = phase
-    this.container.dataset.phase = phase
-  }
-
-  rebuildMeshes() {
-    this.meshes.forEach((m) => {
-      this.group.remove(m)
-      m.dispose()
-    })
-    this.meshes = []
-    const counts = [0, 1].map((type) => this.particles.filter((p) => p.type === type).length)
-    const identity = new THREE.Matrix4()
-    this.materials.forEach((material, type) => {
-      const mesh = new THREE.InstancedMesh(this.geometry, material, counts[type])
-      // A zero-filled instance buffer collapses every instance: seed identity.
-      for (let i = 0; i < counts[type]; i++) mesh.setMatrixAt(i, identity)
-      mesh.instanceMatrix.needsUpdate = true
-      mesh.frustumCulled = false
-      mesh.position.x = -0.5 * this.box.wScene
-      mesh.position.y = -0.6 * this.box.hScene
-      this.meshes.push(mesh)
-      this.group.add(mesh)
-    })
-    this.applyColors()
-  }
-
-  applyColors() {
     const hsl = [this.tokens.bloom, this.tokens.leaf].map((c) => {
       const o = { h: 0, s: 0, l: 0 }
       new THREE.Color(c).getHSL(o)
       return o
     })
-    const idx = [0, 0]
     const color = new THREE.Color()
-    this.particles.forEach((p) => {
-      const mesh = this.meshes[p.type]
-      if (!mesh) return
-      const b = hsl[p.type]
-      color.setHSL((b.h + p.hue * TUNING.hueSpread + 1) % 1, b.s, b.l)
-      mesh.setColorAt(idx[p.type]++, color)
-    })
+    const made = [0, 0]
+    let i = 0
+    const slice = () => {
+      this.cancelBuild = null
+      if (this.disposed) return
+      const end = Math.min(i + BATCH, coords.length)
+      for (; i < end; i++) {
+        const [x, y] = coords[i]
+        const type = types[i]
+        const p = type === 0 ? makeBloom(x * SCALE, y * SCALE) : makeLeaf(x * SCALE, y * SCALE)
+        this.particles.push(p)
+        const mesh = this.meshes[type]
+        const b = hsl[type]
+        color.setHSL((b.h + p.hue * TUNING.hueSpread + 1) % 1, b.s, b.l)
+        mesh.setColorAt(made[type], color)
+        made[type]++
+      }
+      this.meshes.forEach((m, type) => {
+        m.count = made[type]
+        if (m.instanceColor) m.instanceColor.needsUpdate = true
+      })
+      this.dirty = true
+      if (i < coords.length) this.cancelBuild = whenIdle(slice)
+    }
+    this.cancelBuild = whenIdle(slice)
+  }
+
+  /** Exposed on the container (data-phase) so tests can see the cycle. */
+  setPhase(phase) {
+    this.phase = phase
+    this.container.dataset.phase = phase
+  }
+
+  /** Fresh meshes sized for the whole word; nothing drawn until its particles exist. */
+  rebuildMeshes(counts) {
     this.meshes.forEach((m) => {
-      if (m.instanceColor) m.instanceColor.needsUpdate = true
+      this.group.remove(m)
+      m.dispose()
+    })
+    this.meshes = []
+    this.materials.forEach((material, type) => {
+      const mesh = new THREE.InstancedMesh(this.geometry, material, Math.max(1, counts[type]))
+      // Unbuilt instances stay collapsed: a seeded identity would flash a full-size sprite.
+      for (let i = 0; i < counts[type]; i++) mesh.setMatrixAt(i, HIDDEN)
+      mesh.instanceMatrix.needsUpdate = true
+      mesh.setColorAt(0, new THREE.Color())
+      mesh.count = 0
+      mesh.frustumCulled = false
+      mesh.position.x = -0.5 * this.box.wScene
+      mesh.position.y = -0.6 * this.box.hScene
+      this.meshes.push(mesh)
+      this.group.add(mesh)
     })
   }
 
@@ -320,7 +345,14 @@ export default class BotanicalScene {
     if (resized && this.pendingText) this.grow(this.pendingText)
   }
 
-  start() {
+  /** Compile the shaders off the main thread where the driver allows it, then animate. */
+  async start() {
+    try {
+      await this.renderer.compileAsync(this.scene, this.camera)
+    } catch {
+      // older drivers: the first render compiles instead
+    }
+    if (this.disposed) return
     this.lastT = performance.now()
     const loop = () => {
       this.frameId = requestAnimationFrame(loop)
@@ -338,12 +370,15 @@ export default class BotanicalScene {
     this.lastT = now
     if (!isFinite(dt) || dt < 0) dt = 0
     if (dt > 0.05) dt = 0.05
-    this.update(dt)
-    this.renderer.render(this.scene, this.camera)
+    // At rest (word fully open, pointer away) nothing moves: skip the work and the draw.
+    if (this.update(dt) || this.dirty) this.renderer.render(this.scene, this.camera)
+    this.dirty = false
   }
 
+  /** Returns true when any instance changed this frame. */
   update(dt) {
-    if (this.meshes.length === 0) return
+    if (this.meshes.length === 0) return false
+    let moved = false
     const localX = this.pointer.x + 0.5 * this.box.wScene
     const localY = this.pointer.y + 0.6 * this.box.hScene
     const radius = Math.max(0.001, TUNING.hoverRadius)
@@ -372,7 +407,17 @@ export default class BotanicalScene {
         const near = Math.max(0, 1 - Math.sqrt(dx * dx + dy * dy) / radius)
         target = near * near
       }
+      // Settled and untouched: its matrix is already final.
+      if (p.t === 1 && !p.toDelete && target === 0 && p.hover < 1e-3) {
+        p.hover = 0
+        if (!p.settled) p.settled = true
+        else {
+          idx[p.type]++
+          continue
+        }
+      } else p.settled = false
       p.hover += (target - p.hover) * (1 - Math.exp(-dt * 7))
+      moved = true
 
       const scale = p.maxScale * circOut(p.t) * (1 + TUNING.hoverBoost * p.hover)
       this.dummy.rotation.set(0, 0, p.baseRotation)
@@ -382,15 +427,18 @@ export default class BotanicalScene {
       this.dummy.updateMatrix()
       mesh.setMatrixAt(idx[p.type]++, this.dummy.matrix)
     }
-    this.meshes.forEach((m) => {
-      m.instanceMatrix.needsUpdate = true
-    })
+    if (moved)
+      this.meshes.forEach((m) => {
+        m.instanceMatrix.needsUpdate = true
+      })
     // Everything has closed: the old word is gone, the new one can bloom.
     if (this.phase === 'wilt' && alive === 0) this.grow(this.pendingText)
+    return moved
   }
 
   dispose() {
     this.disposed = true
+    this.cancelBuild?.()
     cancelAnimationFrame(this.frameId)
     this.container.removeEventListener('pointermove', this.onPointerMove)
     this.container.removeEventListener('pointerleave', this.onPointerLeave)
