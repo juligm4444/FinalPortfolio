@@ -21,17 +21,18 @@
 /* ================= TOKENS (REDESIGN §2, Fase 1) =================
    Sin modo claro/oscuro. Una sola paleta: concreto, niebla, musgo, ocobo. */
 :root {
-  /* Color */
-  --mist: #DDF2EB;            /* fondo base */
-  --concrete-100: #D9D6CF;    /* losas, superficies */
-  --concrete-300: #A9A59C;    /* bordes, relieves */
-  --concrete-500: #59564F;    /* texto secundario (6.27 sobre mist, 5.04 sobre losa) */
-  --concrete-900: #1E1F1D;    /* texto principal */
-  --moss-400: #4B8A10;        /* SOLO gráfico: musgo, bordes de foco. No texto */
-  --moss-700: #2F5D1A;        /* superficie de CTA y texto verde */
-  --bloom: #FF3D90;           /* acento decorativo. No texto sobre claros */
-  --bloom-deep: #FF0066;      /* acento activo, decorativo */
-  --bloom-ink: #B8004F;       /* rosa para texto y enlaces (5.70 sobre mist) */
+  /* Color (V3 §A). Contrastes verificados con `npm run check:contrast`. */
+  --mist: #DDF2EB;            /* niebla: el aire de la página; el texto vive aquí */
+  --concrete-100: #C7CEC9;    /* superficie de losa */
+  --concrete-300: #959D97;    /* cantos, juntas */
+  --concrete-500: #4A514C;    /* texto secundario: 6.99 sobre mist, 5.09 sobre losa */
+  --concrete-900: #1B1E1C;    /* texto: 14.39 sobre mist, 10.49 sobre losa */
+  --moss-400: #4B8A10;        /* SOLO gráfico */
+  --moss-700: #2F5D1A;        /* 6.65 sobre mist, 4.85 sobre losa */
+  --lichen-300: #A9BBA6;      /* pelo de los botones secundarios; texto concrete-900 encima: 8.28 */
+  --bloom: #FF3D90;           /* acento decorativo */
+  --bloom-deep: #FF0066;
+  --bloom-ink: #B8004F;       /* solo sobre mist (5.70). Prohibido sobre losa (4.16) */
 
   /* Semánticos */
   --bg: var(--mist);
@@ -42,7 +43,9 @@
   --cta-bg: var(--moss-700);
   --cta-text: var(--mist);
   --focus-ring: var(--moss-400);
-  --veil: rgb(221 242 235 / 0.88); /* panel bajo todo texto que pise el fondo */
+
+  /* Material concreto (V3 §A.2): textura generada por scripts/make-concrete.mjs */
+  --concrete-texture: url('../assets/textures/concrete.webp');
 
   /* Tipografía */
   --font-display: 'Libre Baskerville', Georgia, serif;
@@ -71,11 +74,11 @@
   --radius-slab: 2px;
   --radius-pill: 999px;
 
-  /* Relieve de losa: sombra dura, sin desenfoque */
-  --slab-shadow: 0 3px 0 rgb(89 86 79 / 0.45), inset 0 1px 0 rgb(255 255 255 / 0.5);
-  --slab-shadow-pressed: 0 1px 0 rgb(89 86 79 / 0.45), inset 0 1px 0 rgb(255 255 255 / 0.3);
-  --cta-shadow: 0 4px 0 rgb(31 61 18 / 0.5);
-  --cta-shadow-pressed: 0 1px 0 rgb(31 61 18 / 0.5);
+  /* Relieve de losa: canto inferior de 3 px y brillo de 1 px arriba. Sin sombras difusas. */
+  --slab-shadow: 0 3px 0 var(--concrete-300), inset 0 1px 0 rgb(255 255 255 / 0.55);
+  --slab-shadow-pressed: 0 1px 0 var(--concrete-300), inset 0 1px 0 rgb(255 255 255 / 0.3);
+  --cta-shadow: 0 4px 0 color-mix(in srgb, var(--moss-700) 65%, var(--concrete-900));
+  --cta-shadow-pressed: 0 1px 0 color-mix(in srgb, var(--moss-700) 65%, var(--concrete-900));
 
   /* Layout */
   --nav-offset: 240px;
@@ -115,6 +118,18 @@
     outline: 2px solid var(--focus-ring);
     outline-offset: 3px;
   }
+}
+
+/* ---------- Material concreto (V3 §A.2) ----------
+   Toda losa: --concrete-100 más la textura en multiply, canto inferior de 3 px
+   en --concrete-300 y brillo de 1 px arriba. Radio 2 px. Nada más. */
+.concrete {
+  background-color: var(--concrete-100);
+  background-image: var(--concrete-texture);
+  background-size: 512px 512px;
+  background-blend-mode: multiply;
+  border-radius: var(--radius-slab);
+  box-shadow: var(--slab-shadow);
 }
 
 @layer components {

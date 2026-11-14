@@ -10,7 +10,9 @@
     "lint": "eslint .",
     "shots": "node scripts/shots.mjs",
     "check:tokens": "node scripts/check-tokens.mjs",
-    "audit:text": "node scripts/audit-text.mjs"
+    "audit:text": "node scripts/audit-text.mjs",
+    "check:contrast": "node scripts/check-contrast.mjs",
+    "make:concrete": "node scripts/make-concrete.mjs"
   },
   "dependencies": {
     "@higgsfield/cli": "^0.1.40",
