@@ -98,6 +98,7 @@ const translations = {
       certKicker: 'Credentials',
       certLead: 'Eight verifiable badges from IBM and Cisco.',
       certVerify: 'Verify',
+      certIssuers: ['IBM SkillsBuild', 'Cisco Networking Academy'],
       certItems: [
         'User Experience Design Fundamentals',
         'Enterprise Design Thinking Practitioner',
@@ -982,6 +983,7 @@ const translations = {
       certKicker: 'Credenciales',
       certLead: 'Ocho insignias verificables de IBM y Cisco.',
       certVerify: 'Verificar',
+      certIssuers: ['IBM SkillsBuild', 'Cisco Networking Academy'],
       certItems: [
         'Fundamentos de UX Design',
         'Enterprise Design Thinking Practitioner',

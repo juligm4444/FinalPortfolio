@@ -3,7 +3,8 @@ import MoonlitPetals from '../components/MoonlitPetals.jsx'
 import VineTimeline from '../sections/VineTimeline.jsx'
 import Credentials from '../sections/Credentials.jsx'
 
-/* REDESIGN §5 About: story, vine timeline, the ocobo as the close, credentials. */
+/* V3 §F About: the story with the ocobo beside it (sticky while reading, fading
+   into the mist, no frame), the vine timeline, the credentials as 3D cards. */
 export default function About() {
   const { t, locale } = useLocale()
   return (
@@ -13,15 +14,19 @@ export default function About() {
         <h1 className="about__title">{t('about.title')}</h1>
         <p className="about__subtitle">{t('about.subtitle')}</p>
       </header>
-      <section className="about__story">
-        {t('about.story').map((p, i) => (
-          <p key={i}>{p}</p>
-        ))}
-      </section>
-      <VineTimeline />
-      <div className="about__ocobo">
-        <MoonlitPetals label={t('about.ocoboLabel')} lang={locale} id="about-ocobo" />
+      <div className="about__intro">
+        <div className="about__ocobo">
+          <div className="about__ocobo-hold">
+            <MoonlitPetals label={t('about.ocoboLabel')} lang={locale} id="about-ocobo" />
+          </div>
+        </div>
+        <section className="about__story">
+          {t('about.story').map((p, i) => (
+            <p key={i}>{p}</p>
+          ))}
+        </section>
       </div>
+      <VineTimeline />
       <Credentials />
     </>
   )
