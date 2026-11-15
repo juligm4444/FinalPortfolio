@@ -1,7 +1,7 @@
 /* npm run shots [-- <rutas…>] [--out=<dir>]
    Levanta `vite preview` sobre dist/ y captura cada ruta a 1440×900 y 390×844:
    primera pantalla (fold), mitad de página (mid) y página completa. Sale en shots/<out|actual>/.
-   Rutas por defecto: las 9 de ACABADO §8, en /es. Ejemplo: npm run shots -- /es/about --out=antes */
+   Rutas por defecto: las 10 páginas, en /es (--both: también /en). Ejemplo: npm run shots -- /es/about --out=antes */
 import { spawn } from 'node:child_process'
 import { mkdir, rm } from 'node:fs/promises'
 import { existsSync, readdirSync } from 'node:fs'
@@ -13,7 +13,7 @@ import { chromium } from 'playwright-core'
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const PORT = 4311
 const DEFAULT = [
-  '/es', '/es/about', '/es/projects',
+  '/es', '/es/about', '/es/projects', '/es/toolkit',
   '/es/projects/candelaria', '/es/projects/candelaria-website', '/es/projects/licorimetro',
   '/es/projects/sensewave', '/es/projects/umbral', '/es/projects/bloom',
 ]
