@@ -158,6 +158,10 @@ PORTS.push({
     ['var(--color-primary)', 'var(--focus-ring)'],
     ['{n} pages. Scroll, drag, click or press the arrow keys to flip through them.', '{hint}'],
     ['export default function TumbleDeckShowcase(', 'export default function TumbleDeck('],
+    // V4 §A.1: <style>{text}</style> is escaped by the server (quotes become &quot;) but read raw
+    // by the browser, so hydration saw different text and threw the whole page away.
+    ['><style>{`', '><style dangerouslySetInnerHTML={{ __html: `'],
+    ['      `}</style><div ref={sceneRef}', '      ` }} /><div ref={sceneRef}'],
     // Owner's call after the V3 review: the page keeps its scroll. The wheel only
     // drives the deck while it has focus; on touch a vertical swipe scrolls the page
     // and a horizontal drag flips cards (click, keys and mouse drag are unchanged).

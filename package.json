@@ -17,7 +17,8 @@
     "port:vendor": "node scripts/port-vendor.mjs",
     "test:vine": "node scripts/test-vine.mjs",
     "test:deck": "node scripts/test-deck.mjs",
-    "states": "node scripts/states.mjs"
+    "states": "node scripts/states.mjs",
+    "check:routes": "node scripts/check-routes.mjs"
   },
   "dependencies": {
     "@higgsfield/cli": "^0.1.40",

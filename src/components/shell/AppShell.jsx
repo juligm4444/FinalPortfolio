@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useLocation, useOutlet } from 'react-router-dom'
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
+import { AnimatePresence, PresenceContext, motion, useReducedMotion } from 'framer-motion'
 import { useLocale } from '../../i18n/LocaleProvider.jsx'
 import RouteBackground from './RouteBackground.jsx'
 import SideNav from './SideNav.jsx'
@@ -29,7 +29,9 @@ function PageSwap() {
         animate={{ opacity: 1, y: 0, transition: t }}
         exit={reduce ? { opacity: 1, transition: t } : { opacity: 0, y: -8, transition: t }}
       >
-        {outlet}
+        {/* The page's own motion pieces must not join this exit: one that never finishes
+            (Bloom's explorers) used to hold the old page on screen forever. */}
+        <PresenceContext.Provider value={null}>{outlet}</PresenceContext.Provider>
       </motion.div>
     </AnimatePresence>
   )

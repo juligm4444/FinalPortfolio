@@ -229,7 +229,7 @@ export default function TumbleDeck({
     }}
     className={["td-root relative w-full touch-pan-y overflow-hidden outline-none select-none", className].filter(Boolean).join(" ")}
     style={{ height, background, ...style }}
-  ><style>{`
+  ><style dangerouslySetInnerHTML={{ __html: `
         .td-scene { position: absolute; inset: 0; transform-style: preserve-3d; }
         .td-card {
           position: absolute; left: 50%; top: var(--td-top);
@@ -249,7 +249,7 @@ export default function TumbleDeck({
           background: var(--concrete-900); opacity: var(--td-shade, 0);
         }
         .td-root:focus-visible { box-shadow: inset 0 0 0 2px var(--focus-ring); }
-      `}</style><div ref={sceneRef} className="td-scene">{Array.from({ length: pool }, (_, j) => <div
+      ` }} /><div ref={sceneRef} className="td-scene">{Array.from({ length: pool }, (_, j) => <div
     key={j}
     ref={(el) => {
       cardRefs.current[j] = el;

@@ -50,13 +50,13 @@ export default function SpecimenSlab({ work, size = 'm', seed = 0, extra = null 
   }, [])
 
   const target = work.href
-    ? { as: LocaleLink, outer: { to: work.href, 'aria-label': `${t('projects.openCase')}: ${title}` } }
+    ? { as: LocaleLink, outer: { to: work.href, 'data-card-link': '', 'aria-label': `${t('projects.openCase')}: ${title}` } }
     : work.site
       ? { as: 'a', outer: { href: work.site, target: '_blank', rel: 'noopener noreferrer', 'aria-label': `${t('projects.visitSite')}: ${title}` } }
       : { as: 'div', outer: {} }
 
   return (
-    <div ref={el} className={`spec-slab spec-slab--${size}`}>
+    <div ref={el} className={`spec-slab spec-slab--${size}`} data-project-card="">
       <TiltCard as={target.as} outer={{ ...target.outer, className: 'spec-slab__link' }} className="spec-slab__card">
         <Layer z={44} className="spec-slab__img">
           <img src={work.media.specimen} alt="" loading="lazy" decoding="async" />

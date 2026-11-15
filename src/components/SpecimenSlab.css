@@ -133,3 +133,14 @@
     font-size: 1.125rem;
   }
 }
+
+/* A work without a case study (V4 §A.2): not a link, nothing reacts. */
+.spec-slab--static,
+.spec-slab--static * {
+  cursor: default;
+}
+.spec-slab--static .spec-slab__img img {
+  filter: grayscale(1) contrast(1.08) !important;
+  mix-blend-mode: multiply !important;
+  transform: none !important;
+}

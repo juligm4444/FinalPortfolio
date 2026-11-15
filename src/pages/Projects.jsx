@@ -135,7 +135,7 @@ function WallSlab({ work, big }) {
         {t('herbarium.gen')} {t(`projects.groups.${work.group}`)}
       </span>
       {pedestal ? (
-        <WorkTarget work={work} className="wall__title-link">
+        <WorkTarget work={work} className="wall__title-link" data-card-link="">
           <span className="spec-slab__species">{title}</span>
         </WorkTarget>
       ) : (
@@ -161,15 +161,30 @@ function WallSlab({ work, big }) {
       {img ? <img src={img} alt="" loading="lazy" decoding="async" /> : null}
     </Layer>
   )
+  // V4 §A.2: only a work with a case study is a link. Without one the card is static:
+  // no tilt, no pointer, no hover change, and its status ("in progress"/"coming soon") is printed.
+  if (!work.href)
+    return (
+      <div className={`spec-slab spec-slab--static ${big ? 'spec-slab--l' : ''} ${img ? '' : 'spec-slab--bare'}`.trim()} data-project-card="">
+        <div className="tilt">
+          <div className="tilt__card concrete spec-slab__card">
+            <div className="spec-slab__img">{img ? <img src={img} alt="" loading="lazy" decoding="async" /> : null}</div>
+            <div className="spec-slab__label">
+              <span className="spec-slab__genus">
+                {t('herbarium.gen')} {t(`projects.groups.${work.group}`)}
+              </span>
+              <span className="spec-slab__species">{title}</span>
+              <span className="spec-slab__meta">{meta}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
   const outer = pedestal
     ? { as: 'div', outer: { className: 'spec-slab__link' } }
-    : work.href
-      ? { as: LocaleLink, outer: { to: work.href, className: 'spec-slab__link', 'aria-label': `${t('projects.openCase')}: ${title}` } }
-      : work.site
-        ? { as: 'a', outer: { href: work.site, target: '_blank', rel: 'noopener noreferrer', className: 'spec-slab__link', 'aria-label': `${t('projects.visitSite')}: ${title}` } }
-        : { as: 'div', outer: { className: 'spec-slab__link' } }
+    : { as: LocaleLink, outer: { to: work.href, className: 'spec-slab__link', 'data-card-link': '', 'aria-label': `${t('projects.openCase')}: ${title}` } }
   return (
-    <div className={`spec-slab ${big ? 'spec-slab--l' : ''} ${img || pedestal ? '' : 'spec-slab--bare'}`.trim()}>
+    <div className={`spec-slab ${big ? 'spec-slab--l' : ''} ${img || pedestal ? '' : 'spec-slab--bare'}`.trim()} data-project-card="">
       <TiltCard as={outer.as} outer={outer.outer} className="spec-slab__card" max={big ? 6 : 9}>
         {picture}
         {label}
