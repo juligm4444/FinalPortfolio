@@ -1,5 +1,4 @@
 import { useLocale } from '../i18n/LocaleProvider.jsx'
-import Surface from '../components/Surface.jsx'
 import BotanicalText from '../components/BotanicalText.jsx'
 import MoonlitPetals from '../components/MoonlitPetals.jsx'
 import VineTimeline from '../sections/VineTimeline.jsx'
@@ -10,20 +9,20 @@ export default function About() {
   const { t, locale } = useLocale()
   return (
     <>
-      <Surface as="header" className="about__header">
+      <header className="about__header">
         <p className="about__kicker">{t('about.label')}</p>
         <BotanicalText text={t('about.title')} size={120} id="about-h1" />
         <p className="about__subtitle">{t('about.subtitle')}</p>
-      </Surface>
-      <Surface as="section" className="about__story">
+      </header>
+      <section className="about__story">
         {t('about.story').map((p, i) => (
           <p key={i}>{p}</p>
         ))}
-      </Surface>
+      </section>
       <VineTimeline />
-      <Surface className="about__ocobo">
+      <div className="about__ocobo">
         <MoonlitPetals label={t('about.ocoboLabel')} lang={locale} id="about-ocobo" />
-      </Surface>
+      </div>
       <Credentials />
     </>
   )

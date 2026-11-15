@@ -44,7 +44,7 @@ const translations = {
       langShort: { en: 'EN', es: 'ES' },
       langSwitch: { en: 'Switch to English', es: 'Cambiar a español' },
     },
-    dock: {
+    social: {
       label: 'Links and contact',
       instagram: 'Instagram',
       linkedin: 'LinkedIn',
@@ -928,7 +928,7 @@ const translations = {
       langShort: { en: 'EN', es: 'ES' },
       langSwitch: { en: 'Switch to English', es: 'Cambiar a español' },
     },
-    dock: {
+    social: {
       label: 'Enlaces y contacto',
       instagram: 'Instagram',
       linkedin: 'LinkedIn',

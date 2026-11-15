@@ -1,4 +1,3 @@
-import Surface from '../components/Surface.jsx'
 import LocaleLink from '../components/LocaleLink.jsx'
 import { useLocale } from '../i18n/LocaleProvider.jsx'
 
@@ -8,7 +7,7 @@ export default function Bio() {
   const { t } = useLocale()
   return (
     <section className="bio" aria-labelledby="bio-title">
-      <Surface tone="slab" className="bio__slab">
+      <div className="bio__slab">
         <h2 id="bio-title" className="sr-only">
           {t('home.bioTitle')}
         </h2>
@@ -16,7 +15,7 @@ export default function Bio() {
         <LocaleLink to="/about" className="slab bio__link">
           {t('home.bioLink')}
         </LocaleLink>
-      </Surface>
+      </div>
     </section>
   )
 }

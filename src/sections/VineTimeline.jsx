@@ -1,6 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { useLocale } from '../i18n/LocaleProvider.jsx'
-import Surface from '../components/Surface.jsx'
 import './VineTimeline.css'
 
 /* REDESIGN §5 About — the timeline as a vine climbing a brutalist pier. Every
@@ -86,7 +85,7 @@ export default function VineTimeline() {
   }, [n, geom])
 
   return (
-    <Surface as="section" ref={root} className="vine" aria-labelledby="vine-title">
+    <section ref={root} className="vine" aria-labelledby="vine-title">
       <header className="vine__head">
         <p className="vine__kicker">{t('about.timelineKicker')}</p>
         <h2 id="vine-title" className="vine__title">
@@ -109,6 +108,6 @@ export default function VineTimeline() {
           ))}
         </ol>
       </div>
-    </Surface>
+    </section>
   )
 }

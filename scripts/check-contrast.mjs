@@ -58,8 +58,10 @@ check('mist sobre moss-700 (Velour, Plush)', T.mist, T['moss-700'])
 const rb = resolve(root, 'src/components/shell/RouteBackground.jsx')
 const src = existsSync(rb) ? await readFile(rb, 'utf8') : ''
 const floor = /export const FOG_FLOOR = ([0-9.]+)/.exec(src)
+const pageTop = /export const FOG_PAGE_TOP = ([0-9.]+)/.exec(src)
 if (floor) {
   const FOG_FLOOR = parseFloat(floor[1])
+  const FOG_PAGE_TOP = pageTop ? parseFloat(pageTop[1]) : FOG_FLOOR
   const { chromium } = await import('playwright-core')
   const base = join(homedir(), '.cache/ms-playwright')
   const dir = existsSync(base) ? readdirSync(base).filter((d) => /^chromium-\d+$/.test(d)).sort().reverse()[0] : null
@@ -80,7 +82,7 @@ if (floor) {
       ctx.drawImage(img, 0, 0)
       const d = ctx.getImageData(0, 0, c.width, c.height).data
       let best = null
-      let bestL = 9
+      let bestL = Infinity
       for (let i = 0; i < d.length; i += 4) {
         const l = 0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2]
         if (l < bestL) {
@@ -91,8 +93,12 @@ if (floor) {
       return best
     }, url)
     const worst = mix(darkest, T.mist, FOG_FLOOR)
-    check(`${name}: píxel más oscuro rgb(${darkest.join(',')}) atenuado → rgb(${worst.map(Math.round).join(',')})`, T['concrete-500'], worst)
-    check(`${name}: mismo punto, texto concrete-900`, T['concrete-900'], worst)
+    check(`${name} al ${FOG_FLOOR * 100} %: píxel más oscuro rgb(${darkest.join(',')}) → rgb(${worst.map(Math.round).join(',')})`, T['concrete-500'], worst)
+    // Pages without a hero start at FOG_PAGE_TOP with text in their first screen.
+    if (name !== 'home') {
+      const top = mix(darkest, T.mist, FOG_PAGE_TOP)
+      check(`${name} al ${FOG_PAGE_TOP * 100} % (primera pantalla): → rgb(${top.map(Math.round).join(',')})`, T['concrete-500'], top)
+    }
   }
   await browser.close()
 }

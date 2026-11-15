@@ -1,5 +1,4 @@
 import Specimen from '../components/Specimen.jsx'
-import Surface from '../components/Surface.jsx'
 import { useEffect, useId, useRef } from 'react'
 import { useLocale } from '../i18n/LocaleProvider.jsx'
 import LocaleLink from '../components/LocaleLink.jsx'
@@ -43,7 +42,7 @@ function Slab({ work, index }) {
 export default function Herbarium() {
   const { t } = useLocale()
   return (
-    <Surface as="section" className="herb" aria-labelledby="herb-title">
+    <section className="herb" aria-labelledby="herb-title">
       <header className="herb__head">
         <p className="herb__kicker">{t('home.herbKicker')}</p>
         <h2 id="herb-title" className="herb__title">
@@ -58,6 +57,6 @@ export default function Herbarium() {
       <div className="herb__cta">
         <VelourBolster label={t('home.herbCta')} to="/projects" id="herb-cta" />
       </div>
-    </Surface>
+    </section>
   )
 }

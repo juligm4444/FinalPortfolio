@@ -2,7 +2,7 @@
 .hero {
   position: relative;
   width: 100%;
-  min-height: calc(100dvh - var(--dock-h));
+  min-height: 100dvh;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -27,7 +27,7 @@
   /* Phone: bust and title on top, actions in their own band, dock below. No overlap. */
   .hero {
     /* nav row on top, dock at the bottom: the hero is what is left between them */
-    min-height: calc(100dvh - var(--nav-top-h) - var(--dock-h));
+    min-height: calc(100dvh - var(--nav-top-h));
   }
   .hero__stage {
     position: relative;

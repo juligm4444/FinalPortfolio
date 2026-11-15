@@ -12,8 +12,6 @@ const JOB_TIMEOUT_MS = 5000
 
 const KINDS = {
   plush: () => import('./PlushTileCanvas.jsx'),
-  mohair: () => import('./MohairCapsuleCanvas.jsx'),
-  velour: () => import('./VelourBolsterCanvas.jsx'),
 }
 
 export default function FurSnapshotter() {

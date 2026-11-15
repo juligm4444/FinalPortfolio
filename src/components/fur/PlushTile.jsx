@@ -25,13 +25,13 @@ export const PLUSH_BLEED = 1.5
 export function plushProps(glyph, seed = 0) {
   const tok = siteTokens()
   return {
-    image: glyphUrl(glyph, tok.mist, 2.6),
-    artwork: { fit: 'contain', size: 60, offsetY: 0 },
+    image: glyphUrl(glyph, tok.mist, 3),
+    artwork: { fit: 'contain', size: 72, offsetY: 0 },
     background: tok.mist,
     furColor: tok.moss700,
     tipColor: tok.moss400,
-    tipMix: 0.85,
-    fur: { flow: 'art', lift: 5, frizz: 6, length: 8, density: 8 },
+    tipMix: 0.6,
+    fur: { flow: 'art', lift: 4, frizz: 3, length: 6, density: 9 },
     // The tile's footprint is exactly the control: TILE_HALF 0.7 × scale × bleed = 1.
     scale: 100 / (0.7 * PLUSH_BLEED),
     radius: 46,

@@ -12,7 +12,9 @@
     "check:tokens": "node scripts/check-tokens.mjs",
     "audit:text": "node scripts/audit-text.mjs",
     "check:contrast": "node scripts/check-contrast.mjs",
-    "make:concrete": "node scripts/make-concrete.mjs"
+    "make:concrete": "node scripts/make-concrete.mjs",
+    "bake:fur": "node scripts/bake-fur.mjs",
+    "port:vendor": "node scripts/port-vendor.mjs"
   },
   "dependencies": {
     "@higgsfield/cli": "^0.1.40",

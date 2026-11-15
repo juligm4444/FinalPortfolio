@@ -44,7 +44,7 @@ const PORTS = [
     patches: [
       ['"use client";\n', ''],
       // no network default artwork
-      [/  image = \{ "alt": "", "src": "https:\/\/cdn\.brandfetch\.io[^}]*\},\n/, '  image = null,\n'],
+      [/ {2}image = \{ "alt": "", "src": "https:\/\/cdn\.brandfetch\.io[^}]*\},\n/, '  image = null,\n'],
       // site-owned control, rest-frame callback, moss tips
       ['  style\n}) {\n  const rootRef', '  style,\n  hitRef,\n  pointerSeed,\n  onFrame,\n  tipColor,\n  tipMix = 0\n}) {\n  const rootRef'],
       ['  const cfg = {\n', '  const cfg = {\n    onFrame,\n    tipColor,\n    tipMix,\n'],
