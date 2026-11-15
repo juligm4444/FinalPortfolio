@@ -34,6 +34,8 @@ const translations = {
     },
     nav: {
       label: 'Main navigation',
+      menu: 'Menu',
+      close: 'Close menu',
       skip: 'Skip to content',
       homeAria: 'juligm4 — home',
       home: 'Home',
@@ -916,6 +918,8 @@ const translations = {
     },
     nav: {
       label: 'Navegación principal',
+      menu: 'Menú',
+      close: 'Cerrar menú',
       skip: 'Saltar al contenido',
       homeAria: 'juligm4 — inicio',
       home: 'Inicio',

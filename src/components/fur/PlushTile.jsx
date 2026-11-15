@@ -22,10 +22,11 @@ import './fur.css'
 export const PLUSH_BLEED = 1.5
 
 /** Everything the vendor component needs to draw one tile. Used live and for snapshots. */
-export function plushProps(glyph, seed = 0) {
+export function plushProps(glyph, seed = 0, ink = 'white') {
   const tok = siteTokens()
   return {
-    image: glyphUrl(glyph, tok.mist, 3),
+    // icons in pure white, drawn in the fur (V4 §C.3); fur stays moss-700 with moss-400 tips
+    image: glyphUrl(glyph, ink === 'mist' ? tok.mist : tok.white, 3),
     artwork: { fit: 'contain', size: 72, offsetY: 0 },
     background: tok.mist,
     furColor: tok.moss700,
@@ -43,15 +44,15 @@ export function plushProps(glyph, seed = 0) {
   }
 }
 
-export function plushJob(name, glyph, size, seed = 0) {
+export function plushJob(name, glyph, size, seed = 0, ink = 'white') {
   const box = size * PLUSH_BLEED
-  return { key: `plush-${name}-${size}`, kind: 'plush', w: box, h: box, props: plushProps(glyph, seed) }
+  return { key: `plush-${name}-${size}`, kind: 'plush', w: box, h: box, props: plushProps(glyph, seed, ink) }
 }
 
 let canvasModule = null
 const loadCanvas = () => (canvasModule ??= import('./PlushTileCanvas.jsx'))
 
-export default function PlushTile({ name, glyph, label, size = 44, seed = 0, to, href, download, onClick, lang, staticOnly = false, className = '', children }) {
+export default function PlushTile({ name, glyph, label, size = 44, cssSize, ink = 'white', seed = 0, to, href, download, onClick, lang, staticOnly = false, className = '', children }) {
   const id = useId()
   const hit = useRef(null)
   const seedRef = useRef(null)
@@ -63,8 +64,8 @@ export default function PlushTile({ name, glyph, label, size = 44, seed = 0, to,
   // Rest image: baked if there is one, else ask the off-screen studio for it.
   useEffect(() => {
     if (rest) return
-    return requestSnapshot(plushJob(name, glyph, size, seed), setRest)
-  }, [rest, name, glyph, size, seed])
+    return requestSnapshot(plushJob(name, glyph, size, seed, ink), setRest)
+  }, [rest, name, glyph, size, seed, ink])
 
   useEffect(() => () => release(id), [id])
 
@@ -81,7 +82,7 @@ export default function PlushTile({ name, glyph, label, size = 44, seed = 0, to,
       () =>
         loadCanvas().then((m) => {
           if (!flags.current.hover && !flags.current.focus) return stop()
-          setLive({ Canvas: m.default, props: plushProps(glyph, seed) })
+          setLive({ Canvas: m.default, props: plushProps(glyph, seed, ink) })
         }),
       () => {
         setLive(null)
@@ -129,7 +130,8 @@ export default function PlushTile({ name, glyph, label, size = 44, seed = 0, to,
     'aria-label': label,
     title: label,
     lang,
-    style: { '--pt': `${size}px`, '--pt-bleed': PLUSH_BLEED },
+    // `cssSize` lets the tile display at a fluid size (e.g. clamp()) while it is drawn at `size`
+    style: { '--pt': cssSize ?? `${size}px`, '--pt-bleed': PLUSH_BLEED },
     onClick,
     ...handlers,
   }
@@ -139,7 +141,7 @@ export default function PlushTile({ name, glyph, label, size = 44, seed = 0, to,
         {rest ? (
           <img src={rest} alt="" width={size * PLUSH_BLEED} height={size * PLUSH_BLEED} decoding="async" draggable="false" />
         ) : (
-          <FlatGlyph glyph={glyph} />
+          <FlatGlyph glyph={glyph} ink={ink} />
         )}
       </span>
       {live && (
@@ -173,12 +175,12 @@ export default function PlushTile({ name, glyph, label, size = 44, seed = 0, to,
 }
 
 /* Before the rest image exists (or with no WebGL2 at all): a flat moss tile, glyph in mist. */
-function FlatGlyph({ glyph }) {
+function FlatGlyph({ glyph, ink }) {
   // The mask needs no colour of its own: any opaque ink works.
   const mask = `url("${glyphUrl(glyph, 'black', 2.6)}")`
   return (
     <span className="plush__flat">
-      <span className="plush__glyph" style={{ WebkitMaskImage: mask, maskImage: mask }} />
+      <span className={`plush__glyph plush__glyph--${ink}`} style={{ WebkitMaskImage: mask, maskImage: mask }} />
     </span>
   )
 }

@@ -18,3 +18,19 @@ export function siteTokens() {
 export function siteFont(name) {
   return getComputedStyle(document.documentElement).getPropertyValue(name).trim()
 }
+
+/** Mix two token colours (hex or rgb()) → `rgb(r, g, b)`, for canvases that cannot read color-mix(). */
+export function mixColors(a, b, t) {
+  const parse = (c) => {
+    const s = c.trim()
+    if (s.startsWith('#')) {
+      const h = s.slice(1)
+      const f = h.length === 3 ? h.split('').map((x) => x + x).join('') : h
+      return [0, 2, 4].map((i) => parseInt(f.slice(i, i + 2), 16))
+    }
+    return (s.match(/[\d.]+/g) ?? [0, 0, 0]).slice(0, 3).map(Number)
+  }
+  const A = parse(a)
+  const B = parse(b)
+  return `rgb(${A.map((v, i) => Math.round(v + (B[i] - v) * t)).join(', ')})`
+}

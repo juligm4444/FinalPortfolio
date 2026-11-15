@@ -4,7 +4,6 @@ import { AnimatePresence, PresenceContext, motion, useReducedMotion } from 'fram
 import { useLocale } from '../../i18n/LocaleProvider.jsx'
 import RouteBackground from './RouteBackground.jsx'
 import SideNav from './SideNav.jsx'
-import Socials from './Socials.jsx'
 import FurSnapshotter from '../fur/FurSnapshotter.jsx'
 import { install as installBloom } from '../botanical/host.js'
 
@@ -50,9 +49,6 @@ export default function AppShell() {
       <main id="main" className="shell__main" tabIndex={-1}>
         <PageSwap />
       </main>
-      <footer className="shell__foot">
-        <Socials size={44} staticOnly />
-      </footer>
       <FurSnapshotter />
     </div>
   )

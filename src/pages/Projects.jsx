@@ -242,7 +242,7 @@ function Tools() {
   const words = t('projects.tools')
   // scripts/bake-fur.mjs renders the 88 px tool tiles through this hook.
   useEffect(() => {
-    window.__furBake = { ...(window.__furBake ?? {}), tool: (name, px) => snapshotOnce(plushJob(toolSlug(name), TOOL_GLYPHS[name], px)) }
+    window.__furBake = { ...(window.__furBake ?? {}), tool: (name, px) => snapshotOnce(plushJob(toolSlug(name), TOOL_GLYPHS[name], px, 0, 'mist')) }
   }, [])
   return (
     <Wall seed="projects-tools" className="tools-sec" aria-labelledby="tools-title">
@@ -253,7 +253,7 @@ function Tools() {
       <ul className="tools">
         {words.map((w, i) => (
           <li key={w} className="tools__item">
-            <PlushTile name={toolSlug(w)} glyph={TOOL_GLYPHS[w]} label={w} size={88} seed={i * 3} />
+            <PlushTile name={toolSlug(w)} glyph={TOOL_GLYPHS[w]} label={w} size={88} seed={i * 3} ink="mist" />
             <span className="tools__name">{w}</span>
           </li>
         ))}

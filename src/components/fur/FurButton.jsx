@@ -1,6 +1,6 @@
 import { useEffect, useId, useRef, useState } from 'react'
 import LocaleLink from '../LocaleLink.jsx'
-import { siteTokens, siteFont } from './tokens.js'
+import { siteTokens, siteFont, mixColors } from './tokens.js'
 import { requestSnapshot } from './snapshots.js'
 import { canLive, claim, release, isOwner } from './live.js'
 import './fur.css'
@@ -20,12 +20,13 @@ import './fur.css'
 
 const MARGIN = { mohair: 1.0, velour: 0.8 } // the vendor's canvas room, in button heights
 
-function propsFor(kind, label, w, h) {
+function propsFor(kind, label, w, h, pressed = false) {
   const tok = siteTokens()
   const font = { fontFamily: siteFont('--font-label').split(',')[0].replace(/['"]/g, '').trim(), fontWeight: 700, letterSpacing: '0.08em', fontSize: `${Math.round(h * 0.3)}px` }
   const common = { fit: true, buttonWidth: w, buttonHeight: h, radius: h / 2, font, placement: { x: 0, y: 0, angle: 0, tilt: 0 } }
   if (kind === 'velour')
-    return { ...common, text: label, fabric: tok.moss700, textColor: tok.mist, drift: 2, advanced: { shadow: 30, glow: 0 } }
+    // pressed (the current page in the nav): brighter fur, a lower shadow
+    return { ...common, text: label, fabric: pressed ? mixColors(tok.moss700, tok.moss400, 0.58) : tok.moss700, textColor: tok.mist, drift: 2, advanced: { shadow: pressed ? 12 : 30, glow: 0 } }
   return {
     ...common,
     // The label is real DOM text over the fur (legibility at 44–56 px), not dyed hair.
@@ -50,7 +51,7 @@ export function fitWidth(label, h, min = 0) {
   return Math.max(min, Math.round(h * 1.2 + label.length * h * 0.25))
 }
 
-export default function FurButton({ kind = 'mohair', label, to, href, download, onClick, lang, height = 52, width, className = '', ...attrs }) {
+export default function FurButton({ kind = 'mohair', label, to, href, download, onClick, lang, height = 52, width, pressed = false, className = '', ...attrs }) {
   const id = useId()
   const hit = useRef(null)
   const flags = useRef({ hover: false, focus: false })
@@ -58,13 +59,13 @@ export default function FurButton({ kind = 'mohair', label, to, href, download, 
   const h = height
   const w = width ?? fitWidth(text, h)
   const m = MARGIN[kind] * h
-  const key = kind === 'mohair' ? `mohair-${w}x${h}` : `velour-${text}-${w}x${h}`
+  const key = kind === 'mohair' ? `mohair-${w}x${h}` : `velour-${text}-${w}x${h}${pressed ? '-on' : ''}`
   const [snap, setSnap] = useState({ key: null, url: null })
   const rest = snap.key === key ? snap.url : null
   const [live, setLive] = useState(null)
 
   useEffect(() => {
-    return requestSnapshot({ key, kind, w: w + 2 * m, h: h + 2 * m, props: propsFor(kind, text, w, h) }, (url) => setSnap({ key, url }))
+    return requestSnapshot({ key, kind, w: w + 2 * m, h: h + 2 * m, props: propsFor(kind, text, w, h, pressed) }, (url) => setSnap({ key, url }))
   }, [key, kind, text, w, h, m])
 
   useEffect(() => () => release(id), [id])
@@ -81,7 +82,7 @@ export default function FurButton({ kind = 'mohair', label, to, href, download, 
       () =>
         loaders[kind]().then((mod) => {
           if (!flags.current.hover && !flags.current.focus) return stop()
-          setLive({ Canvas: mod.default, props: { ...propsFor(kind, text, w, h), sway: kind === 'mohair' ? 3 : undefined } })
+          setLive({ Canvas: mod.default, props: { ...propsFor(kind, text, w, h, pressed), sway: kind === 'mohair' ? 3 : undefined } })
         }),
       () => {
         setLive(null)
@@ -99,7 +100,8 @@ export default function FurButton({ kind = 'mohair', label, to, href, download, 
 
   const common = {
     ref: hit,
-    className: `fur-btn fur-btn--${kind} ${rest ? 'fur-btn--img' : ''} ${className}`.trim(),
+    className: `fur-btn fur-btn--${kind} ${rest ? 'fur-btn--img' : ''} ${pressed ? 'fur-btn--pressed' : ''} ${className}`.trim(),
+    'aria-current': pressed ? 'page' : undefined,
     style: { '--fb-w': `${w}px`, '--fb-h': `${h}px`, '--fb-m': `${m}px` },
     lang,
     onClick,
