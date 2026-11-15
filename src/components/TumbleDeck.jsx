@@ -147,6 +147,7 @@ export default function TumbleDeck({
     const settle = (bias = 0) => push(bias > 0 ? Math.floor(target + 0.7) : bias < 0 ? Math.ceil(target - 0.7) : Math.round(target));
     api.current.step = (dir) => push(Math.round(target) + dir);
     const onWheel = (e) => {
+      if (document.activeElement !== root) return;
       e.preventDefault();
       const scale = e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? root.clientHeight : 1;
       const d = (Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY) * scale;
@@ -166,13 +167,14 @@ export default function TumbleDeck({
     let drag = null;
     const onDown = (e) => {
       if (e.button !== 0) return;
-      drag = { id: e.pointerId, y: e.clientY, travel: 0, last: 0 };
+      drag = { id: e.pointerId, x: e.clientX, y: e.clientY, travel: 0, last: 0, touch: e.pointerType === "touch" };
       dragged.current = false;
       clearTimeout(idle);
     };
     const onMove = (e) => {
       if (!drag || e.pointerId !== drag.id) return;
-      const dy = drag.y - e.clientY;
+      const dy = drag.touch ? drag.x - e.clientX : drag.y - e.clientY;
+      drag.x = e.clientX;
       drag.y = e.clientY;
       drag.travel += Math.abs(dy);
       if (dy) drag.last = Math.sign(dy);
@@ -225,7 +227,7 @@ export default function TumbleDeck({
     onClick={() => {
       if (!dragged.current) api.current.step(1);
     }}
-    className={["td-root relative w-full touch-none overflow-hidden outline-none select-none", className].filter(Boolean).join(" ")}
+    className={["td-root relative w-full touch-pan-y overflow-hidden outline-none select-none", className].filter(Boolean).join(" ")}
     style={{ height, background, ...style }}
   ><style>{`
         .td-scene { position: absolute; inset: 0; transform-style: preserve-3d; }

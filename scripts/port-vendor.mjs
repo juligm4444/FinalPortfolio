@@ -158,6 +158,13 @@ PORTS.push({
     ['var(--color-primary)', 'var(--focus-ring)'],
     ['{n} pages. Scroll, drag, click or press the arrow keys to flip through them.', '{hint}'],
     ['export default function TumbleDeckShowcase(', 'export default function TumbleDeck('],
+    // Owner's call after the V3 review: the page keeps its scroll. The wheel only
+    // drives the deck while it has focus; on touch a vertical swipe scrolls the page
+    // and a horizontal drag flips cards (click, keys and mouse drag are unchanged).
+    ['    const onWheel = (e) => {\n      e.preventDefault();\n', '    const onWheel = (e) => {\n      if (document.activeElement !== root) return;\n      e.preventDefault();\n'],
+    ['      drag = { id: e.pointerId, y: e.clientY, travel: 0, last: 0 };', '      drag = { id: e.pointerId, x: e.clientX, y: e.clientY, travel: 0, last: 0, touch: e.pointerType === "touch" };'],
+    ['      const dy = drag.y - e.clientY;\n      drag.y = e.clientY;\n', '      const dy = drag.touch ? drag.x - e.clientX : drag.y - e.clientY;\n      drag.x = e.clientX;\n      drag.y = e.clientY;\n'],
+    ['td-root relative w-full touch-none overflow-hidden', 'td-root relative w-full touch-pan-y overflow-hidden'],
   ],
 })
 

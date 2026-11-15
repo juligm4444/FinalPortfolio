@@ -31,7 +31,7 @@ Comprobaciones en verde: `npm run build`, `npm run lint` (0 errores, 13 avisos q
 | F.1 Ocobo fijo al lado del relato, sin marco | cumple en disposición; **acabado mejorable** (abajo) | `es-about__1440__fold.png` |
 | F.2 Enredadera 3D que crece con el scroll y une los 9 hitos, flor en Diseño, hoja que se dobla; SVG en móvil; prueba automática | cumple | `enredadera-50.png`, `enredadera-50__390.png`, `npm run test:vine` |
 | F.3 Credenciales como TiltCard, IBM primero | cumple sin el año (no hay dato) | `es-about__1440__full.png` |
-| G.1 Deck con la lógica original, sin marcos, solo el nombre del frente, lista para lectores, prueba de 6 clics, lámina de concreto sin captura | cumple; ver problemas conocidos (rueda) | `deck-3-clics.png`, `npm run test:deck` |
+| G.1 Deck con la lógica original, sin marcos, solo el nombre del frente, lista para lectores, prueba de 6 clics, lámina de concreto sin captura | cumple (rueda y táctil ajustados después, a petición) | `deck-3-clics.png`, `npm run test:deck` |
 | G.2 Muro de losas con filtros Mohair y reacomodo animado | cumple | `es-projects__1440__full.png` |
 | G.3 Herramientas como Plush Tile de 88 px con `simple-icons` | cumple (SQL con glifo propio) | `es-projects__1440__full.png` |
 | H Casos sin cajas, niebla, Mohair, títulos, losas con material | cumple (excepto los controles internos de Bloom) | `shots/v3-h/`, `shots/v3-j/es-projects-*` |
@@ -69,7 +69,7 @@ Nunca más de 3. Las piezas de pelo en reposo son imágenes; solo la que tiene e
 ## Lo que no alcanzó buen acabado (con captura)
 
 - **Ocobo** (`shots/v3-j/es-about__1440__fold.png`): el árbol en vivo está compuesto en apaisado y, en la columna cuadrada con la máscara circular, se ve medio árbol con forma de luna. Fundido sí, pero no se lee como árbol entero.
-- **Rueda sobre el deck**: el original captura la rueda del ratón sobre el deck para pasar láminas, así que la página no hace scroll mientras el cursor está encima; y en móvil `touch-none` impide desplazar la página con el dedo sobre él. Es la lógica original restaurada, pero es incómodo. Propuesta: que el deck solo tome la rueda con foco (como hacía la adaptación) y en táctil solo el arrastre horizontal. Decide tú.
+- ~~**Rueda sobre el deck**~~ — resuelto tras la revisión, a petición del dueño: el deck solo toma la rueda con foco; en táctil, el gesto vertical hace scroll de la página y el arrastre horizontal pasa láminas. `npm run test:deck` lo comprueba.
 - **Botones al cargar**: durante ~1 s se ve la píldora plana antes de que llegue la imagen de pelo.
 - **Bloom (caso)**: los selectores del explorador de taxonomía y del visor de wireframes siguen con su estilo propio; convertirlos en Mohair tocaba la pieza interactiva del contenido.
 

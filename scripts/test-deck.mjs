@@ -50,6 +50,16 @@ for (let i = 1; i <= 6; i++) {
   prev = s.front
   if (i === 3) await page.screenshot({ path: 'shots/v3-j/deck-3-clics.png' })
 }
+// The page keeps its scroll: without focus the wheel over the deck scrolls the page and leaves the deck alone.
+await page.evaluate(() => document.activeElement?.blur())
+const before = await page.evaluate(() => ({ y: window.scrollY, front: document.querySelector('.proj__deck-front')?.textContent.trim() }))
+await page.mouse.move(box.x + box.width / 2, box.y + box.height * 0.45)
+await page.mouse.wheel(0, 400)
+await page.waitForTimeout(900)
+const after = await page.evaluate(() => ({ y: window.scrollY, front: document.querySelector('.proj__deck-front')?.textContent.trim() }))
+const wheelOk = after.y > before.y && after.front === before.front
+if (!wheelOk) fail++
+console.log(`${wheelOk ? 'ok ' : 'MAL'} rueda sin foco: la página baja ${after.y - before.y} px, frente ${after.front === before.front ? 'igual' : 'CAMBIÓ'}`)
 await browser.close()
 if (fail) {
   console.error(`test:deck: ${fail} fallo(s)`)
