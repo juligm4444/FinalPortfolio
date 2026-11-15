@@ -24,7 +24,7 @@ function useCurrent() {
   return (to) => (to === '/' ? path === '/' : path === to || path.startsWith(`${to}/`))
 }
 
-function LangSwitch({ height = 40 }) {
+function LangSwitch({ height = 46 }) {
   const { t, locale, toggle } = useLocale()
   const other = locale === 'es' ? 'en' : 'es'
   return (

@@ -141,7 +141,8 @@ for (const [route, sel, name] of CASES) {
               if (isInk(B.data, i)) kept++
             }
           }
-        return { c: c.c, ratio: ink ? kept / ink : 1 }
+        // punctuation is a few pixels: one leaf covers it whatever the density; letters are what must read
+        return { c: c.c, ratio: ink && /[\p{L}\p{N}]/u.test(c.c) ? kept / ink : 1 }
       })
     },
     { a: rest.toString('base64'), b: grownShot.toString('base64'), chars: geo.chars, clip, color: geo.color }

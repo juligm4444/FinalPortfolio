@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, useState } from 'react'
+import { useEffect, useId, useRef, useState, useSyncExternalStore } from 'react'
 import LocaleLink from '../LocaleLink.jsx'
 import { siteTokens, siteFont, mixColors } from './tokens.js'
 import { requestSnapshot } from './snapshots.js'
@@ -32,7 +32,7 @@ function propsFor(kind, label, w, h, pressed = false) {
     // V4 §D.2: the label is drawn into the fur as its artwork, so the letters part under the
     // pointer; the DOM label stays for assistive tech, visually hidden.
     label,
-    font: { ...font, fontSize: `${Math.round(h * 0.4)}px`, fontWeight: 700 },
+    font: { ...font, fontSize: `${Math.round(h * (label.length <= 3 ? 0.52 : 0.4))}px`, fontWeight: 700 },
     furColor: tok.moss200,
     textColor: tok.concrete900,
     tipColor: tok.mist,
@@ -48,6 +48,17 @@ const loaders = {
   velour: () => import('./VelourBolsterCanvas.jsx'),
 }
 
+/* Buttons are sized for a 900 px tall window and scale with its height (V4 §B: a
+   2560/3440 screen gets larger pieces). Server and first paint use 1. */
+const scaleOf = () => Math.max(0.88, Math.min(1.7, Math.round((window.innerHeight / 900) * 20) / 20))
+const subscribeResize = (fn) => {
+  window.addEventListener('resize', fn)
+  return () => window.removeEventListener('resize', fn)
+}
+export function useFurScale() {
+  return useSyncExternalStore(subscribeResize, scaleOf, () => 1)
+}
+
 /** Width a label needs at height `h` (label is ~0.3 h in Space Grotesk caps). */
 export function fitWidth(label, h, min = 0) {
   return Math.max(min, Math.round(h * 1.2 + label.length * h * 0.25))
@@ -58,8 +69,9 @@ export default function FurButton({ kind = 'mohair', label, to, href, download, 
   const hit = useRef(null)
   const flags = useRef({ hover: false, focus: false })
   const text = label.toLocaleUpperCase(lang)
-  const h = height
-  const w = width ?? fitWidth(text, h)
+  const k = useFurScale()
+  const h = Math.round(height * k)
+  const w = width ? Math.round(width * k) : fitWidth(text, h)
   const m = MARGIN[kind] * h
   const key = `${kind}-${text}-${w}x${h}${pressed ? '-on' : ''}`
   const [snap, setSnap] = useState({ key: null, url: null })

@@ -2,18 +2,19 @@ import Wall from '../components/wall/Wall.jsx'
 import { MohairButton } from '../components/fur/FurButton.jsx'
 import { useLocale } from '../i18n/LocaleProvider.jsx'
 
-/* ACABADO §6 — the mini bio: one paragraph on a slab and a link to the About.
-   Nothing else: no character, no pills, no colour bars. */
+/* V4 §G.3 — the statement after the hero: on a concrete wall, centred, filling
+   the section. Display line, body line, secondary line, a centred Mohair button. */
 export default function Bio() {
-  const { t } = useLocale()
+  const { t, locale } = useLocale()
   return (
-    <Wall seed="home-bio" className="bio" aria-labelledby="bio-title">
-      <div className="bio__slab">
-        <h2 id="bio-title" className="sr-only">
-          {t('home.bioTitle')}
-        </h2>
-        <p className="bio__text">{t('home.bioPara1')}</p>
-        <MohairButton label={t('home.bioLink')} to="/about" className="bio__link" />
+    <Wall seed="home-statement" className="statement" aria-labelledby="statement-title">
+      <h2 id="statement-title" className="statement__lead">
+        {t('home.statement1')}
+      </h2>
+      <p className="statement__body">{t('home.statement2')}</p>
+      <p className="statement__note">{t('home.statement3')}</p>
+      <div className="statement__cta">
+        <MohairButton label={t('home.bioLink')} to="/about" lang={locale} />
       </div>
     </Wall>
   )

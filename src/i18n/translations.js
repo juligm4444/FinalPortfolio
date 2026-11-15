@@ -60,11 +60,11 @@ const translations = {
       ctaCv: 'Download CV',
     },
     home: {
-      bioTitle: 'About me',
+      statement1: 'I design digital products, and I build them.',
+      statement2: 'Nine semesters of Systems Engineering, now Design at Universidad de los Andes. Identity, components, functionality and feel.',
+      statement3: 'Interested in freelance and product work.',
       bioLink: 'More about me',
-      bioPara1:
-        'I study Design at Universidad de los Andes after nine semesters of Systems Engineering. Today what I enjoy most is structuring a product and building its whole aesthetic and functional side: identity, components, functionality and feel.',
-      herbTitle: 'Specimens from the last two years',
+      featuredTitle: 'Featured Projects',
       herbCta: 'All projects',
     },
     about: {
@@ -900,11 +900,11 @@ const translations = {
       ctaCv: 'Descargar CV',
     },
     home: {
-      bioTitle: 'Sobre mí',
+      statement1: 'Diseño productos digitales y los construyo.',
+      statement2: 'Nueve semestres de Ingeniería de Sistemas, hoy Diseño en la Universidad de los Andes. Identidad, componentes, funcionalidad y sensación.',
+      statement3: 'Me interesa el trabajo freelance y de producto.',
       bioLink: 'Más sobre mí',
-      bioPara1:
-        'Estudio Diseño en la Universidad de los Andes después de nueve semestres de Ingeniería de Sistemas. Hoy lo que más disfruto es estructurar un producto y construir todo su apartado estético y funcional: identidad, componentes, funcionalidad y sensación.',
-      herbTitle: 'Especímenes de los últimos dos años',
+      featuredTitle: 'Proyectos destacados',
       herbCta: 'Todos los proyectos',
     },
     about: {

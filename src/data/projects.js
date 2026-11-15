@@ -175,10 +175,10 @@ export const caseStudies = {
 }
 
 /**
- * The six the Herbario on the homepage presses. Each has `media.specimen`:
- * the one image used there (ACABADO §5), cropped to its content.
+ * V4 §G.4 — the three Featured Projects on the homepage: Bloom, Licorímetro and
+ * Candelaria (the brand case). Each has `media.specimen`, cropped to its content.
  */
-export const homeFeatured = ['candelariaWebsite', 'candelariaBrand', 'licorimetro', 'bloom', 'umbral', 'sensewaveProduct']
+export const homeFeatured = ['bloom', 'licorimetro', 'candelariaBrand']
   .map((id) => works.find((w) => w.id === id))
   .filter(Boolean)
 

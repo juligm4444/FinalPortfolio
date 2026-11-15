@@ -55,7 +55,7 @@ export default function Hero() {
   const sectionRef = useRef(null)
   const [phone, setPhone] = useState(false)
   useEffect(() => {
-    const mq = window.matchMedia('(max-width: 719px)')
+    const mq = window.matchMedia('(max-width: 719px), (max-aspect-ratio: 7/5)')
     const on = () => setPhone(mq.matches)
     on()
     mq.addEventListener('change', on)

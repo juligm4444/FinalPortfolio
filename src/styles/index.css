@@ -88,7 +88,8 @@
   --cta-shadow-pressed: 0 1px 0 color-mix(in srgb, var(--moss-700) 65%, var(--concrete-900));
 
   /* Layout */
-  --nav-offset: 240px;
+  /* the nav buttons scale with the window height (FurButton), so does the column holding them */
+  --nav-offset: clamp(216px, calc(20.5vh + 48px), 370px);
   /* V4 §B.2: the content area is the viewport minus the nav; fluid side padding */
   --pad: clamp(16px, 4vw, 96px);
   --wall-pad: clamp(24px, 4.5vw, 120px);
