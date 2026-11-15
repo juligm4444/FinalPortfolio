@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
+import { MohairButton } from '../fur/FurButton.jsx'
 
 import home from '../../assets/images/bloom/wireframes/home.webp'
 import articleFull from '../../assets/images/bloom/wireframes/article-full.webp'
@@ -51,26 +52,15 @@ export default function WireframeViewer({ b }) {
           {screens.map((s) => {
             const on = s.key === active
             return (
-              <button
+              <MohairButton
                 key={s.key}
                 role="tab"
-                type="button"
                 aria-selected={on}
+                pressed={on}
+                label={s.name}
                 onClick={() => setActive(s.key)}
-                className="font-nav uppercase"
-                style={{
-                  fontSize: 12,
-                  letterSpacing: '0.16em',
-                  fontWeight: 600,
-                  padding: '8px 12px',
-                  color: on ? 'var(--bg)' : 'var(--text)',
-                  background: on ? ACCENT : 'transparent',
-                  border: `1px solid ${on ? ACCENT : 'color-mix(in srgb, var(--text) 20%, transparent)'}`,
-                  transition: 'background 180ms ease, color 180ms ease, border-color 180ms ease',
-                }}
-              >
-                {s.name}
-              </button>
+                height={40}
+              />
             )
           })}
         </div>

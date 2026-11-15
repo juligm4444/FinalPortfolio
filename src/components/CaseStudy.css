@@ -1,11 +1,10 @@
 /* ACABADO §7 — the case template. Site tokens only; every project image sits on a slab. */
 .cs__sec {
-  padding: var(--space-16) var(--pad);
+  padding: var(--wall-pad);
 }
 @media (min-width: 768px) {
   .cs__sec {
-    padding-left: var(--pad);
-    padding-right: var(--pad);
+    padding: var(--wall-pad);
   }
 }
 .cs__tag {
@@ -507,4 +506,9 @@
     text-transform: uppercase;
     color: var(--text-muted);
   }
+}
+
+/* V4 §K: the case hero sits on its wall too */
+.cs__hero {
+  margin-top: var(--space-12);
 }

@@ -1,6 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { useLocale } from '../i18n/LocaleProvider.jsx'
 import { MohairButton } from './fur/FurButton.jsx'
+import Wall from './wall/Wall.jsx'
 import { caseStudies } from '../data/projects.js'
 import './CaseStudy.css'
 import DeviceHint from './DeviceHint.jsx'
@@ -38,7 +39,7 @@ export function CaseHero({ slug, h1, h2, sub, tags, meta = [], tools: toolsProp,
   // A field with no content is not shown (ACABADO §7): no empty rows, nothing invented.
   const ficha = [...meta, ...(tools?.length ? [{ label: t('case.tools'), value: tools.join(' · ') }] : [])].filter((f) => f.value && String(f.value).trim())
   return (
-    <header className="px-4 pb-16 pt-16 md:px-8 md:pb-24 md:pt-24">
+    <Wall as="header" seed={`case-${slug}-hero`} className="cs__hero">
       <div className="w-full">
         <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-14">
           <div className={media ? 'lg:col-span-7' : 'lg:col-span-12'}>
@@ -120,7 +121,7 @@ export function CaseHero({ slug, h1, h2, sub, tags, meta = [], tools: toolsProp,
           </Reveal>
         ) : null}
       </div>
-    </header>
+    </Wall>
   )
 }
 
@@ -139,7 +140,7 @@ export function NextCase({ slug }) {
   const i = CASE_ORDER.findIndex(([s]) => s === slug)
   const [nextSlug, key] = CASE_ORDER[(i + 1) % CASE_ORDER.length]
   return (
-    <section className="cs__sec">
+    <Wall seed={`case-${slug}-next`} className="cs__sec cs__next">
       <Reveal>
         <p className="font-nav uppercase" style={{ fontSize: 12, letterSpacing: '0.22em', color: 'var(--text-muted)' }}>
           {t('case.next')}
@@ -148,7 +149,7 @@ export function NextCase({ slug }) {
           <MohairButton label={t(`works.${key}.title`)} to={`/projects/${nextSlug}`} />
         </div>
       </Reveal>
-    </section>
+    </Wall>
   )
 }
 
@@ -443,20 +444,17 @@ export default function CaseStudy({ slug, hero, sections }) {
       {sections.map((sec, i) => {
         const { key, blocks } = Array.isArray(sec) ? { key: SECTION_KEYS[i], blocks: sec } : sec
         return (
-          <section key={key} className="cs__sec" aria-labelledby={`cs-${key}`}>
-            <div className="cs__tag">
-              <span className="cs__num">{String(i + 1).padStart(2, '0')}</span>
-              <span aria-hidden className="cs__rule" />
-              <h2 id={`cs-${key}`} className="cs__sec-label">
-                {t(`case.sections.${key}`)}
-              </h2>
-            </div>
+          <Wall key={key} seed={`case-${slug}-${key}`} className="cs__sec" aria-labelledby={`cs-${key}`}>
+            {/* V4 §F, §K: no small label over the section; its name stays for assistive tech */}
+            <h2 id={`cs-${key}`} className="sr-only">
+              {String(i + 1).padStart(2, '0')} {t(`case.sections.${key}`)}
+            </h2>
             <div className="cs__blocks">
               {blocks.map((b, j) => (
                 <Block key={j} b={b} />
               ))}
             </div>
-          </section>
+          </Wall>
         )
       })}
       <NextCase slug={slug} />
