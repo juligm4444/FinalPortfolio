@@ -16,7 +16,8 @@
     "bake:fur": "node scripts/bake-fur.mjs",
     "port:vendor": "node scripts/port-vendor.mjs",
     "test:vine": "node scripts/test-vine.mjs",
-    "test:deck": "node scripts/test-deck.mjs"
+    "test:deck": "node scripts/test-deck.mjs",
+    "states": "node scripts/states.mjs"
   },
   "dependencies": {
     "@higgsfield/cli": "^0.1.40",

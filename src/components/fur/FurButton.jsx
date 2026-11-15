@@ -2,7 +2,7 @@ import { useEffect, useId, useRef, useState } from 'react'
 import LocaleLink from '../LocaleLink.jsx'
 import { siteTokens, siteFont } from './tokens.js'
 import { requestSnapshot } from './snapshots.js'
-import { canLive, claim, release } from './live.js'
+import { canLive, claim, release, isOwner } from './live.js'
 import './fur.css'
 
 /* V3 §C — the only two kinds of button on the site, both fur:
@@ -91,7 +91,8 @@ export default function FurButton({ kind = 'mohair', label, to, href, download, 
   }
   const onFrame = (_, meta) => {
     const el = hit.current
-    if (!el) return
+    // A frame can land after this piece gave its seat back: never flip to live then.
+    if (!el || !isOwner(id)) return
     if (!el.hasAttribute('data-live')) el.setAttribute('data-live', '')
     if (meta.settled && !meta.over && !flags.current.hover && !flags.current.focus) stop()
   }

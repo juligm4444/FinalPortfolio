@@ -3,7 +3,7 @@ import LocaleLink from '../LocaleLink.jsx'
 import { siteTokens } from './tokens.js'
 import { glyphUrl } from './glyphs.js'
 import { bakedSnapshot, requestSnapshot } from './snapshots.js'
-import { canLive, claim, release } from './live.js'
+import { canLive, claim, release, isOwner } from './live.js'
 import './fur.css'
 
 /* V3 §B.4 — a real Plush Tile (vendor/originkit/PlushTile.tsx, ported by
@@ -91,7 +91,8 @@ export default function PlushTile({ name, glyph, label, size = 44, seed = 0, to,
   }
   const onFrame = (_, meta) => {
     const el = hit.current
-    if (!el) return
+    // A frame can land after this piece gave its seat back: never flip to live then.
+    if (!el || !isOwner(id)) return
     // First live frame: the canvas takes over from the image underneath it.
     if (!el.hasAttribute('data-live')) el.setAttribute('data-live', '')
     // Back at rest and nobody is here: become an image again.
