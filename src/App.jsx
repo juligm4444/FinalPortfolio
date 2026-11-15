@@ -1,5 +1,4 @@
 import { Routes, Route, Navigate, Outlet, useLocation, useParams } from 'react-router-dom'
-import { useEffect } from 'react'
 import AppShell from './components/shell/AppShell.jsx'
 import Seo from './components/shell/Seo.jsx'
 import { LocaleProvider, preferredLocale } from './i18n/LocaleProvider.jsx'
@@ -7,21 +6,12 @@ import { isLocale, localePath, splitLocale, LOCALES } from './i18n/routes.js'
 import Home from './pages/Home.jsx'
 import About from './pages/About.jsx'
 import Projects from './pages/Projects.jsx'
-import Surface from './components/Surface.jsx'
 import CaseCrack from './components/CaseCrack.jsx'
 import Candelaria, { CandelariaWebsite } from './pages/projects/Candelaria.jsx'
 import Licorimetro from './pages/projects/Licorimetro.jsx'
 import Sensewave from './pages/projects/Sensewave.jsx'
 import Umbral from './pages/projects/Umbral.jsx'
 import Bloom from './pages/projects/Bloom.jsx'
-
-function ScrollToTop() {
-  const { pathname } = useLocation()
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' })
-  }, [pathname])
-  return null
-}
 
 /* `/` and any path without a language prefix: send the visitor to the same
    page under the language they prefer. Unknown pages go home. */
@@ -42,10 +32,10 @@ function CaseLayout() {
   const { pathname } = useLocation()
   const slug = splitLocale(pathname).path.split('/')[2] ?? ''
   return (
-    <Surface className="case" data-case={slug} key={slug}>
+    <div className="case" data-case={slug} key={slug}>
       <CaseCrack />
       <Outlet />
-    </Surface>
+    </div>
   )
 }
 
@@ -57,10 +47,7 @@ function LangLayout() {
   return (
     <LocaleProvider locale={lang}>
       <Seo />
-      <AppShell>
-        <ScrollToTop />
-        <Outlet />
-      </AppShell>
+      <AppShell />
     </LocaleProvider>
   )
 }

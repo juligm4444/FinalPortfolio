@@ -1,0 +1,142 @@
+/* Fur pieces (V3 §B, §C): Plush Tile, Mohair Capsule, Velour Bolster.
+   The control is the box; the rest image and the live canvas hang around it. */
+
+/* ---------- Plush Tile ---------- */
+.plush {
+  position: relative;
+  display: inline-block;
+  flex: none;
+  width: var(--pt, 44px);
+  height: var(--pt, 44px);
+  padding: 0;
+  border: 0;
+  background: none;
+  border-radius: 23%;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+.plush__rest,
+.plush__live {
+  position: absolute;
+  /* the canvas is --pt-bleed × the tile, centred on it */
+  inset: calc(var(--pt) * (1 - var(--pt-bleed, 1.5)) / 2);
+  pointer-events: none;
+}
+.plush__rest img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.plush__live {
+  opacity: 0;
+}
+/* The first live frame has been drawn: swap, same pixels. */
+.plush[data-live] .plush__live {
+  opacity: 1;
+}
+.plush[data-live] .plush__rest {
+  opacity: 0;
+}
+.plush__flat {
+  position: absolute;
+  /* the tile itself inside the bled box */
+  inset: calc((1 - 1 / var(--pt-bleed, 1.5)) * 50%);
+  display: block;
+  border-radius: 23%;
+  background: var(--moss-700);
+}
+.plush__glyph {
+  position: absolute;
+  inset: 20%;
+  background: var(--mist);
+  -webkit-mask: center / contain no-repeat;
+  mask: center / contain no-repeat;
+}
+.plush:active .plush__rest {
+  transform: translateY(1px);
+}
+
+/* ---------- Fur buttons (V3 §C): Velour (primary), Mohair (secondary) ---------- */
+.fur-btn {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--fb-w);
+  max-width: 100%;
+  height: var(--fb-h);
+  padding: 0 var(--space-4);
+  border: 0;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-label);
+  font-size: var(--text-label);
+  font-weight: 700;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+/* Flat stand-in until the snapshot exists (or without WebGL2): the same colours. */
+.fur-btn--mohair {
+  background: var(--lichen-300);
+  color: var(--concrete-900);
+  box-shadow: inset 0 -3px 0 color-mix(in srgb, var(--concrete-500) 45%, transparent);
+}
+.fur-btn--velour {
+  background: var(--moss-700);
+  color: var(--mist);
+  box-shadow: inset 0 -3px 0 color-mix(in srgb, var(--concrete-900) 35%, transparent);
+}
+/* With the fur image the box itself is clear. Velour paints its label in the
+   cloth; Mohair keeps the real text on top of the fur. */
+.fur-btn--img {
+  background: transparent;
+  box-shadow: none;
+}
+.fur-btn--velour.fur-btn--img {
+  color: transparent;
+}
+.fur-btn__label {
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+  transition: transform 120ms ease;
+}
+.fur-btn--mohair:active .fur-btn__label {
+  transform: translateY(2px) scale(0.98);
+}
+.fur-btn__rest,
+.fur-btn__live {
+  position: absolute;
+  left: calc(-1 * var(--fb-m));
+  top: calc(-1 * var(--fb-m));
+  width: calc(var(--fb-w) + 2 * var(--fb-m));
+  height: calc(var(--fb-h) + 2 * var(--fb-m));
+  pointer-events: none;
+}
+.fur-btn__rest img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.fur-btn__live {
+  opacity: 0;
+}
+.fur-btn[data-live] .fur-btn__live {
+  opacity: 1;
+}
+.fur-btn[data-live] .fur-btn__rest {
+  opacity: 0;
+}
+.fur-btn:active .fur-btn__rest {
+  transform: translateY(2px);
+}
+.fur-btn:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 4px;
+}

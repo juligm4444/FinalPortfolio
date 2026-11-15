@@ -1,29 +1,32 @@
 import { useLocale } from '../i18n/LocaleProvider.jsx'
-import Surface from '../components/Surface.jsx'
-import BotanicalText from '../components/BotanicalText.jsx'
 import MoonlitPetals from '../components/MoonlitPetals.jsx'
 import VineTimeline from '../sections/VineTimeline.jsx'
 import Credentials from '../sections/Credentials.jsx'
 
-/* REDESIGN §5 About: story, vine timeline, the ocobo as the close, credentials. */
+/* V3 §F About: the story with the ocobo beside it (sticky while reading, fading
+   into the mist, no frame), the vine timeline, the credentials as 3D cards. */
 export default function About() {
   const { t, locale } = useLocale()
   return (
     <>
-      <Surface as="header" className="about__header">
+      <header className="about__header">
         <p className="about__kicker">{t('about.label')}</p>
-        <BotanicalText text={t('about.title')} size={120} id="about-h1" />
+        <h1 className="about__title">{t('about.title')}</h1>
         <p className="about__subtitle">{t('about.subtitle')}</p>
-      </Surface>
-      <Surface as="section" className="about__story">
-        {t('about.story').map((p, i) => (
-          <p key={i}>{p}</p>
-        ))}
-      </Surface>
+      </header>
+      <div className="about__intro">
+        <div className="about__ocobo">
+          <div className="about__ocobo-hold">
+            <MoonlitPetals label={t('about.ocoboLabel')} lang={locale} id="about-ocobo" />
+          </div>
+        </div>
+        <section className="about__story">
+          {t('about.story').map((p, i) => (
+            <p key={i}>{p}</p>
+          ))}
+        </section>
+      </div>
       <VineTimeline />
-      <Surface className="about__ocobo">
-        <MoonlitPetals label={t('about.ocoboLabel')} lang={locale} id="about-ocobo" />
-      </Surface>
       <Credentials />
     </>
   )

@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { useLocale } from '../i18n/LocaleProvider.jsx'
+import { MohairButton } from './fur/FurButton.jsx'
 import LocaleLink from './LocaleLink.jsx'
 import { caseStudies } from '../data/projects.js'
 import './CaseStudy.css'
@@ -91,7 +92,7 @@ export function CaseHero({ slug, kicker, h1, h2, sub, tags, meta = [], tools: to
           </div>
           {media ? (
             <Reveal delay={0.2} className="lg:col-span-5">
-              <div className="flex items-center justify-center p-6" style={{ background: 'var(--concrete-100)', border: '1px solid var(--border)', aspectRatio: '1 / 1' }}>
+              <div className="concrete flex items-center justify-center p-6" style={{ aspectRatio: '1 / 1' }}>
                 <img src={media} alt={mediaAlt} width="480" height="480" decoding="async" draggable="false" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
               </div>
             </Reveal>
@@ -118,17 +119,9 @@ export function CaseHero({ slug, kicker, h1, h2, sub, tags, meta = [], tools: to
         {links.length ? (
           <Reveal delay={0.36}>
             <div className="mt-8 flex flex-wrap gap-3">
-              {links.map((l) =>
-                l.to ? (
-                  <LocaleLink key={l.label} to={l.to} className="slab">
-                    {l.label}
-                  </LocaleLink>
-                ) : (
-                  <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer" className="slab">
-                    {l.label}
-                  </a>
-                ),
-              )}
+              {links.map((l) => (
+                <MohairButton key={l.label} label={l.label} to={l.to} href={l.to ? undefined : l.href} />
+              ))}
             </div>
           </Reveal>
         ) : null}
@@ -146,7 +139,7 @@ const CASE_ORDER = [
   ['bloom', 'bloom'],
 ]
 
-/* §7.5 — the next case, as a slab link. */
+/* §7.5 — the next case, as a Mohair button (V3 §C.2). */
 export function NextCase({ slug }) {
   const { t } = useLocale()
   const i = CASE_ORDER.findIndex(([s]) => s === slug)
@@ -157,13 +150,9 @@ export function NextCase({ slug }) {
         <p className="font-nav uppercase" style={{ fontSize: 12, letterSpacing: '0.22em', color: 'var(--text-muted)' }}>
           {t('case.next')}
         </p>
-        <LocaleLink
-          to={`/projects/${nextSlug}`}
-          className="mt-4 inline-block font-display"
-          style={{ color: 'var(--text)', fontSize: 'clamp(28px, 4vw, 48px)', fontWeight: 700, lineHeight: 1.1, textDecoration: 'underline', textUnderlineOffset: 8, textDecorationColor: 'var(--moss-400)' }}
-        >
-          {t(`works.${key}.title`)} →
-        </LocaleLink>
+        <div className="mt-4">
+          <MohairButton label={t(`works.${key}.title`)} to={`/projects/${nextSlug}`} />
+        </div>
       </Reveal>
     </section>
   )

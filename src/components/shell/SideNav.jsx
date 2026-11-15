@@ -1,10 +1,12 @@
 import LocaleLink, { LocaleNavLink } from '../LocaleLink.jsx'
 import Logo from '../Logo.jsx'
+import Socials from './Socials.jsx'
 import { useLocale } from '../../i18n/LocaleProvider.jsx'
 
-/* REDESIGN §5 — vertical nav on the left. Every control is a real <a> or
-   <button>; the active state is a raised concrete pill sized to its label.
-   Below `md` the same list lays out as a top row. */
+/* V3 §B.3 — left nav on desktop, top to bottom: logo, Inicio, Sobre mí,
+   Proyectos, the six networks as a 2 × 3 grid of Plush Tiles right under
+   Proyectos, then the language switch. Below 768 px it is a solid mist top bar
+   (logo, three links, language) and the networks move to the page foot. */
 const ROUTES = [
   { to: '/', key: 'home', end: true },
   { to: '/about', key: 'about' },
@@ -30,6 +32,8 @@ export default function SideNav() {
           </li>
         ))}
       </ul>
+
+      <Socials size={44} className="side-nav__socials" />
 
       <button
         type="button"

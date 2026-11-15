@@ -1,5 +1,6 @@
-import Surface from '../components/Surface.jsx'
 import { useLocale } from '../i18n/LocaleProvider.jsx'
+import TiltCard, { Layer } from '../components/TiltCard.jsx'
+import { MohairButton } from '../components/fur/FurButton.jsx'
 import ux from '../assets/badges/ux-fundamentals.webp'
 import edt from '../assets/badges/edt-practitioner.webp'
 import agile from '../assets/badges/agile-explorer.webp'
@@ -9,36 +10,39 @@ import py2 from '../assets/badges/python-essentials-2.webp'
 import js1 from '../assets/badges/javascript-essentials-1.webp'
 import js2 from '../assets/badges/javascript-essentials-2.webp'
 
-/* REDESIGN §5 About — a discreet row of eight badges, each with its verification link. */
+/* V3 §F.3 — eight credentials as TiltCards (concrete face): the badge floats in
+   front, then the name and the issuer, then a Mohair "Verificar". IBM first. */
 const VERIFY = 'https://www.credly.com/users/juligm4'
 const BADGES = [ux, edt, agile, pm, py1, py2, js1, js2]
 
 export default function Credentials() {
-  const { t } = useLocale()
+  const { t, locale } = useLocale()
   const names = t('about.certItems')
+  const issuers = t('about.certIssuers')
   return (
-    <Surface as="section" className="creds" aria-labelledby="creds-title">
-      <h2 id="creds-title" className="creds__kicker">
-        {t('about.certKicker')}
+    <section className="creds" aria-labelledby="creds-title">
+      <p className="creds__kicker">{t('about.certKicker')}</p>
+      <h2 id="creds-title" className="creds__title">
+        {t('about.certLead')}
       </h2>
-      <p className="creds__lead">{t('about.certLead')}</p>
-      {/* IBM first (the four SkillsBuild badges), then Cisco (the four NetAcad badges). */}
-      {[names.slice(0, 4), names.slice(4)].map((group, g) => (
-        <ul key={g} className="creds__list">
-          {group.map((name, j) => {
-            const i = g * 4 + j
-            return (
-              <li key={name} className="creds__item">
-                <img src={BADGES[i]} alt="" width="96" height="96" loading="lazy" decoding="async" />
+      <ul className="creds__grid">
+        {names.map((name, i) => (
+          <li key={name}>
+            <TiltCard className="creds__card" max={9}>
+              <Layer z={60} className="creds__badge">
+                <img src={BADGES[i]} alt="" width="112" height="112" loading="lazy" decoding="async" />
+              </Layer>
+              <Layer z={36} className="creds__text">
                 <span className="creds__name">{name}</span>
-                <a className="creds__verify" href={VERIFY} target="_blank" rel="noopener noreferrer" aria-label={`${t('about.certVerify')}: ${name}`}>
-                  {t('about.certVerify')}
-                </a>
-              </li>
-            )
-          })}
-        </ul>
-      ))}
-    </Surface>
+                <span className="creds__issuer">{issuers[i < 4 ? 0 : 1]}</span>
+              </Layer>
+              <Layer z={48} className="creds__action">
+                <MohairButton label={t('about.certVerify')} href={VERIFY} height={44} lang={locale} aria-label={`${t('about.certVerify')}: ${name}`} />
+              </Layer>
+            </TiltCard>
+          </li>
+        ))}
+      </ul>
+    </section>
   )
 }

@@ -1,31 +1,75 @@
-import { useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
+import { LayoutGroup, motion, useReducedMotion } from 'framer-motion'
 import { useLocale } from '../i18n/LocaleProvider.jsx'
 import LocaleLink from '../components/LocaleLink.jsx'
-import BotanicalText from '../components/BotanicalText.jsx'
-import Surface from '../components/Surface.jsx'
 import TumbleDeck from '../components/TumbleDeck.jsx'
-import Specimen from '../components/Specimen.jsx'
-import DeviceHint from '../components/DeviceHint.jsx'
-import { worksByGroup } from '../data/projects.js'
+import TiltCard, { Layer } from '../components/TiltCard.jsx'
+import { MohairButton } from '../components/fur/FurButton.jsx'
+import PlushTile from '../components/fur/PlushTile.jsx'
+import { snapshotOnce } from '../components/fur/snapshots.js'
+import { plushJob } from '../components/fur/PlushTile.jsx'
+import { TOOL_GLYPHS, toolSlug } from '../data/tools.js'
+import works, { GROUPS, worksByGroup } from '../data/projects.js'
+import concreteTexture from '../assets/textures/concrete.webp'
+import '../components/SpecimenSlab.css'
 import './Projects.css'
 
-/* REDESIGN §5 Projects: four groups (Web, Digital, Object, Brand), then the
-   Tools block. Everything is real HTML; the deck and the pedestals only add
-   motion on top of content that is already in the DOM. */
+/* V3 §G Projects: the sites deck, the wall of slabs with filters, the tools. */
 
-function StatusBadge({ status }) {
-  const { t } = useLocale()
-  if (status !== 'in-progress' && status !== 'soon') return null
-  return <span className="work__status">{t(`projects.status.${status}`)}</span>
+const statusLabel = (t, w) => (w.status === 'in-progress' || w.status === 'soon' ? t(`projects.status.${w.status}`) : '')
+
+/* A site with no capture yet: a concrete sheet with its name and "en curso",
+   drawn once to an image so the original deck can show it like any capture. */
+function useSlabImages(items, t) {
+  const [map, setMap] = useState({})
+  useEffect(() => {
+    let cancelled = false
+    const css = getComputedStyle(document.documentElement)
+    const v = (n) => css.getPropertyValue(n).trim()
+    const tex = new Image()
+    tex.src = concreteTexture
+    Promise.all([document.fonts.ready, tex.decode().catch(() => null)]).then(() => {
+      if (cancelled) return
+      const out = {}
+      items
+        .filter((w) => !w.media.screenshot)
+        .forEach((w) => {
+          const c = document.createElement('canvas')
+          c.width = 1440
+          c.height = Math.round(1440 / 2.06)
+          const g = c.getContext('2d')
+          g.fillStyle = v('--concrete-100')
+          g.fillRect(0, 0, c.width, c.height)
+          if (tex.naturalWidth) {
+            g.globalCompositeOperation = 'multiply'
+            g.fillStyle = g.createPattern(tex, 'repeat')
+            g.fillRect(0, 0, c.width, c.height)
+            g.globalCompositeOperation = 'source-over'
+          }
+          g.fillStyle = v('--concrete-900')
+          g.font = `700 96px ${v('--font-display')}`
+          g.fillText(t(`works.${w.id}.title`), 96, c.height - 170)
+          g.fillStyle = v('--concrete-500')
+          g.font = `500 40px ${v('--font-label')}`
+          if ('letterSpacing' in g) g.letterSpacing = '4px'
+          g.fillText(statusLabel(t, w).toUpperCase(), 100, c.height - 96)
+          out[w.id] = c.toDataURL('image/webp', 0.85)
+        })
+      setMap(out)
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [items, t])
+  return map
 }
 
-/** The link a work offers: its case study, else its site, else nothing. */
-function WorkLink({ work, children, className = '' }) {
+function WorkTarget({ work, className, children }) {
   const { t } = useLocale()
   const title = t(`works.${work.id}.title`)
   if (work.href)
     return (
-      <LocaleLink to={work.href} className={className} aria-label={`${t('projects.openCase')}: ${title}`}>
+      <LocaleLink to={work.href} className={className}>
         {children}
       </LocaleLink>
     )
@@ -35,147 +79,166 @@ function WorkLink({ work, children, className = '' }) {
         {children}
       </a>
     )
-  return <div className={className}>{children}</div>
+  return <span className={className}>{children}</span>
 }
 
-function GroupHead({ group }) {
+function Deck() {
   const { t } = useLocale()
-  return (
-    <h2 id={`group-${group}`} className="proj__group-title">
-      {t(`projects.groups.${group}`)}
-    </h2>
-  )
-}
-
-function WebGroup() {
-  const { t } = useLocale()
-  const items = worksByGroup('web')
+  const items = useMemo(() => worksByGroup('web'), [])
+  const slabs = useSlabImages(items, t)
   const [front, setFront] = useState(0)
-  const badge = (w) => (w.status === 'in-progress' || w.status === 'soon' ? t(`projects.status.${w.status}`) : '')
-  const cards = items.map((w) => ({
-    src: w.media.screenshot,
-    slab: { title: t(`works.${w.id}.title`), status: badge(w) },
-    label: [t(`works.${w.id}.title`), badge(w)].filter(Boolean).join(' · '),
-  }))
+  const cards = useMemo(
+    () => items.map((w) => ({ src: w.media.screenshot ?? slabs[w.id] ?? concreteTexture, alt: '' })),
+    [items, slabs]
+  )
   const current = items[front] ?? items[0]
   return (
-    <section className="proj__group" aria-labelledby="group-web">
-      <GroupHead group="web" />
-      <TumbleDeck cards={cards} label={t('projects.deckLabel')} hint={t('projects.deckHint')} onFront={setFront} />
-      {current && (
-        <div className="proj__deck-caption" aria-hidden="true">
-          <p className="work__kicker">{t(`works.${current.id}.kicker`)}</p>
-          <p className="work__title">
-            {t(`works.${current.id}.title`)} <StatusBadge status={current.status} />
-          </p>
-        </div>
-      )}
-      <h3 className="proj__list-title">{t('projects.deckListTitle')}</h3>
-      <ul className="proj__list">
-        {items.map((w) => (
-          <li key={w.id}>
-            <WorkLink work={w} className="proj__list-link">
-              <span className="work__title">{t(`works.${w.id}.title`)}</span>
-              <span className="work__kicker">{t(`works.${w.id}.kicker`)}</span>
-              <StatusBadge status={w.status} />
-            </WorkLink>
-          </li>
-        ))}
-      </ul>
+    <section className="proj__deck" aria-labelledby="deck-title">
+      <h2 id="deck-title" className="proj__group-title">
+        {t('projects.groups.web')}
+      </h2>
+      <TumbleDeck cards={cards} height="clamp(300px, 46vw, 600px)" ariaLabel={t('projects.deckLabel')} hint={t('projects.deckHint')} onFront={setFront} />
+      {/* Under the deck: only the front sheet's name, with its link. */}
+      <p className="proj__deck-front" aria-live="polite">
+        <WorkTarget work={current} className="proj__deck-link">
+          {t(`works.${current.id}.title`)}
+          {statusLabel(t, current) ? <span className="proj__deck-status"> · {statusLabel(t, current)}</span> : null}
+        </WorkTarget>
+      </p>
+      {/* The full list stays for screen readers. */}
+      <div className="sr-only">
+        <h3>{t('projects.deckListTitle')}</h3>
+        <ul>
+          {items.map((w) => (
+            <li key={w.id}>
+              <WorkTarget work={w}>{[t(`works.${w.id}.title`), statusLabel(t, w)].filter(Boolean).join(' · ')}</WorkTarget>
+            </li>
+          ))}
+        </ul>
+      </div>
     </section>
   )
 }
 
-/* Digital and Brand: the same specimen as the Home herbarium (one component), plus the blurb. */
-function SlabCard({ work }) {
-  const { t } = useLocale()
-  return (
-    <li>
-      <WorkLink work={work} className="work-slab">
-        <Specimen work={work}>
-          <StatusBadge status={work.status} />
-          <span className="work__desc">{t(`works.${work.id}.desc`)}</span>
-        </Specimen>
-      </WorkLink>
-    </li>
-  )
-}
-
-function SlabGroup({ group }) {
-  return (
-    <section className="proj__group" aria-labelledby={`group-${group}`}>
-      <GroupHead group={group} />
-      <ul className="proj__slabs">
-        {worksByGroup(group).map((w) => (
-          <SlabCard key={w.id} work={w} />
-        ))}
-      </ul>
-    </section>
-  )
-}
-
-/* Object: each piece is a cutout on a concrete slab over the same plinth. The piece itself
-   is a button that takes it apart: hover/focus on a pointer, a tap on touch, Enter/Space on a
-   keyboard. The case study is the title link. */
-function Pedestal({ work }) {
+/* One slab of the wall: the Herbarium treatment (duotone at rest, colour on
+   hover), concrete TiltCard. Objects keep their exploded view on press. */
+function WallSlab({ work, big }) {
   const { t } = useLocale()
   const [apart, setApart] = useState(false)
   const title = t(`works.${work.id}.title`)
-  const { piece, apart: apartSrc } = work.media.pedestal
-  return (
-    <li className="pedestal" data-apart={apart ? '1' : '0'}>
+  const img = work.media.specimen ?? work.media.screenshot ?? work.media.logo ?? null
+  const pedestal = work.media.pedestal
+  const meta = [t(`works.${work.id}.kicker`), statusLabel(t, work)].filter(Boolean).join(' · ')
+  const label = (
+    <Layer z={18} className="spec-slab__label">
+      <span className="spec-slab__genus">
+        {t('herbarium.gen')} {t(`projects.groups.${work.group}`)}
+      </span>
+      {pedestal ? (
+        <WorkTarget work={work} className="wall__title-link">
+          <span className="spec-slab__species">{title}</span>
+        </WorkTarget>
+      ) : (
+        <span className="spec-slab__species">{title}</span>
+      )}
+      <span className="spec-slab__meta">{meta}</span>
+    </Layer>
+  )
+  const picture = pedestal ? (
+    <Layer z={44} className="spec-slab__img">
       <button
         type="button"
-        className="pedestal__stage"
+        className="wall__piece"
         aria-pressed={apart}
         aria-label={`${title}: ${t(apart ? 'projects.explodedHide' : 'projects.explodedShow')}`}
         onClick={() => setApart((a) => !a)}
       >
-        <img className="pedestal__piece" src={piece} alt="" loading="lazy" decoding="async" />
-        <img className="pedestal__piece pedestal__piece--apart" src={apartSrc} alt="" loading="lazy" decoding="async" />
+        <img src={apart ? pedestal.apart : pedestal.piece} alt="" loading="lazy" decoding="async" />
       </button>
-      <span className="pedestal__plinth" aria-hidden="true" />
-      <div className="pedestal__label">
-        <span className="work__kicker">{t(`works.${work.id}.kicker`)}</span>
-        <WorkLink work={work} className="pedestal__title">
-          <span className="work__title">{title}</span>
-        </WorkLink>
-        <span className="work__desc">{t(`works.${work.id}.desc`)}</span>
-        <span className="pedestal__hint">
-          <DeviceHint pointer={t('projects.explodedHintPointer')} touch={t('projects.explodedHintTouch')} />
-        </span>
-      </div>
-    </li>
+    </Layer>
+  ) : (
+    <Layer z={44} className="spec-slab__img">
+      {img ? <img src={img} alt="" loading="lazy" decoding="async" /> : null}
+    </Layer>
+  )
+  const outer = pedestal
+    ? { as: 'div', outer: { className: 'spec-slab__link' } }
+    : work.href
+      ? { as: LocaleLink, outer: { to: work.href, className: 'spec-slab__link', 'aria-label': `${t('projects.openCase')}: ${title}` } }
+      : work.site
+        ? { as: 'a', outer: { href: work.site, target: '_blank', rel: 'noopener noreferrer', className: 'spec-slab__link', 'aria-label': `${t('projects.visitSite')}: ${title}` } }
+        : { as: 'div', outer: { className: 'spec-slab__link' } }
+  return (
+    <div className={`spec-slab ${big ? 'spec-slab--l' : ''} ${img || pedestal ? '' : 'spec-slab--bare'}`.trim()}>
+      <TiltCard as={outer.as} outer={outer.outer} className="spec-slab__card" max={big ? 6 : 9}>
+        {picture}
+        {label}
+      </TiltCard>
+    </div>
   )
 }
 
-function ObjectGroup() {
+function Wall() {
+  const { t, locale } = useLocale()
+  const reduce = useReducedMotion()
+  const [filter, setFilter] = useState('all')
+  const list = filter === 'all' ? works : works.filter((w) => w.group === filter)
+  // One big slab per category: the first work of each group.
+  const bigIds = new Set(GROUPS.map((g) => works.find((w) => w.group === g)?.id))
   return (
-    <section className="proj__group" aria-labelledby="group-objeto">
-      <GroupHead group="objeto" />
-      <ul className="proj__pedestals">
-        {worksByGroup('objeto').map((w) => (
-          <Pedestal key={w.id} work={w} />
+    <section className="wall" aria-labelledby="wall-title">
+      <h2 id="wall-title" className="proj__group-title">
+        {t('projects.wallTitle')}
+      </h2>
+      <div className="wall__filters" role="group" aria-label={t('projects.filterLabel')}>
+        {['all', ...GROUPS].map((g) => (
+          <MohairButton
+            key={g}
+            label={g === 'all' ? t('projects.filterAll') : t(`projects.groups.${g}`)}
+            onClick={() => setFilter(g)}
+            aria-pressed={filter === g}
+            className={filter === g ? 'wall__filter--on' : ''}
+            height={44}
+            lang={locale}
+          />
         ))}
-      </ul>
+      </div>
+      <LayoutGroup>
+        <motion.ul className="wall__grid" layout={!reduce}>
+          {list.map((w) => (
+            <motion.li
+              key={w.id}
+              layout={!reduce}
+              transition={{ type: 'spring', stiffness: 260, damping: 30 }}
+              className={bigIds.has(w.id) ? 'wall__cell wall__cell--l' : 'wall__cell'}
+            >
+              <WallSlab work={w} big={bigIds.has(w.id)} />
+            </motion.li>
+          ))}
+        </motion.ul>
+      </LayoutGroup>
     </section>
   )
 }
 
-/* Tools: one slab per technology (ACABADO §5: the keyscape was retired, the list stays). */
 function Tools() {
   const { t } = useLocale()
   const words = t('projects.tools')
+  // scripts/bake-fur.mjs renders the 88 px tool tiles through this hook.
+  useEffect(() => {
+    window.__furBake = { ...(window.__furBake ?? {}), tool: (name, px) => snapshotOnce(plushJob(toolSlug(name), TOOL_GLYPHS[name], px)) }
+  }, [])
   return (
-    <section className="proj__group" aria-labelledby="tools-title">
+    <section className="tools-sec" aria-labelledby="tools-title">
       <p className="proj__kicker">{t('projects.toolsKicker')}</p>
       <h2 id="tools-title" className="proj__group-title">
         {t('projects.toolsTitle')}
       </h2>
       <ul className="tools">
-        {words.map((w) => (
-          <li key={w} className="tools__slab">
-            {w}
+        {words.map((w, i) => (
+          <li key={w} className="tools__item">
+            <PlushTile name={toolSlug(w)} glyph={TOOL_GLYPHS[w]} label={w} size={88} seed={i * 3} />
+            <span className="tools__name">{w}</span>
           </li>
         ))}
       </ul>
@@ -186,17 +249,15 @@ function Tools() {
 export default function Projects() {
   const { t } = useLocale()
   return (
-    <Surface className="proj">
+    <div className="proj">
       <header className="proj__header">
         <p className="proj__kicker">{t('projects.label')}</p>
-        <BotanicalText text={t('projects.title')} size={120} id="projects-h1" />
+        <h1 className="proj__title">{t('projects.title')}</h1>
         <p className="proj__lead">{t('projects.lead')}</p>
       </header>
-      <WebGroup />
-      <SlabGroup group="digital" />
-      <ObjectGroup />
-      <SlabGroup group="marca" />
+      <Deck />
+      <Wall />
       <Tools />
-    </Surface>
+    </div>
   )
 }

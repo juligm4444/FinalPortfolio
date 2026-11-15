@@ -1,9 +1,9 @@
-/* ================= SHELL (REDESIGN §5) =================
-   Side nav, bottom dock, fixed route background, concrete slabs. */
+/* ================= SHELL (V3 §B) =================
+   Side nav with the network tiles, fixed route background that fogs with the
+   scroll, page foot with the networks on phones. No boxes behind text. */
 
 :root {
-  --dock-h: 112px;
-  --nav-top-h: 56px; /* below md the nav is a top row */
+  --nav-top-h: 56px; /* below md the nav is a top bar */
 }
 
 /* ---------- skip link ---------- */
@@ -42,6 +42,8 @@
 /* ---------- layout ---------- */
 .shell {
   position: relative;
+  /* fur canvases and their halos hang past their controls; never widen the page */
+  overflow-x: clip;
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
@@ -52,17 +54,17 @@
   flex: 1 1 auto;
   min-height: 0;
   padding-left: var(--nav-offset);
-  padding-bottom: calc(var(--dock-h) + var(--space-8));
+  padding-bottom: var(--space-16);
   outline: none;
 }
 
-/* ---------- route background ---------- */
+/* ---------- route background (V3 §B.2): the landscape at --fog over mist ---------- */
 .route-bg {
   position: fixed;
   inset: 0;
   z-index: 0;
   overflow: hidden;
-  background: var(--bg);
+  background: var(--mist);
   pointer-events: none;
 }
 .route-bg__layer {
@@ -73,35 +75,23 @@
   object-fit: cover;
   object-position: center bottom;
   opacity: 0;
+  transition: opacity 350ms cubic-bezier(0.2, 0.6, 0.2, 1);
 }
-.route-bg__layer--sharp[data-active] {
-  opacity: 1;
-}
-.route-bg__layer--blur {
-  opacity: 1;
-  transition-property: opacity;
-  transition-timing-function: cubic-bezier(0.2, 0.6, 0.2, 1);
-}
-/* The instant of focus: the blurred frame lifts, the sharp one is underneath. */
-.route-bg[data-focused] .route-bg__layer--blur {
-  opacity: 0;
-  transition-duration: 0ms !important;
+.route-bg__layer[data-active] {
+  opacity: var(--fog, 1);
 }
 @media (prefers-reduced-motion: reduce) {
-  .route-bg__layer--blur {
+  .route-bg__layer {
     transition: none;
   }
 }
 
-/* ---------- concrete slab (secondary buttons, nav pills, dock tiles) ---------- */
-.slab,
-.nav-pill,
-.dock__tile {
+/* ---------- nav pills ---------- */
+.nav-pill {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
-  background: var(--surface);
   color: var(--text);
   font-family: var(--font-label);
   font-size: var(--text-label);
@@ -109,30 +99,25 @@
   letter-spacing: var(--tracking-label);
   text-transform: uppercase;
   text-decoration: none;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-slab);
-  box-shadow: var(--slab-shadow);
+  border: 1px solid transparent;
   cursor: pointer;
   user-select: none;
   transition:
     transform 160ms ease,
     box-shadow 160ms ease,
-    color 160ms ease,
-    background-color 160ms ease;
+    color 160ms ease;
 }
-.slab {
-  padding: var(--space-3) var(--space-6);
-  min-height: 44px;
-}
-.slab:hover,
 .nav-pill:hover {
   color: var(--moss-700);
 }
-.slab:active,
-.nav-pill:active,
-.dock__tile:active {
+.nav-pill:active {
   transform: translateY(2px);
   box-shadow: var(--slab-shadow-pressed);
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav-pill {
+    transition: none;
+  }
 }
 
 /* ---------- side nav ---------- */
@@ -176,58 +161,31 @@
 .nav-pill:hover {
   border-color: var(--border);
 }
-/* Active = raised slab, width from its label. */
+/* Active = a raised piece of concrete, width from its label. */
 .nav-pill[aria-current='page'] {
-  background: var(--surface);
-  border-color: var(--border);
+  background-color: var(--concrete-100);
+  background-image: var(--concrete-texture);
+  background-size: 512px 512px;
+  background-blend-mode: multiply;
+  border-color: transparent;
+  border-radius: var(--radius-slab);
   box-shadow: var(--slab-shadow);
   color: var(--text);
 }
-.nav-pill--lang {
-  margin-top: auto;
+/* The six networks right under Proyectos: 2 columns × 3 rows of 44 px tiles. */
+.side-nav__socials {
+  margin-top: calc(-1 * var(--space-2));
+  padding-left: var(--space-4);
 }
-
-/* ---------- dock ---------- */
-.dock {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 40;
-  display: flex;
-  justify-content: center;
-  padding: var(--space-8) var(--space-4) calc(var(--space-4) + env(safe-area-inset-bottom, 0px));
-  /* ACABADO §4: nothing shows through behind the dock; content ends above it
-     (shell__main keeps padding-bottom = dock height + space). */
-  background: linear-gradient(to top, var(--mist) 0%, var(--mist) 55%, transparent 100%);
-  pointer-events: none;
-}
-.dock__list {
-  display: flex;
-  gap: var(--space-3);
+.socials__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 44px);
+  gap: var(--space-4) var(--space-6);
   list-style: none;
   margin: 0;
-  padding: var(--space-2);
-  background: var(--veil);
-  border-radius: var(--radius-slab);
-  pointer-events: auto;
-}
-.dock__tile {
-  position: relative;
-  width: 48px;
-  height: 48px;
   padding: 0;
-  color: var(--concrete-500);
-  overflow: hidden;
-  /* engraved: the glyph sits in a shallow groove */
-  text-shadow: 0 1px 0 rgb(255 255 255 / 0.6);
-  filter: drop-shadow(0 1px 0 rgb(255 255 255 / 0.5));
 }
-.dock__tile svg {
-  position: relative;
-  z-index: 1;
-}
-.dock__label {
+.socials__status {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -235,45 +193,18 @@
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
 }
-/* Moss creeps up from the base of the tile. Placeholder for PlushTile. */
-.dock__tile::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 100%;
-  background: linear-gradient(to top, var(--moss-400) 0%, var(--moss-400) 35%, transparent 100%);
-  opacity: 0.85;
-  transform: translateY(100%);
-  transition: transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+/* Phones: the networks as one row at the foot of every page. */
+.shell__foot {
+  display: none;
 }
-.dock__tile:hover::after,
-.dock__tile:focus-visible::after,
-.dock__tile[data-copied]::after {
-  transform: translateY(55%);
-}
-.dock__tile:hover,
-.dock__tile:focus-visible {
-  color: var(--text);
-}
-.dock__tile[data-copied] {
-  color: var(--moss-700);
-}
-@media (prefers-reduced-motion: reduce) {
-  .dock__tile::after,
-  .slab,
-  .nav-pill,
-  .dock__tile {
-    transition: none;
-  }
+.nav-pill--lang {
+  margin-top: auto;
 }
 
 /* ---------- below md: nav becomes a top row ---------- */
 @media (max-width: 767px) {
   :root {
     --nav-offset: 0px;
-    --dock-h: 104px;
   }
   .side-nav {
     top: 0;
@@ -307,12 +238,22 @@
   .shell__main {
     padding-top: calc(var(--nav-top-h) + env(safe-area-inset-top, 0px));
   }
-  .dock__tile {
-    width: 40px;
-    height: 40px;
+  .side-nav__socials {
+    display: none;
   }
-  .dock__list {
-    gap: var(--space-2);
+  .shell__main {
+    padding-bottom: var(--space-8);
+  }
+  .shell__foot {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    padding: var(--space-6) var(--space-4) calc(var(--space-8) + env(safe-area-inset-bottom, 0px));
+  }
+  .shell__foot .socials__grid {
+    grid-template-columns: repeat(6, 44px);
+    gap: var(--space-3);
   }
 }
 
@@ -332,19 +273,6 @@
     padding: var(--space-1) var(--space-2);
     letter-spacing: 0.04em;
   }
-}
-
-/* ---------- surfaces (ACABADO §3) ----------
-   The photo lives in the first screen and the margins. Text stands on one of two
-   surfaces, via <Surface tone="veil|slab">. */
-.surface--veil {
-  background: var(--veil);
-}
-.surface--slab {
-  background: var(--concrete-100);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-slab);
-  box-shadow: var(--slab-shadow);
 }
 
 /* ---------- device-aware instructions (DeviceHint, ACABADO §5.3) ---------- */

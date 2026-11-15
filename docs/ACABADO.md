@@ -1,6 +1,6 @@
 # ACABADO.md — reglas de acabado de juligm4.com
 
-Va en `docs/ACABADO.md`. Complementa a `docs/REDESIGN.md`. Si se contradicen, **manda este archivo**: corrige decisiones de REDESIGN que produjeron mezcla con la versión vieja.
+Va en `docs/ACABADO.md`. Complementa a `docs/REDESIGN.md`. Si se contradicen, **manda este archivo**. Por encima de los dos está **`docs/V3.md`**, que revocó parte de estas reglas (ya retiradas de aquí: cajas detrás del texto, dock, marco y lista del deck, Botanical siempre activo).
 
 ## 0. Qué cambia respecto a REDESIGN.md
 
@@ -22,21 +22,21 @@ Prohibido en todo el sitio: personajes 3D tipo caricatura, vidrio esmerilado, ne
 - **Cero hex fuera de ese archivo.** Excepción única: datos dentro de un canvas WebGL que lean los tokens al iniciar.
 - Se eliminan los alias heredados de Tailwind (`black`, `pink`, `gray`, `white`) y las variables `--fg`, `--fg-soft`, `--fg-muted`.
 - `--bloom` es acento escaso: como máximo un elemento rosa por pantalla visible. Nunca como relleno de bloques grandes ni como color dominante de un título. El límite aplica al color de interfaz, no a imágenes de contenido (insignias, fotos de proyecto, las flores del busto).
-- Imágenes de proyecto: se muestran sobre losa `--concrete-100`, nunca a sangre con su propio fondo de color. Las capturas de sitios web también: van dentro de una tarjeta de losa con margen parejo, no a sangre.
+- Imágenes de proyecto: se muestran sobre losa de concreto (material V3 §A), nunca a sangre con su propio fondo de color. Excepción: las láminas del deck de sitios van sin borde ni marco (V3 §G.1).
 
 ## 3. Texto siempre legible
 
-- Todo texto que pise el fondo fotográfico va sobre **losa** (`--concrete-100`) o **velo** (`--veil`). Nunca directo sobre la foto.
+- Sin cajas de fondo detrás del texto. La lectura la da la niebla: el fondo de ruta se atenúa con el scroll (V3 §B.2) y `npm run check:contrast` comprueba el peor caso.
 - Tamaños mínimos: cuerpo 16 px, texto secundario 14 px, etiquetas 12 px. Nada por debajo.
 - Ancho de línea del cuerpo: entre 45 y 75 caracteres.
 - Contraste AA verificado por cálculo, no a ojo.
-- H1 con Botanical Text: follaje verde (`--moss-*`) domina; flores rosa no pasan del 15 % de las partículas. En escritorio, Botanical en los tres H1 (Home, About, Proyectos). En móvil (ancho menor a 768 px o puntero táctil), H1 plano en los tres. La escena arranca después de la carga, en tiempo ocioso, y construye las partículas por tandas; mientras tanto se ve el H1 plano y el cambio no mueve el layout.
+- H1 y H2: texto plano en reposo; Botanical Text solo al pasar el cursor o con foco (V3 §D). Follaje verde domina; flores rosa hasta 15 %. En móvil y táctil, nunca.
 
 ## 4. Shell
 
-- **Dock:** nunca tapa contenido. Lleva detrás un degradado a `--mist` de borde a borde y el contenido termina antes. En móvil ocupa una sola fila compacta.
-- **Nav móvil:** barra con fondo sólido de velo. El contenido no se ve pasar por debajo de las letras.
-- **Fondo:** la foto vive en la primera pantalla y en los márgenes. Las secciones de contenido tienen su propia superficie.
+- **Redes:** en el nav izquierdo, retícula 2 × 3 de Plush Tiles bajo Proyectos; en móvil, una fila al pie de cada página (V3 §B.3–5). No hay dock.
+- **Nav móvil:** barra superior con fondo `--mist` sólido. El contenido no se ve pasar por debajo de las letras.
+- **Fondo:** la foto es plena en la primera pantalla de Home y se vuelve niebla con el scroll (V3 §B.2).
 - **Logo:** una sola tinta, `--concrete-900`. Sin hexágono rosa.
 
 ## 5. Componentes: listos o fuera
@@ -55,7 +55,7 @@ Si no llega a cumplirlo en la sesión, **se retira del sitio** y se deja la vers
 Específicos:
 
 - **Herbario:** seis especímenes. Todas las imágenes con el mismo tratamiento (mismo encuadre, mismo fondo de losa, mismo margen). Etiqueta taxonómica: `Gen.` disciplina, especie = proyecto, año y rol.
-- **Deck de sitios:** mínimo cuatro tarjetas. Ninguna cara se ve al revés ni espejada. Si no hay captura de un sitio en curso, lleva una tarjeta de losa diseñada con el nombre y "en curso".
+- **Deck de sitios:** mínimo cuatro tarjetas, sin borde ni marco. Ninguna cara se ve al revés ni espejada. Si no hay captura de un sitio en curso, lleva una lámina de concreto con el nombre y "en curso". Bajo el deck, solo el nombre de la lámina del frente.
 - **Keyscape:** teclas de concreto (`--concrete-100/300/500`). Una tecnología por tecla, sin repetidas. Solo la tecla central lleva acento.
 - **Objetos:** las dos piezas con el mismo tipo de imagen (recorte sobre losa) y el mismo pedestal.
 - **Línea de tiempo:** cada hito es una losa. La enredadera se ve con claridad y une los hitos.

@@ -3,8 +3,6 @@
   max-width: var(--content-max);
   margin: 0 auto;
   padding: var(--space-16) var(--space-4) var(--space-12);
-  /* The grass slots hang 40% past each slab; clip them to the section so they never widen the page. */
-  overflow: clip;
 }
 @media (min-width: 768px) {
   .herb {
@@ -47,100 +45,20 @@
 }
 @media (max-width: 639px) {
   .herb__grid {
-    grid-template-columns: 1fr;
+    gap: var(--space-4);
   }
-}
-.herb__cell {
-  position: relative;
-}
-/* The slab: a concrete tile, a real link in every state. */
-.herb__slab {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  min-height: 0;
-  box-sizing: border-box;
-  padding: var(--space-4);
-  color: var(--text);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-slab);
-  box-shadow: var(--slab-shadow);
-  text-decoration: none;
-  overflow: visible;
-  transition:
-    transform 160ms ease,
-    box-shadow 160ms ease;
-}
-.herb__slab:active {
-  transform: translateY(2px);
-  box-shadow: var(--slab-shadow-pressed);
-}
-/* Where the shared canvas lands: the slab plus 40% on each side, for the grass. The slab
-   itself is cut out of the mask, so the grass only grows round it and never covers the
-   label (ACABADO §5). 55.56% = 100 / 180, the slab inside the slot. */
-.herb__slot {
-  position: absolute;
-  inset: -40%;
-  z-index: 2;
-  pointer-events: none;
-  -webkit-mask:
-    linear-gradient(rgb(0 0 0), rgb(0 0 0)),
-    linear-gradient(rgb(0 0 0), rgb(0 0 0)) center / 55.56% 55.56% no-repeat;
-  -webkit-mask-composite: xor;
-  mask:
-    linear-gradient(rgb(0 0 0), rgb(0 0 0)),
-    linear-gradient(rgb(0 0 0), rgb(0 0 0)) center / 55.56% 55.56% no-repeat;
-  mask-composite: exclude;
-}
-/* Static grass, the no-WebGL version: a moss band rising at the foot on hover/focus. */
-.herb__slab::after {
-  content: '';
-  position: absolute;
-  left: -2px;
-  right: -2px;
-  bottom: -3px;
-  height: 14px;
-  border-radius: var(--radius-slab);
-  background: linear-gradient(to top, var(--moss-400), transparent);
-  opacity: 0;
-  transform: scaleY(0.2);
-  transform-origin: bottom;
-  transition:
-    opacity 220ms ease,
-    transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-@media (hover: hover) {
-  .herb__slab:hover::after {
-    opacity: 0.9;
-    transform: none;
-  }
-}
-.herb__slab:focus-visible::after {
-  opacity: 0.9;
-  transform: none;
-}
-.herb__slab[data-live]::after {
-  opacity: 0;
 }
 .herb__cta {
   display: flex;
   justify-content: center;
   margin-top: var(--space-12);
 }
-@media (prefers-reduced-motion: reduce) {
-  .herb__slab,
-  .herb__slab::after {
-    transition: none;
-  }
-}
 
-/* Mini bio (ACABADO §6): one paragraph on a slab and a link. */
+/* Mini bio (V3 §E.2): text straight on the mist, a Mohair button. */
 .bio {
   max-width: var(--content-max);
   margin: 0 auto;
-  padding: var(--space-12) var(--space-4);
+  padding: var(--space-16) var(--space-4) var(--space-8);
 }
 @media (min-width: 768px) {
   .bio {
@@ -152,8 +70,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--space-6);
-  padding: var(--space-8);
+  gap: var(--space-8);
 }
 .bio__text {
   margin: 0;
