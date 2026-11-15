@@ -1,35 +1,6 @@
-/* ACABADO §7 — the case template. Site tokens only; every project image sits on a slab. */
+/* The case template (ACABADO §7, V4 §K): every section a concrete wall; site tokens only. */
 .cs__sec {
   padding: var(--wall-pad);
-}
-@media (min-width: 768px) {
-  .cs__sec {
-    padding: var(--wall-pad);
-  }
-}
-.cs__tag {
-  display: flex;
-  align-items: center;
-  gap: var(--space-4);
-  margin-bottom: var(--space-10, 2.5rem);
-}
-.cs__num,
-.cs__sec-label {
-  font-family: var(--font-label);
-  font-size: var(--text-label-sm);
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
-}
-.cs__num {
-  color: var(--moss-700);
-}
-.cs__sec-label {
-  color: var(--text-muted);
-}
-.cs__rule {
-  flex: 1;
-  height: 1px;
-  background: var(--border);
 }
 .cs__blocks {
   display: grid;

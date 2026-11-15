@@ -1,17 +1,3 @@
-.vine__head {
-  margin-bottom: var(--space-8);
-}
-.vine__kicker,
-.about__kicker,
-.creds__kicker {
-  margin: 0 0 var(--space-2);
-  font-family: var(--font-label);
-  font-size: var(--text-label-sm);
-  font-weight: 500;
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
 .vine__title {
   margin: 0 0 var(--space-12);
   font-family: var(--font-display);

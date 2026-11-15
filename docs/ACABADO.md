@@ -1,6 +1,6 @@
 # ACABADO.md — reglas de acabado de juligm4.com
 
-Va en `docs/ACABADO.md`. Complementa a `docs/REDESIGN.md`. Si se contradicen, **manda este archivo**. Por encima de los dos está **`docs/V3.md`**, que revocó parte de estas reglas (ya retiradas de aquí: cajas detrás del texto, dock, marco y lista del deck, Botanical siempre activo).
+Va en `docs/ACABADO.md`. Complementa a `docs/REDESIGN.md`. Si se contradicen, **manda este archivo**. Por encima está **`docs/V3.md`** y, por encima de todo, **`docs/V4.md`** ("open air"). Lo que V3 y V4 revocaron ya está retirado de aquí: cajas detrás del texto, dock, deck de sitios, Botanical que oculta el título, niebla que apaga el fondo, columna central de ancho fijo, logo y etiquetas sobre los títulos.
 
 ## 0. Qué cambia respecto a REDESIGN.md
 
@@ -18,26 +18,27 @@ Prohibido en todo el sitio: personajes 3D tipo caricatura, vidrio esmerilado, ne
 
 ## 2. Paleta: solo tokens
 
-- Único origen de color: las variables de `src/styles/index.css` (`--mist`, `--concrete-*`, `--moss-*`, `--bloom*`).
+- Único origen de color: las variables de `src/styles/index.css` (`--mist`, `--white`, `--concrete-*`, `--moss-*`, `--bloom*`, `--flower-*`).
+- `--white` solo para íconos dibujados en el pelo. `--flower-pink/yellow/violet/white` solo dentro de flores y pétalos, nunca en la interfaz. `--bloom-ink` es el énfasis de texto (negrita del relato).
 - **Cero hex fuera de ese archivo.** Excepción única: datos dentro de un canvas WebGL que lean los tokens al iniciar.
 - Se eliminan los alias heredados de Tailwind (`black`, `pink`, `gray`, `white`) y las variables `--fg`, `--fg-soft`, `--fg-muted`.
 - `--bloom` es acento escaso: como máximo un elemento rosa por pantalla visible. Nunca como relleno de bloques grandes ni como color dominante de un título. El límite aplica al color de interfaz, no a imágenes de contenido (insignias, fotos de proyecto, las flores del busto).
-- Imágenes de proyecto: se muestran sobre losa de concreto (material V3 §A), nunca a sangre con su propio fondo de color. Excepción: las láminas del deck de sitios van sin borde ni marco (V3 §G.1).
+- Imágenes de proyecto: sobre losa de concreto (material V3 §A) o como dibujo del pelo; nunca a sangre con su propio fondo de color.
 
 ## 3. Texto siempre legible
 
-- Sin cajas de fondo detrás del texto. La lectura la da la niebla: el fondo de ruta se atenúa con el scroll (V3 §B.2) y `npm run check:contrast` comprueba el peor caso.
+- Sin cajas pequeñas detrás del texto. El contenido vive sobre **muros de concreto** del tamaño de la sección (V4 §1), con plantas en los bordes; entre muros se ve la escena. El texto sobre muro es `--concrete-900` o `--concrete-500`; `npm run check:contrast` lo verifica.
 - Tamaños mínimos: cuerpo 16 px, texto secundario 14 px, etiquetas 12 px. Nada por debajo.
-- Ancho de línea del cuerpo: entre 45 y 75 caracteres.
+- Ancho de línea del cuerpo: entre 45 y 75 caracteres, por columnas dentro de una composición ancha; nunca estrechando la página (V4 §B).
 - Contraste AA verificado por cálculo, no a ojo.
-- H1 y H2: texto plano en reposo; Botanical Text solo al pasar el cursor o con foco (V3 §D). Follaje verde domina; flores rosa hasta 15 %. En móvil y táctil, nunca.
+- H1, H2 y la línea de rol del hero: el texto real nunca desaparece. Botanical Text crece solo alrededor del cursor (≈ una altura de mayúscula), queda 1,2 s y se marchita; cubre como mucho ~55 % de cada letra; flores ≤ 20 % en los cuatro colores de flor (V4 §E). En móvil y táctil, nunca. `npm run test:botanical` lo mide.
 
 ## 4. Shell
 
-- **Redes:** en el nav izquierdo, retícula 2 × 3 de Plush Tiles bajo Proyectos; en móvil, una fila al pie de cada página (V3 §B.3–5). No hay dock.
-- **Nav móvil:** barra superior con fondo `--mist` sólido. El contenido no se ve pasar por debajo de las letras.
-- **Fondo:** la foto es plena en la primera pantalla de Home y se vuelve niebla con el scroll (V3 §B.2).
-- **Logo:** una sola tinta, `--concrete-900`. Sin hexágono rosa.
+- **Escena:** el fondo de ruta (archivos `bg-*-sharp`) se ve todo el scroll en todas las rutas, desenfoque leve, velo ≤ 15 %, parallax ≤ 40 px, niebla y pétalos lentos (fuera con `prefers-reduced-motion`). Casos y Toolkit usan la escena de Proyectos.
+- **Nav:** botones Velour (Inicio, Sobre mí, Proyectos, Herramientas); la página actual, hundida y con pelo más claro. Debajo, las seis redes en una columna (`clamp(52px, 8.5vh, 88px)`, íconos en `--white`); el idioma abajo. Sin logo. Cabe entera en 768 px de alto.
+- **Móvil:** barra superior compacta con botón de menú; el menú es una hoja de altura completa con los botones y las redes en 3 × 2.
+- **Ancho:** el área de contenido es la ventana menos el nav; padding lateral `clamp(16px, 4vw, 96px)`; rejillas `auto-fit`; tipografía escala hasta 2560. `npm run check:layout` revisa los ocho tamaños.
 
 ## 5. Componentes: listos o fuera
 
@@ -54,12 +55,12 @@ Si no llega a cumplirlo en la sesión, **se retira del sitio** y se deja la vers
 
 Específicos:
 
-- **Herbario:** seis especímenes. Todas las imágenes con el mismo tratamiento (mismo encuadre, mismo fondo de losa, mismo margen). Etiqueta taxonómica: `Gen.` disciplina, especie = proyecto, año y rol.
-- **Deck de sitios:** mínimo cuatro tarjetas, sin borde ni marco. Ninguna cara se ve al revés ni espejada. Si no hay captura de un sitio en curso, lleva una lámina de concreto con el nombre y "en curso". Bajo el deck, solo el nombre de la lámina del frente.
-- **Keyscape:** teclas de concreto (`--concrete-100/300/500`). Una tecnología por tecla, sin repetidas. Solo la tecla central lleva acento.
-- **Objetos:** las dos piezas con el mismo tipo de imagen (recorte sobre losa) y el mismo pedestal.
-- **Línea de tiempo:** cada hito es una losa. La enredadera se ve con claridad y une los hitos.
-- **Ocobo:** se funde con el fondo, sin borde rectangular duro.
+- **Botones:** solo dos tipos. Velour (tipo 1: "Ver proyectos", "Todos los proyectos", nav; la etiqueta brilla al pasar el cursor) y Mohair (tipo 2: todo lo demás; pelo `--moss-200`, etiqueta teñida en el pelo). Ningún tercer estilo.
+- **Proyectos destacados (Home):** Bloom, Licorímetro, Candelaria. Losa con la imagen a color; al pasar el cursor la tarjeta entera se vuelve peluche.
+- **Proyectos:** una celosía de concreto irregular (sembrada) donde cada proyecto es una parcela; sin caso, tierra con un brote y su estado, sin enlace. Los filtros marchitan en su sitio, nada se mueve.
+- **Herramientas (Toolkit):** losetas de pelo de 88 px, todas iguales, en manchas de musgo agrupadas; credenciales en su propio muro.
+- **Línea de tiempo:** piedras de tamaños, desplazamientos y giros distintos (≤ 2°); la enredadera pasa por delante de unas, por detrás de otras y agrieta algunas, y toca los nueve hitos en orden (`npm run test:vine`).
+- **Ocobo:** a la derecha, a toda la altura, ramas hacia la izquierda, dibujado directo sobre la escena; sin máscara ni marco.
 
 ## 6. Textos corregidos
 
@@ -76,7 +77,7 @@ Todo texto heredado de la versión anterior se revisa contra el relato del About
 
 Todos los casos usan el mismo componente y el mismo orden:
 
-1. Encabezado: etiqueta, título, una línea de resumen.
+1. Encabezado: título y una línea de resumen (sin etiqueta encima, V4 §F).
 2. Ficha: rol, fechas, equipo, herramientas (texto, sin íconos hexagonales).
 3. Secciones numeradas: problema, proceso, decisiones, resultado.
 4. Enlaces (sitio, repositorio) como botones del sitio.

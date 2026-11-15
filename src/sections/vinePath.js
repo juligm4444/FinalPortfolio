@@ -1,20 +1,5 @@
-/* One stem through every milestone, top to bottom (V3 §F.2). Shared by the 3D
-   scene and the SVG fallback, so both run the same course and the test
-   (scripts/test-vine.mjs) can check it against the cards on the page.
-   `anchors` are the milestones' y in px (inside the timeline body); `cx` the
-   stem's centre column. Returns the control points, in px. */
-export const SWAY = 16
-
-export function stemPoints(anchors, cx, H) {
-  if (!anchors.length) return []
-  const first = anchors[0]
-  const last = anchors[anchors.length - 1]
-  const pts = [[cx, Math.max(0, first - 40)]]
-  anchors.forEach((y, i) => pts.push([cx + (i % 2 ? SWAY : -SWAY), y]))
-  pts.push([cx, Math.min(H, last + 40)])
-  return pts
-}
-
+/* A smooth SVG path through points (Catmull-Rom → cubic Bézier), used by the
+   timeline's vine (V4 §H.3). */
 /** Smooth SVG path through the points (Catmull-Rom → cubic Bézier). */
 export function svgPath(pts) {
   if (pts.length < 2) return ''
