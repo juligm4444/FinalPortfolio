@@ -29,16 +29,16 @@ let fail = 0
 for (const vp of [{ width: 1440, height: 900 }, { width: 390, height: 844 }]) {
   const page = await browser.newPage({ viewport: vp })
   await page.goto(`http://localhost:${PORT}/es/about`, { waitUntil: 'networkidle' })
-  await page.waitForTimeout(600)
+  await page.waitForTimeout(900)
   const r = await page.evaluate(() => {
     const body = document.querySelector('.vine__body')
     const data = JSON.parse(body.dataset.vine)
-    const path = body.querySelector('.vine__stem')
+    const path = body.querySelector('.vine__layer--back .vine__stem')
     const len = path.getTotalLength()
     const ys = []
     for (let s = 0; s <= len; s += 2) ys.push(path.getPointAtLength(s).y)
     const b = body.getBoundingClientRect()
-    const cards = [...body.querySelectorAll('.vine__item')].map((li) => {
+    const cards = [...body.querySelectorAll('.stone')].map((li) => {
       const c = li.getBoundingClientRect()
       return { top: c.top - b.top, bottom: c.bottom - b.top, title: li.querySelector('h3').textContent }
     })
