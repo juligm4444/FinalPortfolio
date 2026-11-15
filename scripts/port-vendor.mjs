@@ -135,6 +135,32 @@ PORTS.push({
   ],
 })
 
+/* Tumble Deck (V3 §G.1): the original's motion is restored as is. Only data and
+   colour change: site tokens, no frame/border/outline on the cards, the
+   accessible text from the page, a callback with the front card, and the face of
+   a card fading as it tips past ~35° so nothing lands upside down (ACABADO §5). */
+PORTS.push({
+  from: 'vendor/21st/tumble-deck-showcase.tsx',
+  to: 'src/components/TumbleDeck.jsx',
+  loader: 'tsx',
+  patches: [
+    ['"use client";\n', ''],
+    ['  background = "var(--color-background)",\n', '  background = "transparent",\n'],
+    ['  ariaLabel = "Website showcase"\n}) {', '  ariaLabel = "Website showcase",\n  hint = "",\n  onFront\n}) {'],
+    ['  const n = cards.length;\n', '  const n = cards.length;\n  const frontRef = React.useRef(-1);\n  const onFrontRef = React.useRef(onFront);\n  onFrontRef.current = onFront;\n'],
+    ['      el.style.setProperty("--td-shade", String(shade));\n    });\n',
+      '      el.style.setProperty("--td-shade", String(shade));\n      el.style.setProperty("--td-face", p.flat ? "0" : String(Math.max(0, Math.min(1, (55 + p.angle) / 35))));\n    });\n    const front = wrap(Math.round(pos), n);\n    if (front !== frontRef.current) {\n      frontRef.current = front;\n      onFrontRef.current?.(front);\n    }\n'],
+    ['          border-radius: 3px; overflow: hidden; cursor: pointer;', '          border-radius: 0; overflow: hidden; cursor: pointer;'],
+    ['          background: color-mix(in oklab, var(--color-foreground) 8%, var(--color-background));', '          background: var(--concrete-100);'],
+    ['          box-shadow: 0 0 0 1px color-mix(in oklab, var(--color-foreground) 10%, transparent);', '          box-shadow: none;'],
+    ['          object-fit: cover; object-position: 50% 0%; pointer-events: none;', '          object-fit: cover; object-position: 50% 0%; pointer-events: none; opacity: var(--td-face, 1);'],
+    ['          background: #000; opacity: var(--td-shade, 0);', '          background: var(--concrete-900); opacity: var(--td-shade, 0);'],
+    ['var(--color-primary)', 'var(--focus-ring)'],
+    ['{n} pages. Scroll, drag, click or press the arrow keys to flip through them.', '{hint}'],
+    ['export default function TumbleDeckShowcase(', 'export default function TumbleDeck('],
+  ],
+})
+
 const only = process.argv.slice(2)
 for (const port of PORTS) {
   if (only.length && !only.some((o) => port.to.includes(o))) continue

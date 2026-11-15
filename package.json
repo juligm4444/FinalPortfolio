@@ -15,7 +15,8 @@
     "make:concrete": "node scripts/make-concrete.mjs",
     "bake:fur": "node scripts/bake-fur.mjs",
     "port:vendor": "node scripts/port-vendor.mjs",
-    "test:vine": "node scripts/test-vine.mjs"
+    "test:vine": "node scripts/test-vine.mjs",
+    "test:deck": "node scripts/test-deck.mjs"
   },
   "dependencies": {
     "@higgsfield/cli": "^0.1.40",
@@ -26,6 +27,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.27.0",
+    "simple-icons": "^13.21.0",
     "three": "^0.169.0"
   },
   "devDependencies": {

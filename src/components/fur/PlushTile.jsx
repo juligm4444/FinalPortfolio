@@ -157,10 +157,17 @@ export default function PlushTile({ name, glyph, label, size = 44, seed = 0, to,
         {body}
       </a>
     )
+  if (onClick)
+    return (
+      <button type="button" {...common}>
+        {body}
+      </button>
+    )
+  // No action (the tool tiles): a picture, not a control.
   return (
-    <button type="button" {...common}>
+    <span role="img" {...common}>
       {body}
-    </button>
+    </span>
   )
 }
 

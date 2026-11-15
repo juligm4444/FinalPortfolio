@@ -55,7 +55,7 @@ export default function Socials({ size = 44, staticOnly = false, className = '' 
 
   // scripts/bake-fur.mjs renders the rest images through this hook.
   useEffect(() => {
-    window.__furBake = { social: (name, px) => snapshotOnce(plushJob(name, GLYPHS[name], px)) }
+    window.__furBake = { ...(window.__furBake ?? {}), social: (name, px) => snapshotOnce(plushJob(name, GLYPHS[name], px)) }
   }, [])
 
   const onEmail = async () => {

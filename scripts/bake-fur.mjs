@@ -16,8 +16,9 @@ const out = resolve(root, 'src/assets/fur')
 const PORT = 4312
 const JOBS = [
   ...['instagram', 'linkedin', 'cv', 'github', 'behance', 'email'].map((n) => ({ hook: 'social', name: n, size: 44, route: '/es' })),
-  ...(process.env.BAKE_TOOLS ? [] : []),
+  ...['Figma', 'React', 'Next.js', 'Python', 'Django', 'Supabase', 'Tailwind', 'Three.js', 'Blender', 'Unity', 'Git', 'SQL'].map((n) => ({ hook: 'tool', name: n, size: 88, route: '/es/projects' })),
 ]
+const slug = (name) => name.toLowerCase().replace(/[^a-z0-9]+/g, '')
 
 function findChrome() {
   if (process.env.CHROME_PATH) return process.env.CHROME_PATH
@@ -66,7 +67,7 @@ for (const job of JOBS) {
     c.getContext('2d').drawImage(img, 0, 0)
     return c.toDataURL('image/webp', 0.92)
   }, job)
-  const file = join(out, `plush-${job.name}-${job.size}.webp`)
+  const file = join(out, `plush-${slug(job.name)}-${job.size}.webp`)
   await writeFile(file, Buffer.from(data.split(',')[1], 'base64'))
   console.log(`bake:fur: ${file.replace(root + '/', '')}`)
 }
