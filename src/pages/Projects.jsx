@@ -246,7 +246,6 @@ function Tools() {
   }, [])
   return (
     <Wall seed="projects-tools" className="tools-sec" aria-labelledby="tools-title">
-      <p className="proj__kicker">{t('projects.toolsKicker')}</p>
       <h2 id="tools-title" className="proj__group-title">
         {t('projects.toolsTitle')}
       </h2>
@@ -267,7 +266,6 @@ export default function Projects() {
   return (
     <div className="proj">
       <Wall as="header" seed="projects-head" className="proj__header">
-        <p className="proj__kicker">{t('projects.label')}</p>
         <h1 className="proj__title">{t('projects.title')}</h1>
         <p className="proj__lead">{t('projects.lead')}</p>
       </Wall>

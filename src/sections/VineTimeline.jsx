@@ -117,7 +117,6 @@ export default function VineTimeline() {
   return (
     <Wall ref={root} seed="about-timeline" className="vine" aria-labelledby="vine-title">
       <header className="vine__head">
-        <p className="vine__kicker">{t('about.timelineKicker')}</p>
         <h2 id="vine-title" className="vine__title">
           {t('about.timelineTitle')}
         </h2>

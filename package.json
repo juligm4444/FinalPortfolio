@@ -20,7 +20,8 @@
     "states": "node scripts/states.mjs",
     "check:routes": "node scripts/check-routes.mjs",
     "check:layout": "node scripts/check-layout.mjs",
-    "test:botanical": "node scripts/test-botanical.mjs"
+    "test:botanical": "node scripts/test-botanical.mjs",
+    "check:keys": "node scripts/check-keys.mjs"
   },
   "dependencies": {
     "@higgsfield/cli": "^0.1.40",

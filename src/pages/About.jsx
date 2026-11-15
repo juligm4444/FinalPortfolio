@@ -18,7 +18,6 @@ export default function About() {
         </div>
         <Wall seed="about-story" className="about__story">
           <header className="about__header">
-            <p className="about__kicker">{t('about.label')}</p>
             <h1 className="about__title">{t('about.title')}</h1>
             <p className="about__subtitle">{t('about.subtitle')}</p>
           </header>

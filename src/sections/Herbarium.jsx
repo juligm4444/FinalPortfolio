@@ -11,7 +11,6 @@ export default function Herbarium() {
   return (
     <Wall seed="home-featured" className="herb" aria-labelledby="herb-title">
       <header className="herb__head">
-        <p className="herb__kicker">{t('home.herbKicker')}</p>
         <h2 id="herb-title" className="herb__title">
           {t('home.herbTitle')}
         </h2>

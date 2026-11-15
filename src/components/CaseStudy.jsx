@@ -25,10 +25,10 @@ export function Reveal({ children, delay = 0, y = 24, className = '' }) {
 }
 
 /* ACABADO §7 — the one header every case uses:
-   1. kicker, title, one-line summary; 2. ficha (role, dates, team, tools — text);
+   1. title, one-line summary (no kicker, V4 §F); 2. ficha (role, dates, team, tools — text);
    3. links as the site's slab buttons. `media` is an optional project image,
    shown on a concrete slab (never bleeding with its own background). */
-export function CaseHero({ slug, kicker, h1, h2, sub, tags, meta = [], tools: toolsProp, links: linksProp, media, mediaAlt = '' }) {
+export function CaseHero({ slug, h1, h2, sub, tags, meta = [], tools: toolsProp, links: linksProp, media, mediaAlt = '' }) {
   const { t } = useLocale()
   const study = caseStudies[slug] ?? {}
   const tools = toolsProp ?? study.skills
@@ -42,11 +42,6 @@ export function CaseHero({ slug, kicker, h1, h2, sub, tags, meta = [], tools: to
       <div className="w-full">
         <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-14">
           <div className={media ? 'lg:col-span-7' : 'lg:col-span-12'}>
-            <Reveal>
-              <p className="font-nav uppercase" style={{ fontSize: 12, letterSpacing: '0.22em', color: 'var(--text-muted)' }}>
-                {kicker}
-              </p>
-            </Reveal>
             <Reveal delay={0.08}>
               <h1
                 className="mt-5 font-display"
@@ -201,20 +196,21 @@ function Block({ b }) {
           ) : null}
         </div>
       )
-      if (b.heading && b.stacked)
+      // V4 §F: no small label over a heading. Where a block's only title was that label,
+      // it becomes the block's heading, so no content is lost.
+      const heading = b.heading ?? b.kicker
+      if (heading && (b.stacked || !b.heading))
         return (
           <Reveal className="cs__stack">
-            {b.kicker ? <p className="cs__kicker">{b.kicker}</p> : null}
-            <h2 className="cs__h">{b.heading}</h2>
+            <h2 className="cs__h">{heading}</h2>
             {body}
           </Reveal>
         )
-      if (!b.heading) return <Reveal>{b.kicker ? <p className="cs__kicker">{b.kicker}</p> : null}{body}</Reveal>
+      if (!heading) return <Reveal>{body}</Reveal>
       return (
         <Reveal className="cs__text cs__text--cols">
           <div>
-            {b.kicker ? <p className="cs__kicker">{b.kicker}</p> : null}
-            <h2 className="cs__h">{b.heading}</h2>
+            <h2 className="cs__h">{heading}</h2>
           </div>
           {body}
         </Reveal>
@@ -443,7 +439,7 @@ export default function CaseStudy({ slug, hero, sections }) {
   const [h1, h2] = hero.title
   return (
     <>
-      <CaseHero slug={slug} kicker={hero.kicker} h1={h1} h2={h2} sub={hero.summary} tags={hero.tags} meta={hero.meta} tools={hero.tools} links={hero.links} media={hero.media} mediaAlt={hero.mediaAlt} />
+      <CaseHero slug={slug} h1={h1} h2={h2} sub={hero.summary} tags={hero.tags} meta={hero.meta} tools={hero.tools} links={hero.links} media={hero.media} mediaAlt={hero.mediaAlt} />
       {sections.map((sec, i) => {
         const { key, blocks } = Array.isArray(sec) ? { key: SECTION_KEYS[i], blocks: sec } : sec
         return (

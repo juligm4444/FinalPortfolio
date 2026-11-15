@@ -22,7 +22,6 @@ export default function Credentials() {
   const issuers = t('about.certIssuers')
   return (
     <Wall seed="creds" className="creds" aria-labelledby="creds-title">
-      <p className="creds__kicker">{t('about.certKicker')}</p>
       <h2 id="creds-title" className="creds__title">
         {t('about.certLead')}
       </h2>
