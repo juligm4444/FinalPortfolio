@@ -69,6 +69,21 @@ const PORTS = [
       ['...style, overflow: "hidden", background, touchAction: "pan-y" }}',
         '...style, overflow: "hidden", background: "transparent", touchAction: "pan-y", pointerEvents: hitRef ? "none" : undefined }}'],
       ['export default function PlushTile(props)', 'export default function PlushTileCanvas(props)'],
+      // V4 §I: `rect` — the cushion takes the frame's aspect (a plot, a card) instead of a
+      // square: the tile's half-size is a × the frame's aspect on each axis, strands scale
+      // with the area, and the strand pass scales roots by `a` alone.
+      ['  const cfg = {\n    onFrame,', '  const cfg = {\n    rect: !!rect,\n    onFrame,'],
+      ['  tipMix = 0\n}) {', '  tipMix = 0,\n  rect = false\n}) {'],
+      ['      U.f2("uHalf", sh.a, sh.a);', '      U.f2("uHalf", sh.a * (sh.hx || 1), sh.a * (sh.hy || 1));'],
+      ['      sh.a = a;\n', '      sh.a = a;\n      sh.hx = c.rect ? fx : 1;\n      sh.hy = c.rect ? fy : 1;\n'],
+      ['    const prepKey = new Float64Array(12).fill(NaN);', '    const prepKey = new Float64Array(14).fill(NaN);'],
+      [' || key[11] !== embossU) {', ' || key[11] !== embossU || key[12] !== sh.hx || key[13] !== sh.hy) {'],
+      ['        key[11] = embossU;\n', '        key[11] = embossU;\n        key[12] = sh.hx;\n        key[13] = sh.hy;\n'],
+      ['        U_PR.f2("uHalf", 1, 1);', '        U_PR.f2("uHalf", sh.hx || 1, sh.hy || 1);'],
+      ['STRANDS_PER_PX * thin));', 'STRANDS_PER_PX * thin * (c.rect ? fx * fy : 1)));'],
+      ['uniform int uSegBase;', 'uniform int uSegBase;\nuniform float uA;'],
+      ['    float a = uHalf.x;', '    float a = uA;'],
+      ['      U_ST.f1("uLen", a * lenK);', '      U_ST.f1("uLen", a * lenK);\n      U_ST.f1("uA", a);'],
     ],
   },
 ]
@@ -157,42 +172,6 @@ PORTS.push({
   ],
 })
 
-/* Tumble Deck (V3 §G.1): the original's motion is restored as is. Only data and
-   colour change: site tokens, no frame/border/outline on the cards, the
-   accessible text from the page, a callback with the front card, and the face of
-   a card fading as it tips past ~35° so nothing lands upside down (ACABADO §5). */
-PORTS.push({
-  from: 'vendor/21st/tumble-deck-showcase.tsx',
-  to: 'src/components/TumbleDeck.jsx',
-  loader: 'tsx',
-  patches: [
-    ['"use client";\n', ''],
-    ['  background = "var(--color-background)",\n', '  background = "transparent",\n'],
-    ['  ariaLabel = "Website showcase"\n}) {', '  ariaLabel = "Website showcase",\n  hint = "",\n  onFront\n}) {'],
-    ['  const n = cards.length;\n', '  const n = cards.length;\n  const frontRef = React.useRef(-1);\n  const onFrontRef = React.useRef(onFront);\n  onFrontRef.current = onFront;\n'],
-    ['      el.style.setProperty("--td-shade", String(shade));\n    });\n',
-      '      el.style.setProperty("--td-shade", String(shade));\n      el.style.setProperty("--td-face", p.flat ? "0" : String(Math.max(0, Math.min(1, (55 + p.angle) / 35))));\n    });\n    const front = wrap(Math.round(pos), n);\n    if (front !== frontRef.current) {\n      frontRef.current = front;\n      onFrontRef.current?.(front);\n    }\n'],
-    ['          border-radius: 3px; overflow: hidden; cursor: pointer;', '          border-radius: 0; overflow: hidden; cursor: pointer;'],
-    ['          background: color-mix(in oklab, var(--color-foreground) 8%, var(--color-background));', '          background: var(--concrete-100);'],
-    ['          box-shadow: 0 0 0 1px color-mix(in oklab, var(--color-foreground) 10%, transparent);', '          box-shadow: none;'],
-    ['          object-fit: cover; object-position: 50% 0%; pointer-events: none;', '          object-fit: cover; object-position: 50% 0%; pointer-events: none; opacity: var(--td-face, 1);'],
-    ['          background: #000; opacity: var(--td-shade, 0);', '          background: var(--concrete-900); opacity: var(--td-shade, 0);'],
-    ['var(--color-primary)', 'var(--focus-ring)'],
-    ['{n} pages. Scroll, drag, click or press the arrow keys to flip through them.', '{hint}'],
-    ['export default function TumbleDeckShowcase(', 'export default function TumbleDeck('],
-    // V4 §A.1: <style>{text}</style> is escaped by the server (quotes become &quot;) but read raw
-    // by the browser, so hydration saw different text and threw the whole page away.
-    ['><style>{`', '><style dangerouslySetInnerHTML={{ __html: `'],
-    ['      `}</style><div ref={sceneRef}', '      ` }} /><div ref={sceneRef}'],
-    // Owner's call after the V3 review: the page keeps its scroll. The wheel only
-    // drives the deck while it has focus; on touch a vertical swipe scrolls the page
-    // and a horizontal drag flips cards (click, keys and mouse drag are unchanged).
-    ['    const onWheel = (e) => {\n      e.preventDefault();\n', '    const onWheel = (e) => {\n      if (document.activeElement !== root) return;\n      e.preventDefault();\n'],
-    ['      drag = { id: e.pointerId, y: e.clientY, travel: 0, last: 0 };', '      drag = { id: e.pointerId, x: e.clientX, y: e.clientY, travel: 0, last: 0, touch: e.pointerType === "touch" };'],
-    ['      const dy = drag.y - e.clientY;\n      drag.y = e.clientY;\n', '      const dy = drag.touch ? drag.x - e.clientX : drag.y - e.clientY;\n      drag.x = e.clientX;\n      drag.y = e.clientY;\n'],
-    ['td-root relative w-full touch-none overflow-hidden', 'td-root relative w-full touch-pan-y overflow-hidden'],
-  ],
-})
 
 const only = process.argv.slice(2)
 for (const port of PORTS) {

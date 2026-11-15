@@ -115,7 +115,7 @@ export default function FurButton({ kind = 'mohair', label, to, href, download, 
   const common = {
     ref: hit,
     className: `fur-btn fur-btn--${kind} ${rest ? 'fur-btn--img' : ''} ${pressed ? 'fur-btn--pressed' : ''} ${className}`.trim(),
-    'aria-current': pressed ? 'page' : undefined,
+    'aria-current': pressed && kind === 'velour' ? 'page' : undefined,
     style: { '--fb-w': `${w}px`, '--fb-h': `${h}px`, '--fb-m': `${m}px` },
     lang,
     onClick,
