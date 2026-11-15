@@ -132,37 +132,6 @@
   box-shadow: var(--slab-shadow);
 }
 
-@layer components {
-  .nav-link {
-    color: var(--text);
-    font-family: var(--font-label);
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 1.2;
-    /* The outline is a hover affordance, not a permanent frame — it stays
-       transparent (not `none`) so the box never reflows when it appears. */
-    border: 1px solid transparent;
-    transition:
-      color 200ms ease,
-      background 200ms ease,
-      box-shadow 200ms ease,
-      border-color 200ms ease;
-  }
-  .nav-link:hover {
-    color: var(--moss-700);
-    border-color: var(--border);
-  }
-  .nav-link.active {
-    background: var(--surface);
-    color: var(--text);
-    box-shadow: var(--slab-shadow);
-    border-color: var(--border);
-  }
-  .nav-link.active:hover {
-    color: var(--text);
-  }
-}
-
 /* ---------- Botanical on hover (V3 §D) ----------
    Every H1/H2 is plain Baskerville at rest. Hovered, the shared canvas grows the
    letters as foliage and the DOM text fades out under it; nothing reflows. */
@@ -189,17 +158,6 @@ h2[data-bloom='on'] {
   h2 {
     transition: none;
   }
-}
-
-/* Filter bar tabs — hover behavior identical to navbar */
-.filter-tab {
-  transition:
-    color 200ms ease,
-    background 220ms ease,
-    box-shadow 220ms ease;
-}
-.filter-tab[data-active='false']:hover {
-  color: var(--moss-700) !important;
 }
 
 /* Page H1 (About, Projects): plain type, the bloom comes on hover. */

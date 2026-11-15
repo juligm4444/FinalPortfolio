@@ -86,14 +86,12 @@
   }
 }
 
-/* ---------- concrete slab (secondary buttons, nav pills, dock tiles) ---------- */
-.slab,
+/* ---------- nav pills ---------- */
 .nav-pill {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
-  background: var(--surface);
   color: var(--text);
   font-family: var(--font-label);
   font-size: var(--text-label);
@@ -101,29 +99,25 @@
   letter-spacing: var(--tracking-label);
   text-transform: uppercase;
   text-decoration: none;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-slab);
-  box-shadow: var(--slab-shadow);
+  border: 1px solid transparent;
   cursor: pointer;
   user-select: none;
   transition:
     transform 160ms ease,
     box-shadow 160ms ease,
-    color 160ms ease,
-    background-color 160ms ease;
+    color 160ms ease;
 }
-.slab {
-  padding: var(--space-3) var(--space-6);
-  min-height: 44px;
-}
-.slab:hover,
 .nav-pill:hover {
   color: var(--moss-700);
 }
-.slab:active,
 .nav-pill:active {
   transform: translateY(2px);
   box-shadow: var(--slab-shadow-pressed);
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav-pill {
+    transition: none;
+  }
 }
 
 /* ---------- side nav ---------- */
