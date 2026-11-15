@@ -1,4 +1,4 @@
-import LocaleLink from '../components/LocaleLink.jsx'
+import { MohairButton } from '../components/fur/FurButton.jsx'
 import { useLocale } from '../i18n/LocaleProvider.jsx'
 
 /* ACABADO §6 — the mini bio: one paragraph on a slab and a link to the About.
@@ -12,9 +12,7 @@ export default function Bio() {
           {t('home.bioTitle')}
         </h2>
         <p className="bio__text">{t('home.bioPara1')}</p>
-        <LocaleLink to="/about" className="slab bio__link">
-          {t('home.bioLink')}
-        </LocaleLink>
+        <MohairButton label={t('home.bioLink')} to="/about" className="bio__link" />
       </div>
     </section>
   )

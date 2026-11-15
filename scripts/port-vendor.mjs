@@ -73,6 +73,51 @@ const PORTS = [
   },
 ]
 
+/* Mohair Capsule and Velour Bolster share one structure (Mohair is a variation of
+   Velour), so they take the same patches. `fit` lays the button out at its real
+   pixel size (u = 1) instead of scaling it inside the 1200×800 reference frame. */
+const buttonPatches = (hit, name) => [
+  ['"use client";\n', ''],
+  ['    onClick,\n    style\n  } = props;\n',
+    '    onClick,\n    style,\n    hitRef,\n    onFrame,\n    fit\n  } = props;\n  const onFrameRef = useRef(null);\n  onFrameRef.current = onFrame;\n'],
+  ['  onFrameRef.current = onFrame;\n', '  onFrameRef.current = onFrame;\n  const fitRef = useRef(fit);\n  fitRef.current = fit;\n'],
+  ['      const Su = Math.min(H2, W2 / REF_ASPECT);', '      const Su = fitRef.current ? REF_H : Math.min(H2, W2 / REF_ASPECT);'],
+  ['  const S = Math.min(size.h, size.w / REF_ASPECT);\n  const u = S / REF_H;',
+    '  const S = fit ? REF_H : Math.min(size.h, size.w / REF_ASPECT);\n  const u = S / REF_H;'],
+  ['    const root = rootRef.current;\n', '    const root = rootRef.current;\n    const hitEl = hitRef?.current ?? root;\n'],
+  [/root\.(add|remove)EventListener\("pointer/g, 'hitEl.$1EventListener("pointer', 10],
+  [`root.querySelector("[data-${hit}-hit]")`, `(hitRef?.current ?? root.querySelector("[data-${hit}-hit]"))`, 2],
+  [`{href ? <a\n    data-${hit}-hit=""`, `{hitRef ? null : href ? <a\n    data-${hit}-hit=""`],
+  ['      drawnFrames++;\n',
+    '      drawnFrames++;\n      onFrameRef.current?.(canvas, { settled: settled && !pt.has && !pt.down, over: pt.has, image: "ok", cssW: canvas.clientWidth, cssH: canvas.clientHeight });\n'],
+  ['  document.head.appendChild(link);', '  onReady();'],
+  ['      background,\n', '      background: "transparent",\n'],
+  ['      touchAction: "pan-y",\n', '      touchAction: "pan-y",\n      pointerEvents: hitRef ? "none" : void 0,\n'],
+  ['        g.deleteProgram(prog);\n', `        g.deleteProgram(prog);\n        ${LOSE('g', 'canvas')}\n`],
+  [`export default function ${name}(props)`, `export default function ${name}Canvas(props)`],
+]
+PORTS.push(
+  {
+    from: 'vendor/originkit/MohairCapsule.md',
+    to: 'src/components/fur/MohairCapsuleCanvas.jsx',
+    loader: 'tsx',
+    patches: [
+      ...buttonPatches('mc', 'MohairCapsule'),
+      // V3 §C.2: roots in --concrete-500 and glints in --mist, not derived from the fur hue
+      ['    fit\n  } = props;\n', '    fit,\n    tipColor,\n    rootColor\n  } = props;\n'],
+      ['  const cfg = { bwRef, bhRef, rRef, furColor, furLength, textColor, lines, font, pl, rs, adv, sway };',
+        '  const cfg = { bwRef, bhRef, rRef, furColor, furLength, textColor, lines, font, pl, rs, adv, sway, tipColor, rootColor };'],
+      ['uniform vec3 uTip;       // tip and glint colour, linear', 'uniform vec3 uTip;       // tip and glint colour, linear\nuniform vec3 uRoot;'],
+      ['    vec3 under = mix(uFur * mix(0.55, 0.8, rimLift),', '    vec3 under = mix(uRoot * mix(0.85, 1.1, rimLift),'],
+      ['        "uTip",\n', '        "uTip",\n        "uRoot",\n'],
+      ['        state.tip = [f[0] / mx * 0.55 + 0.1, f[1] / mx * 0.9 + 0.12, f[2] / mx * 0.9 + 0.1];\n',
+        '        state.tip = c.tipColor ? resolveRGB(root, c.tipColor).map(srgbToLin) : [f[0] / mx * 0.55 + 0.1, f[1] / mx * 0.9 + 0.12, f[2] / mx * 0.9 + 0.1];\n        state.root = c.rootColor ? resolveRGB(root, c.rootColor).map(srgbToLin) : f.map((v) => v * 0.68);\n'],
+      ['      setU("uTip", state.tip[0], state.tip[1], state.tip[2]);\n', '      setU("uTip", state.tip[0], state.tip[1], state.tip[2]);\n      setU("uRoot", state.root[0], state.root[1], state.root[2]);\n'],
+    ],
+  },
+  { from: 'vendor/originkit/VelourBolster.tsx', to: 'src/components/fur/VelourBolsterCanvas.jsx', loader: 'tsx', patches: buttonPatches('vb', 'VelourBolster') },
+)
+
 const only = process.argv.slice(2)
 for (const port of PORTS) {
   if (only.length && !only.some((o) => port.to.includes(o))) continue

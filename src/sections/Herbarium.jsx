@@ -55,7 +55,7 @@ export default function Herbarium() {
         ))}
       </ul>
       <div className="herb__cta">
-        <VelourBolster label={t('home.herbCta')} to="/projects" id="herb-cta" />
+        <VelourBolster label={t('home.herbCta')} to="/projects" />
       </div>
     </section>
   )

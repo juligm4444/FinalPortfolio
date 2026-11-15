@@ -2,6 +2,7 @@ import { Component, useEffect, useRef, useState } from 'react'
 import { useLocale } from '../i18n/LocaleProvider.jsx'
 import { useWebGL } from '../webgl/index.js'
 import VelourBolster from '../components/VelourBolster.jsx'
+import { MohairButton } from '../components/fur/FurButton.jsx'
 import BotanicalText from '../components/BotanicalText.jsx'
 import cvEn from '../assets/files/CV-English.pdf'
 import cvEs from '../assets/files/CV-Español.pdf'
@@ -89,14 +90,14 @@ export default function Hero() {
         )}
       </div>
       <div className="hero__actions">
-        <VelourBolster label={t('hero.ctaProjects')} to="/projects" id="hero-cta" width={phone ? 184 : 240} height={phone ? 56 : 68} />
-        <a
-          className="slab"
+        <VelourBolster label={t('hero.ctaProjects')} to="/projects" width={phone ? 176 : 232} height={phone ? 52 : 64} lang={locale} />
+        <MohairButton
+          label={t('hero.ctaCv')}
           href={locale === 'es' ? cvEs : cvEn}
           download={locale === 'es' ? 'Julian-Galindo-CV-Espanol.pdf' : 'Julian-Galindo-CV-English.pdf'}
-        >
-          {t('hero.ctaCv')}
-        </a>
+          height={phone ? 52 : 56}
+          lang={locale}
+        />
       </div>
     </section>
   )

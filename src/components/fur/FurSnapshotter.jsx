@@ -12,6 +12,8 @@ const JOB_TIMEOUT_MS = 5000
 
 const KINDS = {
   plush: () => import('./PlushTileCanvas.jsx'),
+  mohair: () => import('./MohairCapsuleCanvas.jsx'),
+  velour: () => import('./VelourBolsterCanvas.jsx'),
 }
 
 export default function FurSnapshotter() {
@@ -71,11 +73,16 @@ export default function FurSnapshotter() {
       setJob(next)
     }
     // Start once the page has painted and the main thread is free.
+    // The labels are painted into the fur: wait for the site's faces first.
     let started = false
     const start = () => {
       if (started) return
-      started = true
-      pump()
+      const family = getComputedStyle(document.documentElement).getPropertyValue('--font-label')
+      Promise.all([document.fonts.load(`700 20px ${family}`), document.fonts.ready]).finally(() => {
+        if (started || cancelled) return
+        started = true
+        pump()
+      })
     }
     const unwatch = watchQueue(() => (started ? pump() : null))
     const idle = window.requestIdleCallback ? window.requestIdleCallback(start, { timeout: 1500 }) : setTimeout(start, 400)
