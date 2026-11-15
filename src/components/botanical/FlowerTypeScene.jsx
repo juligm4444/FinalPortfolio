@@ -382,6 +382,7 @@ export class FlowerTypeScene {
       let p = this.coords[i].old && this.particles[i] ? this.particles[i] : null;
       if (!p)
         p = Math.random() > S.leafMix ? makeBloom(x, y, S) : makeLeaf(x, y, S);
+      if (p.keep === undefined) p.keep = Math.random() < (this.cfg.density ?? 1);
       if (c.toDelete) p.toDelete = true;
       return p;
     });
@@ -394,6 +395,12 @@ export class FlowerTypeScene {
    */
   sampleCoordinates() {
     const S = settingsFor(this.cfg);
+    if (this.cfg.maskLines) {
+      this.stringBox.wTexture = Math.max(1, Math.round(this.width || 1));
+      this.stringBox.hTexture = Math.max(1, Math.round(this.height || 1));
+      this.stringBox.wScene = this.stringBox.wTexture * SCALE_FACTOR;
+      this.stringBox.hScene = this.stringBox.hTexture * SCALE_FACTOR;
+    }
     const lines = this.text.split("\n");
     const lineCount = Math.max(1, lines.length);
     this.textCanvas.width = this.stringBox.wTexture;
@@ -407,7 +414,8 @@ export class FlowerTypeScene {
       this.textCtx.letterSpacing = `${S.tracking}px`;
     this.textCtx.fillStyle = "rgb(255, 255, 255)";
     this.textCtx.clearRect(0, 0, this.textCanvas.width, this.textCanvas.height);
-    for (let i = 0; i < lineCount; i++) {
+    if (this.cfg.maskLines) for (const l of this.cfg.maskLines) this.textCtx.fillText(l.text, l.x, l.y);
+    else for (let i = 0; i < lineCount; i++) {
       this.textCtx.fillText(
         lines[i],
         0,
@@ -478,7 +486,7 @@ export class FlowerTypeScene {
       mesh.instanceMatrix.needsUpdate = true;
       mesh.frustumCulled = false;
       mesh.position.x = -0.5 * this.stringBox.wScene;
-      mesh.position.y = -0.6 * this.stringBox.hScene;
+      mesh.position.y = -(this.cfg.maskLines ? 0.5 : 0.6) * this.stringBox.hScene;
       this.meshes.push(mesh);
       this.group.add(mesh);
     });
@@ -503,7 +511,9 @@ export class FlowerTypeScene {
       const mesh = this.meshes[p.type];
       if (!mesh) return;
       const b = hsl[p.type];
-      color.setHSL((b.h + p.hue * S.hueSpread + 1) % 1, b.s, b.l);
+      const pal = this.cfg.palettes?.[p.type];
+      if (pal) color.set(pal[Math.min(pal.length - 1, Math.floor((p.hue + 0.5) * pal.length))]);
+      else color.setHSL((b.h + p.hue * S.hueSpread + 1) % 1, b.s, b.l);
       mesh.setColorAt(idx[p.type], color);
       idx[p.type]++;
     });
@@ -521,13 +531,25 @@ export class FlowerTypeScene {
     const S = settingsFor(this.cfg);
     const hoverOn = this.cfg.hoverOn !== false;
     const localX = this.pointer.x + 0.5 * this.stringBox.wScene;
-    const localY = this.pointer.y + 0.6 * this.stringBox.hScene;
+    const localY = this.pointer.y + (this.cfg.maskLines ? 0.5 : 0.6) * this.stringBox.hScene;
     const radius = Math.max(1e-3, S.hoverRadius);
     const idx = [0, 0];
     this.particles.forEach((p) => {
       const mesh = this.meshes[p.type];
       if (!mesh) return;
-      if (p.toDelete) {
+      if (this.cfg.local) {
+        const now = this.lastT / 1000;
+        const ly = this.stringBox.hScene - p.y;
+        const rr = (this.cfg.localRadiusPx ?? 60) * SCALE_FACTOR;
+        if (this.pointerOver && p.keep) {
+          const ddx = p.x - localX;
+          const ddy = ly - localY;
+          if (ddx * ddx + ddy * ddy < rr * rr) p.litAt = now;
+        }
+        const want = p.keep && now - (p.litAt ?? -1e9) < (this.cfg.linger ?? 1.2) ? 1 : 0;
+        if (want > p.t) p.t = Math.min(1, p.t + dt / (S.duration * p.jitter));
+        else if (want < p.t) p.t = Math.max(0, p.t - dt * 2 / (S.duration * p.jitter));
+      } else if (p.toDelete) {
         p.t -= dt * 2 / (S.duration * p.jitter);
         if (p.t < 0) p.t = 0;
       } else if (p.wait > 0) {

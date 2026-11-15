@@ -144,17 +144,9 @@
   box-shadow: var(--slab-shadow);
 }
 
-/* ---------- Botanical on hover (V3 §D) ----------
-   Every H1/H2 is plain Baskerville at rest. Hovered, the shared canvas grows the
-   letters as foliage and the DOM text fades out under it; nothing reflows. */
-h1,
-h2 {
-  transition: color 380ms ease;
-}
-h1[data-bloom='on'],
-h2[data-bloom='on'] {
-  color: transparent !important;
-}
+/* ---------- Botanical on hover (V4 §E) ----------
+   The heading's text never changes; the shared canvas grows foliage on the part
+   under the pointer, laid exactly over the letters. */
 .bloom-canvas {
   position: fixed;
   left: 0;

@@ -135,6 +135,25 @@ PORTS.push({
     ['    this.renderer.domElement.style.cursor = "text";\n', ''],
     // give the context back on dispose so the WebGL budget stays true
     ['    this.renderer.dispose();\n', '    this.renderer.forceContextLoss();\n    this.renderer.dispose();\n'],
+    // ---- V4 §E: local growth over a real heading ----
+    // (1) The mask is drawn from the heading's own lines (text, x, baseline in the canvas box)
+    //     and the string box is the whole canvas, so every flower lands on its letter.
+    ['  sampleCoordinates() {\n    const S = settingsFor(this.cfg);\n',
+      '  sampleCoordinates() {\n    const S = settingsFor(this.cfg);\n    if (this.cfg.maskLines) {\n      this.stringBox.wTexture = Math.max(1, Math.round(this.width || 1));\n      this.stringBox.hTexture = Math.max(1, Math.round(this.height || 1));\n      this.stringBox.wScene = this.stringBox.wTexture * SCALE_FACTOR;\n      this.stringBox.hScene = this.stringBox.hTexture * SCALE_FACTOR;\n    }\n'],
+    ['    for (let i = 0; i < lineCount; i++) {\n      this.textCtx.fillText(',
+      '    if (this.cfg.maskLines) for (const l of this.cfg.maskLines) this.textCtx.fillText(l.text, l.x, l.y);\n    else for (let i = 0; i < lineCount; i++) {\n      this.textCtx.fillText('],
+    ['      mesh.position.y = -0.6 * this.stringBox.hScene;', '      mesh.position.y = -(this.cfg.maskLines ? 0.5 : 0.6) * this.stringBox.hScene;'],
+    ['    const localY = this.pointer.y + 0.6 * this.stringBox.hScene;', '    const localY = this.pointer.y + (this.cfg.maskLines ? 0.5 : 0.6) * this.stringBox.hScene;'],
+    // (2) Only some of the mask's pixels ever grow (`density`), so a glyph is never covered.
+    ['        p = Math.random() > S.leafMix ? makeBloom(x, y, S) : makeLeaf(x, y, S);\n',
+      '        p = Math.random() > S.leafMix ? makeBloom(x, y, S) : makeLeaf(x, y, S);\n      if (p.keep === undefined) p.keep = Math.random() < (this.cfg.density ?? 1);\n'],
+    // (3) Growth follows the pointer: a particle within `localRadiusPx` opens and stays
+    //     `linger` seconds after the pointer leaves its spot, then wilts. A sweep leaves a trail.
+    ['      if (p.toDelete) {\n        p.t -= dt * 2 / (S.duration * p.jitter);',
+      '      if (this.cfg.local) {\n        const now = this.lastT / 1000;\n        const ly = this.stringBox.hScene - p.y;\n        const rr = (this.cfg.localRadiusPx ?? 60) * SCALE_FACTOR;\n        if (this.pointerOver && p.keep) {\n          const ddx = p.x - localX;\n          const ddy = ly - localY;\n          if (ddx * ddx + ddy * ddy < rr * rr) p.litAt = now;\n        }\n        const want = p.keep && now - (p.litAt ?? -1e9) < (this.cfg.linger ?? 1.2) ? 1 : 0;\n        if (want > p.t) p.t = Math.min(1, p.t + dt / (S.duration * p.jitter));\n        else if (want < p.t) p.t = Math.max(0, p.t - dt * 2 / (S.duration * p.jitter));\n      } else if (p.toDelete) {\n        p.t -= dt * 2 / (S.duration * p.jitter);'],
+    // (4) Flowers in the four flower colours and foliage in the moss greens, from palettes.
+    ['      color.setHSL((b.h + p.hue * S.hueSpread + 1) % 1, b.s, b.l);',
+      '      const pal = this.cfg.palettes?.[p.type];\n      if (pal) color.set(pal[Math.min(pal.length - 1, Math.floor((p.hue + 0.5) * pal.length))]);\n      else color.setHSL((b.h + p.hue * S.hueSpread + 1) % 1, b.s, b.l);'],
   ],
 })
 
