@@ -30,6 +30,7 @@ const translations = {
       },
       about: { title: 'About', description: 'Systems engineering as the base, design as what grows on it. Education, experience and the career change, told straight.' },
       projects: { title: 'Projects', description: 'Web, digital, object and brand work: Candelaria, Licorímetro, Bloom, El Umbral and SenseWave.' },
+      toolkit: { title: 'Toolkit', description: 'What I build with, and what I have certified.' },
     },
     nav: {
       label: 'Main navigation',
@@ -39,6 +40,7 @@ const translations = {
       home: 'Home',
       about: 'About',
       projects: 'Projects',
+      toolkit: 'Toolkit',
       langShort: { en: 'EN', es: 'ES' },
       langSwitch: { en: 'Switch to English', es: 'Cambiar a español' },
     },
@@ -65,6 +67,10 @@ const translations = {
       bioLink: 'More about me',
       featuredTitle: 'Featured Projects',
       herbCta: 'All projects',
+    },
+    toolkit: {
+      title: 'Toolkit',
+      lead: 'What I build with, and what I have certified.',
     },
     about: {
       title: 'About me',
@@ -115,7 +121,6 @@ const translations = {
       openCase: 'Open case study',
       filterLabel: 'Filter by category',
       filterAll: 'All',
-      toolsTitle: 'What I build with',
       tools: ['Figma', 'React', 'Next.js', 'Python', 'Django', 'Supabase', 'Tailwind', 'Three.js', 'Blender', 'Unity', 'Git', 'SQL'],
     },
     works: {
@@ -862,6 +867,7 @@ const translations = {
       },
       about: { title: 'Sobre mí', description: 'Ingeniería de sistemas como base, diseño como lo que crece encima. Educación, experiencia y el cambio de carrera, contado de frente.' },
       projects: { title: 'Proyectos', description: 'Trabajo web, digital, de objeto y de marca: Candelaria, Licorímetro, Bloom, El Umbral y SenseWave.' },
+      toolkit: { title: 'Herramientas', description: 'Con qué construyo y qué he certificado.' },
     },
     nav: {
       label: 'Navegación principal',
@@ -871,6 +877,7 @@ const translations = {
       home: 'Inicio',
       about: 'Sobre mí',
       projects: 'Proyectos',
+      toolkit: 'Herramientas',
       langShort: { en: 'EN', es: 'ES' },
       langSwitch: { en: 'Switch to English', es: 'Cambiar a español' },
     },
@@ -897,6 +904,10 @@ const translations = {
       bioLink: 'Más sobre mí',
       featuredTitle: 'Proyectos destacados',
       herbCta: 'Todos los proyectos',
+    },
+    toolkit: {
+      title: 'Herramientas',
+      lead: 'Con qué construyo y qué he certificado.',
     },
     about: {
       title: 'Sobre mí',
@@ -947,7 +958,6 @@ const translations = {
       openCase: 'Abrir caso de estudio',
       filterLabel: 'Filtrar por categoría',
       filterAll: 'Todos',
-      toolsTitle: 'Con qué construyo',
       tools: ['Figma', 'React', 'Next.js', 'Python', 'Django', 'Supabase', 'Tailwind', 'Three.js', 'Blender', 'Unity', 'Git', 'SQL'],
     },
     works: {

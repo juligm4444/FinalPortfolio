@@ -6,6 +6,7 @@ import { isLocale, localePath, splitLocale, LOCALES } from './i18n/routes.js'
 import Home from './pages/Home.jsx'
 import About from './pages/About.jsx'
 import Projects from './pages/Projects.jsx'
+import Toolkit from './pages/Toolkit.jsx'
 import CaseCrack from './components/CaseCrack.jsx'
 import Candelaria, { CandelariaWebsite } from './pages/projects/Candelaria.jsx'
 import Licorimetro from './pages/projects/Licorimetro.jsx'
@@ -59,6 +60,7 @@ export default function App() {
         <Route index element={<Home />} />
         <Route path="about" element={<About />} />
         <Route path="projects" element={<Projects />} />
+        <Route path="toolkit" element={<Toolkit />} />
         <Route element={<CaseLayout />}>
           <Route path="projects/candelaria" element={<Candelaria />} />
           <Route path="projects/candelaria-website" element={<CandelariaWebsite />} />

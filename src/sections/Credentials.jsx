@@ -11,8 +11,9 @@ import py2 from '../assets/badges/python-essentials-2.webp'
 import js1 from '../assets/badges/javascript-essentials-1.webp'
 import js2 from '../assets/badges/javascript-essentials-2.webp'
 
-/* V3 §F.3 — eight credentials as TiltCards (concrete face): the badge floats in
-   front, then the name and the issuer, then a Mohair "Verificar". IBM first. */
+/* V4 §J.2 — the eight credentials as 3D tilt cards on their own wall (Toolkit):
+   the badge floats in front, then the name and the issuer, then a Mohair
+   "Verify". IBM first. */
 const VERIFY = 'https://www.credly.com/users/juligm4'
 const BADGES = [ux, edt, agile, pm, py1, py2, js1, js2]
 

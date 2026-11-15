@@ -16,6 +16,7 @@ export const NAV = [
   { to: '/', key: 'home' },
   { to: '/about', key: 'about' },
   { to: '/projects', key: 'projects' },
+  { to: '/toolkit', key: 'toolkit' },
 ]
 
 function useCurrent() {

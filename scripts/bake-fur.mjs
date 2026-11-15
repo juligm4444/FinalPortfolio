@@ -16,7 +16,7 @@ const out = resolve(root, 'src/assets/fur')
 const PORT = 4312
 const JOBS = [
   ...['instagram', 'linkedin', 'cv', 'github', 'behance', 'email'].map((n) => ({ hook: 'social', name: n, size: 88, route: '/es' })),
-  ...['Figma', 'React', 'Next.js', 'Python', 'Django', 'Supabase', 'Tailwind', 'Three.js', 'Blender', 'Unity', 'Git', 'SQL'].map((n) => ({ hook: 'tool', name: n, size: 88, route: '/es/projects' })),
+  ...['Figma', 'React', 'Next.js', 'Python', 'Django', 'Supabase', 'Tailwind', 'Three.js', 'Blender', 'Unity', 'Git', 'SQL'].map((n) => ({ hook: 'tool', name: n, size: 88, route: '/es/toolkit' })),
 ]
 const slug = (name) => name.toLowerCase().replace(/[^a-z0-9]+/g, '')
 
