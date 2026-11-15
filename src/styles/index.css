@@ -29,10 +29,16 @@
   --concrete-900: #1B1E1C;    /* texto: 14.39 sobre mist, 10.49 sobre losa */
   --moss-400: #4B8A10;        /* SOLO gráfico */
   --moss-700: #2F5D1A;        /* 6.65 sobre mist, 4.85 sobre losa */
-  --lichen-300: #A9BBA6;      /* pelo de los botones secundarios; texto concrete-900 encima: 8.28 */
+  --moss-200: #A6D48A;        /* pelo de los botones secundarios; texto concrete-900 encima: 9.93 */
+  --white: #FFFFFF;           /* SOLO íconos dibujados en el pelo: 7.77 sobre moss-700 */
   --bloom: #FF3D90;           /* acento decorativo */
   --bloom-deep: #FF0066;
-  --bloom-ink: #B8004F;       /* solo sobre mist (5.70). Prohibido sobre losa (4.16) */
+  --bloom-ink: #A60047;       /* énfasis de texto: 4.83 sobre losa, 6.63 sobre mist */
+  /* Colores de flor: SOLO dentro de flores y pétalos, nunca en la interfaz */
+  --flower-pink: #FF3D90;     /* ocobo */
+  --flower-yellow: #F2C230;   /* guayacán */
+  --flower-violet: #8F6FD6;   /* gualanday */
+  --flower-white: #FFF7F0;
 
   /* Semánticos */
   --bg: var(--mist);
@@ -52,12 +58,13 @@
   --font-body: 'Roboto Mono', ui-monospace, monospace;
   --font-label: 'Space Grotesk', system-ui, sans-serif;
 
-  --text-h1: clamp(2.5rem, 1.6rem + 3.9vw, 4.5rem);
-  --text-h2: clamp(1.75rem, 1.47rem + 1.2vw, 2.5rem);
-  --text-h3: 1.5rem;
-  --text-species: 1.375rem;
-  --text-body: 1rem;
-  --text-small: 0.875rem;
+  /* V4 §B.3: type scales with the viewport up to 2560 px */
+  --text-h1: clamp(2.5rem, 1.5rem + 3.4vw, 7rem);
+  --text-h2: clamp(1.75rem, 1.2rem + 1.7vw, 4rem);
+  --text-h3: clamp(1.375rem, 1.1rem + 0.7vw, 2.25rem);
+  --text-species: clamp(1.25rem, 1rem + 0.55vw, 1.875rem);
+  --text-body: clamp(1rem, 0.92rem + 0.22vw, 1.3125rem);
+  --text-small: clamp(0.875rem, 0.82rem + 0.15vw, 1.0625rem);
   --text-label: 0.875rem;
   --text-label-sm: 0.75rem;
 
@@ -82,7 +89,10 @@
 
   /* Layout */
   --nav-offset: 240px;
-  --content-max: 1104px;
+  /* V4 §B.2: the content area is the viewport minus the nav; fluid side padding */
+  --pad: clamp(16px, 4vw, 96px);
+  --wall-pad: clamp(24px, 4.5vw, 120px);
+  --gap-wall: clamp(48px, 9vh, 160px);
 }
 
 @layer base {
@@ -94,10 +104,12 @@
   html {
     background: var(--bg);
   }
+  /* V4 §1: no flat mint page — body shows the scene (RouteBackground, fixed) */
   body {
-    background: var(--bg);
+    background: transparent;
     color: var(--text);
     font-family: var(--font-body);
+    font-size: var(--text-body);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;

@@ -18,7 +18,8 @@
     "test:vine": "node scripts/test-vine.mjs",
     "test:deck": "node scripts/test-deck.mjs",
     "states": "node scripts/states.mjs",
-    "check:routes": "node scripts/check-routes.mjs"
+    "check:routes": "node scripts/check-routes.mjs",
+    "check:layout": "node scripts/check-layout.mjs"
   },
   "dependencies": {
     "@higgsfield/cli": "^0.1.40",

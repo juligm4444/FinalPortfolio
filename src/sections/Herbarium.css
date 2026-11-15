@@ -1,15 +1,4 @@
 /* Herbario (REDESIGN §6, ACABADO §5): six square slabs, 3×2 at 1440. */
-.herb {
-  max-width: var(--content-max);
-  margin: 0 auto;
-  padding: var(--space-16) var(--space-4) var(--space-12);
-}
-@media (min-width: 768px) {
-  .herb {
-    padding-left: var(--space-8);
-    padding-right: var(--space-8);
-  }
-}
 .herb__head {
   margin-bottom: var(--space-8);
 }
@@ -31,17 +20,11 @@
 }
 .herb__grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(clamp(240px, 19vw, 560px), 1fr));
   gap: var(--space-8);
   list-style: none;
   margin: 0;
   padding: 0;
-}
-@media (max-width: 1023px) {
-  .herb__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--space-6);
-  }
 }
 @media (max-width: 639px) {
   .herb__grid {
@@ -55,17 +38,6 @@
 }
 
 /* Mini bio (V3 §E.2): text straight on the mist, a Mohair button. */
-.bio {
-  max-width: var(--content-max);
-  margin: 0 auto;
-  padding: var(--space-16) var(--space-4) var(--space-8);
-}
-@media (min-width: 768px) {
-  .bio {
-    padding-left: var(--space-8);
-    padding-right: var(--space-8);
-  }
-}
 .bio__slab {
   display: flex;
   flex-direction: column;

@@ -58,8 +58,8 @@
   outline: none;
 }
 
-/* ---------- route background (V3 §B.2): the landscape at --fog over mist ---------- */
-.route-bg {
+/* ---------- scene (V4 §1): always visible, light blur, veil < 15 %, parallax ---------- */
+.scene {
   position: fixed;
   inset: 0;
   z-index: 0;
@@ -67,21 +67,115 @@
   background: var(--mist);
   pointer-events: none;
 }
-.route-bg__layer {
+.scene__land {
+  position: absolute;
+  inset: -48px -24px;
+  transform: translate3d(0, var(--scene-shift, 0px), 0);
+  will-change: transform;
+}
+.scene__img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center bottom;
+  object-position: center 60%;
+  /* about 4 px at 1440, scaled with the width */
+  filter: blur(clamp(2px, 0.28vw, 9px));
   opacity: 0;
-  transition: opacity 350ms cubic-bezier(0.2, 0.6, 0.2, 1);
+  transition: opacity 450ms cubic-bezier(0.2, 0.6, 0.2, 1);
 }
-.route-bg__layer[data-active] {
-  opacity: var(--fog, 1);
+.scene__img[data-active] {
+  opacity: 1;
+}
+.scene__veil {
+  position: absolute;
+  inset: 0;
+  background: var(--mist);
+  opacity: var(--veil, 0.12);
+}
+/* slow fog drifting across */
+.scene__fog {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -50%;
+  width: 200%;
+  background:
+    radial-gradient(40% 30% at 20% 45%, color-mix(in srgb, var(--mist) 55%, transparent), transparent 70%),
+    radial-gradient(35% 25% at 70% 70%, color-mix(in srgb, var(--mist) 45%, transparent), transparent 70%),
+    radial-gradient(30% 22% at 45% 25%, color-mix(in srgb, var(--mist) 40%, transparent), transparent 70%);
+  animation: fog-drift 140s linear infinite alternate;
+}
+.scene__fog--b {
+  opacity: 0.7;
+  animation-duration: 210s;
+  animation-direction: alternate-reverse;
+  transform: scaleY(-1);
+}
+@keyframes fog-drift {
+  from {
+    translate: -12% 0;
+  }
+  to {
+    translate: 12% 0;
+  }
+}
+/* a few petals now and then */
+.scene__petals {
+  position: absolute;
+  inset: 0;
+}
+.petal {
+  position: absolute;
+  top: -40px;
+  width: var(--size, 10px);
+  height: calc(var(--size, 10px) * 0.7);
+  border-radius: 70% 0 70% 0;
+  opacity: 0;
+  animation: petal-fall linear infinite;
+}
+.petal--0 {
+  background: var(--flower-pink);
+}
+.petal--1 {
+  background: var(--flower-yellow);
+}
+.petal--2 {
+  background: var(--flower-violet);
+}
+.petal--3 {
+  background: var(--flower-white);
+}
+@keyframes petal-fall {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    opacity: 0;
+  }
+  6% {
+    opacity: 0.85;
+  }
+  /* most of the cycle the petal is on its way; the rest it waits off-screen: "now and then" */
+  55% {
+    transform: translate3d(var(--drift), 112vh, 0) rotate(540deg);
+    opacity: 0.8;
+  }
+  56%,
+  100% {
+    transform: translate3d(var(--drift), 112vh, 0) rotate(540deg);
+    opacity: 0;
+  }
+}
+.scene[data-paused] .scene__fog,
+.scene[data-paused] .petal {
+  animation-play-state: paused;
 }
 @media (prefers-reduced-motion: reduce) {
-  .route-bg__layer {
+  .scene__fog,
+  .scene__petals {
+    display: none;
+  }
+  .scene__img {
     transition: none;
   }
 }

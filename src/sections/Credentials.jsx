@@ -1,4 +1,5 @@
 import { useLocale } from '../i18n/LocaleProvider.jsx'
+import Wall from '../components/wall/Wall.jsx'
 import TiltCard, { Layer } from '../components/TiltCard.jsx'
 import { MohairButton } from '../components/fur/FurButton.jsx'
 import ux from '../assets/badges/ux-fundamentals.webp'
@@ -20,7 +21,7 @@ export default function Credentials() {
   const names = t('about.certItems')
   const issuers = t('about.certIssuers')
   return (
-    <section className="creds" aria-labelledby="creds-title">
+    <Wall seed="creds" className="creds" aria-labelledby="creds-title">
       <p className="creds__kicker">{t('about.certKicker')}</p>
       <h2 id="creds-title" className="creds__title">
         {t('about.certLead')}
@@ -43,6 +44,6 @@ export default function Credentials() {
           </li>
         ))}
       </ul>
-    </section>
+    </Wall>
   )
 }

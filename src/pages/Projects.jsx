@@ -12,6 +12,7 @@ import { TOOL_GLYPHS, toolSlug } from '../data/tools.js'
 import works, { GROUPS, worksByGroup } from '../data/projects.js'
 import concreteTexture from '../assets/textures/concrete.webp'
 import '../components/SpecimenSlab.css'
+import Wall from '../components/wall/Wall.jsx'
 import './Projects.css'
 
 /* V3 §G Projects: the sites deck, the wall of slabs with filters, the tools. */
@@ -93,7 +94,7 @@ function Deck() {
   )
   const current = items[front] ?? items[0]
   return (
-    <section className="proj__deck" aria-labelledby="deck-title">
+    <Wall seed="projects-deck" className="proj__deck" aria-labelledby="deck-title">
       <h2 id="deck-title" className="proj__group-title">
         {t('projects.groups.web')}
       </h2>
@@ -116,7 +117,7 @@ function Deck() {
           ))}
         </ul>
       </div>
-    </section>
+    </Wall>
   )
 }
 
@@ -135,7 +136,7 @@ function WallSlab({ work, big }) {
         {t('herbarium.gen')} {t(`projects.groups.${work.group}`)}
       </span>
       {pedestal ? (
-        <WorkTarget work={work} className="wall__title-link" data-card-link="">
+        <WorkTarget work={work} className="slabwall__title-link" data-card-link="">
           <span className="spec-slab__species">{title}</span>
         </WorkTarget>
       ) : (
@@ -148,7 +149,7 @@ function WallSlab({ work, big }) {
     <Layer z={44} className="spec-slab__img">
       <button
         type="button"
-        className="wall__piece"
+        className="slabwall__piece"
         aria-pressed={apart}
         aria-label={`${title}: ${t(apart ? 'projects.explodedHide' : 'projects.explodedShow')}`}
         onClick={() => setApart((a) => !a)}
@@ -193,7 +194,7 @@ function WallSlab({ work, big }) {
   )
 }
 
-function Wall() {
+function SlabWall() {
   const { t, locale } = useLocale()
   const reduce = useReducedMotion()
   const [filter, setFilter] = useState('all')
@@ -201,38 +202,38 @@ function Wall() {
   // One big slab per category: the first work of each group.
   const bigIds = new Set(GROUPS.map((g) => works.find((w) => w.group === g)?.id))
   return (
-    <section className="wall" aria-labelledby="wall-title">
+    <Wall seed="projects-slabwall" className="slabwall" aria-labelledby="wall-title">
       <h2 id="wall-title" className="proj__group-title">
         {t('projects.wallTitle')}
       </h2>
-      <div className="wall__filters" role="group" aria-label={t('projects.filterLabel')}>
+      <div className="slabwall__filters" role="group" aria-label={t('projects.filterLabel')}>
         {['all', ...GROUPS].map((g) => (
           <MohairButton
             key={g}
             label={g === 'all' ? t('projects.filterAll') : t(`projects.groups.${g}`)}
             onClick={() => setFilter(g)}
             aria-pressed={filter === g}
-            className={filter === g ? 'wall__filter--on' : ''}
+            className={filter === g ? 'slabwall__filter--on' : ''}
             height={44}
             lang={locale}
           />
         ))}
       </div>
       <LayoutGroup>
-        <motion.ul className="wall__grid" layout={!reduce}>
+        <motion.ul className="slabwall__grid" layout={!reduce}>
           {list.map((w) => (
             <motion.li
               key={w.id}
               layout={!reduce}
               transition={{ type: 'spring', stiffness: 260, damping: 30 }}
-              className={bigIds.has(w.id) ? 'wall__cell wall__cell--l' : 'wall__cell'}
+              className={bigIds.has(w.id) ? 'slabwall__cell slabwall__cell--l' : 'slabwall__cell'}
             >
               <WallSlab work={w} big={bigIds.has(w.id)} />
             </motion.li>
           ))}
         </motion.ul>
       </LayoutGroup>
-    </section>
+    </Wall>
   )
 }
 
@@ -244,7 +245,7 @@ function Tools() {
     window.__furBake = { ...(window.__furBake ?? {}), tool: (name, px) => snapshotOnce(plushJob(toolSlug(name), TOOL_GLYPHS[name], px)) }
   }, [])
   return (
-    <section className="tools-sec" aria-labelledby="tools-title">
+    <Wall seed="projects-tools" className="tools-sec" aria-labelledby="tools-title">
       <p className="proj__kicker">{t('projects.toolsKicker')}</p>
       <h2 id="tools-title" className="proj__group-title">
         {t('projects.toolsTitle')}
@@ -257,7 +258,7 @@ function Tools() {
           </li>
         ))}
       </ul>
-    </section>
+    </Wall>
   )
 }
 
@@ -265,13 +266,13 @@ export default function Projects() {
   const { t } = useLocale()
   return (
     <div className="proj">
-      <header className="proj__header">
+      <Wall as="header" seed="projects-head" className="proj__header">
         <p className="proj__kicker">{t('projects.label')}</p>
         <h1 className="proj__title">{t('projects.title')}</h1>
         <p className="proj__lead">{t('projects.lead')}</p>
-      </header>
+      </Wall>
       <Deck />
-      <Wall />
+      <SlabWall />
       <Tools />
     </div>
   )

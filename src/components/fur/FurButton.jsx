@@ -9,7 +9,7 @@ import './fur.css'
    - `velour`: primary, Velour Bolster (vendor/originkit/VelourBolster.tsx), moss
      velour, label in mist. At most one per visible screen.
    - `mohair`: secondary, Mohair Capsule (vendor/originkit/MohairCapsule.md):
-     lichen fur, concrete-500 roots, mist glints, label in concrete-900.
+     light moss fur (--moss-200), moss-700 roots, label in concrete-900.
    Both ported unmodified-plus-patches by scripts/port-vendor.mjs.
 
    Same three states as a Plush Tile: the control is always a real <a>/<button>
@@ -30,10 +30,10 @@ function propsFor(kind, label, w, h) {
     ...common,
     // The label is real DOM text over the fur (legibility at 44–56 px), not dyed hair.
     label: '',
-    furColor: tok.lichen300,
+    furColor: tok.moss200,
     textColor: tok.concrete900,
     tipColor: tok.mist,
-    rootColor: tok.concrete500,
+    rootColor: tok.moss700,
     furLength: 1,
     sway: 0,
     advanced: { shadow: 26, glow: 0, flyaways: 2, swirl: 30, lockSize: 3, strands: 80 },

@@ -61,9 +61,6 @@ export default {
       spacing: {
         'nav-offset': 'var(--nav-offset)',
       },
-      maxWidth: {
-        content: 'var(--content-max)',
-      },
       borderRadius: {
         slab: 'var(--radius-slab)',
         pill: 'var(--radius-pill)',

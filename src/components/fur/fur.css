@@ -83,7 +83,7 @@
 }
 /* Flat stand-in until the snapshot exists (or without WebGL2): the same colours. */
 .fur-btn--mohair {
-  background: var(--lichen-300);
+  background: var(--moss-200);
   color: var(--concrete-900);
   box-shadow: inset 0 -3px 0 color-mix(in srgb, var(--concrete-500) 45%, transparent);
 }

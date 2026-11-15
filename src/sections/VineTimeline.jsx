@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { useLocale } from '../i18n/LocaleProvider.jsx'
 import { useWebGL } from '../webgl/index.js'
 import { stemPoints, svgPath } from './vinePath.js'
+import Wall from '../components/wall/Wall.jsx'
 import './VineTimeline.css'
 
 /* V3 §F.2 — timeline. A vine runs through ALL the milestones, top to bottom,
@@ -114,7 +115,7 @@ export default function VineTimeline() {
   const live = Boolean(active && Scene && ready)
 
   return (
-    <section ref={root} className="vine" aria-labelledby="vine-title">
+    <Wall ref={root} seed="about-timeline" className="vine" aria-labelledby="vine-title">
       <header className="vine__head">
         <p className="vine__kicker">{t('about.timelineKicker')}</p>
         <h2 id="vine-title" className="vine__title">
@@ -151,6 +152,6 @@ export default function VineTimeline() {
           ))}
         </ol>
       </div>
-    </section>
+    </Wall>
   )
 }

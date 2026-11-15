@@ -1,13 +1,11 @@
 /* ACABADO §7 — the case template. Site tokens only; every project image sits on a slab. */
 .cs__sec {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: var(--space-16) var(--space-4);
+  padding: var(--space-16) var(--pad);
 }
 @media (min-width: 768px) {
   .cs__sec {
-    padding-left: var(--space-8);
-    padding-right: var(--space-8);
+    padding-left: var(--pad);
+    padding-right: var(--pad);
   }
 }
 .cs__tag {

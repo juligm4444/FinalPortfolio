@@ -1,14 +1,3 @@
-.vine {
-  max-width: var(--content-max);
-  margin: 0 auto;
-  padding: var(--space-16) var(--space-4) var(--space-12);
-}
-@media (min-width: 768px) {
-  .vine {
-    padding-left: var(--space-8);
-    padding-right: var(--space-8);
-  }
-}
 .vine__head {
   margin-bottom: var(--space-8);
 }
@@ -138,27 +127,17 @@
   }
 }
 .about__header {
-  max-width: var(--content-max);
-  margin: 0 auto;
-  padding: var(--space-12) var(--space-4) 0;
+  margin-bottom: var(--space-8);
 }
 /* Story with the ocobo beside it: two columns, the tree sticky while reading. */
 .about__intro {
-  max-width: var(--content-max);
-  margin: 0 auto;
-  padding: var(--space-8) var(--space-4) var(--space-8);
+  padding: var(--space-12) var(--pad) var(--gap-wall);
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: var(--space-12);
   align-items: start;
 }
-@media (min-width: 768px) {
-  .about__header,
-  .about__intro {
-    padding-left: var(--space-8);
-    padding-right: var(--space-8);
-  }
-}
+
 .about__ocobo {
   align-self: stretch;
 }
@@ -201,17 +180,6 @@
   }
 }
 /* Credentials: eight TiltCards, IBM first. */
-.creds {
-  max-width: var(--content-max);
-  margin: 0 auto;
-  padding: var(--space-16) var(--space-4) var(--space-16);
-}
-@media (min-width: 768px) {
-  .creds {
-    padding-left: var(--space-8);
-    padding-right: var(--space-8);
-  }
-}
 .creds__title {
   margin: 0 0 var(--space-8);
   font-family: var(--font-display);
@@ -224,13 +192,8 @@
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(clamp(200px, 14vw, 340px), 1fr));
   gap: var(--space-6);
-}
-@media (max-width: 1023px) {
-  .creds__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
 }
 @media (max-width: 479px) {
   .creds__grid {
@@ -279,4 +242,8 @@
   .creds__name {
     font-size: 1rem;
   }
+}
+
+.about__intro > .wall {
+  margin: 0;
 }

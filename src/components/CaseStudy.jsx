@@ -1,7 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { useLocale } from '../i18n/LocaleProvider.jsx'
 import { MohairButton } from './fur/FurButton.jsx'
-import LocaleLink from './LocaleLink.jsx'
 import { caseStudies } from '../data/projects.js'
 import './CaseStudy.css'
 import DeviceHint from './DeviceHint.jsx'
@@ -40,7 +39,7 @@ export function CaseHero({ slug, kicker, h1, h2, sub, tags, meta = [], tools: to
   const ficha = [...meta, ...(tools?.length ? [{ label: t('case.tools'), value: tools.join(' · ') }] : [])].filter((f) => f.value && String(f.value).trim())
   return (
     <header className="px-4 pb-16 pt-16 md:px-8 md:pb-24 md:pt-24">
-      <div className="mx-auto w-full max-w-[1200px]">
+      <div className="w-full">
         <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-14">
           <div className={media ? 'lg:col-span-7' : 'lg:col-span-12'}>
             <Reveal>

@@ -53,19 +53,20 @@
   display: block;
 }
 .hero__name {
-  left: calc(50% + clamp(40px, 6vw, 110px));
+  left: calc(50% + clamp(40px, 9vh, 170px));
   top: 25%;
   font-weight: 400;
-  font-size: clamp(2.5rem, 1.4rem + 3.2vw, 4.5rem);
+  /* scales with the bust, which scales with the viewport height */
+  font-size: clamp(2.25rem, 7.2vh, 7.5rem);
   line-height: 1.04;
   letter-spacing: -0.005em;
 }
 .hero__role {
-  right: calc(50% + clamp(84px, 8.5vw, 150px));
+  right: calc(50% + clamp(84px, 12.5vh, 240px));
   top: 66%;
   text-align: center;
   font-weight: 400;
-  font-size: clamp(1.5rem, 0.9rem + 1.7vw, 2.5rem);
+  font-size: clamp(1.4rem, 4.4vh, 4.25rem);
   line-height: 1.12;
 }
 .hero__actions {

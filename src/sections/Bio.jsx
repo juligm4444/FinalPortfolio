@@ -1,3 +1,4 @@
+import Wall from '../components/wall/Wall.jsx'
 import { MohairButton } from '../components/fur/FurButton.jsx'
 import { useLocale } from '../i18n/LocaleProvider.jsx'
 
@@ -6,7 +7,7 @@ import { useLocale } from '../i18n/LocaleProvider.jsx'
 export default function Bio() {
   const { t } = useLocale()
   return (
-    <section className="bio" aria-labelledby="bio-title">
+    <Wall seed="home-bio" className="bio" aria-labelledby="bio-title">
       <div className="bio__slab">
         <h2 id="bio-title" className="sr-only">
           {t('home.bioTitle')}
@@ -14,6 +15,6 @@ export default function Bio() {
         <p className="bio__text">{t('home.bioPara1')}</p>
         <MohairButton label={t('home.bioLink')} to="/about" className="bio__link" />
       </div>
-    </section>
+    </Wall>
   )
 }
