@@ -132,8 +132,10 @@
 /* Slab: where every image and every interactive piece of a project stands. */
 .cs__slab {
   padding: var(--space-6);
-  background: var(--concrete-100);
-  border: 1px solid var(--border);
+  background-color: var(--concrete-100);
+  background-image: var(--concrete-texture);
+  background-size: 512px 512px;
+  background-blend-mode: multiply;
   border-radius: var(--radius-slab);
   box-shadow: var(--slab-shadow);
   overflow-x: auto;
@@ -173,9 +175,12 @@
   letter-spacing: var(--tracking-label);
   text-transform: uppercase;
   color: var(--text-muted);
-  background: var(--concrete-100);
-  border: 1px solid var(--border);
+  background-color: var(--concrete-100);
+  background-image: var(--concrete-texture);
+  background-size: 512px 512px;
+  background-blend-mode: multiply;
   border-radius: var(--radius-slab);
+  box-shadow: var(--slab-shadow);
 }
 
 .cs__split--even {
@@ -189,7 +194,11 @@
 .cs__img--fit,
 .cs__img--cover {
   height: auto;
-  background: var(--concrete-100);
+  background-color: var(--concrete-100);
+  background-image: var(--concrete-texture);
+  background-size: 512px 512px;
+  background-blend-mode: multiply;
+  box-shadow: var(--slab-shadow);
 }
 .cs__img--fit {
   object-fit: contain;
@@ -199,8 +208,10 @@
 }
 .cs__spec {
   padding: var(--space-6);
-  background: var(--concrete-100);
-  border: 1px solid var(--border);
+  background-color: var(--concrete-100);
+  background-image: var(--concrete-texture);
+  background-size: 512px 512px;
+  background-blend-mode: multiply;
   border-radius: var(--radius-slab);
   box-shadow: var(--slab-shadow);
 }
@@ -242,8 +253,10 @@
 }
 .cs__steps li {
   padding: var(--space-4);
-  background: var(--concrete-100);
-  border: 1px solid var(--border);
+  background-color: var(--concrete-100);
+  background-image: var(--concrete-texture);
+  background-size: 512px 512px;
+  background-blend-mode: multiply;
   border-radius: var(--radius-slab);
   box-shadow: var(--slab-shadow);
 }
@@ -311,8 +324,10 @@
 }
 .cs__cards li {
   padding: var(--space-6);
-  background: var(--concrete-100);
-  border: 1px solid var(--border);
+  background-color: var(--concrete-100);
+  background-image: var(--concrete-texture);
+  background-size: 512px 512px;
+  background-blend-mode: multiply;
   border-radius: var(--radius-slab);
   box-shadow: var(--slab-shadow);
 }

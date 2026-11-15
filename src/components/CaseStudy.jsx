@@ -92,7 +92,7 @@ export function CaseHero({ slug, kicker, h1, h2, sub, tags, meta = [], tools: to
           </div>
           {media ? (
             <Reveal delay={0.2} className="lg:col-span-5">
-              <div className="flex items-center justify-center p-6" style={{ background: 'var(--concrete-100)', border: '1px solid var(--border)', aspectRatio: '1 / 1' }}>
+              <div className="concrete flex items-center justify-center p-6" style={{ aspectRatio: '1 / 1' }}>
                 <img src={media} alt={mediaAlt} width="480" height="480" decoding="async" draggable="false" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
               </div>
             </Reveal>
