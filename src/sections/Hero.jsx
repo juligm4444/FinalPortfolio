@@ -31,6 +31,21 @@ class SceneBoundary extends Component {
    2. the R3F scene, loaded on demand and mounted only while src/webgl grants a
       slot; once its first frame is drawn the poster fades and the texts move
       into the scene (still DOM, still a real <h1>). */
+/** "Diseñador y Desarrollador" → ["Diseñador y", "Desarrollador"]: two lines, broken at the last space. */
+function twoLines(text) {
+  const t = text.trim()
+  const k = t.lastIndexOf(' ')
+  return k > 0 ? [t.slice(0, k), t.slice(k + 1)] : [t]
+}
+
+/* V3 §E.1 (reference: docs/ref/hero-prototipo.png). The bust is centred.
+   "Julián Galindo" sits up and to the right of it, in two lines, partly over the
+   leaves on the right; "Diseñador y Desarrollador" down and to the left, against
+   the bust at the height of the beard, two lines of Libre Baskerville. Both lean
+   with the camera (the scene tilts its group by the pointer's height; the words
+   take the same angle through --hero-tilt-x/-y). The two buttons are centred
+   under the bust. On phones the same order runs vertically: name, bust, role,
+   buttons, with no text over the bust. */
 export default function Hero() {
   const { t, locale } = useLocale()
   const { ref, active } = useWebGL({ id: 'hero' })
@@ -38,7 +53,6 @@ export default function Hero() {
   const [status, setStatus] = useState('pending')
   const [draws] = useState(() => ({ n: 0 }))
   const sectionRef = useRef(null)
-  // Phone: a smaller primary button so both calls to action sit on one row.
   const [phone, setPhone] = useState(false)
   useEffect(() => {
     const mq = window.matchMedia('(max-width: 719px)')
@@ -52,9 +66,37 @@ export default function Hero() {
     sectionRef.current = el
   }
   useEffect(() => {
-    // /lab-style bench: frames drawn, readable from the DOM.
     if (sectionRef.current) sectionRef.current.__draws = draws
   }, [draws])
+
+  // The words lean with the camera: same input as HeroScene (pointer height over the hero), damped.
+  useEffect(() => {
+    const el = sectionRef.current
+    if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return
+    let tx = 0
+    let ty = 0
+    let want = { x: 0, y: 0 }
+    let raf = 0
+    const step = () => {
+      tx += (want.x - tx) * 0.08
+      ty += (want.y - ty) * 0.08
+      el.style.setProperty('--hero-tilt-x', `${(ty * 2.5).toFixed(3)}deg`)
+      el.style.setProperty('--hero-tilt-y', `${(tx * 2).toFixed(3)}deg`)
+      raf = Math.abs(want.x - tx) + Math.abs(want.y - ty) > 0.001 ? requestAnimationFrame(step) : 0
+    }
+    const onMove = (e) => {
+      const r = el.getBoundingClientRect()
+      const inside = e.clientY >= r.top && e.clientY <= r.bottom && e.clientX >= r.left && e.clientX <= r.right
+      want = inside ? { x: ((e.clientX - r.left) / r.width) * 2 - 1, y: -(((e.clientY - r.top) / r.height) * 2 - 1) } : { x: 0, y: 0 }
+      if (!raf) raf = requestAnimationFrame(step)
+    }
+    window.addEventListener('pointermove', onMove, { passive: true })
+    return () => {
+      window.removeEventListener('pointermove', onMove)
+      cancelAnimationFrame(raf)
+    }
+  }, [])
 
   useEffect(() => {
     if (!active) return
@@ -70,26 +112,29 @@ export default function Hero() {
   }, [active])
 
   const live = Boolean(active && Scene && status === 'ready')
-  const name = t('hero.name')
-  const role = t('hero.tagline').trim()
+  const [first, last] = twoLines(t('hero.name'))
+  const role = twoLines(t('hero.tagline'))
 
   return (
     <section ref={setRefs} className={`hero ${live ? 'hero--live' : ''}`} data-webgl={live ? 'active' : 'fallback'}>
+      <h1 className="hero__name">
+        <span>{first}</span> <span>{last}</span>
+      </h1>
       <div className="hero__stage">
         <img className="hero__poster" src={poster} alt="" width="549" height="752" decoding="async" />
-        {/* The H1 is the same Botanical Text as About and Projects (plain on phones and touch). */}
-        <div className="hero__static">
-          <h1 className="hero__h1">{name}</h1>
-          <p>{role}</p>
-        </div>
         {active && Scene && (
           <SceneBoundary onFail={() => setStatus('pending')}>
             <Scene onStatus={setStatus} draws={draws} />
           </SceneBoundary>
         )}
       </div>
+      <p className="hero__role">
+        {role.map((l, i) => (
+          <span key={i}>{l}</span>
+        ))}
+      </p>
       <div className="hero__actions">
-        <VelourBolster label={t('hero.ctaProjects')} to="/projects" width={phone ? 176 : 232} height={phone ? 52 : 64} lang={locale} />
+        <VelourBolster label={t('hero.ctaProjects')} to="/projects" width={phone ? 176 : 232} height={phone ? 52 : 60} lang={locale} />
         <MohairButton
           label={t('hero.ctaCv')}
           href={locale === 'es' ? cvEs : cvEn}

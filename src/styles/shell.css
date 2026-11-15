@@ -42,6 +42,8 @@
 /* ---------- layout ---------- */
 .shell {
   position: relative;
+  /* fur canvases and their halos hang past their controls; never widen the page */
+  overflow-x: clip;
   min-height: 100dvh;
   display: flex;
   flex-direction: column;

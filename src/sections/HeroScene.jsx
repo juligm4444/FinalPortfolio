@@ -81,7 +81,7 @@ function Bust({ pointer, onReady, narrow, debug }) {
   })
 
   return (
-    <group ref={group} position={[narrow ? 0 : 0.42, narrow ? 0.22 : 0, 0]}>
+    <group ref={group} position={[0, narrow ? 0 : 0.02, 0]}>
       <primitive object={scene} />
     </group>
   )
@@ -101,7 +101,7 @@ function Rig({ pointer }) {
   useEffect(() => {
     // Fit the bust (1 unit tall) with room for the texts; narrow frames pull back.
     const aspect = size.width / Math.max(1, size.height)
-    const z = aspect < 0.9 ? 3.4 : 2.9
+    const z = aspect < 0.9 ? 2.7 : 2.62
     camera.position.set(0, 0.02, z)
     camera.lookAt(0, 0, 0)
   }, [camera, size])
