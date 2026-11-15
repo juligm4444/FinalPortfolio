@@ -3,7 +3,6 @@ import { useLocale } from '../i18n/LocaleProvider.jsx'
 import { useWebGL } from '../webgl/index.js'
 import VelourBolster from '../components/VelourBolster.jsx'
 import { MohairButton } from '../components/fur/FurButton.jsx'
-import BotanicalText from '../components/BotanicalText.jsx'
 import cvEn from '../assets/files/CV-English.pdf'
 import cvEs from '../assets/files/CV-Español.pdf'
 import poster from '../assets/backgrounds/hero-poster.webp'
@@ -80,7 +79,7 @@ export default function Hero() {
         <img className="hero__poster" src={poster} alt="" width="549" height="752" decoding="async" />
         {/* The H1 is the same Botanical Text as About and Projects (plain on phones and touch). */}
         <div className="hero__static">
-          <BotanicalText text={name.replace(' ', '\n')} size={96} id="home-h1" className="hero__h1" />
+          <h1 className="hero__h1">{name}</h1>
           <p>{role}</p>
         </div>
         {active && Scene && (

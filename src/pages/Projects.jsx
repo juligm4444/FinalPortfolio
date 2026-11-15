@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { useLocale } from '../i18n/LocaleProvider.jsx'
 import LocaleLink from '../components/LocaleLink.jsx'
-import BotanicalText from '../components/BotanicalText.jsx'
 import TumbleDeck from '../components/TumbleDeck.jsx'
 import Specimen from '../components/Specimen.jsx'
 import DeviceHint from '../components/DeviceHint.jsx'
@@ -188,7 +187,7 @@ export default function Projects() {
     <div className="proj">
       <header className="proj__header">
         <p className="proj__kicker">{t('projects.label')}</p>
-        <BotanicalText text={t('projects.title')} size={120} id="projects-h1" />
+        <h1 className="proj__title">{t('projects.title')}</h1>
         <p className="proj__lead">{t('projects.lead')}</p>
       </header>
       <WebGroup />

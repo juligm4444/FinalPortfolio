@@ -118,6 +118,23 @@ PORTS.push(
   { from: 'vendor/originkit/VelourBolster.tsx', to: 'src/components/fur/VelourBolsterCanvas.jsx', loader: 'tsx', patches: buttonPatches('vb', 'VelourBolster') },
 )
 
+PORTS.push({
+  from: 'vendor/originkit/BotanicalText.tsx',
+  to: 'src/components/botanical/FlowerTypeScene.jsx',
+  loader: 'tsx',
+  patches: [
+    ['"use client";\n', ''],
+    // only the scene class is used; the Framer wrapper below stays as it was
+    ['class FlowerTypeScene {', 'export class FlowerTypeScene {'],
+    // a heading, not an editor: no contenteditable, no focus grab, no text cursor
+    ['    this.input.contentEditable = "true";\n', ''],
+    ['    this.focusInput();\n', ''],
+    ['    this.renderer.domElement.style.cursor = "text";\n', ''],
+    // give the context back on dispose so the WebGL budget stays true
+    ['    this.renderer.dispose();\n', '    this.renderer.forceContextLoss();\n    this.renderer.dispose();\n'],
+  ],
+})
+
 const only = process.argv.slice(2)
 for (const port of PORTS) {
   if (only.length && !only.some((o) => port.to.includes(o))) continue

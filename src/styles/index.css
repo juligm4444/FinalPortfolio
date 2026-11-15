@@ -163,6 +163,34 @@
   }
 }
 
+/* ---------- Botanical on hover (V3 §D) ----------
+   Every H1/H2 is plain Baskerville at rest. Hovered, the shared canvas grows the
+   letters as foliage and the DOM text fades out under it; nothing reflows. */
+h1,
+h2 {
+  transition: color 380ms ease;
+}
+h1[data-bloom='on'],
+h2[data-bloom='on'] {
+  color: transparent !important;
+}
+.bloom-canvas {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 30;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 300ms ease;
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  h1,
+  h2 {
+    transition: none;
+  }
+}
+
 /* Filter bar tabs — hover behavior identical to navbar */
 .filter-tab {
   transition:
@@ -172,4 +200,16 @@
 }
 .filter-tab[data-active='false']:hover {
   color: var(--moss-700) !important;
+}
+
+/* Page H1 (About, Projects): plain type, the bloom comes on hover. */
+.about__title,
+.proj__title {
+  margin: var(--space-2) 0 var(--space-4);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-h1);
+  line-height: var(--leading-h1);
+  letter-spacing: var(--tracking-h1);
+  color: var(--text);
 }

@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useLocation, useOutlet } from 'react-router-dom'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { useLocale } from '../../i18n/LocaleProvider.jsx'
@@ -5,6 +6,7 @@ import RouteBackground from './RouteBackground.jsx'
 import SideNav from './SideNav.jsx'
 import Socials from './Socials.jsx'
 import FurSnapshotter from '../fur/FurSnapshotter.jsx'
+import { install as installBloom } from '../botanical/host.js'
 
 /* V3 §B.6 — page change, 350 ms in all: the page that leaves fades while rising
    8 px (175 ms), the route backgrounds cross-fade underneath, the new page comes
@@ -35,6 +37,7 @@ function PageSwap() {
 
 export default function AppShell() {
   const { t } = useLocale()
+  useEffect(() => installBloom(), [])
   return (
     <div className="shell">
       <a href="#main" className="skip-link">

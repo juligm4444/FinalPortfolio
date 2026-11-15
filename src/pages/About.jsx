@@ -1,5 +1,4 @@
 import { useLocale } from '../i18n/LocaleProvider.jsx'
-import BotanicalText from '../components/BotanicalText.jsx'
 import MoonlitPetals from '../components/MoonlitPetals.jsx'
 import VineTimeline from '../sections/VineTimeline.jsx'
 import Credentials from '../sections/Credentials.jsx'
@@ -11,7 +10,7 @@ export default function About() {
     <>
       <header className="about__header">
         <p className="about__kicker">{t('about.label')}</p>
-        <BotanicalText text={t('about.title')} size={120} id="about-h1" />
+        <h1 className="about__title">{t('about.title')}</h1>
         <p className="about__subtitle">{t('about.subtitle')}</p>
       </header>
       <section className="about__story">
