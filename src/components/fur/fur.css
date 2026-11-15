@@ -92,14 +92,33 @@
   color: var(--mist);
   box-shadow: inset 0 -3px 0 color-mix(in srgb, var(--concrete-900) 35%, transparent);
 }
-/* With the fur image the box itself is clear. Velour paints its label in the
-   cloth; Mohair keeps the real text on top of the fur. */
+/* With the fur image the box itself is clear and both kinds paint their label in the
+   fur; the DOM label stays (assistive tech, focus) with no visible ink. */
 .fur-btn--img {
   background: transparent;
   box-shadow: none;
-}
-.fur-btn--velour.fur-btn--img {
   color: transparent;
+}
+/* Velour (V4 §D.1): on hover the label glows — a soft mist bloom around the letters.
+   The transparent DOM label sits exactly on the painted one and only casts the glow. */
+.fur-btn--velour .fur-btn__label {
+  font-size: calc(var(--fb-h) * 0.3);
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 0 transparent;
+  transition: text-shadow 200ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .fur-btn--velour:hover .fur-btn__label {
+    text-shadow:
+      0 0 6px color-mix(in srgb, var(--mist) 90%, transparent),
+      0 0 14px color-mix(in srgb, var(--mist) 70%, transparent),
+      0 0 26px color-mix(in srgb, var(--mist) 45%, transparent);
+  }
+}
+.fur-btn--velour:focus-visible .fur-btn__label {
+  text-shadow:
+    0 0 6px color-mix(in srgb, var(--mist) 90%, transparent),
+    0 0 14px color-mix(in srgb, var(--mist) 70%, transparent);
 }
 .fur-btn__label {
   position: relative;

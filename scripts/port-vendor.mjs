@@ -113,6 +113,9 @@ PORTS.push(
       ['        state.tip = [f[0] / mx * 0.55 + 0.1, f[1] / mx * 0.9 + 0.12, f[2] / mx * 0.9 + 0.1];\n',
         '        state.tip = c.tipColor ? resolveRGB(root, c.tipColor).map(srgbToLin) : [f[0] / mx * 0.55 + 0.1, f[1] / mx * 0.9 + 0.12, f[2] / mx * 0.9 + 0.1];\n        state.root = c.rootColor ? resolveRGB(root, c.rootColor).map(srgbToLin) : f.map((v) => v * 0.68);\n'],
       ['      setU("uTip", state.tip[0], state.tip[1], state.tip[2]);\n', '      setU("uTip", state.tip[0], state.tip[1], state.tip[2]);\n      setU("uRoot", state.root[0], state.root[1], state.root[2]);\n'],
+      // V4 §D.2: the label is dyed into the fur again; at button sizes (44–56 px) the
+      // original's 5 px fray blurs the letters away, so the dyed hairs stray 2 px.
+      ['const LETTER_FRAY = 5;', 'const LETTER_FRAY = 2;'],
     ],
   },
   { from: 'vendor/originkit/VelourBolster.tsx', to: 'src/components/fur/VelourBolsterCanvas.jsx', loader: 'tsx', patches: buttonPatches('vb', 'VelourBolster') },

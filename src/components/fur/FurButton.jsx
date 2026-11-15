@@ -29,8 +29,10 @@ function propsFor(kind, label, w, h, pressed = false) {
     return { ...common, text: label, fabric: pressed ? mixColors(tok.moss700, tok.moss400, 0.58) : tok.moss700, textColor: tok.mist, drift: 2, advanced: { shadow: pressed ? 12 : 30, glow: 0 } }
   return {
     ...common,
-    // The label is real DOM text over the fur (legibility at 44–56 px), not dyed hair.
-    label: '',
+    // V4 §D.2: the label is drawn into the fur as its artwork, so the letters part under the
+    // pointer; the DOM label stays for assistive tech, visually hidden.
+    label,
+    font: { ...font, fontSize: `${Math.round(h * 0.4)}px`, fontWeight: 700 },
     furColor: tok.moss200,
     textColor: tok.concrete900,
     tipColor: tok.mist,
@@ -59,7 +61,7 @@ export default function FurButton({ kind = 'mohair', label, to, href, download, 
   const h = height
   const w = width ?? fitWidth(text, h)
   const m = MARGIN[kind] * h
-  const key = kind === 'mohair' ? `mohair-${w}x${h}` : `velour-${text}-${w}x${h}${pressed ? '-on' : ''}`
+  const key = `${kind}-${text}-${w}x${h}${pressed ? '-on' : ''}`
   const [snap, setSnap] = useState({ key: null, url: null })
   const rest = snap.key === key ? snap.url : null
   const [live, setLive] = useState(null)
