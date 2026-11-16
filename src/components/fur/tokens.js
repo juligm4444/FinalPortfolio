@@ -3,18 +3,34 @@
    only colours in a canvas are the tokens, read at start). */
 let cache = null
 
-const NAMES = ['mist', 'concrete-100', 'concrete-300', 'concrete-500', 'concrete-900', 'moss-400', 'moss-700', 'lichen-300', 'bloom', 'bloom-deep']
+const NAMES = ['mist', 'white', 'concrete-100', 'concrete-300', 'concrete-500', 'concrete-900', 'moss-200', 'moss-400', 'moss-700', 'bloom', 'bloom-deep', 'bloom-ink', 'flower-pink', 'flower-yellow', 'flower-violet', 'flower-white']
 
 export function siteTokens() {
   if (cache) return cache
   const css = getComputedStyle(document.documentElement)
   const out = {}
   for (const n of NAMES) out[n.replace(/-(\d)/, '$1').replace('-', '')] = css.getPropertyValue(`--${n}`).trim()
-  // keys: mist, concrete100, concrete300, concrete500, concrete900, moss400, moss700, lichen300, bloom, bloomdeep
+  // keys: mist, white, concrete100…900, moss200, moss400, moss700, bloom, bloomdeep, bloomink, flowerpink, floweryellow, flowerviolet, flowerwhite
   cache = out
   return out
 }
 
 export function siteFont(name) {
   return getComputedStyle(document.documentElement).getPropertyValue(name).trim()
+}
+
+/** Mix two token colours (hex or rgb()) → `rgb(r, g, b)`, for canvases that cannot read color-mix(). */
+export function mixColors(a, b, t) {
+  const parse = (c) => {
+    const s = c.trim()
+    if (s.startsWith('#')) {
+      const h = s.slice(1)
+      const f = h.length === 3 ? h.split('').map((x) => x + x).join('') : h
+      return [0, 2, 4].map((i) => parseInt(f.slice(i, i + 2), 16))
+    }
+    return (s.match(/[\d.]+/g) ?? [0, 0, 0]).slice(0, 3).map(Number)
+  }
+  const A = parse(a)
+  const B = parse(b)
+  return `rgb(${A.map((v, i) => Math.round(v + (B[i] - v) * t)).join(', ')})`
 }

@@ -1,22 +1,6 @@
+/* V4 §I — Projects: header wall, then the lattice hillside. */
 .proj {
-  max-width: var(--content-max);
-  margin: 0 auto;
-  padding: var(--space-12) var(--space-4) var(--space-12);
-}
-@media (min-width: 768px) {
-  .proj {
-    padding-left: var(--space-8);
-    padding-right: var(--space-8);
-  }
-}
-.proj__kicker {
-  margin: 0;
-  font-family: var(--font-label);
-  font-size: var(--text-label-sm);
-  font-weight: 500;
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
-  color: var(--text-muted);
+  padding: var(--space-12) 0 var(--gap-wall);
 }
 .proj__lead {
   max-width: 60ch;
@@ -24,149 +8,214 @@
   font-family: var(--font-body);
   color: var(--text-muted);
 }
-.proj__group-title {
-  margin: 0 0 var(--space-6);
-  font-family: var(--font-display);
-  font-size: var(--text-h2);
-  line-height: var(--leading-h2);
-  color: var(--text);
-}
-
-/* ---------- Deck (V3 §G.1) ---------- */
-.proj__deck {
-  margin-top: var(--space-16);
-}
-.proj__deck-front {
-  margin: var(--space-4) 0 0;
-  text-align: center;
-  font-family: var(--font-display);
-  font-size: var(--text-h3);
-  line-height: var(--leading-h3);
-}
-.proj__deck-link {
-  color: var(--text);
-  text-decoration: underline;
-  text-decoration-color: var(--moss-400);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 6px;
-}
-a.proj__deck-link:hover {
-  color: var(--moss-700);
-}
-.proj__deck-status {
-  font-family: var(--font-label);
-  font-size: var(--text-label);
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-
-/* ---------- Wall of slabs (V3 §G.2) ---------- */
-.wall {
-  margin-top: var(--space-24);
-}
-.wall__filters {
+.proj__filters {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-3) var(--space-4);
-  margin-bottom: var(--space-8);
+  margin-top: var(--space-8);
 }
-.wall__filter--on .fur-btn__label {
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 5px;
+.proj__hill {
+  padding: 0 var(--pad);
 }
-.wall__grid {
+
+/* The lattice: concrete ribs (the grid itself, its gaps) around grassy plots. */
+.lattice {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: clamp(10px, 1.1vw, 20px);
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  /* before the client measures: an even grid of the same plots */
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-auto-rows: clamp(200px, 15vw, 380px);
   grid-auto-flow: row dense;
-  gap: var(--space-6);
+  gap: clamp(10px, 1.1vw, 20px);
+  border-radius: var(--radius-slab);
+  box-shadow:
+    0 4px 0 var(--concrete-300),
+    inset 0 1px 0 rgb(255 255 255 / 0.55);
 }
-.wall__cell--l {
-  grid-column: span 2;
-  grid-row: span 2;
+.plot {
+  position: relative;
+  min-width: 0;
+  transform: skewY(var(--sk, 0deg)) rotate(var(--rot, 0deg));
 }
-.wall__cell .spec-slab,
-.wall__cell .spec-slab__link {
-  height: 100%;
-}
-.spec-slab--l .spec-slab__card {
+.plot__inner {
+  position: relative;
+  display: grid;
   grid-template-rows: 1fr auto;
-}
-.spec-slab--l .spec-slab__img {
-  padding: 10% 14% 4%;
-}
-.spec-slab--l .spec-slab__species {
-  font-size: var(--text-h3);
-}
-.spec-slab--bare .spec-slab__card {
-  grid-template-rows: 1fr auto;
-}
-.wall__piece {
-  display: block;
-  width: 100%;
   height: 100%;
-  padding: 0;
-  border: 0;
-  background: none;
+  color: var(--text);
+  text-decoration: none;
+}
+.plot__inner--case {
   cursor: pointer;
 }
-.wall__piece:focus-visible {
+.plot__inner--case:focus-visible {
   outline: 2px solid var(--focus-ring);
   outline-offset: 4px;
 }
-.wall__title-link {
-  color: inherit;
-  text-decoration: none;
-}
-.wall__title-link:hover .spec-slab__species {
-  color: var(--moss-700);
-}
-@media (max-width: 1023px) {
-  .wall__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-@media (max-width: 639px) {
-  .wall__grid {
-    gap: var(--space-4);
-  }
-  .wall__cell--l {
-    grid-row: span 1;
-  }
-}
-
-/* ---------- Tools (V3 §G.3): 88 px Plush Tiles ---------- */
-.tools-sec {
-  margin-top: var(--space-24);
-}
-.tools {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: var(--space-8) var(--space-4);
-}
-.tools__item {
+/* the plot's ground: short grass on soil, the image standing in it */
+.plot__ground {
+  position: relative;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: var(--space-3);
+  justify-content: center;
+  min-height: 0;
+  overflow: visible;
+  /* short grass: a dark turf, thin lighter blades along the bottom */
+  background:
+    radial-gradient(120% 90% at 50% 0%, color-mix(in srgb, var(--moss-400) 30%, transparent), transparent 70%),
+    color-mix(in srgb, var(--moss-700) 88%, var(--concrete-900));
+  box-shadow: inset 0 3px 8px color-mix(in srgb, var(--concrete-900) 30%, transparent);
+  transition:
+    background-color 600ms ease,
+    box-shadow 600ms ease;
 }
-.tools__name {
-  font-family: var(--font-label);
-  font-size: var(--text-label);
-  font-weight: 500;
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
+.plot--empty .plot__ground {
+  height: 100%;
+}
+.blade--c {
+  fill: var(--moss-200);
+  opacity: 0.8;
+}
+.plot__blades {
+  position: absolute;
+  inset: auto 0 0 0;
+  width: 100%;
+  /* short: the blades stay low whatever the plot's size */
+  height: clamp(22px, 32%, 64px);
+  pointer-events: none;
+}
+.plot__blades .blade {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  transition: transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.plot__img {
+  position: relative;
+  max-width: 62%;
+  max-height: 74%;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 6px color-mix(in srgb, var(--concrete-900) 35%, transparent));
+  transition:
+    opacity 500ms ease,
+    transform 500ms ease;
+}
+/* name and one line, printed on the rib under the plot */
+.plot__sill {
+  display: grid;
+  gap: 1px;
+  padding: var(--space-2) var(--space-1) 0;
+}
+.plot__name {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--text-species);
+  line-height: var(--leading-h3);
   color: var(--text);
 }
-@media (max-width: 479px) {
-  .tools {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+.plot__line {
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  line-height: 1.4;
+  color: var(--text-muted);
+}
+/* a flower opens at one corner on hover/focus */
+.plot__flower {
+  position: absolute;
+  width: clamp(28px, 2.4vw, 44px);
+  height: auto;
+  z-index: 3;
+  transform: scale(0) rotate(-40deg);
+  transition: transform 520ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none;
+}
+.plot__flower--tl {
+  left: -10px;
+  top: -10px;
+}
+.plot__flower--tr {
+  right: -10px;
+  top: -10px;
+}
+.plot__flower--bl {
+  left: -10px;
+  bottom: -10px;
+}
+.plot__flower--br {
+  right: -10px;
+  bottom: -10px;
+}
+@media (hover: hover) and (pointer: fine) {
+  .plot__inner--case:hover .plot__flower {
+    transform: none;
+  }
+}
+.plot__inner--case:focus-visible .plot__flower {
+  transform: none;
+}
+/* plush: the ground gives way to the fur */
+.plot__fur {
+  position: absolute;
+  inset: -12.5%;
+  z-index: 2;
+  pointer-events: none;
+  transition: opacity 400ms ease;
+}
+.plot__fur--leaving {
+  opacity: 0;
+}
+.plot__ground[data-live] > .plot__img,
+.plot__ground[data-live] > .plot__blades {
+  opacity: 0;
+}
+/* no case study yet: bare soil and a single sprout */
+.plot__inner--soon,
+.plot__inner--soon * {
+  cursor: default;
+}
+.plot__ground--soil {
+  background: color-mix(in srgb, var(--concrete-500) 70%, var(--moss-700));
+}
+.plot__sprout {
+  width: clamp(28px, 2.6vw, 48px);
+  height: auto;
+}
+.sprout-stem {
+  fill: none;
+  stroke: var(--moss-400);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+}
+/* filters: a plot that does not match wilts back to bare concrete, in place */
+.plot[data-dim] .plot__ground {
+  background-color: var(--concrete-300);
+  box-shadow: inset 0 2px 4px color-mix(in srgb, var(--concrete-900) 15%, transparent);
+}
+.plot[data-dim] .plot__blades .blade {
+  transform: scaleY(0);
+}
+.plot[data-dim] .plot__img,
+.plot[data-dim] .plot__sprout {
+  opacity: 0;
+  transform: scale(0.85);
+}
+.plot[data-dim] .plot__sill {
+  opacity: 0.35;
+}
+.plot[data-dim] .plot__inner {
+  pointer-events: none;
+}
+@media (max-width: 639px) {
+  .lattice {
+    grid-auto-rows: clamp(150px, 42vw, 220px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .plot__ground,
+  .plot__blades .blade,
+  .plot__img,
+  .plot__flower {
+    transition: none;
   }
 }

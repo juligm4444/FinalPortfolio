@@ -1,0 +1,104 @@
+/* Walls (V4 §1) and the growth on their edges. */
+.wall {
+  position: relative;
+  margin: 0 var(--pad) var(--gap-wall);
+  padding: var(--wall-pad);
+  border-radius: var(--radius-slab);
+  box-shadow:
+    0 4px 0 var(--concrete-300),
+    inset 0 1px 0 rgb(255 255 255 / 0.55);
+}
+.wall__body {
+  position: relative;
+  z-index: 1;
+}
+.growth-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+.growth {
+  position: absolute;
+  overflow: visible;
+}
+/* moss lies on the top joint: mostly on the lip, a little spilling into the padding */
+.growth--moss {
+  left: 0;
+  top: -16px;
+}
+/* grass rises from the base, in the gap below and the bottom padding */
+.growth--grass {
+  left: 0;
+  bottom: -18px;
+  height: 90px;
+}
+/* the vine hangs across a corner, mostly outside the wall */
+.growth--vine {
+  width: clamp(130px, 14vw, 260px);
+  height: auto;
+}
+.growth--tl {
+  left: -6%;
+  top: -40px;
+}
+.growth--tr {
+  right: -6%;
+  top: -40px;
+  transform: scaleX(-1);
+}
+.growth--bl {
+  left: -6%;
+  bottom: -40px;
+  transform: scaleY(-1);
+}
+.growth--br {
+  right: -6%;
+  bottom: -40px;
+  transform: scale(-1, -1);
+}
+.moss--a {
+  fill: var(--moss-700);
+}
+.moss--b {
+  fill: var(--moss-400);
+}
+.moss--c {
+  fill: var(--moss-200);
+}
+.blade--a {
+  fill: var(--moss-700);
+}
+.blade--b {
+  fill: var(--moss-400);
+}
+.vine-stem {
+  fill: none;
+  stroke: var(--moss-700);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+.leaf--a {
+  fill: var(--moss-700);
+}
+.leaf--b {
+  fill: var(--moss-400);
+}
+.flower--pink ellipse {
+  fill: var(--flower-pink);
+}
+.flower--yellow ellipse {
+  fill: var(--flower-yellow);
+}
+.flower--violet ellipse {
+  fill: var(--flower-violet);
+}
+.flower--white ellipse {
+  fill: var(--flower-white);
+}
+.flower__eye {
+  fill: var(--flower-yellow);
+}
+.flower--yellow .flower__eye {
+  fill: var(--moss-700);
+}

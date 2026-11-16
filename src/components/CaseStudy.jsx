@@ -1,7 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { useLocale } from '../i18n/LocaleProvider.jsx'
 import { MohairButton } from './fur/FurButton.jsx'
-import LocaleLink from './LocaleLink.jsx'
+import Wall from './wall/Wall.jsx'
 import { caseStudies } from '../data/projects.js'
 import './CaseStudy.css'
 import DeviceHint from './DeviceHint.jsx'
@@ -26,10 +26,10 @@ export function Reveal({ children, delay = 0, y = 24, className = '' }) {
 }
 
 /* ACABADO §7 — the one header every case uses:
-   1. kicker, title, one-line summary; 2. ficha (role, dates, team, tools — text);
+   1. title, one-line summary (no kicker, V4 §F); 2. ficha (role, dates, team, tools — text);
    3. links as the site's slab buttons. `media` is an optional project image,
    shown on a concrete slab (never bleeding with its own background). */
-export function CaseHero({ slug, kicker, h1, h2, sub, tags, meta = [], tools: toolsProp, links: linksProp, media, mediaAlt = '' }) {
+export function CaseHero({ slug, h1, h2, sub, tags, meta = [], tools: toolsProp, links: linksProp, media, mediaAlt = '' }) {
   const { t } = useLocale()
   const study = caseStudies[slug] ?? {}
   const tools = toolsProp ?? study.skills
@@ -39,15 +39,10 @@ export function CaseHero({ slug, kicker, h1, h2, sub, tags, meta = [], tools: to
   // A field with no content is not shown (ACABADO §7): no empty rows, nothing invented.
   const ficha = [...meta, ...(tools?.length ? [{ label: t('case.tools'), value: tools.join(' · ') }] : [])].filter((f) => f.value && String(f.value).trim())
   return (
-    <header className="px-4 pb-16 pt-16 md:px-8 md:pb-24 md:pt-24">
-      <div className="mx-auto w-full max-w-[1200px]">
+    <Wall as="header" seed={`case-${slug}-hero`} className="cs__hero">
+      <div className="w-full">
         <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-14">
           <div className={media ? 'lg:col-span-7' : 'lg:col-span-12'}>
-            <Reveal>
-              <p className="font-nav uppercase" style={{ fontSize: 12, letterSpacing: '0.22em', color: 'var(--text-muted)' }}>
-                {kicker}
-              </p>
-            </Reveal>
             <Reveal delay={0.08}>
               <h1
                 className="mt-5 font-display"
@@ -126,7 +121,7 @@ export function CaseHero({ slug, kicker, h1, h2, sub, tags, meta = [], tools: to
           </Reveal>
         ) : null}
       </div>
-    </header>
+    </Wall>
   )
 }
 
@@ -145,7 +140,7 @@ export function NextCase({ slug }) {
   const i = CASE_ORDER.findIndex(([s]) => s === slug)
   const [nextSlug, key] = CASE_ORDER[(i + 1) % CASE_ORDER.length]
   return (
-    <section className="cs__sec">
+    <Wall seed={`case-${slug}-next`} className="cs__sec cs__next">
       <Reveal>
         <p className="font-nav uppercase" style={{ fontSize: 12, letterSpacing: '0.22em', color: 'var(--text-muted)' }}>
           {t('case.next')}
@@ -154,7 +149,7 @@ export function NextCase({ slug }) {
           <MohairButton label={t(`works.${key}.title`)} to={`/projects/${nextSlug}`} />
         </div>
       </Reveal>
-    </section>
+    </Wall>
   )
 }
 
@@ -202,20 +197,21 @@ function Block({ b }) {
           ) : null}
         </div>
       )
-      if (b.heading && b.stacked)
+      // V4 §F: no small label over a heading. Where a block's only title was that label,
+      // it becomes the block's heading, so no content is lost.
+      const heading = b.heading ?? b.kicker
+      if (heading && (b.stacked || !b.heading))
         return (
           <Reveal className="cs__stack">
-            {b.kicker ? <p className="cs__kicker">{b.kicker}</p> : null}
-            <h2 className="cs__h">{b.heading}</h2>
+            <h2 className="cs__h">{heading}</h2>
             {body}
           </Reveal>
         )
-      if (!b.heading) return <Reveal>{b.kicker ? <p className="cs__kicker">{b.kicker}</p> : null}{body}</Reveal>
+      if (!heading) return <Reveal>{body}</Reveal>
       return (
         <Reveal className="cs__text cs__text--cols">
           <div>
-            {b.kicker ? <p className="cs__kicker">{b.kicker}</p> : null}
-            <h2 className="cs__h">{b.heading}</h2>
+            <h2 className="cs__h">{heading}</h2>
           </div>
           {body}
         </Reveal>
@@ -444,24 +440,21 @@ export default function CaseStudy({ slug, hero, sections }) {
   const [h1, h2] = hero.title
   return (
     <>
-      <CaseHero slug={slug} kicker={hero.kicker} h1={h1} h2={h2} sub={hero.summary} tags={hero.tags} meta={hero.meta} tools={hero.tools} links={hero.links} media={hero.media} mediaAlt={hero.mediaAlt} />
+      <CaseHero slug={slug} h1={h1} h2={h2} sub={hero.summary} tags={hero.tags} meta={hero.meta} tools={hero.tools} links={hero.links} media={hero.media} mediaAlt={hero.mediaAlt} />
       {sections.map((sec, i) => {
         const { key, blocks } = Array.isArray(sec) ? { key: SECTION_KEYS[i], blocks: sec } : sec
         return (
-          <section key={key} className="cs__sec" aria-labelledby={`cs-${key}`}>
-            <div className="cs__tag">
-              <span className="cs__num">{String(i + 1).padStart(2, '0')}</span>
-              <span aria-hidden className="cs__rule" />
-              <h2 id={`cs-${key}`} className="cs__sec-label">
-                {t(`case.sections.${key}`)}
-              </h2>
-            </div>
+          <Wall key={key} seed={`case-${slug}-${key}`} className="cs__sec" aria-labelledby={`cs-${key}`}>
+            {/* V4 §F, §K: no small label over the section; its name stays for assistive tech */}
+            <h2 id={`cs-${key}`} className="sr-only">
+              {String(i + 1).padStart(2, '0')} {t(`case.sections.${key}`)}
+            </h2>
             <div className="cs__blocks">
               {blocks.map((b, j) => (
                 <Block key={j} b={b} />
               ))}
             </div>
-          </section>
+          </Wall>
         )
       })}
       <NextCase slug={slug} />

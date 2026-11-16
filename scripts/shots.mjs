@@ -1,7 +1,7 @@
 /* npm run shots [-- <rutas…>] [--out=<dir>]
    Levanta `vite preview` sobre dist/ y captura cada ruta a 1440×900 y 390×844:
    primera pantalla (fold), mitad de página (mid) y página completa. Sale en shots/<out|actual>/.
-   Rutas por defecto: las 9 de ACABADO §8, en /es. Ejemplo: npm run shots -- /es/about --out=antes */
+   Rutas por defecto: las 10 páginas, en /es (--both: también /en). Ejemplo: npm run shots -- /es/about --out=antes */
 import { spawn } from 'node:child_process'
 import { mkdir, rm } from 'node:fs/promises'
 import { existsSync, readdirSync } from 'node:fs'
@@ -13,18 +13,22 @@ import { chromium } from 'playwright-core'
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const PORT = 4311
 const DEFAULT = [
-  '/es', '/es/about', '/es/projects',
+  '/es', '/es/about', '/es/projects', '/es/toolkit',
   '/es/projects/candelaria', '/es/projects/candelaria-website', '/es/projects/licorimetro',
   '/es/projects/sensewave', '/es/projects/umbral', '/es/projects/bloom',
 ]
 const args = process.argv.slice(2)
 const outName = (args.find((a) => a.startsWith('--out=')) ?? '--out=actual').slice(6)
 const routes = args.filter((a) => a.startsWith('/'))
-const list = routes.length ? routes : DEFAULT
-const VIEWPORTS = [
-  { tag: '1440', width: 1440, height: 900 },
-  { tag: '390', width: 390, height: 844 },
-]
+const both = args.includes('--both')
+const list = routes.length ? routes : both ? [...DEFAULT, ...DEFAULT.map((r) => r.replace(/^\/es/, '/en'))] : DEFAULT
+// V4 §B.5: --sizes=all → the eight sizes; default the two everyday ones. --sizes=390x844,1920x1080 picks.
+const SIZES_ALL = ['390x844', '768x1024', '1024x768', '1366x768', '1440x900', '1920x1080', '2560x1440', '3440x1440']
+const sizesArg = (args.find((a) => a.startsWith('--sizes=')) ?? '--sizes=390x844,1440x900').slice(8)
+const VIEWPORTS = (sizesArg === 'all' ? SIZES_ALL : sizesArg.split(',')).map((s) => {
+  const [width, height] = s.split('x').map(Number)
+  return { tag: String(width === 390 || width === 1440 ? width : `${width}x${height}`), width, height }
+})
 
 function findChrome() {
   if (process.env.CHROME_PATH) return process.env.CHROME_PATH

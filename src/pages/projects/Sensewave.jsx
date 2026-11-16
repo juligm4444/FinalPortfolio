@@ -26,7 +26,6 @@ export default function Sensewave() {
     <CaseStudy
       slug="sensewave"
       hero={{
-        kicker: s('heroPeriod'),
         title: [s('heroH1'), `${s('heroH2')} ${s('heroHAccent')}`],
         summary: s('heroSub'),
         tags: s('heroTags'),
@@ -53,7 +52,7 @@ export default function Sensewave() {
         ],
         // 02 Process: how it was designed, and the technology
         [
-          { type: 'text', kicker: s('s8'), heading: heading('processH1', 'processHPre', 'processHAccent') },
+          { type: 'text', heading: heading('processH1', 'processHPre', 'processHAccent') },
           { type: 'rows', items: s('processSteps') },
           {
             type: 'split',
@@ -61,7 +60,7 @@ export default function Sensewave() {
             left: {
               type: 'stack',
               items: [
-                { type: 'text', stacked: true, kicker: s('s3'), heading: heading('techH1', 'techHAccent', 'techH2'), paras: [s('techP')] },
+                { type: 'text', stacked: true, heading: heading('techH1', 'techHAccent', 'techH2'), paras: [s('techP')] },
                 { type: 'figure', src: a3Glasses, alt: s('s3'), ratio: '4/3', cover: true },
               ],
             },
@@ -76,10 +75,10 @@ export default function Sensewave() {
         ],
         // 03 Decisions: donor system, brand, digital
         [
-          { type: 'text', kicker: s('s4'), heading: heading('donorH1', 'donorHAccent'), paras: [s('donorP')] },
+          { type: 'text', heading: heading('donorH1', 'donorHAccent'), paras: [s('donorP')] },
           { type: 'node', node: <DonorFlow /> },
           { type: 'cards', items: s('donorCards') },
-          { type: 'text', kicker: s('s5'), heading: heading('brandH1', 'brandHPre', 'brandHAccent'), paras: [s('brandP')] },
+          { type: 'text', heading: heading('brandH1', 'brandHPre', 'brandHAccent'), paras: [s('brandP')] },
           { type: 'swatches', title: s('colorLabel'), items: SENSEWAVE_PALETTE },
           { type: 'typespec', label: s('typoLabel'), display: s('typoDisplay'), sub: s('typoSub'), roles: s('typoRoles') },
           {
@@ -93,13 +92,13 @@ export default function Sensewave() {
           {
             type: 'split',
             even: true,
-            left: { type: 'text', stacked: true, kicker: s('s6'), heading: heading('digitalH1', 'digitalHAccent', 'digitalH2'), paras: [s('digitalP')] },
+            left: { type: 'text', stacked: true, heading: heading('digitalH1', 'digitalHAccent', 'digitalH2'), paras: [s('digitalP')] },
             right: { type: 'figure', src: a9AccessCard, alt: 'SenseWave access card', ratio: '9/16', cover: true },
           },
         ],
         // 04 Result: the physical product and the reflection
         [
-          { type: 'text', kicker: s('s7'), heading: heading('physicalH1', 'physicalHAccent') },
+          { type: 'text', heading: heading('physicalH1', 'physicalHAccent') },
           {
             type: 'grid',
             cols: 3,

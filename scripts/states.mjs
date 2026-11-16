@@ -1,17 +1,17 @@
-/* npm run states — V3 §J: captures of the interactive states and the numbers of
-   the report. Needs `npm run build`. Writes to shots/v3-j/:
-   - titulo-hover, mohair-hover, loseta-hover, herbario-hover, enredadera-50
-   - contextos.json: live WebGL contexts per route (at rest after load, and the
-     most seen while hovering a heading and a fur piece)
-   - peso-home.json: bytes transferred loading /es */
+/* npm run states — V4 §M.2: the interactive states and the report's numbers.
+   Needs `npm run build`. Writes to shots/v4-m-states/:
+   titulo-cursor, velour-hover, mohair-hover, red-hover, destacada-hover,
+   parcela-hover, filtro-web, enredadera-50, enredadera-50__390, menu-movil;
+   contextos.json (live WebGL contexts per route: at rest, and the most seen
+   while hovering a heading and a fur piece) and peso-home.json. */
 import { spawn } from 'node:child_process'
 import { existsSync, readdirSync, mkdirSync, writeFileSync } from 'node:fs'
 import { homedir } from 'node:os'
 import { join } from 'node:path'
 import { chromium } from 'playwright-core'
 
-const PORT = 4318
-const OUT = 'shots/v3-j'
+const PORT = 4328
+const OUT = 'shots/v4-m-states'
 mkdirSync(OUT, { recursive: true })
 const base = join(homedir(), '.cache/ms-playwright')
 const dir = existsSync(base) ? readdirSync(base).filter((d) => /^chromium-\d+$/.test(d)).sort().reverse()[0] : null
@@ -30,8 +30,6 @@ const browser = await chromium.launch({
   args: ['--use-angle=gl-egl', '--use-gl=angle', '--ignore-gpu-blocklist'],
 })
 const url = (r) => `http://localhost:${PORT}${r}`
-
-// Counts contexts that exist and are not lost, wherever they live (on-screen or off).
 const COUNTER = () => {
   window.__gl = new Set()
   const orig = HTMLCanvasElement.prototype.getContext
@@ -42,29 +40,34 @@ const COUNTER = () => {
   }
   window.__live = () => [...window.__gl].filter((g) => !g.isContextLost()).length
 }
-
-async function open(route, vp = { width: 1440, height: 900 }) {
-  const page = await browser.newPage({ viewport: vp })
+async function open(route, vp = { width: 1440, height: 900 }, extra = {}) {
+  const page = await browser.newPage({ viewport: vp, ...extra })
   await page.addInitScript(COUNTER)
   await page.goto(url(route), { waitUntil: 'networkidle' })
   await page.waitForTimeout(5000)
   return page
 }
-async function hover(page, sel, shot) {
+/** Move onto `sel`, sweep to `at` (0..1 across it), wait, optionally capture the viewport. */
+async function hover(page, sel, shot, at = 0.45) {
   const el = page.locator(sel).first()
   await el.scrollIntoViewIfNeeded()
-  await page.waitForTimeout(600)
+  await page.waitForTimeout(500)
   const b = await el.boundingBox()
-  await page.mouse.move(b.x + 4, b.y + b.height / 2)
-  await page.mouse.move(b.x + b.width * 0.4, b.y + b.height * 0.5, { steps: 10 })
-  await page.waitForTimeout(1500)
+  await page.mouse.move(b.x + 3, b.y + b.height / 2)
+  await page.mouse.move(b.x + b.width * at, b.y + b.height * 0.5, { steps: 14 })
+  await page.waitForTimeout(1200)
+  // keep the pointer moving on it: fur parts, growth follows
+  await page.mouse.move(b.x + b.width * Math.min(0.95, at + 0.12), b.y + b.height * 0.55, { steps: 6 })
+  await page.waitForTimeout(250)
   const live = await page.evaluate(() => window.__live())
   if (shot) await page.screenshot({ path: `${OUT}/${shot}.png` })
-  await page.mouse.move(5, 890, { steps: 4 })
+  await page.mouse.move(2, 2, { steps: 3 })
+  await page.waitForTimeout(600)
   return live
 }
 
-const routes = ['/es', '/es/about', '/es/projects', '/es/projects/candelaria', '/es/projects/candelaria-website', '/es/projects/licorimetro', '/es/projects/sensewave', '/es/projects/umbral', '/es/projects/bloom']
+// live WebGL contexts per route
+const routes = ['/es', '/es/about', '/es/projects', '/es/toolkit', '/es/projects/candelaria', '/es/projects/candelaria-website', '/es/projects/licorimetro', '/es/projects/sensewave', '/es/projects/umbral', '/es/projects/bloom']
 const ctx = {}
 for (const r of routes) {
   const page = await open(r)
@@ -79,40 +82,58 @@ for (const r of routes) {
 }
 writeFileSync(`${OUT}/contextos.json`, JSON.stringify(ctx, null, 2))
 
-// state captures
+// states
 {
+  // title with the cursor mid-word: sweep the word from its start to its middle, capture there
   const p = await open('/es/about')
-  await hover(p, 'main h1', 'titulo-hover')
+  const h = p.locator('main h1').first()
+  await h.scrollIntoViewIfNeeded()
+  const b = await h.boundingBox()
+  await p.mouse.move(b.x + 4, b.y + b.height * 0.55)
+  await p.waitForTimeout(1500)
+  await p.mouse.move(b.x + b.width * 0.55, b.y + b.height * 0.55, { steps: 30 })
+  await p.waitForTimeout(500)
+  await p.screenshot({ path: `${OUT}/titulo-cursor.png` })
   await p.close()
 }
 {
   const p = await open('/es')
-  await hover(p, 'main .fur-btn--mohair', 'mohair-hover')
-  await hover(p, '.side-nav .plush', 'loseta-hover')
-  await hover(p, '.spec-slab', 'herbario-hover')
+  await hover(p, '.hero__actions .fur-btn--velour', 'velour-hover')
+  await hover(p, '.hero__actions .fur-btn--mohair', 'mohair-hover')
+  await hover(p, '.side-nav .plush', 'red-hover')
+  await hover(p, '.feat', 'destacada-hover')
   await p.close()
 }
 {
-  const p = await open('/es/about')
-  const y = await p.evaluate(() => {
-    const b = document.querySelector('.vine__body').getBoundingClientRect()
-    return window.scrollY + b.top + b.height / 2 - window.innerHeight * 0.7
-  })
-  await p.evaluate((yy) => window.scrollTo(0, yy), y)
-  await p.waitForTimeout(1800)
-  await p.screenshot({ path: `${OUT}/enredadera-50.png` })
-  await p.close()
-}
-{
-  const p = await browser.newPage({ viewport: { width: 390, height: 844 } })
-  await p.goto(url('/es/about'), { waitUntil: 'networkidle' })
-  const y = await p.evaluate(() => {
-    const b = document.querySelector('.vine__body').getBoundingClientRect()
-    return window.scrollY + b.top + b.height / 2 - window.innerHeight * 0.7
-  })
-  await p.evaluate((yy) => window.scrollTo(0, yy), y)
+  const p = await open('/es/projects')
+  await hover(p, '.plot__inner--case .plot__ground', 'parcela-hover')
+  await p.locator('.proj__filters button').nth(1).click()
   await p.waitForTimeout(1200)
-  await p.screenshot({ path: `${OUT}/enredadera-50__390.png` })
+  await p.mouse.move(2, 2)
+  await p.evaluate(() => window.scrollTo(0, document.querySelector('.lattice').getBoundingClientRect().top + scrollY - 120))
+  await p.waitForTimeout(900)
+  await p.screenshot({ path: `${OUT}/filtro-web.png` })
+  await p.close()
+}
+for (const [vp, name] of [
+  [{ width: 1440, height: 900 }, 'enredadera-50'],
+  [{ width: 390, height: 844 }, 'enredadera-50__390'],
+]) {
+  const p = await open('/es/about', vp)
+  const y = await p.evaluate(() => {
+    const b = document.querySelector('.vine__body').getBoundingClientRect()
+    return window.scrollY + b.top + b.height / 2 - window.innerHeight * 0.7
+  })
+  await p.evaluate((yy) => window.scrollTo(0, yy), y)
+  await p.waitForTimeout(1500)
+  await p.screenshot({ path: `${OUT}/${name}.png` })
+  await p.close()
+}
+{
+  const p = await open('/es', { width: 390, height: 844 }, { hasTouch: true, isMobile: true, deviceScaleFactor: 2 })
+  await p.locator('.topbar button').first().tap()
+  await p.waitForTimeout(2500)
+  await p.screenshot({ path: `${OUT}/menu-movil.png` })
   await p.close()
 }
 // home weight

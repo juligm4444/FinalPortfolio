@@ -34,7 +34,6 @@ export default function Umbral() {
     <CaseStudy
       slug="umbral"
       hero={{
-        kicker: h('heroKicker'),
         title: [h('heroH1'), h('heroH2')],
         summary: h('heroSub'),
         tags: h('heroTags'),
@@ -59,7 +58,7 @@ export default function Umbral() {
         [
           {
             type: 'split',
-            left: { type: 'text', stacked: true, kicker: h('s2'), heading: h('patternTitle'), paras: [h('patternP1'), h('patternP2'), h('patternP3'), h('patternP4')] },
+            left: { type: 'text', stacked: true, heading: h('patternTitle'), paras: [h('patternP1'), h('patternP2'), h('patternP3'), h('patternP4')] },
             right: {
               type: 'stack',
               items: [
@@ -81,7 +80,6 @@ export default function Umbral() {
             left: {
               type: 'text',
               stacked: true,
-              kicker: h('s3'),
               heading: h('constructTitle'),
               paras: [h('constructP1'), h('constructP2'), h('constructP3'), h('constructP4'), h('constructP5')],
             },
@@ -131,7 +129,7 @@ export default function Umbral() {
             type: 'split',
             left: {
               type: 'stack',
-              items: [{ type: 'text', stacked: true, kicker: h('s7'), heading: h('protoTitle'), paras: [h('protoP1'), h('protoP2'), h('protoP3')] }, spec(h('verifyTitle'), h('verify'), h('verifySpecs'))],
+              items: [{ type: 'text', stacked: true, heading: h('protoTitle'), paras: [h('protoP1'), h('protoP2'), h('protoP3')] }, spec(h('verifyTitle'), h('verify'), h('verifySpecs'))],
             },
             right: {
               type: 'grid',

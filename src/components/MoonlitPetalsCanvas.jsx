@@ -721,6 +721,8 @@ function bakeScene(Wd, Hd, geo, P, adv) {
     const bg = mk(Wd / 2, Hd / 2)
     const b = bg.getContext("2d")
     b.setTransform(0.5, 0, 0, 0.5, 0, 0)
+    // V4 §H.1: `transparent` draws the tree straight onto the page's scene — no sky, no haze
+    if (!P.transparent) {
     b.fillStyle = P.tok.str.mist
     b.fillRect(0, 0, Wd, Hd)
     const fade = b.createLinearGradient(0, Hd * 0.7, 0, Hd)
@@ -737,6 +739,7 @@ function bakeScene(Wd, Hd, geo, P, adv) {
     hz.addColorStop(1, rgbStr(haze, 0))
     b.fillStyle = hz
     b.fillRect(0, 0, Wd, Hd)
+    }
 
     return { core, coreBlur, sprites, halo, bloom: hCan, bg, field }
 }
@@ -1035,6 +1038,7 @@ export default function MoonlitPetalsCanvas(props) {
             ctx.setTransform(1, 0, 0, 1, 0, 0)
             ctx.globalCompositeOperation = "source-over"
             ctx.globalAlpha = 1
+            if (P.transparent) ctx.clearRect(0, 0, Wd, Hd)
             ctx.drawImage(scene.bg, 0, 0, Wd, Hd)
 
             const drawAdd = (img, a) => {
@@ -1249,7 +1253,7 @@ export default function MoonlitPetalsCanvas(props) {
             }
 
             const vig = clamp(num(adv.vignette, 35), 0, 100) / 100
-            if (vig > 0) {
+            if (vig > 0 && !P.transparent) {
                 const diag = Math.hypot(Wd, Hd) / 2
                 const vg = ctx.createRadialGradient(Wd / 2, Hd / 2, diag * 0.35, Wd / 2, Hd / 2, diag)
                 vg.addColorStop(0, rgbStr(tok.rgb.c900, 0))
@@ -1258,7 +1262,7 @@ export default function MoonlitPetalsCanvas(props) {
                 ctx.fillRect(0, 0, Wd, Hd)
             }
             const gr = clamp(num(adv.grain, 6), 0, 100)
-            if (gr > 0 && grainPat) {
+            if (gr > 0 && grainPat && !P.transparent) {
                 const tick = Math.floor(now / 42)
                 const ox = (tick * 73) % 256
                 const oy = (tick * 151) % 256

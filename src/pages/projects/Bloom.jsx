@@ -11,7 +11,6 @@ export default function Bloom() {
     <CaseStudy
       slug="bloom"
       hero={{
-        kicker: b('heroKicker'),
         title: [b('heroH1'), b('heroH2')],
         summary: b('heroSub'),
         tags: b('heroTags'),
@@ -40,10 +39,10 @@ export default function Bloom() {
         ],
         // 03 Decisions
         [
-          { type: 'text', kicker: b('s4'), heading: b('bridgeTitle'), paras: [b('bridgeP1'), b('bridgeP2'), b('bridgeP3')] },
+          { type: 'text', heading: b('bridgeTitle'), paras: [b('bridgeP1'), b('bridgeP2'), b('bridgeP3')] },
           { type: 'text', sub: b('caseTitle'), paras: [b('caseIntro')], hint: { pointer: b('caseHintPointer'), touch: b('caseHintTouch') } },
           { type: 'node', node: <SystemInUse b={b} /> },
-          { type: 'text', kicker: b('s5'), heading: b('wfTitle'), paras: [b('wfP1'), b('wfP2')] },
+          { type: 'text', heading: b('wfTitle'), paras: [b('wfP1'), b('wfP2')] },
           { type: 'stat', value: b('wfStat'), label: b('wfStatLabel') },
           { type: 'node', node: <WireframeViewer b={b} /> },
           { type: 'text', sub: b('wfFlowTitle') },

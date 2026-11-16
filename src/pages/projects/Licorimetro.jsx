@@ -40,7 +40,6 @@ export default function Licorimetro() {
     <CaseStudy
       slug="licorimetro"
       hero={{
-        kicker: l('tag'),
         title: [l('title')],
         summary: l('subtitle'),
         meta: [
@@ -54,7 +53,7 @@ export default function Licorimetro() {
         [
           {
             type: 'split',
-            left: { type: 'text', stacked: true, kicker: l('summaryKicker'), heading: l('summaryTitle'), paras: l('summaryParas') },
+            left: { type: 'text', stacked: true, heading: l('summaryTitle'), paras: l('summaryParas') },
             right: { type: 'video', src: licorimetroScanVideo, ratio: '1/1' },
           },
           {
@@ -63,7 +62,7 @@ export default function Licorimetro() {
             right: {
               type: 'stack',
               items: [
-                { type: 'text', stacked: true, kicker: l('problemKicker'), heading: l('problemTitle'), paras: [l('problemLead')] },
+                { type: 'text', stacked: true, heading: l('problemTitle'), paras: [l('problemLead')] },
                 { type: 'bullets', items: l('problemBullets') },
               ],
             },
@@ -74,18 +73,18 @@ export default function Licorimetro() {
           {
             type: 'stack',
             items: [
-              { type: 'text', kicker: l('ocrKicker'), heading: l('ocrTitle'), paras: l('ocrParas') },
+              { type: 'text', heading: l('ocrTitle'), paras: l('ocrParas') },
               { type: 'bullets', items: l('ocrBullets') },
             ],
           },
-          { type: 'text', kicker: l('processKicker'), heading: l('processTitle') },
+          { type: 'text', heading: l('processTitle') },
           { type: 'rows', items: l('processSteps').map((x) => ({ phase: x.n, title: x.title, intro: x.intro, bullets: x.bullets })) },
         ],
         // 03 Decisions
         [
-          { type: 'text', kicker: l('featuresKicker'), heading: l('featuresTitle') },
+          { type: 'text', heading: l('featuresTitle') },
           { type: 'cards', cols: 2, items: l('features') },
-          { type: 'text', kicker: l('architectureKicker'), heading: l('architectureTitle'), paras: [l('architectureParas')[0]] },
+          { type: 'text', heading: l('architectureTitle'), paras: [l('architectureParas')[0]] },
           {
             type: 'grid',
             cols: 3,
@@ -104,14 +103,14 @@ export default function Licorimetro() {
             right: {
               type: 'stack',
               items: [
-                { type: 'text', stacked: true, kicker: l('whatChangedKicker'), heading: l('whatChangedTitle') },
+                { type: 'text', stacked: true, heading: l('whatChangedTitle') },
                 { type: 'table', header: l('whatChangedHeader'), rows: l('whatChangedRows') },
               ],
             },
           },
           {
             type: 'split',
-            left: { type: 'text', stacked: true, kicker: l('reflectionsKicker'), heading: l('reflectionsTitle'), paras: l('reflectionsParas') },
+            left: { type: 'text', stacked: true, heading: l('reflectionsTitle'), paras: l('reflectionsParas') },
             right: { type: 'figure', src: licorimetroReflectionsImg, alt: 'Reflections — Licorímetro legacy', ratio: '4/5', cover: true },
           },
         ],

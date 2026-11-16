@@ -18,7 +18,7 @@ export const PROJECT_SLUGS = [
 ]
 
 /** Pages that get a prerendered HTML file. */
-export const STATIC_PATHS = ['/', '/about', '/projects', ...PROJECT_SLUGS.map((s) => `/projects/${s}`)]
+export const STATIC_PATHS = ['/', '/about', '/projects', '/toolkit', ...PROJECT_SLUGS.map((s) => `/projects/${s}`)]
 
 export function isLocale(x) {
   return LOCALES.includes(x)
@@ -41,11 +41,12 @@ export function localePath(locale, path = '/') {
   return `/${locale}${clean}`
 }
 
-/** Route key used by backgrounds and meta: home | about | projects | project | unknown */
+/** Route key used by backgrounds and meta: home | about | projects | toolkit | project | unknown */
 export function routeKey(path) {
   if (path === '/' || path === '') return 'home'
   if (path === '/about') return 'about'
   if (path === '/projects') return 'projects'
+  if (path === '/toolkit') return 'toolkit'
   if (path.startsWith('/projects/')) return 'project'
   return 'unknown'
 }

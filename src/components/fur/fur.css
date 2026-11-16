@@ -49,7 +49,7 @@
 .plush__glyph {
   position: absolute;
   inset: 20%;
-  background: var(--mist);
+  background: var(--white);
   -webkit-mask: center / contain no-repeat;
   mask: center / contain no-repeat;
 }
@@ -83,7 +83,7 @@
 }
 /* Flat stand-in until the snapshot exists (or without WebGL2): the same colours. */
 .fur-btn--mohair {
-  background: var(--lichen-300);
+  background: var(--moss-200);
   color: var(--concrete-900);
   box-shadow: inset 0 -3px 0 color-mix(in srgb, var(--concrete-500) 45%, transparent);
 }
@@ -92,14 +92,33 @@
   color: var(--mist);
   box-shadow: inset 0 -3px 0 color-mix(in srgb, var(--concrete-900) 35%, transparent);
 }
-/* With the fur image the box itself is clear. Velour paints its label in the
-   cloth; Mohair keeps the real text on top of the fur. */
+/* With the fur image the box itself is clear and both kinds paint their label in the
+   fur; the DOM label stays (assistive tech, focus) with no visible ink. */
 .fur-btn--img {
   background: transparent;
   box-shadow: none;
-}
-.fur-btn--velour.fur-btn--img {
   color: transparent;
+}
+/* Velour (V4 §D.1): on hover the label glows — a soft mist bloom around the letters.
+   The transparent DOM label sits exactly on the painted one and only casts the glow. */
+.fur-btn--velour .fur-btn__label {
+  font-size: calc(var(--fb-h) * 0.3);
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 0 transparent;
+  transition: text-shadow 200ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .fur-btn--velour:hover .fur-btn__label {
+    text-shadow:
+      0 0 6px color-mix(in srgb, var(--mist) 90%, transparent),
+      0 0 14px color-mix(in srgb, var(--mist) 70%, transparent),
+      0 0 26px color-mix(in srgb, var(--mist) 45%, transparent);
+  }
+}
+.fur-btn--velour:focus-visible .fur-btn__label {
+  text-shadow:
+    0 0 6px color-mix(in srgb, var(--mist) 90%, transparent),
+    0 0 14px color-mix(in srgb, var(--mist) 70%, transparent);
 }
 .fur-btn__label {
   position: relative;
@@ -139,4 +158,19 @@
 .fur-btn:focus-visible {
   outline: 2px solid var(--focus-ring);
   outline-offset: 4px;
+}
+
+/* The current page in the nav: pressed in, brighter fur (V4 §C.2) */
+.fur-btn--pressed .fur-btn__rest,
+.fur-btn--pressed .fur-btn__live {
+  transform: translateY(3px) scale(0.955);
+  filter: drop-shadow(0 -1px 0 color-mix(in srgb, var(--concrete-900) 25%, transparent));
+}
+.fur-btn--velour.fur-btn--pressed:not(.fur-btn--img) {
+  background: color-mix(in srgb, var(--moss-700) 42%, var(--moss-400));
+  box-shadow: inset 0 2px 0 color-mix(in srgb, var(--concrete-900) 30%, transparent);
+}
+
+.plush__glyph--mist {
+  background: var(--mist);
 }

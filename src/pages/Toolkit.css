@@ -1,0 +1,53 @@
+/* V4 §J — Toolkit: moss patches of tools on a wall, then the credentials wall. */
+.kit {
+  padding: var(--space-12) 0 0;
+}
+.kit__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-h1);
+  line-height: var(--leading-h1);
+  letter-spacing: var(--tracking-h1);
+  color: var(--text);
+}
+.kit__lead {
+  margin: var(--space-3) 0 0;
+  max-width: 60ch;
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  color: var(--text-muted);
+}
+/* the patches: loose clusters spread across the wall, never a grid */
+.kit__moss {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+  gap: clamp(32px, 5vw, 120px) clamp(40px, 6vw, 160px);
+  margin-top: clamp(40px, 7vh, 110px);
+}
+.kit__patch {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--gap, 20px) calc(var(--gap, 20px) * 1.4);
+  max-width: calc(88px * 3 + var(--gap, 20px) * 4);
+  margin: 0;
+  padding: var(--pad-top, 0) 0 0;
+  list-style: none;
+}
+.kit__tool {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+}
+.kit__name {
+  font-family: var(--font-label);
+  font-size: var(--text-label);
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text);
+}

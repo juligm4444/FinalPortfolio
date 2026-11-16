@@ -1,57 +1,56 @@
 import { useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
-import home from '../../assets/backgrounds/bg-home.webp'
-import about from '../../assets/backgrounds/bg-about.webp'
-import projects from '../../assets/backgrounds/bg-projects.webp'
+import home from '../../assets/backgrounds/bg-home-sharp.webp'
+import about from '../../assets/backgrounds/bg-about-sharp.webp'
+import projects from '../../assets/backgrounds/bg-projects-sharp.webp'
 
-/* V3 §B.2 — the fixed route landscape is the page's air, not a box behind the
-   text. Its opacity follows the scroll: full in the first screen of Home, then
-   down to FOG_FLOOR over --mist once the hero is passed, so section text stands
-   on an almost flat mist. Routes without a hero start at FOG_PAGE_TOP (the text
-   begins in their first screen) and reach the floor within half a screen.
-   Both numbers are checked by `npm run check:contrast` against the darkest
-   pixel of each landscape (text --concrete-500 ≥ 4.5:1). Changing route
-   cross-fades the landscapes (350 ms); there is no sharp-to-blur flash. */
-export const FOG_FLOOR = 0.18
-export const FOG_PAGE_TOP = 0.32
-
+/* V4 §1 — the scene is the page. One fixed landscape per route (the sharp
+   files the owner chose), visible for the whole scroll on every route; case
+   studies use the Projects scene. Only a light blur (~4 px at 1440) and a mist
+   veil under 15 %. It drifts up to 40 px with the scroll (parallax). Above it:
+   a slow fog layer and a few falling petals; both stop when the tab is hidden
+   and are absent with prefers-reduced-motion. Changing route cross-fades the
+   landscapes. */
 const BACKGROUNDS = { home, about, projects }
+export const PARALLAX_PX = 40
+export const VEIL = 0.12
 
-/** `/`, `/es`, `/en/about`, `/es/projects/umbral` → home | about | projects */
+/** `/`, `/es`, `/en/about`, `/es/projects/umbral`, `/en/toolkit` → home | about | projects */
 export function routeKeyFor(pathname) {
   const seg = pathname.split('/').filter(Boolean).filter((s) => s !== 'es' && s !== 'en')
   if (seg.length === 0) return 'home'
   if (seg[0] === 'about') return 'about'
-  if (seg[0] === 'projects') return 'projects'
+  if (seg[0] === 'projects' || seg[0] === 'toolkit') return 'projects'
   return 'home'
 }
 
-const isHome = (pathname) => pathname.split('/').filter(Boolean).filter((s) => s !== 'es' && s !== 'en').length === 0
+// Petals: few, slow, each with its own path. Deterministic so server and client agree.
+const PETALS = Array.from({ length: 9 }, (_, i) => {
+  const r = (k) => {
+    const x = Math.sin((i + 1) * 12.9898 + k * 78.233) * 43758.5453
+    return x - Math.floor(x)
+  }
+  return { left: 4 + r(1) * 92, delay: -r(2) * 26, dur: 18 + r(3) * 14, drift: (r(4) - 0.5) * 30, size: 8 + r(5) * 8, hue: i % 4 }
+})
 
 export default function RouteBackground() {
   const { pathname } = useLocation()
   const route = routeKeyFor(pathname)
-  const home = isHome(pathname)
   const el = useRef(null)
 
   useEffect(() => {
     document.documentElement.setAttribute('data-route', route)
   }, [route])
 
+  // Parallax: up to PARALLAX_PX of travel over the page's scroll.
   useEffect(() => {
     const node = el.current
-    if (!node) return
+    if (!node || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     let raf = 0
-    const top = home ? 1 : FOG_PAGE_TOP
     const update = () => {
       raf = 0
-      const vh = window.innerHeight || 1
-      // Home: hold full while the hero is in view, fog down as it scrolls out.
-      const span = home ? vh * 0.75 : vh * 0.5
-      const start = home ? vh * 0.1 : 0
-      const p = Math.min(1, Math.max(0, (window.scrollY - start) / span))
-      const k = p * p * (3 - 2 * p)
-      node.style.setProperty('--fog', (top + (FOG_FLOOR - top) * k).toFixed(3))
+      const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight)
+      node.style.setProperty('--scene-shift', `${(-(window.scrollY / max) * PARALLAX_PX).toFixed(1)}px`)
     }
     const onScroll = () => {
       if (!raf) raf = requestAnimationFrame(update)
@@ -64,21 +63,35 @@ export default function RouteBackground() {
       window.removeEventListener('resize', onScroll)
       cancelAnimationFrame(raf)
     }
-  }, [home])
+  }, [pathname])
+
+  // Hidden tab: the fog and petals stop.
+  useEffect(() => {
+    const node = el.current
+    const on = () => node?.toggleAttribute('data-paused', document.hidden)
+    document.addEventListener('visibilitychange', on)
+    return () => document.removeEventListener('visibilitychange', on)
+  }, [])
 
   return (
-    <div ref={el} className="route-bg" aria-hidden="true" style={{ '--fog': home ? 1 : FOG_PAGE_TOP }}>
-      {Object.entries(BACKGROUNDS).map(([key, src]) => (
-        <img
-          key={key}
-          className="route-bg__layer"
-          src={src}
-          alt=""
-          decoding="async"
-          loading={key === route ? 'eager' : 'lazy'}
-          data-active={key === route || undefined}
-        />
-      ))}
+    <div ref={el} className="scene" aria-hidden="true" style={{ '--veil': VEIL }}>
+      <div className="scene__land">
+        {Object.entries(BACKGROUNDS).map(([key, src]) => (
+          <img key={key} className="scene__img" src={src} alt="" decoding="async" loading={key === route ? 'eager' : 'lazy'} data-active={key === route || undefined} />
+        ))}
+      </div>
+      <div className="scene__veil" />
+      <div className="scene__fog scene__fog--a" />
+      <div className="scene__fog scene__fog--b" />
+      <div className="scene__petals">
+        {PETALS.map((p, i) => (
+          <span
+            key={i}
+            className={`petal petal--${p.hue}`}
+            style={{ left: `${p.left.toFixed(2)}%`, animationDelay: `${p.delay.toFixed(2)}s`, animationDuration: `${p.dur.toFixed(2)}s`, '--drift': `${p.drift.toFixed(1)}vw`, '--size': `${p.size.toFixed(1)}px` }}
+          />
+        ))}
+      </div>
     </div>
   )
 }

@@ -46,7 +46,6 @@ function useCandelaria(brand) {
   // The first paragraph frames the group; the second is the design team, the third the site.
   const roleParas = brand ? paras.slice(0, 2) : [paras[0], paras[2]]
   const hero = {
-    kicker: t(brand ? 'candelaria.brandPage.tag' : 'candelaria.tag'),
     title: [t(brand ? 'candelaria.brandPage.title' : 'candelaria.title')],
     summary: t(brand ? 'candelaria.brandPage.subtitle' : 'candelaria.subtitle'),
     meta: [
@@ -67,7 +66,7 @@ function useCandelaria(brand) {
     media: brand ? condorMain : siteHero,
     mediaAlt: brand ? 'Candelaria condor' : 'Candelaria website',
   }
-  const roleText = { type: 'text', kicker: c('myRoleKicker'), heading: t(brand ? 'candelaria.brandPage.roleTitle' : 'candelaria.myRoleTitle'), paras: roleParas }
+  const roleText = { type: 'text', heading: t(brand ? 'candelaria.brandPage.roleTitle' : 'candelaria.myRoleTitle'), paras: roleParas }
   // The team photo lives in the brand case only.
   const role = brand ? { type: 'split', even: true, left: fig(roleImg, 'Design team — Candelaria', '1/1'), right: { ...roleText, stacked: true } } : roleText
   return { t, c, hero, role }
@@ -86,7 +85,7 @@ export default function Candelaria() {
           key: 'process',
           blocks: [
             role,
-            { type: 'text', stacked: true, kicker: c('teamsKicker'), heading: c('teamsTitle'), paras: [c('teamsIntro'), c('teamsNote')] },
+            { type: 'text', stacked: true, heading: c('teamsTitle'), paras: [c('teamsIntro'), c('teamsNote')] },
             {
               type: 'cards',
               cols: 4,
@@ -100,7 +99,7 @@ export default function Candelaria() {
         {
           key: 'decisions',
           blocks: [
-            { type: 'text', kicker: c('brandKicker'), heading: c('brandTitle'), paras: [c('brandIntro')] },
+            { type: 'text', heading: c('brandTitle'), paras: [c('brandIntro')] },
             { type: 'cards', cols: 2, items: c('brandArtifacts') },
             { type: 'swatches', title: c('brandPaletteLabel'), items: CANDELARIA_BRAND_PALETTE.map((hex) => ({ name: hex, label: '', hex, light: hex === CANDELARIA_BRAND_PALETTE[4] })) },
           ],
@@ -122,7 +121,7 @@ export function CandelariaWebsite() {
         [
           {
             type: 'split',
-            left: { type: 'text', stacked: true, kicker: c('summaryKicker'), heading: c('summaryTitle'), paras: c('summaryParas') },
+            left: { type: 'text', stacked: true, heading: c('summaryTitle'), paras: c('summaryParas') },
             right: fig(summaryImg, 'Candelaria — overview', '4/5'),
           },
           role,
@@ -131,7 +130,7 @@ export function CandelariaWebsite() {
             left: {
               type: 'stack',
               items: [
-                { type: 'text', stacked: true, kicker: c('problemKicker'), heading: c('problemTitle'), paras: [c('problemLead')] },
+                { type: 'text', stacked: true, heading: c('problemTitle'), paras: [c('problemLead')] },
                 { type: 'bullets', items: c('problemBullets') },
               ],
             },
@@ -144,21 +143,21 @@ export function CandelariaWebsite() {
             type: 'split',
             left: {
               type: 'stack',
-              items: [{ type: 'text', stacked: true, kicker: c('processKicker'), heading: c('processTitle') }, fig(processImg, 'Process artifact', '4/3')],
+              items: [{ type: 'text', stacked: true, heading: c('processTitle') }, fig(processImg, 'Process artifact', '4/3')],
             },
             right: { type: 'rows', items: c('processSteps').map((x) => ({ phase: x.n, title: x.title, intro: x.intro, bullets: x.bullets })) },
           },
         ],
         // 03 Decisions
         [
-          { type: 'text', kicker: c('featuresKicker'), heading: c('featuresTitle') },
+          { type: 'text', heading: c('featuresTitle') },
           { type: 'cards', cols: 2, items: c('features') },
           {
             type: 'split',
             left: {
               type: 'stack',
               items: [
-                { type: 'text', stacked: true, kicker: c('tiersKicker'), heading: c('tiersTitle') },
+                { type: 'text', stacked: true, heading: c('tiersTitle') },
                 { type: 'table', header: c('tiersHeader'), rows: c('tiers'), accent: 'Core' },
               ],
             },
@@ -170,19 +169,19 @@ export function CandelariaWebsite() {
             right: {
               type: 'stack',
               items: [
-                { type: 'text', stacked: true, kicker: c('perfKicker'), heading: c('perfTitle') },
+                { type: 'text', stacked: true, heading: c('perfTitle') },
                 { type: 'table', header: c('perfHeader'), rows: c('perfRows') },
               ],
             },
           },
-          { type: 'text', kicker: c('securityKicker'), heading: c('securityTitle') },
+          { type: 'text', heading: c('securityTitle') },
           { type: 'bullets', card: true, cols: 2, items: c('securityBullets') },
         ],
         // 04 Result
         [
           {
             type: 'split',
-            left: { type: 'text', stacked: true, kicker: c('reflectionsKicker'), heading: c('reflectionsTitle'), paras: c('reflectionsParas') },
+            left: { type: 'text', stacked: true, heading: c('reflectionsTitle'), paras: c('reflectionsParas') },
             right: fig(reflectionsImg, 'Reflections — moodboard', '4/5'),
           },
         ],

@@ -70,7 +70,7 @@ function paint(SIZE, quality) {
     const bf = by - bi
     const joint = Math.exp(-Math.pow(Math.min(bf, 1 - bf) * 46, 2)) // dark line at the seam
     for (let x = 0; x < SIZE; x++) {
-      let t = 0.972
+      let t = 0.99
       t += (cloud[0](x, y) - 0.5) * 0.035 + (cloud[1](x, y) - 0.5) * 0.03 + (cloud[2](x, y) - 0.5) * 0.025
       t += (fine(x, y) - 0.5) * 0.03 + (rnd() - 0.5) * 0.028
       // streaks along the board: stretched 12× in x
@@ -135,6 +135,8 @@ if (out.buf.length >= MAX_BYTES) {
 }
 await mkdir(dirname(OUT), { recursive: true })
 await writeFile(OUT, out.buf)
+// the mean tone, read by check-contrast (text sits on this texture multiplied into the slab)
+await writeFile(OUT.replace(/\.webp$/, '.json'), JSON.stringify({ mean: Number(out.mean.toFixed(4)), min: Number(out.min.toFixed(4)) }) + '\n')
 console.log(
   `make:concrete: ${SIZE}×${SIZE}, ${(out.buf.length / 1024).toFixed(1)} KB (q=${out.q}), media ${out.mean.toFixed(3)}, mínimo ${out.min.toFixed(2)} → src/assets/textures/concrete.webp`
 )

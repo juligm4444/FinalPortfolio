@@ -13,7 +13,6 @@ const translations = {
       siteCase: 'See the website case',
     },
     herbarium: {
-      gen: 'Gen.',
       items: {
         candelariaWebsite: { genus: 'Web', year: 'Oct 2025 — present', role: 'Design lead, product engineering' },
         candelariaBrand: { genus: 'Brand', year: 'Oct 2025 — present', role: 'Design lead, identity, art direction' },
@@ -31,14 +30,17 @@ const translations = {
       },
       about: { title: 'About', description: 'Systems engineering as the base, design as what grows on it. Education, experience and the career change, told straight.' },
       projects: { title: 'Projects', description: 'Web, digital, object and brand work: Candelaria, Licorímetro, Bloom, El Umbral and SenseWave.' },
+      toolkit: { title: 'Toolkit', description: 'What I build with, and what I have certified.' },
     },
     nav: {
       label: 'Main navigation',
+      menu: 'Menu',
+      close: 'Close menu',
       skip: 'Skip to content',
-      homeAria: 'juligm4 — home',
       home: 'Home',
       about: 'About',
       projects: 'Projects',
+      toolkit: 'Toolkit',
       langShort: { en: 'EN', es: 'ES' },
       langSwitch: { en: 'Switch to English', es: 'Cambiar a español' },
     },
@@ -59,25 +61,26 @@ const translations = {
       ctaCv: 'Download CV',
     },
     home: {
-      bioTitle: 'About me',
+      statement1: 'I design digital products, and I build them.',
+      statement2: 'Nine semesters of Systems Engineering, now Design at Universidad de los Andes. Identity, components, functionality and feel.',
+      statement3: 'Interested in freelance and product work.',
       bioLink: 'More about me',
-      bioPara1:
-        'I study Design at Universidad de los Andes after nine semesters of Systems Engineering. Today what I enjoy most is structuring a product and building its whole aesthetic and functional side: identity, components, functionality and feel.',
-      herbKicker: 'Herbarium',
-      herbTitle: 'Specimens from the last two years',
+      featuredTitle: 'Featured Projects',
       herbCta: 'All projects',
     },
+    toolkit: {
+      title: 'Toolkit',
+      lead: 'What I build with, and what I have certified.',
+    },
     about: {
-      label: 'About',
       title: 'About me',
       subtitle: 'From Systems to Design',
       story: [
-        "I started Systems Engineering in 2021 because I wanted to be a programmer. I liked coding and I liked digital products, and for a good while that was enough. What started to bother me was something else: in one class I had to build a digital product and I couldn't give it the creative touch I had in my head. It wasn't a code problem. I knew how to make it work, but I had no room to decide how it should look and feel. That sense of having my hands tied when it came to creative direction came back later and never really left.",
-        "It took me almost two years to make the decision. During that time generative AI arrived. I didn't run from it, I actually made it part of how I work, but it made me see that just programming was no longer enough for me. In 2025, after nine semesters, I left Systems and started Design at the same university. It was very hard. I felt I had lost a part of my life and that I wouldn't be able to do anything with it. At home it wasn't easy at first either, although they ended up supporting me.",
-        "With time I understood those years weren't lost. Engineering laid the foundation for how I understand and solve problems, and that gives me a different perspective from my classmates in Design. I no longer code line by line the way I used to: I define the architecture, direct the AI, and then check for myself that what it generates does what I need and makes technical sense. That's why I work with tools, frameworks and databases that I know and can run on my own. It's also why this portfolio looks the way it does: concrete with plants growing over it. The concrete is what engineering left me, and it's still holding things up. What grows is what I'm learning now.",
-        "Today what I enjoy most is structuring a product and building its whole aesthetic and functional side: identity, components, functionality and feel. I work mostly with Figma, Procreate, VS Code and AI tools like Claude and Higgsfield. I can use the Adobe suite, but it's not what I prefer. I'm interested in freelance and product work.",
+        "I started Systems Engineering in 2021 because I **wanted to be a programmer**. I liked coding and I liked digital products, and for a good while that was enough. What started to bother me was something else: in one class I had to build a digital product and I couldn't give it the creative touch I had in my head. It wasn't a code problem. I knew how to make it work, but I had no room to decide how it should look and feel. That sense of having **my hands tied when it came to creative direction** came back later and never really left.",
+        "It took me **almost two years** to make the decision. During that time generative AI arrived. I didn't run from it, I actually made it part of how I work, but it made me see that **just programming was no longer enough for me**. In 2025, after nine semesters, I **left Systems and started Design** at the same university. It was very hard. I felt I had lost a part of my life and that I wouldn't be able to do anything with it. At home it wasn't easy at first either, although they ended up supporting me.",
+        "With time I understood **those years weren't lost**. Engineering laid the foundation for how I understand and solve problems, and that gives me a different perspective from my classmates in Design. I no longer code line by line the way I used to: **I define the architecture, direct the AI, and then check for myself** that what it generates does what I need and makes technical sense. That's why I work with tools, frameworks and databases that I know and can run on my own. It's also why this portfolio looks the way it does: **concrete with plants growing over it**. The concrete is what engineering left me, and it's still holding things up. What grows is what I'm learning now.",
+        "Today what I enjoy most is **structuring a product** and building its whole aesthetic and functional side: **identity, components, functionality and feel**. I work mostly with Figma, Procreate, VS Code and AI tools like Claude and Higgsfield. I can use the Adobe suite, but it's not what I prefer. I'm interested in **freelance and product work**.",
       ],
-      timelineKicker: 'Path',
       timelineTitle: 'Timeline',
       timeline: [
         { date: '2015 – 2020', title: 'Cambridge International School', text: 'High school, IB programme. Best graduate, class of 2020.' },
@@ -91,7 +94,6 @@ const translations = {
         { date: '2028', title: 'Expected graduation', text: 'Design, Universidad de los Andes.' },
       ],
       ocoboLabel: 'An ocobo tree in pink bloom under an overcast sky, petals drifting down.',
-      certKicker: 'Credentials',
       certLead: 'Eight verifiable badges from IBM and Cisco.',
       certVerify: 'Verify',
       certIssuers: ['IBM SkillsBuild', 'Cisco Networking Academy'],
@@ -107,7 +109,6 @@ const translations = {
       ],
     },
     projects: {
-      label: 'Work',
       title: 'Projects',
       lead: 'Four groups: engineering underneath, design on top. Every case opens a study.',
       groups: {
@@ -118,17 +119,8 @@ const translations = {
       },
       status: { 'in-progress': 'In progress', soon: 'Coming soon' },
       openCase: 'Open case study',
-      visitSite: 'Visit website',
-      deckLabel: 'Websites, one card at a time',
-      deckHint: 'Scroll, drag, click or use the arrow keys to flip through them.',
-      wallTitle: 'All the work',
       filterLabel: 'Filter by category',
       filterAll: 'All',
-      deckListTitle: 'All websites',
-      explodedShow: 'Show it apart',
-      explodedHide: 'Put it back together',
-      toolsKicker: 'Tools',
-      toolsTitle: 'What I build with',
       tools: ['Figma', 'React', 'Next.js', 'Python', 'Django', 'Supabase', 'Tailwind', 'Three.js', 'Blender', 'Unity', 'Git', 'SQL'],
     },
     works: {
@@ -184,7 +176,6 @@ const translations = {
       },
     },
     licorimetro: {
-      tag: 'Academic Project · Mobile App',
       title: 'Licorímetro',
       subtitle:
         'Discover, understand and share the world of alcohol from a single social experience.',
@@ -194,14 +185,12 @@ const translations = {
       sectionRoleLabel: 'Role',
       sectionTimelineLabel: 'Timeline',
 
-      summaryKicker: 'Overview',
       summaryTitle: 'A social ecosystem built around uncertainty',
       summaryParas: [
         'Licorímetro was born from a simple truth: when people come of age, alcohol becomes completely unfamiliar territory. What to drink. How much it costs. What it tastes like. What experiences it creates. The app proposed a single platform combining camera recognition, contextual information, community reviews, gamification and social discovery for any type of alcoholic beverage.',
         'Unlike platforms limited to wine or beer, Licorímetro envisioned a broader scope — any beverage, any social context, any level of experience. The project combined architecture thinking, UX/UI design and mobile development built almost entirely solo within a week of intensive work.',
       ],
 
-      problemKicker: 'Problem',
       problemTitle: 'Alcohol as a fragmented information system',
       problemLead:
         'The experience of discovering alcohol is full of uncertainty and friction. Information is scattered, reviews are unreliable, and no existing platform addresses the full spectrum of alcoholic beverages with a social-first approach.',
@@ -215,7 +204,6 @@ const translations = {
         'Young users completely underserved.',
       ],
 
-      featuresKicker: 'Features',
       featuresTitle: 'A social network built around discovery',
       features: [
         {
@@ -248,7 +236,6 @@ const translations = {
         },
       ],
 
-      ocrKicker: 'Technical Challenge',
       ocrTitle: 'Building computer vision without mobile experience',
       ocrParas: [
         'One of the greatest technical challenges of the project was the OCR system. The original plan relied on third-party visual recognition APIs — but during production, that solution stopped working.',
@@ -263,7 +250,6 @@ const translations = {
         'Built within a single week of intensive development.',
       ],
 
-      processKicker: 'User Flow',
       processTitle: 'From discovery to community',
       processSteps: [
         {
@@ -316,14 +302,12 @@ const translations = {
         },
       ],
 
-      architectureKicker: 'Architecture',
       architectureTitle: 'Thinking like a startup before building one',
       architectureParas: [
         'Although the final prototype was limited, the conceptual architecture of Licorímetro contemplated a much broader ecosystem. The system included authentication, profiles, reputation, gamification, smart recommendations, social storage, community interaction — and potential marketplace integrations.',
         'Even from an academic stage, the project already contemplated retention strategies, commercial partnerships, monetization models and scalability. The thinking was product-first: not a school project that happened to have features, but a startup MVP that happened to be built in class.',
       ],
 
-      whatChangedKicker: 'Evolution',
       whatChangedTitle: 'What I\'d build differently today',
       whatChangedHeader: ['Aspect', 'Then (2023)', 'Now'],
       whatChangedRows: [
@@ -335,7 +319,6 @@ const translations = {
         ['Data modeling', 'Basic schema', 'Scalable relational model'],
       ],
 
-      reflectionsKicker: 'Reflections',
       reflectionsTitle: 'More than a university app',
       reflectionsParas: [
         'Licorímetro never became a real startup. But it represented something more important: the ability to transform an everyday need into a complex digital system — combining product thinking, UX design and engineering within a single cohesive idea.',
@@ -345,7 +328,6 @@ const translations = {
 
     },
     candelaria: {
-      tag: 'Student Research Group · Academic project',
       title: 'Candelaria Website',
       subtitle:
         'Design leader and sole developer of the full digital system for a university solar vehicle research team.',
@@ -355,7 +337,6 @@ const translations = {
       sectionRoleLabel: 'Role',
       sectionTimelineLabel: 'Timeline & Status',
       brandPage: {
-        tag: 'Student Research Group · Brand Identity',
         title: 'Candelaria',
         subtitle:
           'Design lead behind the visual identity of a university solar vehicle research team: the condor mark, a logo system for seven divisions and the brand manual the whole team works from.',
@@ -363,7 +344,6 @@ const translations = {
         roleTitle: 'Leading the design team.',
       },
 
-      teamsKicker: 'The Team',
       teamsTitle: 'Seven areas. One condor.',
       teamsIntro:
         'Candelaria is an interdisciplinary seedbed. Each area carries its own condor — the same silhouette, a different color — because every team owns a distinct responsibility inside the mission.',
@@ -380,14 +360,12 @@ const translations = {
         { name: 'Human Resources', role: 'People, recruitment & culture' },
       ],
 
-      summaryKicker: 'Overview',
       summaryTitle: 'A team\'s digital home, not a portfolio',
       summaryParas: [
         'Candelaria is the complete digital presence of a university engineering competition team. The site goes beyond a static portfolio: it integrates member management, publications, memberships, donations, a merchandise shop and a gamification system for followers, all under a kinetic, high-contrast visual identity.',
         'The project was born out of the need to centralize the team\'s communications, make external support easy, and offer a user experience that matches the team\'s technical level. From database architecture to color palette, every decision was made with product and engineering criteria.',
       ],
 
-      myRoleKicker: 'Two roles, one project',
       myRoleTitle: 'Design lead. Solo developer.',
       myRoleParas: [
         'Candelaria is an interdisciplinary research seedbed focused on developing a solar-powered vehicle, combining technological innovation, sustainability and design applied to mobility.',
@@ -395,7 +373,6 @@ const translations = {
         'I also designed and built the entire website solo: architecture, backend, frontend, integrations and deployment. My hybrid profile across design, UX/UI and frontend lets me act as a bridge between technical decisions and the way they are communicated, understood and experienced by different stakeholders.',
       ],
 
-      brandKicker: 'Design Direction',
       brandTitle: 'Building Candelaria\'s visual language from scratch',
       brandIntro: 'My work inside Candelaria extends well beyond the website. As design team leader, I established the visual foundations the entire team operates from and continue producing the communication materials that represent the initiative publicly.',
       brandArtifacts: [
@@ -418,7 +395,6 @@ const translations = {
       ],
       brandPaletteLabel: 'Brand palette',
 
-      problemKicker: 'Problem',
       problemTitle: 'Beyond a PDF and a donations link',
       problemLead:
         'University competition teams usually settle for partial solutions: an Instagram account, a PDF with their achievements, and a generic donations link. Candelaria needed something different.',
@@ -430,7 +406,6 @@ const translations = {
         'A long-term incentive to keep followers involved: gamification.',
       ],
 
-      processKicker: 'Process',
       processTitle: 'Development process',
       processSteps: [
         {
@@ -483,7 +458,6 @@ const translations = {
         },
       ],
 
-      featuresKicker: 'Features',
       featuresTitle: 'What\'s inside the platform',
       features: [
         {
@@ -513,7 +487,6 @@ const translations = {
         },
       ],
 
-      tiersKicker: 'Follower tiers',
       tiersTitle: 'Score model',
       tiersHeader: ['Tier', 'Minimum score'],
       tiers: [
@@ -525,7 +498,6 @@ const translations = {
         ['Core', '300.000 COP'],
       ],
 
-      perfKicker: 'Performance',
       perfTitle: 'Performance results',
       perfHeader: ['Metric', 'Before', 'After', 'Improvement'],
       perfRows: [
@@ -535,7 +507,6 @@ const translations = {
         ['Publications API queries', '40', '10', '75% fewer queries'],
       ],
 
-      securityKicker: 'Security',
       securityTitle: 'Security posture',
       securityBullets: [
         'bcrypt hashing (12 rounds).',
@@ -546,7 +517,6 @@ const translations = {
         'Security middleware: CSRF, configured CORS, security headers.',
       ],
 
-      reflectionsKicker: 'Reflections',
       reflectionsTitle: 'What I learned',
       reflectionsParas: [
         'Candelaria is the project that forced me to think like a product engineer, not just a developer. Architectural decisions about when to use Django vs Supabase, how to model the tier system, and how to abstract two payment providers required reasoning about real trade-offs, not just shipping features.',
@@ -562,7 +532,6 @@ const translations = {
 
       // One project, three faces — the lane it appears in decides which.
 
-      heroPeriod: 'Sensewave · Speculative Design · 2025',
       heroH1: 'What if memories',
       heroH2: 'could be felt',
       heroHAccent: 'again?',
@@ -571,11 +540,6 @@ const translations = {
 
       s2: 'The Human Problem',
       s3: 'The Technology',
-      s4: 'The Donor System',
-      s5: 'Brand System',
-      s6: 'Digital Experience',
-      s7: 'Physical Product',
-      s8: 'Design Process',
 
       problemQuote: 'Every day, thousands of people live with the memory of sensations they can no longer feel.',
       problemP1: 'Not the event. The feeling. The cold rush of a mountain descent. The weightlessness of open water. The rhythm of a run through morning fog.',
@@ -643,7 +607,6 @@ const translations = {
       reflTags: ['Emotional Design', 'Speculative Futures', 'Branding Systems', 'Experiential Interfaces', 'Human-Centered Technology'],
     },
     umbral: {
-      tag: 'Academic Project · Furniture',
       title: 'El Umbral',
       subtitle:
         'A modular coffee table built from two interchangeable modules, where the user decides which face is the top.',
@@ -658,19 +621,15 @@ const translations = {
       status: '1:5 prototype',
       course: 'Design memoir · 2026-408',
 
-      heroKicker: 'El Umbral · Modular coffee table · 2026',
       heroH1: 'There is no',
       heroH2: 'correct side.',
       heroSub: 'A coffee table that starts from a simple idea: the piece changes depending on which face you choose to show.',
       heroTags: ['Furniture', 'Product Design', '3D', 'Materials', 'Laser Cutting'],
 
       s1: 'Concept',
-      s2: 'The Pattern',
-      s3: 'Construction',
       s4: 'Views & Dimensions',
       s5: 'Configurations',
       s6: 'In Use',
-      s7: 'Physical Prototype',
 
       conceptQuote: 'There is no correct configuration. The table changes depending on which face you want to bring forward.',
       conceptP1: 'El Umbral is a modular coffee table made of two modules that can swap places. Both share the same structure, but each presents a different surface: one carries a pattern engraved into the wood, the other a circular opening filled with glass.',
@@ -777,7 +736,6 @@ const translations = {
       specs: 'Typology — Modular coffee table\nMaterials — MDF · glass / acrylic\nDimensions — 410 × 410 × 310 mm\nModules — 2, interchangeable\nFabrication — Laser cut and engraved · glued joints\nModel — 1:5 scale',
     },
     bloom: {
-      tag: 'Client Work · Information Architecture',
       title: 'Bloom',
       subtitle:
         'Rebuilding the content taxonomy behind a women\'s health platform — from 75 loose tags to 28 that a phone can actually hold.',
@@ -791,7 +749,6 @@ const translations = {
       client: 'Bloom / BeBloomers',
       collaboration: 'In collaboration with another designer',
 
-      heroKicker: 'Bloom · Information architecture · 2025',
       heroH1: 'Seventy-five tags',
       heroH2: 'nobody could use.',
       heroSub: 'My first real client project: a full redesign of how Bloom classifies every article, podcast and workshop it publishes.',
@@ -800,8 +757,6 @@ const translations = {
       s1: 'The Brief',
       s2: 'The Problem',
       s3: 'Three Versions',
-      s4: 'The System in Use',
-      s5: 'Wireframes',
       s6: 'Reflection',
 
       briefP1: 'Bloom — BeBloomers — publishes articles, podcasts, workshops and guides on women\'s health and wellbeing. The team brought in two designers to rebuild the website from the ground up.',
@@ -895,7 +850,6 @@ const translations = {
       siteCase: 'Ver el caso del sitio',
     },
     herbarium: {
-      gen: 'Gen.',
       items: {
         candelariaWebsite: { genus: 'Web', year: 'Oct 2025 — presente', role: 'Diseño e ingeniería de producto' },
         candelariaBrand: { genus: 'Marca', year: 'Oct 2025 — presente', role: 'Líder de diseño, identidad, dirección de arte' },
@@ -913,14 +867,17 @@ const translations = {
       },
       about: { title: 'Sobre mí', description: 'Ingeniería de sistemas como base, diseño como lo que crece encima. Educación, experiencia y el cambio de carrera, contado de frente.' },
       projects: { title: 'Proyectos', description: 'Trabajo web, digital, de objeto y de marca: Candelaria, Licorímetro, Bloom, El Umbral y SenseWave.' },
+      toolkit: { title: 'Herramientas', description: 'Con qué construyo y qué he certificado.' },
     },
     nav: {
       label: 'Navegación principal',
+      menu: 'Menú',
+      close: 'Cerrar menú',
       skip: 'Saltar al contenido',
-      homeAria: 'juligm4 — inicio',
       home: 'Inicio',
       about: 'Sobre mí',
       projects: 'Proyectos',
+      toolkit: 'Herramientas',
       langShort: { en: 'EN', es: 'ES' },
       langSwitch: { en: 'Switch to English', es: 'Cambiar a español' },
     },
@@ -941,25 +898,26 @@ const translations = {
       ctaCv: 'Descargar CV',
     },
     home: {
-      bioTitle: 'Sobre mí',
+      statement1: 'Diseño productos digitales y los construyo.',
+      statement2: 'Nueve semestres de Ingeniería de Sistemas, hoy Diseño en la Universidad de los Andes. Identidad, componentes, funcionalidad y sensación.',
+      statement3: 'Me interesa el trabajo freelance y de producto.',
       bioLink: 'Más sobre mí',
-      bioPara1:
-        'Estudio Diseño en la Universidad de los Andes después de nueve semestres de Ingeniería de Sistemas. Hoy lo que más disfruto es estructurar un producto y construir todo su apartado estético y funcional: identidad, componentes, funcionalidad y sensación.',
-      herbKicker: 'Herbario',
-      herbTitle: 'Especímenes de los últimos dos años',
+      featuredTitle: 'Proyectos destacados',
       herbCta: 'Todos los proyectos',
     },
+    toolkit: {
+      title: 'Herramientas',
+      lead: 'Con qué construyo y qué he certificado.',
+    },
     about: {
-      label: 'About',
       title: 'Sobre mí',
       subtitle: 'De Sistemas a Diseño',
       story: [
-        'Entré a Ingeniería de Sistemas en 2021 porque quería ser programador. Me gustaba programar y me gustaban los productos digitales, y durante un buen tiempo eso fue suficiente. Lo que empezó a incomodarme fue otra cosa: en una clase tenía que construir un producto digital y no logré darle el toque creativo que tenía en la cabeza. No era un problema de código. Sabía cómo hacerlo funcionar, pero no tenía espacio para decidir cómo debía verse y sentirse. Esa sensación de tener las manos atadas en la dirección creativa se repitió después y no se fue.',
-        'Tardé casi dos años en tomar la decisión. En ese tiempo llegó la inteligencia artificial generativa. No huí de ella, de hecho la incorporé a mi forma de trabajar, pero me hizo ver que solo programar ya no me era suficiente. En 2025, después de nueve semestres, dejé Sistemas y empecé Diseño en la misma universidad. Costó mucho. Sentí que había perdido una parte de mi vida y que no iba a poder hacer nada con ella. En mi casa al principio tampoco fue fácil, aunque terminaron apoyándome.',
-        'Con el tiempo entendí que esos años no se perdieron. La ingeniería cimentó la forma en que entiendo y resuelvo los problemas, y eso me da una perspectiva distinta a la de mis compañeros en Diseño. Ya no programo línea por línea como antes: defino la arquitectura, dirijo a la IA y después reviso yo mismo que lo que genera cumpla lo que necesito y tenga sentido técnico. Por eso trabajo con herramientas, frameworks y bases de datos que conozco y que puedo operar por mi cuenta. Este portafolio se ve como se ve por esa razón: concreto con plantas creciendo encima. El concreto es lo que me dejó la ingeniería y sigue sosteniendo. Lo que crece es lo que estoy aprendiendo ahora.',
-        'Hoy lo que más disfruto es estructurar un producto y construir todo su apartado estético y funcional: identidad, componentes, funcionalidad y sensación. Trabajo sobre todo con Figma, Procreate, VS Code y herramientas de IA como Claude y Higgsfield. Puedo usar la suite de Adobe, pero no es lo que prefiero. Me interesa el trabajo freelance y de producto.',
+        'Entré a Ingeniería de Sistemas en 2021 porque **quería ser programador**. Me gustaba programar y me gustaban los productos digitales, y durante un buen tiempo eso fue suficiente. Lo que empezó a incomodarme fue otra cosa: en una clase tenía que construir un producto digital y no logré darle el toque creativo que tenía en la cabeza. No era un problema de código. Sabía cómo hacerlo funcionar, pero no tenía espacio para decidir cómo debía verse y sentirse. Esa sensación de tener **las manos atadas en la dirección creativa** se repitió después y no se fue.',
+        'Tardé **casi dos años** en tomar la decisión. En ese tiempo llegó la inteligencia artificial generativa. No huí de ella, de hecho la incorporé a mi forma de trabajar, pero me hizo ver que **solo programar ya no me era suficiente**. En 2025, después de nueve semestres, **dejé Sistemas y empecé Diseño** en la misma universidad. Costó mucho. Sentí que había perdido una parte de mi vida y que no iba a poder hacer nada con ella. En mi casa al principio tampoco fue fácil, aunque terminaron apoyándome.',
+        'Con el tiempo entendí que **esos años no se perdieron**. La ingeniería cimentó la forma en que entiendo y resuelvo los problemas, y eso me da una perspectiva distinta a la de mis compañeros en Diseño. Ya no programo línea por línea como antes: **defino la arquitectura, dirijo a la IA y después reviso yo mismo** que lo que genera cumpla lo que necesito y tenga sentido técnico. Por eso trabajo con herramientas, frameworks y bases de datos que conozco y que puedo operar por mi cuenta. Este portafolio se ve como se ve por esa razón: **concreto con plantas creciendo encima**. El concreto es lo que me dejó la ingeniería y sigue sosteniendo. Lo que crece es lo que estoy aprendiendo ahora.',
+        'Hoy lo que más disfruto es **estructurar un producto** y construir todo su apartado estético y funcional: **identidad, componentes, funcionalidad y sensación**. Trabajo sobre todo con Figma, Procreate, VS Code y herramientas de IA como Claude y Higgsfield. Puedo usar la suite de Adobe, pero no es lo que prefiero. Me interesa el trabajo **freelance y de producto**.',
       ],
-      timelineKicker: 'Trayecto',
       timelineTitle: 'Línea de tiempo',
       timeline: [
         { date: '2015 – 2020', title: 'Cambridge International School', text: 'Bachillerato, programa IB. Mejor egresado de la generación 2020.' },
@@ -973,7 +931,6 @@ const translations = {
         { date: '2028', title: 'Grado previsto', text: 'Diseño, Universidad de los Andes.' },
       ],
       ocoboLabel: 'Un árbol de ocobo en flor rosada bajo un cielo nublado, con pétalos que caen.',
-      certKicker: 'Credenciales',
       certLead: 'Ocho insignias verificables de IBM y Cisco.',
       certVerify: 'Verificar',
       certIssuers: ['IBM SkillsBuild', 'Cisco Networking Academy'],
@@ -989,7 +946,6 @@ const translations = {
       ],
     },
     projects: {
-      label: 'Trabajo',
       title: 'Proyectos',
       lead: 'Cuatro grupos, la ingeniería debajo y el diseño encima. Cada caso abre un estudio.',
       groups: {
@@ -1000,17 +956,8 @@ const translations = {
       },
       status: { 'in-progress': 'En curso', soon: 'Próximamente' },
       openCase: 'Abrir caso de estudio',
-      visitSite: 'Visitar el sitio',
-      deckLabel: 'Sitios web, una tarjeta a la vez',
-      deckHint: 'Desplaza, arrastra, haz clic o usa las flechas para pasarlas.',
-      wallTitle: 'Todo el trabajo',
       filterLabel: 'Filtrar por categoría',
       filterAll: 'Todos',
-      deckListTitle: 'Todos los sitios',
-      explodedShow: 'Ver desarmada',
-      explodedHide: 'Volver a armar',
-      toolsKicker: 'Herramientas',
-      toolsTitle: 'Con qué construyo',
       tools: ['Figma', 'React', 'Next.js', 'Python', 'Django', 'Supabase', 'Tailwind', 'Three.js', 'Blender', 'Unity', 'Git', 'SQL'],
     },
     works: {
@@ -1066,7 +1013,6 @@ const translations = {
       },
     },
     licorimetro: {
-      tag: 'Proyecto Académico · App Móvil',
       title: 'Licorímetro',
       subtitle:
         'Descubrir, entender y compartir el mundo del alcohol desde una sola experiencia social.',
@@ -1076,14 +1022,12 @@ const translations = {
       sectionRoleLabel: 'Rol',
       sectionTimelineLabel: 'Cronología',
 
-      summaryKicker: 'Resumen',
       summaryTitle: 'Un ecosistema social construido alrededor de la incertidumbre',
       summaryParas: [
         'Licorímetro nació de una verdad simple: cuando la gente llega a la mayoría de edad, el alcohol se convierte en un territorio completamente desconocido. Qué tomar. Cuánto cuesta. Qué sabor tiene. Qué experiencias genera. La app propuso una sola plataforma que combinara reconocimiento por cámara, información contextual, reviews comunitarias, gamificación y descubrimiento social para cualquier tipo de bebida alcohólica.',
         'A diferencia de plataformas limitadas a vinos o cervezas, Licorímetro contemplaba un alcance más amplio — cualquier bebida, cualquier contexto social, cualquier nivel de experiencia. El proyecto combinó pensamiento de arquitectura, diseño UX/UI y desarrollo móvil construido casi en su totalidad en solitario en una semana de trabajo intensivo.',
       ],
 
-      problemKicker: 'Problema',
       problemTitle: 'El alcohol como sistema de información fragmentado',
       problemLead:
         'La experiencia de descubrir el alcohol está llena de incertidumbre y fricción. La información está dispersa, las reseñas son poco confiables y ninguna plataforma existente aborda el espectro completo de bebidas alcohólicas con un enfoque social.',
@@ -1097,7 +1041,6 @@ const translations = {
         'Usuarios jóvenes completamente desatendidos.',
       ],
 
-      featuresKicker: 'Características',
       featuresTitle: 'Una red social construida alrededor del descubrimiento',
       features: [
         {
@@ -1130,7 +1073,6 @@ const translations = {
         },
       ],
 
-      ocrKicker: 'Reto Técnico',
       ocrTitle: 'Construir visión computacional sin experiencia móvil',
       ocrParas: [
         'Uno de los mayores retos técnicos del proyecto fue el sistema OCR. El plan original contemplaba el uso de APIs externas de reconocimiento visual — pero durante la producción, esa solución dejó de funcionar.',
@@ -1145,7 +1087,6 @@ const translations = {
         'Construido en una sola semana de desarrollo intensivo.',
       ],
 
-      processKicker: 'Flujo de Usuario',
       processTitle: 'Del descubrimiento a la comunidad',
       processSteps: [
         {
@@ -1198,14 +1139,12 @@ const translations = {
         },
       ],
 
-      architectureKicker: 'Arquitectura',
       architectureTitle: 'Pensar como startup antes de construir una',
       architectureParas: [
         'Aunque el prototipo final fue limitado, la arquitectura conceptual de Licorímetro contemplaba un ecosistema mucho más amplio. El sistema incluía autenticación, perfiles, reputación, gamificación, recomendaciones inteligentes, almacenamiento social, interacción comunitaria — e integraciones potenciales con marketplaces externos.',
         'Incluso desde una etapa académica, el proyecto ya contemplaba estrategias de fidelización, alianzas comerciales, modelos de monetización y escalabilidad. El pensamiento era product-first: no un proyecto escolar que resultó tener features, sino un MVP de startup que resultó construirse en clase.',
       ],
 
-      whatChangedKicker: 'Evolución',
       whatChangedTitle: 'Qué construiría diferente hoy',
       whatChangedHeader: ['Aspecto', '2023', 'Hoy'],
       whatChangedRows: [
@@ -1217,7 +1156,6 @@ const translations = {
         ['Modelo de datos', 'Schema básico', 'Modelo relacional escalable'],
       ],
 
-      reflectionsKicker: 'Reflexiones',
       reflectionsTitle: 'Más que una aplicación universitaria',
       reflectionsParas: [
         'Licorímetro nunca se convirtió en una startup real. Pero representó algo más importante: la capacidad de transformar una necesidad cotidiana en un sistema digital complejo — combinando pensamiento de producto, diseño UX e ingeniería en una sola idea coherente.',
@@ -1227,7 +1165,6 @@ const translations = {
 
     },
     candelaria: {
-      tag: 'Semillero · Proyecto Académico',
       title: 'Candelaria Website',
       subtitle:
         'Líder de diseño y desarrollador único de la presencia digital completa de un equipo universitario de investigación en vehículos solares.',
@@ -1237,7 +1174,6 @@ const translations = {
       sectionRoleLabel: 'Rol',
       sectionTimelineLabel: 'Cronología y Estado',
       brandPage: {
-        tag: 'Semillero · Identidad de Marca',
         title: 'Candelaria',
         subtitle:
           'Líder de diseño detrás de la identidad visual de un semillero universitario de vehículos solares: la marca del cóndor, un sistema de logos para siete áreas y el manual de marca con el que trabaja todo el equipo.',
@@ -1245,7 +1181,6 @@ const translations = {
         roleTitle: 'Liderando al equipo de diseño.',
       },
 
-      teamsKicker: 'El Equipo',
       teamsTitle: 'Siete áreas. Un cóndor.',
       teamsIntro:
         'Candelaria es un semillero interdisciplinario. Cada área lleva su propio cóndor — la misma silueta, un color distinto — porque cada equipo tiene una responsabilidad diferente dentro de la misión.',
@@ -1262,14 +1197,12 @@ const translations = {
         { name: 'Recursos Humanos', role: 'Personas, reclutamiento y cultura' },
       ],
 
-      summaryKicker: 'Resumen',
       summaryTitle: 'La casa digital de un equipo, no un portafolio',
       summaryParas: [
         'Candelaria es la presencia digital completa de un equipo universitario de ingeniería de competición. El sitio va más allá de un portafolio estático: integra gestión de miembros, publicaciones, membresías, donaciones, tienda de merchandise y un sistema de gamificación para seguidores, todo bajo una identidad visual cinética y de alto contraste.',
         'El proyecto nació de la necesidad de centralizar la comunicación del equipo, facilitar el apoyo externo y ofrecer una experiencia de usuario a la altura del nivel técnico del equipo. Desde la arquitectura de base de datos hasta la paleta de color, cada decisión fue tomada con criterio de producto y de ingeniería.',
       ],
 
-      myRoleKicker: 'Dos roles, un proyecto',
       myRoleTitle: 'Líder de diseño. Desarrollador único.',
       myRoleParas: [
         'Candelaria es un semillero interdisciplinario enfocado en el desarrollo de un vehículo impulsado por energía solar, combinando innovación tecnológica, sostenibilidad y diseño aplicado a movilidad.',
@@ -1277,7 +1210,6 @@ const translations = {
         'También diseñé y construí el sitio web completo de forma individual: arquitectura, backend, frontend, integraciones y despliegue. Mi perfil híbrido entre diseño, UX/UI y frontend me permite actuar como puente entre decisiones técnicas y la forma en que se comunican, entienden y se experimentan por los distintos usuarios.',
       ],
 
-      brandKicker: 'Dirección de Diseño',
       brandTitle: 'Construyendo el lenguaje visual de Candelaria desde cero',
       brandIntro: 'Mi trabajo dentro de Candelaria va mucho más allá del sitio web. Como líder del equipo de diseño, establecí las bases visuales desde las que opera todo el equipo y continúo produciendo los materiales de comunicación que representan públicamente a la iniciativa.',
       brandArtifacts: [
@@ -1300,7 +1232,6 @@ const translations = {
       ],
       brandPaletteLabel: 'Paleta de marca',
 
-      problemKicker: 'Problema',
       problemTitle: 'Más allá de un PDF y un link de donaciones',
       problemLead:
         'Los equipos universitarios de competición suelen quedarse con soluciones parciales: una cuenta de Instagram, un PDF con sus logros y un link de donaciones genérico. Candelaria necesitaba algo diferente.',
@@ -1312,7 +1243,6 @@ const translations = {
         'Un incentivo de largo plazo para que los seguidores sigan involucrados: gamificación.',
       ],
 
-      processKicker: 'Proceso',
       processTitle: 'Proceso de desarrollo',
       processSteps: [
         {
@@ -1365,7 +1295,6 @@ const translations = {
         },
       ],
 
-      featuresKicker: 'Características',
       featuresTitle: 'Lo que vive en la plataforma',
       features: [
         {
@@ -1395,7 +1324,6 @@ const translations = {
         },
       ],
 
-      tiersKicker: 'Tiers de seguidores',
       tiersTitle: 'Modelo de score',
       tiersHeader: ['Tier', 'Puntuación mínima'],
       tiers: [
@@ -1407,7 +1335,6 @@ const translations = {
         ['Core', '300.000 COP'],
       ],
 
-      perfKicker: 'Rendimiento',
       perfTitle: 'Resultados de rendimiento',
       perfHeader: ['Métrica', 'Antes', 'Después', 'Mejora'],
       perfRows: [
@@ -1417,7 +1344,6 @@ const translations = {
         ['Queries de API de publicaciones', '40', '10', '75% menos queries'],
       ],
 
-      securityKicker: 'Seguridad',
       securityTitle: 'Postura de seguridad',
       securityBullets: [
         'Hashing con bcrypt (12 rondas).',
@@ -1428,7 +1354,6 @@ const translations = {
         'Middleware de seguridad: CSRF, CORS configurado, headers de seguridad.',
       ],
 
-      reflectionsKicker: 'Reflexiones',
       reflectionsTitle: 'Lo que aprendí',
       reflectionsParas: [
         'Candelaria fue el proyecto que me obligó a pensar como product engineer, no solo como desarrollador. Decisiones de arquitectura como cuándo usar Django vs Supabase, cómo modelar el sistema de tiers o cómo abstraer dos proveedores de pago requirieron razonar sobre trade-offs reales, no solo implementar features.',
@@ -1444,7 +1369,6 @@ const translations = {
 
       // Un proyecto, tres caras — la franja en la que aparece decide cuál.
 
-      heroPeriod: 'Sensewave · Diseño Especulativo · 2025',
       heroH1: '¿Y si los recuerdos',
       heroH2: 'pudieran volver a',
       heroHAccent: 'sentirse?',
@@ -1453,11 +1377,6 @@ const translations = {
 
       s2: 'El Problema Humano',
       s3: 'La Tecnología',
-      s4: 'El Sistema de Donación',
-      s5: 'Sistema de Marca',
-      s6: 'Experiencia Digital',
-      s7: 'Producto Físico',
-      s8: 'Proceso de Diseño',
 
       problemQuote: 'Cada día, miles de personas viven con el recuerdo de sensaciones que ya no pueden sentir.',
       problemP1: 'No el evento. La sensación. El frío de un descenso en montaña. La ingravidez del agua abierta. El ritmo de una carrera entre la niebla matutina.',
@@ -1525,7 +1444,6 @@ const translations = {
       reflTags: ['Diseño Emocional', 'Futuros Especulativos', 'Sistemas de Marca', 'Interfaces Experienciales', 'Tecnología Centrada en el Ser Humano'],
     },
     umbral: {
-      tag: 'Proyecto Académico · Mobiliario',
       title: 'El Umbral',
       subtitle:
         'Una mesa de centro modular compuesta por dos módulos intercambiables, donde el usuario decide cuál cara queda arriba.',
@@ -1540,19 +1458,15 @@ const translations = {
       status: 'Prototipo 1:5',
       course: 'Memoria de diseño · 2026-408',
 
-      heroKicker: 'El Umbral · Mesa de centro modular · 2026',
       heroH1: 'No existe una',
       heroH2: 'cara correcta.',
       heroSub: 'Una mesa de centro que parte de una idea sencilla: la pieza cambia según qué cara elijas mostrar.',
       heroTags: ['Mobiliario', 'Diseño de Producto', '3D', 'Materiales', 'Corte Láser'],
 
       s1: 'Concepto',
-      s2: 'El Patrón',
-      s3: 'Sistema Constructivo',
       s4: 'Vistas y Dimensiones',
       s5: 'Configuraciones',
       s6: 'La Mesa en Uso',
-      s7: 'Prototipo Físico',
 
       conceptQuote: 'No existe una configuración correcta. La mesa cambia dependiendo de qué cara se quiera destacar.',
       conceptP1: 'El Umbral es una mesa de centro modular compuesta por dos módulos que pueden cambiar de posición. Ambos tienen la misma estructura, pero cada uno presenta una superficie diferente: uno incorpora un patrón grabado en madera y el otro una abertura circular con vidrio.',
@@ -1659,7 +1573,6 @@ const translations = {
       specs: 'Tipología — Mesa de centro modular\nMateriales — MDF · vidrio / acrílico\nDimensiones — 410 × 410 × 310 mm\nMódulos — 2, intercambiables\nFabricación — Corte y grabado láser · uniones pegadas\nMaqueta — Escala 1:5',
     },
     bloom: {
-      tag: 'Trabajo con Cliente · Arquitectura de Información',
       title: 'Bloom',
       subtitle:
         'Rehacer la taxonomía de contenido de una plataforma de salud femenina — de 75 tags sueltos a 28 que caben en un teléfono.',
@@ -1673,7 +1586,6 @@ const translations = {
       client: 'Bloom / BeBloomers',
       collaboration: 'En colaboración con otro diseñador',
 
-      heroKicker: 'Bloom · Arquitectura de información · 2025',
       heroH1: 'Setenta y cinco tags',
       heroH2: 'que nadie podía usar.',
       heroSub: 'Mi primer trabajo real con cliente: el rediseño completo de cómo Bloom clasifica cada artículo, podcast y taller que publica.',
@@ -1682,8 +1594,6 @@ const translations = {
       s1: 'El Encargo',
       s2: 'El Problema',
       s3: 'Tres Versiones',
-      s4: 'El Sistema en Uso',
-      s5: 'Wireframes',
       s6: 'Reflexión',
 
       briefP1: 'Bloom —BeBloomers— publica artículos, podcasts, talleres y guías sobre salud y bienestar femenino. El equipo convocó a dos diseñadores para rehacer el sitio web desde cero.',

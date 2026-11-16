@@ -10,7 +10,7 @@ import './MoonlitPetals.css'
    2. the live canvas, loaded on demand and mounted only while src/webgl grants
       this component a slot (REDESIGN §4.1).
    `label` describes the scene for assistive tech, in the page's language. */
-export default function MoonlitPetals({ label, lang, id, className = '' }) {
+export default function MoonlitPetals({ label, lang, id, className = '', transparent = false }) {
   const { ref, active } = useWebGL({ id })
   const [Scene, setScene] = useState(null)
 
@@ -38,7 +38,7 @@ export default function MoonlitPetals({ label, lang, id, className = '' }) {
       <img className="moonlit__still" src={still} alt="" width="1200" height="800" decoding="async" />
       {active && Scene && (
         <div className="moonlit__live" aria-hidden="true">
-          <Scene />
+          <Scene transparent={transparent} />
         </div>
       )}
     </div>

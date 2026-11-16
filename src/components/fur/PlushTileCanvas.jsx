@@ -405,6 +405,7 @@ uniform vec3 uTip, uFurC;
 uniform float uTipMix;
 uniform uint uSeed;
 uniform int uSegBase;
+uniform float uA;
 out vec4 vCol;
 out float vDist;
 out float vHalf;
@@ -422,7 +423,7 @@ void main() {
     float hw = float((hb >> 10) & 1023u) / 1023.0;
     float hc = float((hb >> 20) & 1023u) / 1023.0;
 
-    float a = uHalf.x;
+    float a = uA;
     vec3 P0 = aA.xyz * a;
     vec3 N = aB.xyz;
     vec3 T = aC.xyz;
@@ -766,7 +767,8 @@ function __OriginkitBase_PlushTile({
   pointerSeed,
   onFrame,
   tipColor,
-  tipMix = 0
+  tipMix = 0,
+  rect = false
 }) {
   const rootRef = useRef(null);
   const canvasRef = useRef(null);
@@ -775,6 +777,7 @@ function __OriginkitBase_PlushTile({
   const adv = { ...DEFAULT_ADVANCED, ...advanced };
   const src = imageOf(image);
   const cfg = {
+    rect: !!rect,
     onFrame,
     tipColor,
     tipMix,
@@ -863,7 +866,7 @@ function __OriginkitBase_PlushTile({
     gl.bindBuffer(gl.ARRAY_BUFFER, null);
     gl.bindVertexArray(vao);
     let capacity = 0;
-    const prepKey = new Float64Array(12).fill(NaN);
+    const prepKey = new Float64Array(14).fill(NaN);
     let flowVersion = 0;
     const makeU = (prog) => {
       const slots = /* @__PURE__ */ new Map();
@@ -1072,7 +1075,7 @@ function __OriginkitBase_PlushTile({
       out[1] = (ny * 0.5 + 0.5) * canvas.height;
     };
     const setShared = (U) => {
-      U.f2("uHalf", sh.a, sh.a);
+      U.f2("uHalf", sh.a * (sh.hx || 1), sh.a * (sh.hy || 1));
       U.f1("uCorner", Math.min(sh.rc, sh.a * 0.999));
       U.f1("uBevel", Math.max(sh.bevel, 1e-3));
       U.f1("uDome", sh.dome);
@@ -1259,7 +1262,7 @@ function __OriginkitBase_PlushTile({
       const kPx = canvas.width / cssW;
       const tileCss = aFull * minCss;
       const thin = Math.min(1, quality / 0.75);
-      const count = Math.min(MAX_STRANDS, Math.round(density / 5 * tileCss * tileCss * STRANDS_PER_PX * thin));
+      const count = Math.min(MAX_STRANDS, Math.round(density / 5 * tileCss * tileCss * STRANDS_PER_PX * thin * (c.rect ? fx * fy : 1)));
       const reach = clampN(c.rs.reach, 0, 10, DEFAULT_RESPONSE.reach);
       gl.viewport(0, 0, canvas.width, canvas.height);
       gl.disable(gl.BLEND);
@@ -1282,6 +1285,8 @@ function __OriginkitBase_PlushTile({
       gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
       const kc = parseColor(adv2.lightColor, LIGHT_FALLBACK);
       sh.a = a;
+      sh.hx = c.rect ? fx : 1;
+      sh.hy = c.rect ? fy : 1;
       sh.rc = rc;
       sh.bevel = bevel;
       sh.dome = dome;
@@ -1313,7 +1318,7 @@ function __OriginkitBase_PlushTile({
       const domeU = dome / a;
       const embossU = clampN(adv2.emboss, 0, 100, DEFAULT_ADVANCED.emboss) / 100 * 0.1;
       const key = prepKey;
-      if (key[0] !== count || key[1] !== seed || key[2] !== rimFrac || key[3] !== cornerU || key[4] !== bevelU || key[5] !== domeU || key[6] !== liftV || key[7] !== frizz || key[8] !== clump || key[9] !== lenK || key[10] !== flowVersion || key[11] !== embossU) {
+      if (key[0] !== count || key[1] !== seed || key[2] !== rimFrac || key[3] !== cornerU || key[4] !== bevelU || key[5] !== domeU || key[6] !== liftV || key[7] !== frizz || key[8] !== clump || key[9] !== lenK || key[10] !== flowVersion || key[11] !== embossU || key[12] !== sh.hx || key[13] !== sh.hy) {
         key[0] = count;
         key[1] = seed;
         key[2] = rimFrac;
@@ -1326,6 +1331,8 @@ function __OriginkitBase_PlushTile({
         key[9] = lenK;
         key[10] = flowVersion;
         key[11] = embossU;
+        key[12] = sh.hx;
+        key[13] = sh.hy;
         if (count > capacity) {
           capacity = Math.min(MAX_STRANDS, Math.ceil(count * 1.25));
           gl.bindBuffer(gl.ARRAY_BUFFER, strandBuf);
@@ -1333,7 +1340,7 @@ function __OriginkitBase_PlushTile({
           gl.bindBuffer(gl.ARRAY_BUFFER, null);
         }
         gl.useProgram(prepProg);
-        U_PR.f2("uHalf", 1, 1);
+        U_PR.f2("uHalf", sh.hx || 1, sh.hy || 1);
         U_PR.f1("uCorner", cornerU);
         U_PR.f1("uBevel", bevelU);
         U_PR.f1("uDome", domeU);
@@ -1360,6 +1367,7 @@ function __OriginkitBase_PlushTile({
       U_ST.f3("uGrav", gx, gy, gz);
       U_ST.f4("uBrush", sm.bx, sm.by, a * (0.08 + 0.035 * reach), sm.bw);
       U_ST.f1("uLen", a * lenK);
+      U_ST.f1("uA", a);
       U_ST.f1("uFrizz", frizz);
       U_ST.f1("uGrow", 0.15 + 0.85 * grow);
       U_ST.f1("uTime", clock);
